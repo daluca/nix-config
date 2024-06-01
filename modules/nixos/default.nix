@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./gnome.nix
-    ];
+  imports = [ ./gnome.nix ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nix.gc = {
     automatic = true;
@@ -21,7 +21,5 @@
     extraGroups = [ "wheel" ];
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-  ];
+  environment.systemPackages = with pkgs; [ git ];
 }
