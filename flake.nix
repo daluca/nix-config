@@ -22,6 +22,7 @@
     }:
     let
       system = "x86_64-linux";
+      username = "daluca";
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
@@ -43,7 +44,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.daluca = import ./home;
+              users.${username} = import ./home;
             };
           }
         ];
