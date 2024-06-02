@@ -4,6 +4,7 @@
   imports = [
     ./packages
     ./git
+    ./vscodium
   ];
 
   home = {
