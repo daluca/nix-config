@@ -5,6 +5,7 @@
     ./packages
     ./git
     ./vscodium
+    ./tmux
   ];
 
   home = {
