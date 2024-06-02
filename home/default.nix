@@ -6,6 +6,7 @@
     ./git
     ./vscodium
     ./tmux
+    ./neovim
   ];
 
   home = {
