@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./packages.nix ];
+  imports = [
+    ./packages.nix
+    ./git
+  ];
 
   home = {
     username = "daluca";

@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./gnome.nix ];
+  imports = [
+    ./gnome.nix
+    ./gnupg
+  ];
 
   nix.settings.experimental-features = [
     "nix-command"
