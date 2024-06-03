@@ -8,6 +8,7 @@
     ./tmux
     ./neovim
     ./zsh
+    ./alacritty
   ];
 
   home = {

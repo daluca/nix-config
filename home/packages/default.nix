@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    firefox
-    unstable.alacritty
-  ];
+  home.packages = with pkgs; [ firefox ];
 }
