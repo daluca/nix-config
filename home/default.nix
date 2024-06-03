@@ -7,6 +7,7 @@
     ./vscodium
     ./tmux
     ./neovim
+    ./zsh
   ];
 
   home = {

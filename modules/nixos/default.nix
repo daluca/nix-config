@@ -22,7 +22,10 @@
   users.users.daluca = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
   };
+
+  programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [ git ];
 }
