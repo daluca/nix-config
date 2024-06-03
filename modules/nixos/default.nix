@@ -3,6 +3,7 @@
 {
   imports = [
     ./gnome
+    ./fonts
     ./gnupg
   ];
 
