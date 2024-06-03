@@ -12,6 +12,11 @@
     };
   };
 
+  environment.variables = {
+    # A fix so the mouse cursor doesn't disappear over alacritty. 
+    XCURSOR_THEME = "Adwaita";
+  };
+
   sound.enable = true;
 
   hardware.pulseaudio.enable = true;
