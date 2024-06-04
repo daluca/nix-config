@@ -6,6 +6,8 @@
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,6 +21,7 @@
       self,
       nixpkgs,
       nixpkgs-unstable,
+      nixos-hardware,
       home-manager,
       nur,
       ...
@@ -41,6 +44,8 @@
           )
 
           { nixpkgs.overlays = [ nur.overlay ]; }
+
+          nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
 
           ./hosts/thinkpad
 
