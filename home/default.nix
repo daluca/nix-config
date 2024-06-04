@@ -9,6 +9,7 @@
     ./neovim
     ./zsh
     ./alacritty
+    ./kubernetes
   ];
 
   home = {
