@@ -5,6 +5,7 @@
     ./gnome
     ./fonts
     ./gnupg
+    ./dvorak
   ];
 
   nix.settings.experimental-features = [

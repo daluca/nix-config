@@ -10,6 +10,7 @@
     ./alacritty
     ./kubernetes
     ./firefox
+    ./dvorak
   ];
 
   home = {
