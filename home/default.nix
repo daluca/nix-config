@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./packages
     ./git
     ./vscodium
     ./tmux
@@ -10,6 +9,7 @@
     ./zsh
     ./alacritty
     ./kubernetes
+    ./firefox
   ];
 
   home = {

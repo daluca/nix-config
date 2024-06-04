@@ -10,6 +10,8 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur.url = "github:nix-community/nur";
   };
 
   outputs =
@@ -18,6 +20,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+      nur,
       ...
     }:
     let
@@ -36,6 +39,8 @@
               nixpkgs.overlays = [ (self: super: { unstable = import nixpkgs-unstable { inherit system; }; }) ];
             }
           )
+
+          { nixpkgs.overlays = [ nur.overlay ]; }
 
           ./hosts/thinkpad
 
