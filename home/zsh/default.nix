@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
+  imports = [ ./ohmyzsh.nix ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
