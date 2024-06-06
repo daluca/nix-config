@@ -6,6 +6,7 @@
     ./fonts
     ./gnupg
     ./dvorak
+    ./docker
   ];
 
   nix.settings.experimental-features = [
