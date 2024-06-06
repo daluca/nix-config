@@ -11,6 +11,7 @@
       vscodevim.vim
       jnoortheen.nix-ide
       github.github-vscode-theme
+      editorconfig.editorconfig
     ];
     userSettings = {
       workbench.colorTheme = "GitHub Dark";
