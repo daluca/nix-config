@@ -1,5 +1,8 @@
 { config, ... }:
 
 {
-  imports = [ ./extensions ];
+  imports = [
+    ./extensions
+    ./wallpaper
+  ];
 }
