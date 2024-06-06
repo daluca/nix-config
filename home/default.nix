@@ -11,6 +11,7 @@
     ./kubernetes
     ./firefox
     ./dvorak
+    ./gnome
   ];
 
   home = {

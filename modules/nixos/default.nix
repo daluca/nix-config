@@ -6,6 +6,7 @@
     ./fonts
     ./gnupg
     ./dvorak
+    ./networking
     ./docker
   ];
 
