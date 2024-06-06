@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./packages
     ./git
     ./vscodium
     ./tmux
