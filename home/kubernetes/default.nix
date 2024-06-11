@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ../k9s
+    ../helm
+  ];
+
   home.packages = with pkgs.unstable; [
     kubectl
     doctl
@@ -10,6 +15,4 @@
   programs.zsh.shellAliases = {
     k = "kubectl";
   };
-
-  imports = [ ../k9s ];
 }
