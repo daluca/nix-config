@@ -31,6 +31,9 @@
         "monospace"
       ];
       "editor.renderWhitespace" = "trailing";
+      "files.associations" = {
+        "flake.lock" = "json";
+      };
     };
   };
 
