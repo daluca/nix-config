@@ -17,9 +17,11 @@
       jnoortheen.nix-ide
       github.github-vscode-theme
       editorconfig.editorconfig
+      pkief.material-icon-theme
     ];
     userSettings = {
       "workbench.colorTheme" = "GitHub Dark";
+      "workbench.iconTheme" = "material-icon-theme";
       "editor.fontLigatures" = true;
       "editor.fontFamily" = lib.concatStringsSep ", " [
         "FiraCode Nerd Font"
