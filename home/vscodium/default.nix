@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.vscode = {
@@ -14,7 +19,15 @@
       editorconfig.editorconfig
     ];
     userSettings = {
-      workbench.colorTheme = "GitHub Dark";
+      "workbench.colorTheme" = "GitHub Dark";
+      "editor.fontLigatures" = true;
+      "editor.fontFamily" = lib.concatStringsSep ", " [
+        "FiraCode Nerd Font"
+        "Menlo"
+        "Monaco"
+        "'Courier New'"
+        "monospace"
+      ];
     };
   };
 
