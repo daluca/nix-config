@@ -13,6 +13,7 @@
     ./firefox
     ./dvorak
     ./gnome
+    ./development
   ];
 
   home = {
