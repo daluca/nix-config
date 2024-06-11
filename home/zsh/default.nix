@@ -1,16 +1,15 @@
 { config, ... }:
 
 {
-  imports = [ ./ohmyzsh.nix ];
+  imports = [
+    ./ohmyzsh.nix
+    ./starship.nix
+  ];
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-  };
-
-  programs.starship = {
-    enable = true;
   };
 }
