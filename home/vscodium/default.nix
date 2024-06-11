@@ -30,6 +30,7 @@
         "'Courier New'"
         "monospace"
       ];
+      "editor.renderWhitespace" = "trailing";
     };
   };
 
