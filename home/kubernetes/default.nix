@@ -11,6 +11,7 @@
     kubectl
     doctl
     kubectx
+    fzf
   ];
 
   programs.zsh.shellAliases = {
