@@ -16,6 +16,7 @@
     ./development
     ./terraform
     ./zoxide
+    ./ansible
   ];
 
   home = {
