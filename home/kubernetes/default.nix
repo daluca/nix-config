@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./vscode.nix
     ../k9s
     ../helm
   ];
