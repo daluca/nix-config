@@ -3,7 +3,7 @@
 {
   imports = [
     ./ohmyzsh.nix
-    ./starship.nix
+    ../starship
   ];
 
   programs.zsh = {
