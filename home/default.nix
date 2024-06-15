@@ -14,6 +14,7 @@
     ./dvorak
     ./gnome
     ./development
+    ./terraform
   ];
 
   home = {
