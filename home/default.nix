@@ -15,6 +15,7 @@
     ./gnome
     ./development
     ./terraform
+    ./zoxide
   ];
 
   home = {
