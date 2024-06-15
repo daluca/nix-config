@@ -18,6 +18,7 @@
       github.github-vscode-theme
       editorconfig.editorconfig
       pkief.material-icon-theme
+      tamasfe.even-better-toml
     ];
     userSettings = {
       "workbench.colorTheme" = "GitHub Dark";
