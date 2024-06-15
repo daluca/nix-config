@@ -1,8 +1,5 @@
 { config, pkgs, ... }:
 
 {
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-  };
+  imports = [ ./nixvim.nix ];
 }

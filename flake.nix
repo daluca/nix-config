@@ -14,6 +14,14 @@
     };
 
     nur.url = "github:nix-community/nur";
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+        home-manager.follows = "nixpkgs";
+      };
+    };
   };
 
   outputs =
@@ -24,6 +32,7 @@
       nixos-hardware,
       home-manager,
       nur,
+      nixvim,
       ...
     }:
     let
@@ -54,6 +63,9 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs;
+              };
               users.${username} = import ./home;
             };
           }
