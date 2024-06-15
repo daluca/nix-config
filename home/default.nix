@@ -22,6 +22,7 @@
     ./terraform
     ./zoxide
     ./ansible
+    ./atuin
   ];
 
   home = {
