@@ -1,6 +1,8 @@
 { config, ... }:
 
 {
+  imports = [ ./zsh.nix ];
+
   programs.tmux = {
     enable = true;
     shortcut = "a";
