@@ -83,7 +83,12 @@ in
           };
         };
       };
-      toggleterm.enable = true;
+      toggleterm = {
+        enable = true;
+        settings = {
+          direction = "float";
+        };
+      };
       which-key.enable = true;
     };
     extraPlugins = [ retrail-nvim ];
