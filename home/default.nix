@@ -23,6 +23,7 @@
     ./zoxide
     ./ansible
     ./atuin
+    ./xdg
   ];
 
   home = {
