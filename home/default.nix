@@ -24,6 +24,7 @@
     ./ansible
     ./atuin
     ./xdg
+    ./ssh
   ];
 
   home = {
