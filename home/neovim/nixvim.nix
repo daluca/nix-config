@@ -5,17 +5,7 @@
   inputs,
   ...
 }:
-let
-  retrail-nvim = pkgs.unstable.vimUtils.buildVimPlugin {
-    name = "retrail.nvim";
-    src = pkgs.unstable.fetchFromGitHub {
-      owner = "kaplanz";
-      repo = "retrail.nvim";
-      rev = "v0.1.8";
-      hash = "sha256-IaQFEaq9cxSRllUjD0rcV3zTwix54kgsVyB8XbtCQdU=";
-    };
-  };
-in
+
 {
   imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
@@ -49,7 +39,6 @@ in
           gitsigns-nvim
           lualine-nvim
           nvim-tree-lua
-          retrail-nvim
           telescope-nvim
           toggleterm-nvim
           which-key-nvim
@@ -91,10 +80,6 @@ in
       };
       which-key.enable = true;
     };
-    extraPlugins = [ retrail-nvim ];
-    extraConfigLua = ''
-      require('retrail').setup()
-    '';
   };
 
   home.packages =
