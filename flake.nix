@@ -45,6 +45,9 @@
 
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          inherit inputs username;
+        };
         modules = [
           (
             { config, pkgs, ... }:
