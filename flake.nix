@@ -38,11 +38,12 @@
     let
       system = "x86_64-linux";
       username = "daluca";
+      hostname = "nixos";
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
 
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           (
@@ -64,7 +65,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit inputs username;
+                inherit inputs hostname username;
               };
               users.${username} = import ./home;
             };
