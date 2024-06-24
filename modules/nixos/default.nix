@@ -8,6 +8,7 @@
     ./dvorak
     ./networking
     ./docker
+    ./tailscale
   ];
 
   nix.settings.experimental-features = [
