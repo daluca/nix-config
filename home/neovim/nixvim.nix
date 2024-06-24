@@ -11,6 +11,7 @@
 
   programs.nixvim = {
     enable = true;
+    package = pkgs.unstable.neovim-unwrapped;
     vimAlias = true;
     defaultEditor = true;
     globals = {
