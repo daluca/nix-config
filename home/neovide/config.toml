@@ -1,0 +1,6 @@
+fork = true
+tabs = false
+
+[font]
+normal = ["MesloLGS Nerd Font"]
+size = 11.0

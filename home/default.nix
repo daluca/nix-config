@@ -25,6 +25,7 @@
     ./atuin
     ./xdg
     ./ssh
+    ./neovide
   ];
 
   home = {
