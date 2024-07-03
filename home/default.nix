@@ -26,6 +26,7 @@
     ./xdg
     ./ssh
     ./neovide
+    ./uutils
   ];
 
   home = {
