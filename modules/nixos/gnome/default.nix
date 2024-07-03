@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   services.xserver = {
@@ -17,7 +22,7 @@
     XCURSOR_THEME = "Adwaita";
   };
 
-  sound.enable = true;
+  sound.enable = lib.mkDefault true;
 
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = lib.mkDefault true;
 }

@@ -14,6 +14,7 @@
     ./networking
     ./docker
     ./tailscale
+    ./pipewire
   ];
 
   nix.settings.experimental-features = [
