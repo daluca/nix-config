@@ -27,6 +27,7 @@
     ./ssh
     ./neovide
     ./uutils
+    ./element
   ];
 
   home = {
