@@ -6,7 +6,7 @@
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    nixos-hardware.url = "github:nixos/nixos-hardware/master";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -16,11 +16,9 @@
     nur.url = "github:nix-community/nur";
 
     nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
-        home-manager.follows = "nixpkgs";
-      };
+      url = "github:nix-community/nixvim/nixos-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
   };
 
