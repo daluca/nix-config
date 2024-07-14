@@ -15,6 +15,7 @@
     ./docker
     ./tailscale
     ./pipewire
+    ./bluetooth
   ];
 
   nix.settings.experimental-features = [
