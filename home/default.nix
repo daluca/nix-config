@@ -28,6 +28,7 @@
     ./neovide
     ./uutils
     ./element
+    ./signal
   ];
 
   home = {
