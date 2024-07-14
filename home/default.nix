@@ -29,6 +29,7 @@
     ./uutils
     ./element
     ./signal
+    ./logseq
   ];
 
   home = {
