@@ -1,5 +1,7 @@
-{ config, ... }:
-
+{ config, pkgs, ... }:
+let
+  plugins = pkgs.tmuxPlugins;
+in
 {
   imports = [ ./zsh.nix ];
 
@@ -10,6 +12,8 @@
     secureSocket = true;
     extraConfig = ''
       bind C-a send-prefix
+      run-shell ${plugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
+      set -g @catppuccin_flavour 'mocha'
     '';
   };
 }
