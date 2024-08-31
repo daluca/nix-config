@@ -24,7 +24,7 @@
   #   package = pkgs.nix-ld-rs;
   # };
 
-  time.timeZone = secrets.user.timezone;
+  time.timeZone = "Pacific/Auckland";
 
   hardware.pulseaudio.enable = true;
   sound.enable = true;
