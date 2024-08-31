@@ -1,5 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ uutils-coreutils-noprefix ];
+  home.packages = with pkgs.unstable; [
+    uutils-coreutils
+  ];
 }

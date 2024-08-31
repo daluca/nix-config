@@ -1,7 +1,15 @@
-{ config, lib, ... }:
+{ lib, osConfig, ... }:
 
 {
-  imports = [ ./nixvim.nix ];
+  imports = [
+    ./nixvim.nix
+  ];
 
-  programs.zsh.shellAliases = lib.mkIf config.programs.zsh.enable { n = "nvim"; };
+  home.shellAliases = {
+    n = "nvim";
+  };
+
+  home.persistence.home.directories = lib.mkIf osConfig.environment.persistence.system.enable [
+    ".local/share/nvim"
+  ];
 }

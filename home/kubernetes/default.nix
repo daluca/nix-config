@@ -1,20 +1,9 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
-    ./vscode.nix
-    ../k9s
-    ../helm
+    ./kubectl
+    ./helm
+    ./k9s
   ];
-
-  home.packages = with pkgs.unstable; [
-    kubectl
-    doctl
-    kubectx
-    fzf
-  ];
-
-  programs.zsh.shellAliases = {
-    k = "kubectl";
-  };
 }

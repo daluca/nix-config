@@ -1,18 +1,22 @@
-{ config, ... }:
+{ config, lib, pkgs, secrets, ... }:
 
 {
   programs.git = {
     enable = true;
     userName = "Lucas Slebos";
-    userEmail = "lucas@slebos.nz";
+    userEmail = secrets.user.email;
+    signing = {
+      key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
+      signByDefault = true;
+      gpgPath = "${config.programs.gpg.package}/bin/gpg";
+    };
     extraConfig = {
       init.defaultBranch = "main";
-      commit.gpgSign = true;
-      tag.gpgSign = true;
-      user.signingKey = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
       push.autoSetupRemote = true;
     };
   };
 
-  imports = [ ../gnupg ];
+  programs.zsh.oh-my-zsh.plugins = lib.mkIf ( config.programs.zsh.enable && config.programs.zsh.oh-my-zsh.enable ) [
+    "git"
+  ];
 }
