@@ -1,5 +1,0 @@
-{ config, ... }:
-
-{
-  xdg.enable = true;
-}

@@ -1,18 +1,7 @@
-{ config, lib, ... }:
+{ lib, osConfig, ... }:
 
 {
-  dconf.settings = with lib.hm.gvariant; {
-    "org/gnome/desktop/input-sources" = {
-      sources = [
-        (mkTuple [
-          "xkb"
-          "us+dvorak"
-        ])
-        (mkTuple [
-          "xkb"
-          "us"
-        ])
-      ];
-    };
+  dconf.settings."org/gnome/desktop/input-sources" = with lib.hm.gvariant; lib.mkIf osConfig.services.xserver.desktopManager.gnome.enable {
+    sources = [ ( mkTuple ["xkb" "us"] ) ( mkTuple ["xkb" "us+dvorak"] ) ];
   };
 }

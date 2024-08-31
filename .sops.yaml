@@ -1,0 +1,13 @@
+---
+keys:
+  - &users:
+    - &daluca age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
+  - &hosts:
+    - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
+
+creation_rules:
+  - path_regex: \.sops\.yaml$
+    key_groups:
+      - age:
+        - *daluca
+        - *artemis

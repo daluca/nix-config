@@ -1,92 +1,49 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
+{ config, lib, pkgs, inputs, ... }:
 
 {
-  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+  ];
 
-  programs.nixvim = {
+  programs.nixvim = rec {
     enable = true;
     package = pkgs.unstable.neovim-unwrapped;
     vimAlias = true;
     defaultEditor = true;
-    globals = {
-      mapleader = " ";
-    };
+    globals.mapleader = " ";
+    colorschemes.catppuccin.enable = true;
+    colorschemes.catppuccin.settings.flavour = "mocha";
     opts = {
       number = true;
       relativenumber = true;
       scrolloff = 8;
       expandtab = true;
       tabstop = 2;
-      softtabstop = 2;
-      shiftwidth = 2;
+      softtabstop = opts.tabstop;
+      shiftwidth = opts.tabstop;
       cursorline = true;
       signcolumn = "yes";
     };
-    colorschemes.catppuccin = {
-      enable = true;
-      settings.flavour = "mocha";
-    };
     plugins = {
+      fugitive.enable = true;
       gitsigns.enable = true;
-      lazy = {
-        enable = true;
-        plugins = with pkgs.unstable.vimPlugins; [
-          gitsigns-nvim
-          lualine-nvim
-          nvim-tree-lua
-          telescope-nvim
-          toggleterm-nvim
-          which-key-nvim
-        ];
+      lazygit.enable = true;
+      lualine.enable = true;
+      telescope.enable = true;
+      telescope.keymaps = {
+        "<leader>ff".action = "find_files";
+	      "<leader>fg".action = "live_grep";
+	      "<leader>fk".action = "keymaps";
       };
-      lualine = {
-        enable = true;
-        theme = "catppuccin";
-      };
-      nvim-tree.enable = true;
-      telescope = {
-        enable = true;
-        keymaps = {
-          "<leader>ff" = {
-            action = "find_files";
-            options = {
-              desc = "[f]ind [f]iles";
-            };
-          };
-          "<leader>fg" = {
-            action = "live_grep";
-            options = {
-              desc = "[f]ind with [g]rep";
-            };
-          };
-          "<leader>fk" = {
-            action = "keymaps";
-            options = {
-              desc = "[f]ind [k]eymaps";
-            };
-          };
-        };
-      };
-      toggleterm = {
-        enable = true;
-        settings = {
-          direction = "float";
-        };
-      };
+      toggleterm.enable = true;
+      toggleterm.settings.direction = "float";
+      treesitter.enable = true;
       which-key.enable = true;
     };
   };
 
-  home.packages =
-    with pkgs.unstable;
-    lib.mkIf config.programs.nixvim.plugins.telescope.enable [
-      fd
-      ripgrep
-    ];
+  home.packages = with pkgs.unstable; lib.mkIf config.programs.nixvim.plugins.telescope.enable [
+    fd
+    ripgrep
+  ];
 }

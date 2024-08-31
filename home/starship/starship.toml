@@ -1,7 +1,3 @@
-"$schema" = "https://starship.rs/config-schema.json"
-
-add_newline = true
-
 [aws]
 symbol = "  "
 
@@ -67,9 +63,6 @@ symbol = " "
 
 [kotlin]
 symbol = " "
-
-[localip]
-disabled = false
 
 [lua]
 symbol = " "
@@ -163,9 +156,6 @@ symbol = " "
 
 [scala]
 symbol = " "
-
-[sudo]
-disabled = false
 
 [swift]
 symbol = " "
