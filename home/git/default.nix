@@ -10,6 +10,9 @@
       signByDefault = true;
       gpgPath = "${config.programs.gpg.package}/bin/gpg";
     };
+    ignores = [
+      "/.vscode/"
+    ];
     extraConfig = {
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
