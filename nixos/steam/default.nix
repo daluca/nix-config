@@ -16,6 +16,8 @@
 
   programs.gamemode.enable = true;
 
+  hardware.xpadneo.enable = true;
+
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"
     "steam-original"
