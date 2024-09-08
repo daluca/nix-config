@@ -11,5 +11,8 @@
     ./decentraleyes.nix
   ];
 
-  programs.firefox.policies.ExtensionUpdate = false;
+  programs.firefox.policies = {
+    ExtensionSettings."*".installation_mode = "blocked";
+    ExtensionUpdate = false;
+  };
 }
