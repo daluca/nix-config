@@ -25,6 +25,7 @@
     # ../../nixos/opensnitch
     ../../nixos/docker
     ../../nixos/smart-cards
+    ../../nixos/tailscale
   ];
 
   networking.hostName = "artemis";
