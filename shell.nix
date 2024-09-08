@@ -7,4 +7,5 @@ pkgs.mkShell {
     git-agecrypt
     just
   ];
+  JUST_COMMAND_COLOR = "blue";
 }
