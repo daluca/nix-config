@@ -1,4 +1,24 @@
 final: prev: {
+  ge-proton9-13 = prev.proton-ge-bin.overrideAttrs (oldAttrs: rec {
+    pname = "ge-proton9-13";
+    version = "GE-Proton9-13";
+
+    src = prev.fetchzip {
+      url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+      hash = "sha256-/KaFYCLvojxH3coiJaArXMPIIwW5qzK+I0bGyt7oBNY=";
+    };
+  });
+
+  ge-proton9-12 = prev.proton-ge-bin.overrideAttrs (oldAttrs: rec {
+    pname = "ge-proton9-12";
+    version = "GE-Proton9-12";
+
+    src = prev.fetchzip {
+      url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+      hash = "sha256-2/vxX5AT1qQ50jBrQkZIzlmzkOAX+qzINEeD3Lo1f40=";
+    };
+  });
+
   ge-proton9-11 = prev.proton-ge-bin.overrideAttrs (oldAttrs: rec {
     pname = "ge-proton9-11";
     version = "GE-Proton9-11";
