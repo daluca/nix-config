@@ -12,6 +12,17 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    extraConfig.pipewire = {
+      # A work around for audio cracking in some video games
+      # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/3309
+      "20-pulse-properties" = {
+        "pulse.properties" = {
+          "pulse.min.req" = "256/48000";
+          "pulse.min.frag" = "256/48000";
+          "pulse.min.quantum" = "256/48000";
+        };
+      };
+    };
     wireplumber.extraConfig."10-bluez.conf" = {
       "monitor.bluez.properties" = {
         "bluez5.enable-sbc-xq" = true;
