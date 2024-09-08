@@ -35,7 +35,6 @@
         # Telemetery
         "app.shield.optoutstudies.enabled" = false;
         "datareporting.healthreport.uploadEnabled" = false;
-        "toolkit.telemetry.cachedClientID" = "00000000-0000-0000-0000-000000000000";
       };
     };
   };
