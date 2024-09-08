@@ -4,6 +4,7 @@
   imports = [
     ../garden
     ../direnv
+    ../just
   ];
 
   home.persistence.home.directories = lib.mkIf osConfig.environment.persistence.system.enable [
