@@ -9,6 +9,7 @@
     ./multi-account-containers.nix
     ./stylus.nix
     ./decentraleyes.nix
+    ./simplelogin.nix
   ];
 
   programs.firefox.policies = {
