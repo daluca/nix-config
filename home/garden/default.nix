@@ -1,13 +1,13 @@
-{ config, lib, system, inputs, ... }:
+{ config, lib, pkgs, ... }:
 let
-  garden = inputs.garden.packages.${system}.default;
+  inherit (pkgs) garden;
 in {
-  # TODO: Create gardes options module
+  # TODO: Create garden options module
   home.packages = [
     garden
   ];
 
-  programs.zsh.initExtra = lib.mkIf config.programs.zsh.enable /* zsh */ ''
+  programs.zsh.initExtra = lib.mkIf config.programs.zsh.enable /* bash */ /* zsh */ ''
     if [[ -x "$( command -v garden )" ]]; then
       eval "$(${garden}/bin/garden completion zsh)"
     fi

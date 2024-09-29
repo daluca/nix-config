@@ -23,9 +23,6 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.home-manager.follows = "home-manager";
 
-    garden.url = "gitlab:garden-rs/garden?ref=v1.7.0";
-    garden.inputs.nixpkgs.follows = "nixpkgs-unstable";
-
     terraform-oss.url = "github:nixos/nixpkgs?ref=517501bcf14ae6ec47efd6a17dda0ca8e6d866f9";
   };
 
