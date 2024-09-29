@@ -49,5 +49,13 @@
         ./hosts/artemis
       ];
     };
+
+    nixosConfigurations.stormwind = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      specialArgs = { inherit inputs outputs secrets; system = "aarch64-linux"; };
+      modules = [
+        ./hosts/stormwind
+      ];
+    };
   };
 }
