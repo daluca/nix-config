@@ -47,6 +47,7 @@ let
     ]));
 in {
   imports = [
+    ../common
     ./extensions
   ];
 
