@@ -19,8 +19,8 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
     sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs";
 
-    nixvim.url = "github:nix-community/nixvim?ref=nixos-24.05";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
     nixvim.inputs.home-manager.follows = "home-manager";
     nixvim.inputs.git-hooks.follows = "git-hooks";
 
