@@ -1,6 +1,11 @@
-{ secrets, outputs, ... }:
-
-{
+{ config, lib, pkgs, outputs, ... }:
+let
+  inherit (builtins) replaceStrings attrValues;
+  inherit (pkgs.unstable) nix-ld-rs;
+  inherit (lib) lists attrsets;
+  inherit (lists) unique;
+  inherit (attrsets) filterAttrs;
+in {
   imports = [
     ../dvorak
     ../home-manager
@@ -17,12 +22,10 @@
     options = "--delete-older-than 28d";
   };
 
-  # TODO: check what nix-ld actually does
-  #
-  # programs.nix-ld = {
-  #   enable = false;
-  #   package = pkgs.nix-ld-rs;
-  # };
+  programs.nix-ld = {
+    enable = true;
+    package = nix-ld-rs;
+  };
 
   time.timeZone = "Pacific/Auckland";
 
