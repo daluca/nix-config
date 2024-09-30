@@ -20,6 +20,7 @@
     ../../nixos/fwupd
     ../../nixos/openssh-server
     ../../nixos/nvidia
+    ../../nixos/networking
 
     ../../nixos/steam
     # ../../nixos/opensnitch
