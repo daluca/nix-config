@@ -34,16 +34,14 @@
   outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
   let
     inherit (self) outputs;
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = nixpkgs.legacyPackages."x86_64-linux";
     secrets = builtins.fromTOML (builtins.readFile ./secrets/secrets.toml);
     lib = pkgs.lib;
-    inherit (pkgs) sops just git-agecrypt;
   in
   {
     overlays = import ./overlays { inherit lib inputs; };
 
-    checks.${system}.pre-commit-check = git-hooks.lib.${system}.run {
+    checks."x86_64-linux".pre-commit-check = git-hooks.lib."x86_64-linux".run {
       src = ./.;
       hooks = {
         check-added-large-files.enable = true;
@@ -55,28 +53,53 @@
       };
     };
 
-    devShells.${system}.default = pkgs.mkShell {
-      inherit (self.checks.${system}.pre-commit-check) shellHook;
+    checks."aarch64-linux".pre-commit-check = git-hooks.lib."aarch64-linux".run {
+      src = ./.;
+      hooks = {
+        check-added-large-files.enable = true;
+        check-merge-conflicts.enable = true;
+        detect-private-keys.enable = true;
+        end-of-file-fixer.enable = true;
+        forbid-new-submodules.enable = true;
+        trim-trailing-whitespace.enable = true;
+      };
+    };
+
+    devShells."x86_64-linux".default = pkgs.mkShell {
+      inherit (self.checks."x86_64-linux".pre-commit-check) shellHook;
       name = "nix-config";
-      buildInputs = [
+      buildInputs = with pkgs; [
         sops
         git-agecrypt
+        ssh-to-age
         just
-      ] ++ self.checks.${system}.pre-commit-check.enabledPackages;
+      ] ++ self.checks."x86_64-linux".pre-commit-check.enabledPackages;
       JUST_COMMAND_COLOR = "blue";
     };
 
-    nixosConfigurations.artemis = nixpkgs.lib.nixosSystem {
-      inherit system;
+    devShells."aarch64-linux".default = nixpkgs.legacyPackages."aarch64-linux".mkShell {
+      inherit (self.checks."aarch64-linux".pre-commit-check) shellHook;
+      name = "nix-config";
+      builtins = with nixpkgs.legacyPackages."aarch64-linux"; [
+        sops
+        git-agecrypt
+        ssh-to-age
+        just
+      ] ++ self.checks."aarch64-linux".pre-commit-check.enabledPackages;
+      JUST_COMMAND_COLOR = "blue";
+    };
+
+    nixosConfigurations.artemis = nixpkgs.lib.nixosSystem rec {
+      system = "x86_64-linux";
       specialArgs = { inherit inputs outputs system secrets; };
       modules = [
         ./hosts/artemis
       ];
     };
 
-    nixosConfigurations.stormwind = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.stormwind = nixpkgs.lib.nixosSystem rec {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs secrets; system = "aarch64-linux"; };
+      specialArgs = { inherit inputs outputs system secrets; };
       modules = [
         ./hosts/stormwind
       ];
