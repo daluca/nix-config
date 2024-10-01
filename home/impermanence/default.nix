@@ -5,6 +5,7 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
 
     ./zsh.nix
+    ./secrets.nix
   ];
 
   home.persistence.home = {
