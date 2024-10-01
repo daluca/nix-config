@@ -21,7 +21,6 @@
     ../../uutils
     ../../thunderbird
     ../../gnupg
-    ../../git
     ../../bitwarden
     ../../libreoffice
     ../../nextcloud-client

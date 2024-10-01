@@ -2,13 +2,13 @@
 
 {
   imports = [
-    ../neovim
     ../tmux
     ../dvorak
     ../zsh
     ../starship
-    ../ssh
+    ../openssh
     ../secrets
+    ../git
   ];
 
   home.username = "daluca";
