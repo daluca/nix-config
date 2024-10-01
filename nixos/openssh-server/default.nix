@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 {
   services.openssh = {
@@ -12,8 +12,4 @@
       X11Forwarding = false;
     };
   };
-
-  environment.persistence.system.directories = lib.mkIf config.environment.persistence.system.enable [
-    "/etc/ssh"
-  ];
 }

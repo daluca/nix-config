@@ -3,6 +3,8 @@
 {
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
+
+    ./zsh.nix
   ];
 
   home.persistence.home = {
