@@ -1,21 +1,14 @@
-{ config, pkgs, osConfig, ... }:
-
-{
+{ config, pkgs, ... }:
+let
+  inherit (pkgs) fetchFromGitHub;
+in {
   programs.zsh = rec {
     enable = true;
     dotDir = ".config/zsh";
     history = {
       save = 50000;
       size = history.save;
-      path =
-        if osConfig.environment.persistence.system.enable && dotDir != null then
-          "${config.home.persistence.home.persistentStoragePath}/${dotDir}/.zsh_history"
-        else if osConfig.environment.persistence.system.enable then
-          "${config.home.persistence.home.persistentStoragePath}/.zsh_history"
-        else if dotDir != null then
-          "${config.home.homeDirectory}/${dotDir}/.zsh_history"
-        else
-          "${config.home.homeDirectory}/.zsh_history";
+      path = "${config.home.homeDirectory}/${dotDir}/.zsh_history";
       share = true;
       extended = true;
       ignoreSpace = true;
@@ -31,7 +24,7 @@
       {
         name = "zsh-nix-shell";
         file = "nix-shell.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
+        src = fetchFromGitHub {
           owner = "chisui";
           repo = "zsh-nix-shell";
           rev = "v0.8.0";
