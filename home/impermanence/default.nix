@@ -6,6 +6,7 @@
 
     ./zsh.nix
     ./secrets.nix
+    ./openssh.nix
   ];
 
   home.persistence.home = {

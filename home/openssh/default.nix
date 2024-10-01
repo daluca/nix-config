@@ -1,4 +1,4 @@
-{ lib, osConfig, ... }:
+{ ... }:
 
 {
   programs.ssh = {
@@ -9,8 +9,4 @@
       gainas.hostname = "10.2.161.172";
     };
   };
-
-  home.persistence.home.directories = lib.mkIf osConfig.environment.persistence.system.enable [
-    ".ssh"
-  ];
 }
