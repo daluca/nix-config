@@ -34,12 +34,12 @@
   outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
   let
     inherit (self) outputs;
+    inherit (pkgs.lib) getName;
     pkgs = nixpkgs.legacyPackages."x86_64-linux";
     secrets = builtins.fromTOML (builtins.readFile ./secrets/secrets.toml);
-    lib = pkgs.lib;
   in
   {
-    overlays = import ./overlays { inherit lib inputs; };
+    overlays = import ./overlays { inherit inputs getName; };
 
     checks."x86_64-linux".pre-commit-check = git-hooks.lib."x86_64-linux".run {
       src = ./.;
