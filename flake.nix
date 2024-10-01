@@ -73,6 +73,7 @@
         git-agecrypt
         ssh-to-age
         just
+        fd
       ] ++ self.checks."x86_64-linux".pre-commit-check.enabledPackages;
       JUST_COMMAND_COLOR = "blue";
     };
@@ -85,6 +86,7 @@
         git-agecrypt
         ssh-to-age
         just
+        fd
       ] ++ self.checks."aarch64-linux".pre-commit-check.enabledPackages;
       JUST_COMMAND_COLOR = "blue";
     };
