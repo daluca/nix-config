@@ -1,3 +1,7 @@
+[private]
+default:
+  @just --list
+
 update-secrets:
   sops updatekeys "$( fd sops.yaml )"
 
