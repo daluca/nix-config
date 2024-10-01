@@ -7,6 +7,7 @@ in {
 
     ./hardware-configuration.nix
 
+    ../../nixos/common
     ../../nixos/openssh-server
   ];
 
