@@ -17,9 +17,12 @@ in {
     vim
   ];
 
-  users.mutableUsers = true;
+  sops.secrets.daluca-password.neededForUsers = true;
+
+  users.mutableUsers = false;
   users.users.daluca = {
     isNormalUser = true;
+    hashedPasswordFile = config.sops.secrets.daluca-password.path;
     extraGroups = [ "wheel" ];
   };
 
