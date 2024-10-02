@@ -8,6 +8,7 @@ in {
     ./sudo.nix
     ./bluetooth.nix
     ./openssh.nix
+    ./secrets.nix
   ];
 
   programs.fuse.userAllowOther = mkIf config.home-manager.users.daluca.home.persistence.home.allowOther true;

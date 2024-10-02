@@ -9,9 +9,9 @@
     defaultSopsFile = ../../secrets/secrets.sops.yaml;
     age = {
       sshKeyPaths = [
-        "/persistent/system/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key"
       ];
-      keyFile = "/persistent/system/var/lib/sops-nix/key.txt";
+      keyFile = "/var/lib/sops-nix/key.txt";
       generateKey = true;
     };
   };
