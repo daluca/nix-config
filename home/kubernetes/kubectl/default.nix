@@ -1,11 +1,16 @@
 { lib, pkgs, osConfig, ... }:
+let
+  inherit (pkgs) kubectl kubectx;
+in {
+  imports = [
+    ./plugins.nix
+  ];
 
-{
-  home.packages = with pkgs.unstable; [
+  home.packages = [
     kubectl
     kubectx
     # TODO: Make fzf conditionally check if already added
-    fzf
+    # fzf
   ];
 
   home.shellAliases = {
