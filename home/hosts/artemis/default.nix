@@ -30,5 +30,6 @@
     ../../element
     ../../steam
     ../../neovim
+    ../../nushell
   ];
 }
