@@ -49,6 +49,7 @@ in {
   imports = [
     ../common
     ./extensions
+    ./wallpaper
   ];
 
   dconf.settings = with lib.hm.gvariant; lib.mkIf osConfig.services.xserver.desktopManager.gnome.enable {
