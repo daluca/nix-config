@@ -5,6 +5,7 @@
     ./kubectl
     ./helm
     ./k9s
+    ./flux
   ];
 
   programs.zsh.shellAliases = lib.mkIf config.programs.zsh.enable {
