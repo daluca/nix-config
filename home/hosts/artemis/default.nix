@@ -29,5 +29,6 @@
     ../../terraform
     ../../element
     ../../steam
+    ../../neovim
   ];
 }

@@ -3,6 +3,8 @@
 {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
+
+    ./plugins
   ];
 
   programs.nixvim = rec {
@@ -37,7 +39,6 @@
       };
       toggleterm.enable = true;
       toggleterm.settings.direction = "float";
-      treesitter.enable = true;
       which-key.enable = true;
     };
   };
