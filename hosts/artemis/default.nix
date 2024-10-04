@@ -27,6 +27,7 @@
     ../../nixos/docker
     ../../nixos/smart-cards
     ../../nixos/tailscale
+    ../../nixos/kanata
   ];
 
   networking.hostName = "artemis";
