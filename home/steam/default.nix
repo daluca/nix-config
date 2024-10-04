@@ -1,6 +1,10 @@
 { lib, pkgs, osConfig, ... }:
 
 {
+  imports = [
+    ./mangohud.nix
+  ];
+
   home.packages = with pkgs; [
     mangohud
   ];
