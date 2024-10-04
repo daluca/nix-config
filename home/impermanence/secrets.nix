@@ -1,5 +1,3 @@
-{ config, ... }:
-
 {
-  home.persistence.home.directories = [ "${config.xdg.configHome}/sops/age" ];
+  home.persistence.home.directories = [ ".config/sops/age" ];
 }
