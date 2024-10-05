@@ -4,7 +4,7 @@ keys:
     - &daluca age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
   - &hosts:
     - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
-    - &stormwind age17jkyhuxssaau5exm6m7mmtfqj7mg5h958379qs2zjkafmpdprf4qdua6mx
+    - &stormwind age1vjvjh5rq58etjjh2pjynvexxmvx9wjphzyywn50kal6qf9xaudxq8x9e2x
 
 creation_rules:
   - path_regex: \.sops\.yaml$
