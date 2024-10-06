@@ -3,7 +3,6 @@
 {
   services.adguardhome = {
     enable = true;
-    package = pkgs.unstable.adguardhome;
     mutableSettings = false;
     openFirewall = true;
     settings = {

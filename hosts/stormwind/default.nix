@@ -9,7 +9,7 @@ in {
 
     ../../nixos/common
     ../../nixos/openssh-server
-    ../../nixos/adguard-home
+    ../../nixos/adguardhome
   ];
 
   networking.hostName = "stormwind";
