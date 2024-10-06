@@ -27,6 +27,9 @@ in {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.daluca-password.path;
     extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZuHaRedC+s+EbKgGj1ZBQ0tClxgfYt6XVd1grNUgjV daluca@artemis"
+    ];
   };
 
   system.stateVersion = "24.05";
