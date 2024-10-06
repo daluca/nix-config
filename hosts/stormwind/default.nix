@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 let
-  inherit (pkgs) vim;
+  inherit (pkgs) vim libraspberrypi raspberrypifw;
 in {
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
@@ -16,6 +16,8 @@ in {
 
   environment.systemPackages = [
     vim
+    libraspberrypi
+    raspberrypifw
   ];
 
   hardware.raspberry-pi."4".poe-hat.enable = true;
