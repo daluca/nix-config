@@ -18,6 +18,8 @@ in {
     vim
   ];
 
+  hardware.raspberry-pi."4".poe-hat.enable = true;
+
   sops.secrets.daluca-password.neededForUsers = true;
 
   users.mutableUsers = false;
