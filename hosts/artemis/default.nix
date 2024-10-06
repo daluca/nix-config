@@ -34,6 +34,10 @@
 
   nix.settings.warn-dirty = false;
 
+  sops.secrets."tailscale/preauthkey" = {
+    sopsFile = ../../secrets/artemis.sops.yaml;
+  };
+
   sops.secrets.daluca-password.neededForUsers = true;
 
   users.mutableUsers = false;

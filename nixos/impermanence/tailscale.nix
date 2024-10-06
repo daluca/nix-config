@@ -1,5 +1,5 @@
 {
   environment.persistence.system.directories = [
-    "/var/lib/bluetooth"
+    { directory = "/var/lib/tailscale"; mode = "0700"; }
   ];
 }
