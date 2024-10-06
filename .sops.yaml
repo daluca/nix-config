@@ -1,12 +1,22 @@
 ---
 keys:
-  - &users:
+  - users: &users
     - &daluca age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
-  - &hosts:
+  - hosts: &hosts
     - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
     - &stormwind age1vjvjh5rq58etjjh2pjynvexxmvx9wjphzyywn50kal6qf9xaudxq8x9e2x
 
 creation_rules:
+  - path_regex: stormwind\.sops\.yaml$
+    key_groups:
+      - age:
+        - *daluca
+        - *stormwind
+  - path_regex: artemis\.sops\.yaml$
+    key_groups:
+      - age:
+        - *daluca
+        - *artemis
   - path_regex: \.sops\.yaml$
     key_groups:
       - age:

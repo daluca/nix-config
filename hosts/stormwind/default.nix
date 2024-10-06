@@ -10,6 +10,7 @@ in {
     ../../nixos/common
     ../../nixos/openssh-server
     ../../nixos/adguardhome
+    ../../nixos/tailscale/server
   ];
 
   networking.hostName = "stormwind";
@@ -17,10 +18,14 @@ in {
   environment.systemPackages = [
     vim
     libraspberrypi
-    raspberrypifw
+    # raspberrypifw
   ];
 
   hardware.raspberry-pi."4".poe-hat.enable = true;
+
+  sops.secrets."tailscale/preauthkey" = {
+    sopsFile = ../../secrets/stormwind.sops.yaml;
+  };
 
   sops.secrets.daluca-password.neededForUsers = true;
 
