@@ -6,9 +6,9 @@
   ];
 
   home-manager = {
-    useGlobalPkgs = false;
-    useUserPackages = false;
-    extraSpecialArgs = { inherit inputs outputs system secrets; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = { inherit system inputs outputs secrets; };
     users.daluca = import ../../home;
   };
 }

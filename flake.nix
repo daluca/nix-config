@@ -29,9 +29,11 @@
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs-unstable";
     git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
+
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
   };
 
-  outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
+  outputs = {self, nixpkgs, git-hooks, raspberry-pi-nix, ...} @ inputs:
   let
     inherit (self) outputs;
     inherit (pkgs.lib) getName;
@@ -104,6 +106,14 @@
       specialArgs = { inherit inputs outputs system secrets; };
       modules = [
         ./hosts/stormwind
+      ];
+    };
+
+    nixosConfigurations.ironforge = nixpkgs.lib.nixosSystem rec {
+      system = "aarch64-linux";
+      specialArgs = { inherit inputs outputs system secrets; };
+      modules = [
+        ./hosts/ironforge
       ];
     };
   };

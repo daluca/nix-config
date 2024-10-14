@@ -1,7 +1,7 @@
 { config, lib, pkgs, outputs, ... }:
 let
   inherit (builtins) replaceStrings attrValues;
-  inherit (pkgs.unstable) nix-ld-rs;
+  inherit (pkgs) nix-ld-rs;
   inherit (lib) lists attrsets;
   inherit (lists) unique;
   inherit (attrsets) filterAttrs;
@@ -14,7 +14,7 @@ in {
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nixpkgs.overlays = builtins.attrValues outputs.overlays;
+  # nixpkgs.overlays = builtins.attrValues outputs.overlays;
 
   nix.gc = {
     automatic = true;

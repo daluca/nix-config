@@ -1,7 +1,8 @@
 { pkgs, ... }:
-
-{
-  home.packages = with pkgs.unstable; [
+let
+  inherit (pkgs) gron;
+in {
+  home.packages = [
     gron
   ];
 
