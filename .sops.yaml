@@ -1,25 +1,32 @@
 ---
 keys:
   - users: &users
-    - &daluca age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
+      - &daluca age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
   - hosts: &hosts
-    - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
-    - &stormwind age1vjvjh5rq58etjjh2pjynvexxmvx9wjphzyywn50kal6qf9xaudxq8x9e2x
+      - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
+      - &stormwind age1vjvjh5rq58etjjh2pjynvexxmvx9wjphzyywn50kal6qf9xaudxq8x9e2x
+      - &ironforge age12jvysa4up79pasngsdqn2mjd5fczg4wtrx8d8euj3j8vr3nlye2seqmnjs
 
 creation_rules:
   - path_regex: stormwind\.sops\.yaml$
     key_groups:
       - age:
-        - *daluca
-        - *stormwind
+          - *daluca
+          - *stormwind
   - path_regex: artemis\.sops\.yaml$
     key_groups:
       - age:
-        - *daluca
-        - *artemis
+          - *daluca
+          - *artemis
+  - path_regex: ironforge\.sops\.yaml$
+    key_groups:
+      - age:
+          - *daluca
+          - *ironforge
   - path_regex: \.sops\.yaml$
     key_groups:
       - age:
-        - *daluca
-        - *artemis
-        - *stormwind
+          - *daluca
+          - *artemis
+          - *stormwind
+          - *ironforge
