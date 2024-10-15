@@ -29,6 +29,9 @@
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs-unstable";
     git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
+
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
+    raspberry-pi-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
