@@ -32,69 +32,35 @@
 
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     raspberry-pi-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
+  outputs = {self, nixpkgs, deploy-rs, ...} @ inputs:
   let
     inherit (self) outputs;
-    inherit (pkgs.lib) getName;
+    inherit (nixpkgs.lib) nixosSystem getName;
+    inherit (pkgs) sops git-agecrypt ssh-to-age just fd;
     pkgs = nixpkgs.legacyPackages."x86_64-linux";
     secrets = builtins.fromTOML (builtins.readFile ./secrets/secrets.toml);
   in
   {
     overlays = import ./overlays { inherit inputs getName; };
 
-    checks."x86_64-linux".pre-commit-check = git-hooks.lib."x86_64-linux".run {
-      src = ./.;
-      hooks = {
-        check-added-large-files.enable = true;
-        check-merge-conflicts.enable = true;
-        detect-private-keys.enable = true;
-        end-of-file-fixer.enable = true;
-        forbid-new-submodules.enable = true;
-        trim-trailing-whitespace.enable = true;
-      };
-    };
-
-    checks."aarch64-linux".pre-commit-check = git-hooks.lib."aarch64-linux".run {
-      src = ./.;
-      hooks = {
-        check-added-large-files.enable = true;
-        check-merge-conflicts.enable = true;
-        detect-private-keys.enable = true;
-        end-of-file-fixer.enable = true;
-        forbid-new-submodules.enable = true;
-        trim-trailing-whitespace.enable = true;
-      };
-    };
-
     devShells."x86_64-linux".default = pkgs.mkShell {
-      inherit (self.checks."x86_64-linux".pre-commit-check) shellHook;
       name = "nix-config";
-      buildInputs = with pkgs; [
+      buildInputs = [
         sops
         git-agecrypt
         ssh-to-age
         just
         fd
-      ] ++ self.checks."x86_64-linux".pre-commit-check.enabledPackages;
+      ];
       JUST_COMMAND_COLOR = "blue";
     };
 
-    devShells."aarch64-linux".default = nixpkgs.legacyPackages."aarch64-linux".mkShell {
-      inherit (self.checks."aarch64-linux".pre-commit-check) shellHook;
-      name = "nix-config";
-      builtins = with nixpkgs.legacyPackages."aarch64-linux"; [
-        sops
-        git-agecrypt
-        ssh-to-age
-        just
-        fd
-      ] ++ self.checks."aarch64-linux".pre-commit-check.enabledPackages;
-      JUST_COMMAND_COLOR = "blue";
-    };
-
-    nixosConfigurations.artemis = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.artemis = nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = { inherit inputs outputs system secrets; };
       modules = [
@@ -102,12 +68,23 @@
       ];
     };
 
-    nixosConfigurations.stormwind = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.stormwind = nixosSystem rec {
       system = "aarch64-linux";
       specialArgs = { inherit inputs outputs system secrets; };
       modules = [
         ./hosts/stormwind
       ];
     };
+
+    deploy.nodes.stormwind = {
+      hostname = "stormwind";
+      interactiveSudo = true;
+      profiles.system = {
+        user = "root";
+        path = deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations.stormwind;
+      };
+    };
+
+    checks = (builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib);
   };
 }
