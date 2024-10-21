@@ -18,7 +18,6 @@
       dns = {
         bind_hosts = [
           "127.0.0.1"
-          "10.3.167.29"
         ];
         upstream_dns = [
           "127.0.0.1:5353"
@@ -35,5 +34,10 @@
         id = 1;
       }];
     };
+  };
+
+  networking.firewall = rec {
+    allowedTCPPorts = [ 53 ];
+    allowedUDPPorts = allowedTCPPorts;
   };
 }

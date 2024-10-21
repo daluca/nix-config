@@ -9,7 +9,7 @@
 
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = "x86_64-linux";
+      system = final.system;
       config.allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
         "nvidia-x11"
         "nvidia-settings"

@@ -1,31 +1,30 @@
-{ lib, pkgs, system, ... }:
+{ config, pkgs, system, ... }:
 let
-  inherit (lib) mkForce;
   inherit (pkgs) vim;
 in {
   imports = [
     ../../images/raspberry-pi/4
 
+    ../../nixos/common
     ../../nixos/openssh-server
+    ../../nixos/tailscale/server
+    ../../nixos/adguardhome
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = [ "@wheel" ];
+
+  services.getty.autologinUser = "daluca";
 
   environment.systemPackages = [
     vim
   ];
 
-  services.openssh.settings.AllowUsers = mkForce [ "daluca" ];
+  sops.secrets.daluca-password.neededForUsers = true;
 
-  users.users.root.initialPassword = "root";
-
-  services.getty.autologinUser = "daluca";
-
-  users.mutableUsers = true;
+  users.mutableUsers = false;
   users.users.daluca = {
     isNormalUser = true;
-    initialPassword = "test";
+    hashedPasswordFile = config.sops.secrets.daluca-password.path;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZuHaRedC+s+EbKgGj1ZBQ0tClxgfYt6XVd1grNUgjV daluca@artemis"
@@ -33,6 +32,14 @@ in {
   };
 
   networking.hostName = "stormwind";
+
+  sops.secrets."tailscale/preauthkey" = {
+    sopsFile = ../../secrets/stormwind.sops.yaml;
+  };
+
+  services.tailscale.extraUpFlags = [ "--advertise-routes=10.0.0.0/14" ];
+
+  services.adguardhome.settings.dns.bind_hosts = [ "10.0.0.10" ];
 
   hardware.raspberry-pi.config.pi4 = {
     dt-overlays.rpi-poe = {
