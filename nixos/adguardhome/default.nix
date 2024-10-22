@@ -1,12 +1,14 @@
-{ config, secrets, ... }:
-
-{
+{ config, pkgs, secrets, ... }:
+let
+  inherit (pkgs.unstable) adguardhome;
+in {
   imports = [
     ../unbound
   ];
 
   services.adguardhome = {
     enable = true;
+    package = adguardhome;
     mutableSettings = false;
     openFirewall = true;
     port = 80;
