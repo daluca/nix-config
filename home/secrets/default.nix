@@ -1,10 +1,4 @@
-{ inputs, ... }:
-
 {
-  imports = [
-    inputs.sops-nix.homeManagerModules.sops
-  ];
-
   sops = {
     defaultSopsFile = ../../secrets/secrets.sops.yaml;
     age = {

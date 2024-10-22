@@ -5,6 +5,10 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
+  home-manager.sharedModules = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
+
   sops = {
     defaultSopsFile = ../../secrets/secrets.sops.yaml;
     age = {
