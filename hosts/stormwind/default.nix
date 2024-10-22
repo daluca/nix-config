@@ -9,6 +9,8 @@ in {
     ../../nixos/openssh-server
     ../../nixos/tailscale/server
     ../../nixos/adguardhome
+
+    ./adguardhome.nix
   ];
 
   nix.settings.trusted-users = [ "@wheel" ];
@@ -38,8 +40,6 @@ in {
   };
 
   services.tailscale.extraUpFlags = [ "--advertise-routes=10.0.0.0/14" ];
-
-  services.adguardhome.settings.dns.bind_hosts = [ "10.0.0.10" ];
 
   hardware.raspberry-pi.config.pi4 = {
     dt-overlays.rpi-poe = {
