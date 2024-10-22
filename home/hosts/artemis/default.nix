@@ -33,6 +33,8 @@
     ../../nushell
   ];
 
+  sops.secrets."gsconnect/private.pem".sopsFile = ../../../secrets/artemis.sops.yaml;
+
   programs.zsh.sessionVariables = {
     ZSH_TMUX_AUTOSTART = "true";
     ZSH_TMUX_DEFAULT_SESSION_NAME = "${osConfig.networking.hostName}";
