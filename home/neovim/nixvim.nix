@@ -31,12 +31,6 @@
       gitsigns.enable = true;
       lazygit.enable = true;
       lualine.enable = true;
-      telescope.enable = true;
-      telescope.keymaps = {
-        "<leader>ff".action = "find_files";
-	      "<leader>fg".action = "live_grep";
-	      "<leader>fk".action = "keymaps";
-      };
       toggleterm.enable = true;
       toggleterm.settings.direction = "float";
       which-key.enable = true;

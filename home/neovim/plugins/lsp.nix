@@ -7,8 +7,8 @@ in {
     servers = {
       bashls.enable = true;
       bashls.package = bash-language-server;
-      helm-ls.enable = true;
-      lua-ls.enable = true;
+      helm_ls.enable = true;
+      lua_ls.enable = true;
       nixd.enable = true;
     };
   };
