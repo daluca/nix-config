@@ -13,5 +13,6 @@
     wl-clipboard
     file
     unzip
+    dig
   ];
 }
