@@ -29,7 +29,13 @@ in {
   nix.gc = {
     automatic = true;
     dates = "weekly";
+    randomizedDelaySec = "45 minutes";
     options = "--delete-older-than 28d";
+  };
+
+  nix.optimise = {
+    automatic = true;
+    dates = [ "daily" ];
   };
 
   programs.nix-ld = {
