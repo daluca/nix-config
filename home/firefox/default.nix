@@ -29,6 +29,11 @@
         "browser.search.suggest.enabled.private" = true;
         # Security
         "dom.security.https_only_mode" = true;
+        # Sidebar
+        "sidebar.revamp" = true;
+        "sidebar.verticalTabs" = false;
+        "sidebar.main.tools" = "history";
+        "sidebar.visibility" = "hide-sidebar";
         # Sign-on
         "signon.autofillForms" = false;
         "signon.rememberSignons" = false;
