@@ -1,4 +1,4 @@
-{ ... }:
+{ config, osConfig, ... }:
 
 {
   imports = [
@@ -32,4 +32,10 @@
     ../../neovim
     ../../nushell
   ];
+
+  programs.zsh.sessionVariables = {
+    ZSH_TMUX_AUTOSTART = "true";
+    ZSH_TMUX_DEFAULT_SESSION_NAME = "${osConfig.networking.hostName}";
+    ZSH_TMUX_CONFIG = "${config.xdg.configHome}/tmux/tmux.conf";
+  };
 }
