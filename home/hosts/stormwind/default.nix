@@ -3,5 +3,6 @@
     ../../common
     ../../tools
     ../../btop
+    ../../vim
   ];
 }
