@@ -1,7 +1,10 @@
 { config, lib, pkgs, ... }:
-
-{
-  home.packages = with pkgs.unstable; [
+let
+  inherit (lib) mkIf;
+  inherit (pkgs) just;
+  inherit (config.programs) zsh;
+in {
+  home.packages = [
     just
   ];
 
@@ -13,7 +16,7 @@
     JUST_COMMAND_COLOR = "blue";
   };
 
-  programs.zsh.initExtra = lib.mkIf config.programs.zsh.enable /* zsh */ ''
+  programs.zsh.initExtra = mkIf zsh.enable /* zsh */ /* bash */ ''
     if [[ -x "$( command -v garden )" ]]; then
       eval "$(${pkgs.unstable.just}/bin/just --completions zsh)"
     fi
