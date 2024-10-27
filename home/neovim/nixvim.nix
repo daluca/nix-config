@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -36,9 +36,4 @@
       which-key.enable = true;
     };
   };
-
-  home.packages = with pkgs.unstable; lib.mkIf config.programs.nixvim.plugins.telescope.enable [
-    fd
-    ripgrep
-  ];
 }

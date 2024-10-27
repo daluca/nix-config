@@ -1,9 +1,10 @@
 { pkgs, ... }:
-
-{
+let
+  inherit (pkgs.unstable) fzf;
+in {
   programs.fzf = {
     enable = true;
-    package = pkgs.unstable.fzf;
+    package = fzf;
     enableBashIntegration = false;
     fileWidgetCommand = ''
       fd --type file
@@ -13,8 +14,5 @@
     '';
   };
 
-  # TODO: Conditionally add fd if not already added
-  home.packages = with pkgs.unstable; [
-    fd
-  ];
+  programs.fd.enable = true;
 }
