@@ -5,6 +5,7 @@ in {
   imports = [
     ../fzf
     ../gron
+    ../zoxide
   ];
 
   home.packages = [
