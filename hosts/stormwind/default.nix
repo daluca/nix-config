@@ -39,7 +39,10 @@ in {
     sopsFile = ../../secrets/stormwind.sops.yaml;
   };
 
-  services.tailscale.extraUpFlags = [ "--advertise-routes=10.0.0.0/14" ];
+  services.tailscale.extraUpFlags = [
+    "--advertise-routes=10.0.0.0/14"
+    "--hostname=akaroa"
+  ];
 
   hardware.raspberry-pi.config.pi4 = {
     dt-overlays.rpi-poe = {

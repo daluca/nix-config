@@ -13,7 +13,6 @@ in {
       "--operator=${daluca.home.username}"
       "--accept-routes"
       "--accept-dns"
-      "--hostname=${config.networking.hostName}"
       "--reset"
     ];
   };
