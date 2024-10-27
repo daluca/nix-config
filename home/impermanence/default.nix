@@ -9,6 +9,7 @@
     ./openssh.nix
     ./neovim.nix
     ./zoxide.nix
+    ./heroic.nix
   ];
 
   home.persistence.home = {

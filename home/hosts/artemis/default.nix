@@ -31,6 +31,7 @@
     ../../steam
     ../../neovim
     ../../nushell
+    ../../heroic
   ];
 
   sops.secrets."gsconnect/private.pem".sopsFile = ../../../secrets/artemis.sops.yaml;
