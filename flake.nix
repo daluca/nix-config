@@ -56,6 +56,7 @@
         ssh-to-age
         just
         fd
+        pkgs.deploy-rs
       ];
       JUST_COMMAND_COLOR = "blue";
     };
