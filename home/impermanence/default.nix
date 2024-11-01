@@ -10,6 +10,7 @@
     ./neovim.nix
     ./zoxide.nix
     ./heroic.nix
+    ./thunderbird.nix
   ];
 
   home.persistence.home = {
