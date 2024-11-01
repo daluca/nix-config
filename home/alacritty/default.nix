@@ -1,14 +1,19 @@
 { config, lib, pkgs, osConfig, ... }:
 let
+  inherit (pkgs) fetchFromGitHub;
+  inherit (pkgs.unstable) alacritty;
+  inherit (lib) mkIf;
+  inherit (config.programs) zsh;
+  inherit (osConfig.services.xserver.desktopManager) gnome;
   font = "MesloLGS Nerd Font";
   flavour = "mocha";
 in {
   programs.alacritty = {
     enable = true;
-    package = pkgs.unstable.alacritty;
+    package = alacritty;
     settings = {
-      shell = "${config.programs.zsh.package}/bin/zsh";
-      import = [ (pkgs.fetchFromGitHub {
+      terminal.shell = "${zsh.package}/bin/zsh";
+      general.import = [ (fetchFromGitHub {
         owner = "catppuccin";
         repo = "alacritty";
          rev = "343cf8d65459ac8f6449cc98dd3648bcbd7e3766";
@@ -29,7 +34,7 @@ in {
   #
   # This is a workaround to for the cursor disappearing over Alacritty
   # https://github.com/alacritty/alacritty/issues/4780#issuecomment-890408502
-  home.sessionVariables = lib.mkIf osConfig.services.xserver.desktopManager.gnome.enable {
+  home.sessionVariables = mkIf gnome.enable {
     XCURSOR_THEME = "Adwaita";
   };
 }
