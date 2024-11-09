@@ -8,6 +8,7 @@
     ./decentraleyes.nix
     ./simplelogin.nix
     ./clearurls.nix
+    ./bypass-paywall-clean.nix
   ];
 
   programs.firefox.policies = {
