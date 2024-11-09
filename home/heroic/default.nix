@@ -2,12 +2,15 @@
 let
   inherit (lib) getOutput;
   inherit (pkgs.unstable) heroic;
-  inherit (pkgs) ge-proton9-16 ge-proton9-15 ge-proton9-14 ge-proton9-13 ge-proton9-12 ge-proton9-11 ge-proton8-32 ge-proton7-55;
+  inherit (pkgs) ge-proton9-19 ge-proton9-18 ge-proton9-17 ge-proton9-16 ge-proton9-15 ge-proton9-14 ge-proton9-13 ge-proton9-12 ge-proton9-11 ge-proton8-32 ge-proton7-55;
 in {
   home.packages = [
     heroic
   ];
 
+  xdg.configFile."heroic/tools/proton/GE-Proton9-19".source = getOutput "steamcompattool" ge-proton9-19;
+  xdg.configFile."heroic/tools/proton/GE-Proton9-18".source = getOutput "steamcompattool" ge-proton9-18;
+  xdg.configFile."heroic/tools/proton/GE-Proton9-17".source = getOutput "steamcompattool" ge-proton9-17;
   xdg.configFile."heroic/tools/proton/GE-Proton9-16".source = getOutput "steamcompattool" ge-proton9-16;
   xdg.configFile."heroic/tools/proton/GE-Proton9-15".source = getOutput "steamcompattool" ge-proton9-15;
   xdg.configFile."heroic/tools/proton/GE-Proton9-14".source = getOutput "steamcompattool" ge-proton9-14;
