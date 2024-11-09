@@ -25,6 +25,5 @@ buildGoModule rec {
     homepage = "https://github.com/elsesiy/kubectl-view-secret";
     changelog = "https://github.com/elsesiy/kubectl-view-secret/releases/tag/v${version}";
     license = licenses.mit;
-    maintainers = [ "elsesiy" ];
   };
 }

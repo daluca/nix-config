@@ -19,6 +19,5 @@ rustPlatform.buildRustPackage rec {
     description = "Garden grows and cultivates collections of Git trees";
     homepage = "https://gitlab.com/garden-rs/garden";
     license = licenses.mit;
-    maintainers = [ "davvid" ];
   };
 }

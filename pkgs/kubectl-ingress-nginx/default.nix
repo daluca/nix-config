@@ -27,6 +27,5 @@ buildGoModule rec {
     homepage = "https://kubernetes.github.io/ingress-nginx/";
     changelog = "https://github.com/kubernetes/ingress-nginx/releases/tag/v${version}";
     license = licenses.asl20;
-    maintainers = [ "kubernetes" ];
   };
 }
