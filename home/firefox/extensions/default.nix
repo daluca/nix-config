@@ -1,7 +1,4 @@
-{ ... }:
-
 {
-  # TODO: Firefox policy extension setting to install extensions
   imports = [
     ./ublock-origin.nix
     ./bitwarden.nix
@@ -10,6 +7,7 @@
     ./stylus.nix
     ./decentraleyes.nix
     ./simplelogin.nix
+    ./clearurls.nix
   ];
 
   programs.firefox.policies = {
