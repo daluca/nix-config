@@ -1,13 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
-  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
-  ublock-originId = firefox-addons.ublock-origin.addonId;
+  inherit (pkgs.nur.repos.rycee.firefox-addons) ublock-origin;
 in
 {
-  programs.firefox = {
-    policies.ExtensionSettings."${ublock-originId}" = {
-      install_url = "file://${firefox-addons.ublock-origin}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${ublock-originId}.xpi";
-      installation_mode = "force_installed";
-    };
+  programs.firefox.policies.ExtensionSettings."${ublock-origin.addonId}" = {
+    install_url = "file://${ublock-origin}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${ublock-origin.addonId}.xpi";
+    installation_mode = "force_installed";
   };
 }

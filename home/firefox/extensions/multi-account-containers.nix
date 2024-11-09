@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
 let
-  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
-  multi-account-containersId = firefox-addons.multi-account-containers.addonId;
+  inherit (pkgs.nur.repos.rycee.firefox-addons) multi-account-containers;
+  inherit (config.home) username;
 in {
   programs.firefox = {
-    policies.ExtensionSettings."${multi-account-containersId}" = {
-      install_url = "file://${firefox-addons.multi-account-containers}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${multi-account-containersId}.xpi";
+    policies.ExtensionSettings."${multi-account-containers.addonId}" = {
+      install_url = "file://${multi-account-containers}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${multi-account-containers.addonId}.xpi";
       installation_mode = "force_installed";
     };
 
-    profiles."${config.home.username}" = {
+    profiles.${username} = {
       containersForce = true;
       containers = {
         "001-personal" = {

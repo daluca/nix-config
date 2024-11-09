@@ -1,10 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
-  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
-  simpleloginId = firefox-addons.simplelogin.addonId;
+  inherit (pkgs.nur.repos.rycee.firefox-addons) simplelogin;
 in {
-  programs.firefox.policies.ExtensionSettings."${simpleloginId}" = {
-    install_url = "file://${firefox-addons.simplelogin}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${simpleloginId}.xpi";
+  programs.firefox.policies.ExtensionSettings."${simplelogin.addonId}" = {
+    install_url = "file://${simplelogin}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${simplelogin.addonId}.xpi";
     installation_mode = "force_installed";
   };
 }
