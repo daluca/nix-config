@@ -3,7 +3,12 @@
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
-  modifications = final: prev: { };
+  modifications = final: prev: {
+    kubectlPlugins = {
+      view-secret = final.pkgs.view-secret;
+      ingress-nginx = final.pkgs.ingress-nginx;
+    };
+  };
 
   proton-ge = import ./proton-ge;
 
