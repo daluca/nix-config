@@ -2,16 +2,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "garden";
-  version = "1.9.0";
+  version = "1.9.1";
 
   src = fetchFromGitLab {
     owner = "garden-rs";
     repo = "garden";
     rev = "v${version}";
-    hash = "sha256-DtYeiCKHwF7+ZhUrAC+gIy75bzebN6FmM9WsIyrCdy4=";
+    hash = "sha256-HRXNEsKsIHmFuah2k5eFag2WkUO8td4RNDz9zyTqmYc=";
   };
 
-  cargoHash = "sha256-Ao+gZHFX1gKkWarqdCKyhA1PnamkVwS+3+1Wx7lnX3k=";
+  cargoHash = "sha256-sDOjWiPDljNR9UCBlrQAbgiRxe9A8IBdAPbrSY23/PM=";
 
   doCheck = false;
 
