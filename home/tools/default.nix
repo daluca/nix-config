@@ -6,6 +6,7 @@ in {
     ../fzf
     ../gron
     ../zoxide
+    ../delta
   ];
 
   home.packages = [
