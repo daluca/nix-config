@@ -37,29 +37,36 @@
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, deploy-rs, ...} @ inputs:
+  outputs = {self, nixpkgs, git-hooks, deploy-rs, ...} @ inputs:
   let
     inherit (self) outputs;
     inherit (nixpkgs.lib) nixosSystem getName;
-    inherit (pkgs) sops git-agecrypt ssh-to-age just fd;
-    pkgs = nixpkgs.legacyPackages."x86_64-linux";
     secrets = builtins.fromTOML (builtins.readFile ./secrets/secrets.toml);
+    supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in
   {
     overlays = import ./overlays { inherit inputs getName; };
 
-    devShells."x86_64-linux".default = pkgs.mkShell {
-      name = "nix-config";
-      buildInputs = [
-        sops
-        git-agecrypt
-        ssh-to-age
-        just
-        fd
-        pkgs.deploy-rs
-      ];
-      JUST_COMMAND_COLOR = "blue";
-    };
+    packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
+
+    homeManagerModules = import ./modules/home-manager;
+
+    devShells = forAllSystems (system: {
+      default =  nixpkgs.legacyPackages.${system}.mkShell {
+        inherit (self.checks.${system}.pre-commit-check) shellHook;
+        name = "nix-config";
+        buildInputs = with nixpkgs.legacyPackages.${system}; [
+          sops
+          git-agecrypt
+          ssh-to-age
+          just
+          fd
+          nixpkgs.legacyPackages.${system}.deploy-rs
+        ] ++ self.checks.${system}.pre-commit-check.enabledPackages;
+        JUST_COMMAND_COLOR = "blue";
+      };
+    });
 
     nixosConfigurations.artemis = nixosSystem rec {
       system = "x86_64-linux";
@@ -86,6 +93,11 @@
       };
     };
 
-    checks = (builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib);
+    checks = forAllSystems (system: {
+      pre-commit-check = git-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = import ./.pre-commit-config.nix { inherit nixpkgs system; };
+      };
+    } // deploy-rs.lib.${system}.deployChecks self.deploy);
   };
 }
