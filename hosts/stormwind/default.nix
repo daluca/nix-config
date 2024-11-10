@@ -56,8 +56,5 @@ in {
     };
   };
 
-  nixpkgs.buildPlatform.system = "x86_64-linux";
-  nixpkgs.hostPlatform.system = system;
-
   system.stateVersion = "24.05";
 }
