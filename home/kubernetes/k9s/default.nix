@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
-  flavour = "mocha";
+  inherit (lib) toLower;
+  inherit (pkgs) fetchFromGitHub;
+  inherit (config.themes) catppuccin;
 in {
   programs.k9s = {
     enable = true;
@@ -9,13 +11,13 @@ in {
       ui = {
         enableMouse = false;
         logoless = true;
-        skin = "catppuccin-${flavour}";
+        skin = "catppuccin-${toLower catppuccin.flavour}";
       };
       skipLatestRevCheck = true;
     };
   };
 
-  xdg.configFile."k9s/skins".source = pkgs.fetchFromGitHub {
+  xdg.configFile."k9s/skins".source = fetchFromGitHub {
     owner = "catppuccin";
     repo = "k9s";
     rev = "fdbec82284744a1fc2eb3e2d24cb92ef87ffb8b4";

@@ -2,11 +2,11 @@
 let
   inherit (pkgs) fetchFromGitHub;
   inherit (pkgs.unstable) alacritty;
-  inherit (lib) mkIf;
+  inherit (lib) mkIf toLower;
   inherit (config.programs) zsh;
   inherit (osConfig.services.xserver.desktopManager) gnome;
+  inherit (config.themes) catppuccin;
   font = "MesloLGS Nerd Font";
-  flavour = "mocha";
 in {
   programs.alacritty = {
     enable = true;
@@ -16,9 +16,9 @@ in {
       general.import = [ (fetchFromGitHub {
         owner = "catppuccin";
         repo = "alacritty";
-         rev = "343cf8d65459ac8f6449cc98dd3648bcbd7e3766";
+        rev = "343cf8d65459ac8f6449cc98dd3648bcbd7e3766";
         hash = "sha256-5MUWHXs8vfl2/u6YXB4krT5aLutVssPBr+DiuOdMAto=";
-      } + "/catppuccin-${flavour}.toml" ) ];
+      } + "/catppuccin-${toLower catppuccin.flavour}.toml" ) ];
       font = {
         size = 11.0;
 	      normal.family = "${font}";

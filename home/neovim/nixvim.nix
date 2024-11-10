@@ -1,6 +1,9 @@
-{ pkgs, inputs, ... }:
-
-{
+{ config, lib, pkgs, inputs, ... }:
+let
+  inherit (lib) toLower;
+  inherit (pkgs.unstable) neovim-unwrapped;
+  inherit (config.themes) catppuccin;
+in {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
 
@@ -9,12 +12,12 @@
 
   programs.nixvim = rec {
     enable = true;
-    package = pkgs.unstable.neovim-unwrapped;
+    package = neovim-unwrapped;
     vimAlias = true;
     defaultEditor = true;
     globals.mapleader = " ";
     colorschemes.catppuccin.enable = true;
-    colorschemes.catppuccin.settings.flavour = "mocha";
+    colorschemes.catppuccin.settings.flavour = toLower catppuccin.flavour;
     opts = {
       number = true;
       relativenumber = true;
