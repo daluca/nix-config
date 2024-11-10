@@ -46,6 +46,13 @@
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in
   {
+    checks = forAllSystems (system: {
+      pre-commit-check = git-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = import ./.pre-commit-config.nix { inherit nixpkgs system; };
+      };
+    } // deploy-rs.lib.${system}.deployChecks self.deploy);
+
     overlays = import ./overlays { inherit inputs getName; };
 
     packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
@@ -92,12 +99,5 @@
         path = deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations.stormwind;
       };
     };
-
-    checks = forAllSystems (system: {
-      pre-commit-check = git-hooks.lib.${system}.run {
-        src = ./.;
-        hooks = import ./.pre-commit-config.nix { inherit nixpkgs system; };
-      };
-    } // deploy-rs.lib.${system}.deployChecks self.deploy);
   };
 }
