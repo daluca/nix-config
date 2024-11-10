@@ -2,8 +2,6 @@
 
 {
   imports = [
-    outputs.homeManagerModules.themes
-
     ../../desktop-managers/gnome
 
     ../../common
@@ -35,8 +33,6 @@
     ../../nushell
     ../../heroic
   ];
-
-  themes.catppuccin.flavour = "Mocha";
 
   sops.secrets."gsconnect/private.pem".sopsFile = ../../../secrets/artemis.sops.yaml;
 

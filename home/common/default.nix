@@ -2,6 +2,8 @@
 
 {
   imports = [
+    outputs.homeManagerModules.themes
+
     ../tmux
     ../dvorak
     ../zsh
@@ -10,6 +12,8 @@
     ../secrets
     ../git
   ];
+
+  themes.catppuccin.flavour = "Mocha";
 
   home.username = "daluca";
   home.homeDirectory = "/home/daluca";
