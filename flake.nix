@@ -44,8 +44,7 @@
     secrets = builtins.fromTOML (builtins.readFile ./secrets/secrets.toml);
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-  in
-  {
+  in {
     checks = forAllSystems (system: {
       pre-commit-check = git-hooks.lib.${system}.run {
         src = ./.;
@@ -99,5 +98,25 @@
         path = deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations.stormwind;
       };
     };
+
+    images.raspberry-pi-4 = (nixosSystem rec {
+      system = "aarch64-linux";
+      specialArgs = { inherit inputs outputs system secrets; };
+      modules = [
+        ./images/raspberry-pi/4
+        ({
+          nixpkgs.buildPlatform.system = "x86_64-linux";
+          nixpkgs.hostPlatform.system = system;
+        })
+      ];
+    }).config.system.build.sdImage;
+
+    images.digitalocean = (nixosSystem rec {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs outputs system secrets; };
+      modules = [
+        ./images/digitalocean
+      ];
+    }).config.system.build.digitalOceanImage;
   };
 }

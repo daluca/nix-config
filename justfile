@@ -1,3 +1,5 @@
+hostname := `hostname`
+
 [private]
 default:
   @just --list
@@ -5,15 +7,14 @@ default:
 update-secrets:
   sops updatekeys "$( fd sops.yaml )"
 
-create-age-key-from-host directory="/etc/ssh":
-  #!/usr/bin/env bash
-  set -euo pipefail
+build-image type:
+  nix build .#images.{{ type }}
 
-  mkdir -p "${XDG_CONFIG_HOME:-"${HOME}/.config"}/sops/age/"
+rebuild host=hostname: check
+  sudo nixos-rebuild switch --flake .#{{ host }}
 
-  echo "# created: $( date +%FT%T%:z )" > "${XDG_CONFIG_HOME:-"${HOME}/.config"}/sops/age/nix-config.txt"
-  echo "# public key: $( ssh-to-age -i {{ directory }}/ssh_host_ed25519_key.pub )" >> "${HOME}/.config/sops/age/nix-config.txt"
-  sudo ssh-to-age -i {{ directory }}/ssh_host_ed25519_key -private-key >> "${HOME}/.config/sops/age/nix-config.txt"
+deploy host: check
+  deploy .#{{ host }} --skip-checks
 
-build-sd-image host:
-  nix build .#nixosConfigurations.{{ host }}.config.system.build.sdImage
+check:
+  nix flake check --all-systems

@@ -1,5 +1,6 @@
-{ pkgs, inputs, ... }:
+{ lib, pkgs, inputs, ... }:
 let
+  inherit (lib) mkDefault;
   inherit (pkgs) libraspberrypi;
 in {
   imports = [
@@ -14,6 +15,5 @@ in {
     libraspberrypi
   ];
 
-  nixpkgs.buildPlatform.system = "x86_64-linux";
-  nixpkgs.hostPlatform.system = "aarch64-linux";
+  system.stateVersion = mkDefault "24.05";
 }
