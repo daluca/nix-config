@@ -17,6 +17,7 @@ rustPlatform.buildRustPackage rec {
 
   meta = with lib; {
     description = "Garden grows and cultivates collections of Git trees";
+    mainProgram = "garden";
     homepage = "https://gitlab.com/garden-rs/garden";
     license = licenses.mit;
   };

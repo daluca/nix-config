@@ -1,9 +1,7 @@
 { inputs, outputs, ... }:
 
 {
-  imports = [
-    outputs.homeManagerModules.themes
-
+  imports = builtins.attrValues outputs.homeManagerModules ++ [
     ../tmux
     ../dvorak
     ../zsh

@@ -2,7 +2,7 @@
 let
   inherit (pkgs) callPackage;
 in {
-  garden = callPackage ./garden { };
+  garden-rs = callPackage ./garden-rs { };
   jsonnet-debugger = callPackage ./jsonnet-debugger { };
   tfctl = callPackage ./tfctl { };
   view-secret = callPackage ./kubectl-view-secret { };
