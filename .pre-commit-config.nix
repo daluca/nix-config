@@ -32,16 +32,4 @@ rec {
     entry = "${gitleaks.package}/bin/gitleaks protect --verbose --redact --staged";
     pass_filenames = false;
   };
-  check-github-workflows = {
-    enable = false;
-    name = "Validate GitHub Workflows";
-    description = "Validate GitHub Workflows against the schema provided by SchemaStore";
-    package = nixpkgs.legacyPackages.${system}.check-jsonschema;
-    entry = "${check-github-workflows.package}/bin/check-jsonschema --builtin-schema vendor.github-workflows";
-    args = [
-      "--verbose"
-    ];
-    types = [ "yaml" ];
-    files = "^\\.github/workflows/[^/]+$";
-  };
 }
