@@ -1,11 +1,13 @@
-{ config, lib, ... }:
-
-{
+{ config, lib, pkgs, ... }:
+let
+  inherit (pkgs) tfctl;
+in {
   imports = [
     ./kubectl
     ./helm
     ./k9s
     ./flux
+    ./tfctl
   ];
 
   programs.zsh.shellAliases = lib.mkIf config.programs.zsh.enable {
