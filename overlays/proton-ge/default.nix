@@ -1,4 +1,14 @@
 final: prev: {
+  ge-proton9-20 = prev.proton-ge-bin.overrideAttrs (oldAttrs: rec {
+    pname = "ge-proton9-20";
+    version = "GE-Proton9-20";
+
+    src = prev.fetchzip {
+      url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+      hash = "sha256-1twCv81KO1fcRcIb4H7VtAjtcKrX+DymsYdf885eOWo=";
+    };
+  });
+
   ge-proton9-19 = prev.proton-ge-bin.overrideAttrs (oldAttrs: rec {
     pname = "ge-proton9-19";
     version = "GE-Proton9-19";
