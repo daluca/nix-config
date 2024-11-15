@@ -2,9 +2,9 @@
 let
   inherit (pkgs.nur.repos.rycee) firefox-addons;
   bypass-paywalls-clean = firefox-addons.bypass-paywalls-clean.override rec {
-    version = "3.9.0.0";
+    version = "3.9.2.0";
     url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
-    sha256 = "sha256-DLhryk7rdglguLEUscvZgveC2adyTDTyC0mp2eTuvBs=";
+    sha256 = "sha256-ruRhCD01gLhZ/5iXbe6u3/xJ6yiAwpBIpOFR2HhAUTA=";
   };
 in {
   programs.firefox.policies.ExtensionSettings."${bypass-paywalls-clean.addonId}" = {
