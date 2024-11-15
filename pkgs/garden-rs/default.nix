@@ -1,7 +1,7 @@
 { lib, fetchFromGitLab, rustPlatform }:
 
 rustPlatform.buildRustPackage rec {
-  pname = "garden";
+  pname = "garden-rs";
   version = "1.9.1";
 
   src = fetchFromGitLab {
@@ -11,7 +11,7 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-HRXNEsKsIHmFuah2k5eFag2WkUO8td4RNDz9zyTqmYc=";
   };
 
-  cargoHash = "sha256-sDOjWiPDljNR9UCBlrQAbgiRxe9A8IBdAPbrSY23/PM=";
+  cargoHash = "sha256-2dZ9meUYOwHATNoTTYY7sS+tkCUJJns8EKJcOUOxpXs=";
 
   doCheck = false;
 
