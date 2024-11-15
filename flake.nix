@@ -48,7 +48,7 @@
     checks = forAllSystems (system: {
       pre-commit-check = git-hooks.lib.${system}.run {
         src = ./.;
-        hooks = import ./.pre-commit-config.nix { inherit nixpkgs system; };
+        hooks = import ./.pre-commit-config.nix { pkgs = import nixpkgs { inherit system; overlays = builtins.attrValues self.overlays; }; };
       };
     } // deploy-rs.lib.${system}.deployChecks self.deploy);
 
@@ -104,10 +104,10 @@
       specialArgs = { inherit inputs outputs system secrets; };
       modules = [
         ./images/raspberry-pi/4
-        ({
+        {
           nixpkgs.buildPlatform.system = "x86_64-linux";
           nixpkgs.hostPlatform.system = system;
-        })
+        }
       ];
     }).config.system.build.sdImage;
 

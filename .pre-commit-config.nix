@@ -1,4 +1,4 @@
-{ nixpkgs, system }:
+{ pkgs }:
 
 rec {
   check-added-large-files.enable = true;
@@ -12,7 +12,7 @@ rec {
     enable = true;
     name = "markdownlint-cli2";
     description = "Checks the style of Markdown/CommonMark files.";
-    package = nixpkgs.legacyPackages.${system}.markdownlint-cli2;
+    package = pkgs.markdownlint-cli2;
     entry = "${markdownlint-cli2.package}/bin/markdownlint-cli2";
     types = [ "markdown" ];
   };
@@ -20,7 +20,7 @@ rec {
     enable = true;
     name = "codespell";
     description = "Checks for common misspellings in text files.";
-    package = nixpkgs.legacyPackages.${system}.codespell;
+    package = pkgs.codespell;
     entry = "${codespell.package}/bin/codespell";
     types = [ "text" ];
   };
@@ -28,8 +28,19 @@ rec {
     enable = true;
     name = "Detect hardcoded secrets";
     description = "Detect hardcoded secrets using Gitleaks";
-    package = nixpkgs.legacyPackages.${system}.gitleaks;
+    package = pkgs.gitleaks;
     entry = "${gitleaks.package}/bin/gitleaks protect --verbose --redact --staged";
     pass_filenames = false;
+  };
+  commitlint-rs = {
+    enable = false;
+    name = "Assert Conventional Commit Messages";
+    description = "Asserts that Conventional Commits have been used for all commit messages according to the rules for this repo.";
+    package = pkgs.commitlint-rs;
+    entry = "${commitlint-rs.package}/bin/commitlint --edit";
+    stages = [ "prepare-commit-msg" ];
+    pass_filenames = false;
+    require_serial = true;
+    verbose = true;
   };
 }

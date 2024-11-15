@@ -7,4 +7,5 @@ in {
   tfctl = callPackage ./tfctl { };
   view-secret = callPackage ./kubectl-view-secret { };
   ingress-nginx = callPackage ./kubectl-ingress-nginx { };
+  commitlint-rs = callPackage ./commitlint-rs { };
 }
