@@ -7,6 +7,8 @@ in {
     inputs.raspberry-pi-nix.nixosModules.raspberry-pi
   ];
 
+  documentation.nixos.enable = false;
+
   hardware.raspberry-pi.config.all = {
     dt-overlays.disable-bt = { enable = true; params = { }; };
   };
