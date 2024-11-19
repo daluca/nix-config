@@ -5,7 +5,7 @@ keys:
   - hosts: &hosts
       - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
       - &stormwind age173lrwtphyuvfjhkjvw4xe5fy4lt2x97qcjr2eqjt46eq6q664egqfsp4v3
-      - &ironforge age12jvysa4up79pasngsdqn2mjd5fczg4wtrx8d8euj3j8vr3nlye2seqmnjs
+      - &ironforge age16g33d2sppsukw7tekmh2d3ppf22sscwfmm0anppcrdtj9h5p7eqqrw9zg0
 
 creation_rules:
   - path_regex: stormwind\.sops\.yaml$

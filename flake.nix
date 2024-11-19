@@ -17,7 +17,6 @@
 
     sops-nix.url = "github:mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs";
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -30,7 +29,7 @@
     git-hooks.inputs.nixpkgs.follows = "nixpkgs-unstable";
     git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
 
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?ref=v0.4.1";
     raspberry-pi-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -90,12 +89,29 @@
       ];
     };
 
+    nixosConfigurations.ironforge = nixosSystem rec {
+      system = "aarch64-linux";
+      specialArgs = { inherit inputs outputs system secrets; };
+      modules = [
+        ./hosts/ironforge
+      ];
+    };
+
     deploy.nodes.stormwind = {
       hostname = "stormwind";
       interactiveSudo = true;
       profiles.system = {
         user = "root";
         path = deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations.stormwind;
+      };
+    };
+
+    deploy.nodes.ironforge = {
+      hostname = "ironforge";
+      sshUser = "root";
+      profiles.system = {
+        user = "root";
+        path = deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations.ironforge;
       };
     };
 

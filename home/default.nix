@@ -1,11 +1,14 @@
 { osConfig, ... }:
-
-{
+let
+  inherit (osConfig.networking) hostName;
+in {
   imports =
-    if osConfig.networking.hostName == "artemis" then
+    if hostName == "artemis" then
       [ ./hosts/artemis ]
-    else if osConfig.networking.hostName == "stormwind" then
+    else if hostName == "stormwind" then
       [ ./hosts/stormwind ]
+    else if hostName == "ironforge" then
+      [ ./hosts/ironforge ]
     else
       [ ./common ];
 }

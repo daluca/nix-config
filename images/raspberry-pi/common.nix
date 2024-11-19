@@ -1,6 +1,6 @@
 { lib, pkgs, inputs, ... }:
 let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault mkImageMediaOverride;
   inherit (pkgs) libraspberrypi;
 in {
   imports = [

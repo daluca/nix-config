@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 let
+  inherit (lib) mkIf;
   inherit (pkgs) gnome-settings-daemon gnome-tour;
   inherit (pkgs.gnomeExtensions) appindicator;
+  inherit (config.programs) firefox;
 in {
   services.xserver = {
     enable = true;
@@ -23,5 +25,5 @@ in {
 
   # TODO: check if GNOME browser connection is working
   # TODO: update to home-manager config of firefox
-  services.gnome.gnome-browser-connector.enable = lib.mkIf config.programs.firefox.enable true;
+  services.gnome.gnome-browser-connector.enable = mkIf firefox.enable true;
 }
