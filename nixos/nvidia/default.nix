@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  boot.kernelPackages = pkgs.unstable.linuxPackages;
+  boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
 
   specialisation.gaming.configuration = {
     system.nixos.tags = [ "gaming" ];
