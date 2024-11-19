@@ -19,5 +19,5 @@ in {
     ];
   };
 
-  system.stateVersion = mkDefault "24.05";
+  system.stateVersion = mkDefault "24.11";
 }

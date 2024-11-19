@@ -1,21 +1,23 @@
 { config, lib, pkgs, ... }:
-
-{
+let
+  inherit (pkgs) gnome-settings-daemon gnome-tour;
+  inherit (pkgs.gnomeExtensions) appindicator;
+in {
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
 
-  environment.gnome.excludePackages = (with pkgs; [
+  environment.gnome.excludePackages = [
     gnome-tour
-  ]);
+  ];
 
-  environment.systemPackages = with pkgs.gnomeExtensions; [
+  environment.systemPackages = [
     appindicator
   ];
 
-  services.udev.packages = with pkgs.gnome; [
+  services.udev.packages = [
     gnome-settings-daemon
   ];
 

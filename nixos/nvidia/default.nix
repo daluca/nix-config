@@ -6,10 +6,9 @@
   specialisation.gaming.configuration = {
     system.nixos.tags = [ "gaming" ];
 
-    hardware.opengl = {
+    hardware.graphics = {
       enable = lib.mkForce true;
-      driSupport = lib.mkForce true;
-      driSupport32Bit = lib.mkForce true;
+      enable32Bit = lib.mkForce true;
     };
 
     services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];

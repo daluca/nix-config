@@ -2,7 +2,7 @@
 let
   inherit (builtins) replaceStrings attrValues;
   inherit (pkgs) nix-ld-rs;
-  inherit (lib) lists attrsets mkIf;
+  inherit (lib) lists attrsets;
   inherit (lists) unique;
   inherit (attrsets) filterAttrs;
 in {
@@ -59,5 +59,4 @@ in {
   };
 
   hardware.pulseaudio.enable = true;
-  sound.enable = true;
 }

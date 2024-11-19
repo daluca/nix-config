@@ -9,11 +9,6 @@
 
   programs.firefox = {
     enable = true;
-    package =
-      if osConfig.services.pipewire.enable then
-        (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { })
-      else
-        pkgs.firefox;
     profiles."${config.home.username}" = {
       isDefault = true;
       settings = {
