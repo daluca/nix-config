@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  inherit (pkgs) gnome-settings-daemon gnome-tour;
+  inherit (pkgs) gnome-settings-daemon gnome-tour epiphany;
   inherit (pkgs.gnomeExtensions) appindicator;
   inherit (config.programs) firefox;
 in {
@@ -13,6 +13,7 @@ in {
 
   environment.gnome.excludePackages = [
     gnome-tour
+    epiphany
   ];
 
   environment.systemPackages = [
