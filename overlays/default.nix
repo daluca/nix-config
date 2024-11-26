@@ -1,4 +1,4 @@
-{ inputs, getName }:
+{ lib, inputs }:
 
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
@@ -15,7 +15,7 @@
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;
-      config.allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
+      config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
         "nvidia-x11"
         "nvidia-settings"
       ];

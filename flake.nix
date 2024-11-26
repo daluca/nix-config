@@ -39,7 +39,8 @@
   outputs = {self, nixpkgs, git-hooks, deploy-rs, ...} @ inputs:
   let
     inherit (self) outputs;
-    inherit (nixpkgs.lib) nixosSystem getName;
+    inherit (nixpkgs) lib;
+    inherit (lib) nixosSystem;
     secrets = builtins.fromTOML (builtins.readFile ./secrets/secrets.toml);
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
@@ -51,7 +52,7 @@
       };
     } // deploy-rs.lib.${system}.deployChecks self.deploy);
 
-    overlays = import ./overlays { inherit inputs getName; };
+    overlays = import ./overlays { inherit lib inputs; };
 
     packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
 
