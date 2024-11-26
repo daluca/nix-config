@@ -46,7 +46,7 @@
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in {
     checks = forAllSystems (system: {
-      pre-commit-check = git-hooks.lib.${system}.run {
+      pre-commit = git-hooks.lib.${system}.run {
         src = ./.;
         hooks = import ./.pre-commit-config.nix { pkgs = import nixpkgs { inherit system; overlays = builtins.attrValues self.overlays; }; };
       };
@@ -60,7 +60,7 @@
 
     devShells = forAllSystems (system: {
       default =  nixpkgs.legacyPackages.${system}.mkShell {
-        inherit (self.checks.${system}.pre-commit-check) shellHook;
+        inherit (self.checks.${system}.pre-commit) shellHook;
         name = "nix-config";
         buildInputs = with nixpkgs.legacyPackages.${system}; [
           sops
@@ -69,7 +69,7 @@
           just
           fd
           nixpkgs.legacyPackages.${system}.deploy-rs
-        ] ++ self.checks.${system}.pre-commit-check.enabledPackages;
+        ] ++ self.checks.${system}.pre-commit.enabledPackages;
         JUST_COMMAND_COLOR = "blue";
       };
     });
