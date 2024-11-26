@@ -4,11 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
 
-    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs?/nixos-unstable";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
-    home-manager.url = "github:nix-community/home-manager?ref=release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     impermanence.url = "github:nix-community/impermanence";
@@ -23,13 +23,13 @@
     nixvim.inputs.home-manager.follows = "home-manager";
     nixvim.inputs.git-hooks.follows = "git-hooks";
 
-    terraform-oss.url = "github:nixos/nixpkgs?ref=517501bcf14ae6ec47efd6a17dda0ca8e6d866f9";
+    terraform-oss.url = "github:nixos/nixpkgs/517501bcf14ae6ec47efd6a17dda0ca8e6d866f9";
 
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs-unstable";
     git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
 
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?ref=v0.4.1";
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix/v0.4.1";
     raspberry-pi-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     deploy-rs.url = "github:serokell/deploy-rs";
