@@ -88,7 +88,10 @@
         urls = [
           { template = "https://home-manager-options.extranix.com/";
             params = [
-              { name = "release"; value = "release-${config.home.stateVersion}"; }
+              # TODO: replace with home.stateVersion when site include option
+              #
+              # Hardcoded previous stateVersion as a workaround
+              { name = "release"; value = "24.05"; }
               { name = "query"; value = "{searchTerms}"; }
             ];
           }
