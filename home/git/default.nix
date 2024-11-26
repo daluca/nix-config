@@ -1,14 +1,17 @@
-{ config, lib, pkgs, secrets, ... }:
-
-{
+{ config, lib, secrets, ... }:
+let
+  inherit (lib) mkIf;
+  inherit (config.programs) zsh gpg;
+  inherit (secrets) user;
+in {
   programs.git = {
     enable = true;
     userName = "Lucas Slebos";
-    userEmail = secrets.user.email;
+    userEmail = user.email;
     signing = {
       key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
       signByDefault = true;
-      gpgPath = "${config.programs.gpg.package}/bin/gpg";
+      gpgPath = "${gpg.package}/bin/gpg";
     };
     ignores = [
       "/.vscode/"
@@ -18,10 +21,11 @@
       push.autoSetupRemote = true;
       pull.rebase = true;
       rerere.enabled = true;
+      url."git@github.com".insteadof = "github";
     };
   };
 
-  programs.zsh.oh-my-zsh.plugins = lib.mkIf ( config.programs.zsh.enable && config.programs.zsh.oh-my-zsh.enable ) [
+  programs.zsh.oh-my-zsh.plugins = mkIf ( zsh.enable && zsh.oh-my-zsh.enable ) [
     "git"
   ];
 }
