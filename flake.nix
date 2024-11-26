@@ -36,7 +36,7 @@
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, git-hooks, deploy-rs, ...} @ inputs:
+  outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
   let
     inherit (self) outputs;
     inherit (nixpkgs) lib;
@@ -50,13 +50,15 @@
         src = ./.;
         hooks = import ./.pre-commit-config.nix { pkgs = import nixpkgs { inherit system; overlays = builtins.attrValues self.overlays; }; };
       };
-    } // deploy-rs.lib.${system}.deployChecks self.deploy);
+    } // inputs.deploy-rs.lib.${system}.deployChecks self.deploy);
 
     overlays = import ./overlays { inherit lib inputs; };
 
     packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
 
     homeManagerModules = import ./modules/home-manager;
+
+    deploy = import ./deploy { deploy-rs = inputs.deploy-rs; nixosConfigurations = self.nixosConfigurations; };
 
     devShells = forAllSystems (system: {
       default =  nixpkgs.legacyPackages.${system}.mkShell {
@@ -68,7 +70,7 @@
           ssh-to-age
           just
           fd
-          nixpkgs.legacyPackages.${system}.deploy-rs
+          deploy-rs
         ] ++ self.checks.${system}.pre-commit.enabledPackages;
         JUST_COMMAND_COLOR = "blue";
       };
@@ -96,24 +98,6 @@
       modules = [
         ./hosts/ironforge
       ];
-    };
-
-    deploy.nodes.stormwind = {
-      hostname = "stormwind";
-      interactiveSudo = true;
-      profiles.system = {
-        user = "root";
-        path = deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations.stormwind;
-      };
-    };
-
-    deploy.nodes.ironforge = {
-      hostname = "ironforge";
-      sshUser = "root";
-      profiles.system = {
-        user = "root";
-        path = deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations.ironforge;
-      };
     };
 
     images.raspberry-pi-4 = (nixosSystem rec {
