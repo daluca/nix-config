@@ -10,7 +10,7 @@ update-secrets:
 build-image type:
   nix build .#images.{{ type }}
 
-rebuild host=hostname: check
+rebuild host=hostname:
   sudo nixos-rebuild switch --flake .#{{ host }}
 
 deploy host: check
