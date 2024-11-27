@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf toLower;
+  inherit (pkgs) tmuxPlugins;
   inherit (config.programs) zsh fzf;
   inherit (config.themes) catppuccin;
 in {
@@ -9,9 +10,14 @@ in {
     shortcut = "a";
     baseIndex = 1;
     secureSocket = true;
-    extraConfig = ''
-      bind C-a send-prefix
-      run-shell ${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
+    extraConfig = /* tmux */ ''
+      # Keybindings
+      bind C-r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded..."
+      bind a send-prefix
+      # Plugins
+      run-shell ${tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
+      run-shell ${tmuxPlugins.yank}/share/tmux-plugins/yank/yank.tmux
+      # Config
       set -g @catppuccin_flavour '${toLower catppuccin.flavour}'
     '';
     shell = "${zsh.package}/bin/zsh";
