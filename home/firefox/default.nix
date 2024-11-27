@@ -38,10 +38,4 @@
       };
     };
   };
-
-  home.persistence.home = lib.mkIf osConfig.environment.persistence.system.enable {
-    directories = [
-      ".mozilla"
-    ];
-  };
 }
