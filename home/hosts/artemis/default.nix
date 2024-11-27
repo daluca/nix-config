@@ -1,4 +1,4 @@
-{ config, osConfig, outputs, ... }:
+{ config, osConfig, ... }:
 
 {
   imports = [
@@ -32,6 +32,7 @@
     ../../neovim
     ../../nushell
     ../../heroic
+    ../../signal-desktop
   ];
 
   sops.secrets."gsconnect/private.pem".sopsFile = ../../../secrets/artemis.sops.yaml;

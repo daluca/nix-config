@@ -11,6 +11,7 @@
     ./zoxide.nix
     ./heroic.nix
     ./thunderbird.nix
+    ./signal.nix
   ];
 
   home.persistence.home = {
