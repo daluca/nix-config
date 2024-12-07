@@ -14,6 +14,7 @@
     impermanence.url = "github:nix-community/impermanence";
 
     nur.url = "github:nix-community/nur";
+    nur.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     sops-nix.url = "github:mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
