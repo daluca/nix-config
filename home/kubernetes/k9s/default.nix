@@ -2,11 +2,12 @@
 let
   inherit (lib) toLower;
   inherit (pkgs) fetchFromGitHub;
+  inherit (pkgs.unstable) k9s;
   inherit (config.themes) catppuccin;
 in {
   programs.k9s = {
     enable = true;
-    package = pkgs.unstable.k9s;
+    package = k9s;
     settings.k9s = {
       ui = {
         enableMouse = false;
