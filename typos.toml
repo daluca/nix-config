@@ -1,0 +1,15 @@
+[default]
+extend-ignore-re = [
+  "sha256-.*=",
+  "ENC\\[.*\\]",
+  "(?Rm)^.*(#|//)\\s*spellchecker:disable-line$"
+]
+
+[default.extend-words]
+referers = "referers"
+
+[files]
+extend-exclude = [
+  "**.sops.yaml",
+  "**.asc"
+]
