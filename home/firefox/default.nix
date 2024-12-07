@@ -4,6 +4,8 @@ let
   inherit (secrets) cloud;
 in {
   imports = [
+    inputs.arkenfox.hmModules.arkenfox
+
     ./extensions
     ./search.nix
     ./policies.nix
@@ -11,8 +13,43 @@ in {
 
   programs.firefox = {
     enable = true;
-    profiles."${config.home.username}" = {
+    arkenfox = {
+      enable = true;
+      version = "128.0";
+    };
+    profiles."${username}" = {
+      id = 0;
       isDefault = true;
+      arkenfox = {
+        enable = true;
+        "0100" /* STARTUP */ = {
+          enable = true;
+          "0102"."browser.startup.page".value = 1;
+          "0103"."browser.startup.homepage".value = "about:home";
+          "0104"."browser.newtabpage.enabled".value = true;
+        };
+        "0200" /* GEOLOCATION */ = {
+          enable = true;
+        };
+        "0300" /* QUIETER FOX */ = {
+          enable = true;
+        };
+        "0900" /* PASSWORDS */ = {
+          enable = true;
+        };
+        "1700" /* REFERERS */ = {
+          enable = true;
+        };
+        "2000" /* PLUGINS / MEDIA / WEBRTC */ = {
+          enable = true;
+        };
+        "2400" /* DOCUMENT OBJECT MODEL */ = {
+          enable = true;
+        };
+        "2700" /* ENHANCED TRACKING PROTECTION */ = {
+          enable = true;
+        };
+      };
       bookmarks = [
         {
           name = "Radio New Zealand";
@@ -47,7 +84,6 @@ in {
         "browser.contentblocking.category" = "strict";
         "browser.discovery.enabled" = false;
         "browser.toolbars.bookmarks.visibility" = "never";
-        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.activity-stream.topSitesRows" = 3;
         "browser.uiCustomization.state" = import ./layout.nix;
         # Privacy
@@ -65,12 +101,8 @@ in {
         # Sign-on
         "signon.autofillForms" = false;
         "signon.rememberSignons" = false;
-        # Telemetery
-        "app.shield.optoutstudies.enabled" = false;
-        "datareporting.healthreport.uploadEnabled" = false;
         # Toolbox
-        # Restore scrolling on vertical tab
-        "toolkit.scrollbox.smoothScroll" = false;
+        "toolkit.scrollbox.smoothScroll" = false; # Restore scrolling on vertical tab
       };
     };
   };
