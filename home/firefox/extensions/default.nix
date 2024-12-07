@@ -9,6 +9,7 @@
     ./simplelogin.nix
     ./clearurls.nix
     ./bypass-paywall-clean.nix
+    ./linkwarden.nix
   ];
 
   programs.firefox.policies = {
