@@ -1,7 +1,11 @@
 { config, pkgs, osConfig, secrets, ... }:
-
-{
-  programs.firefox.profiles."${config.home.username}".search = {
+let
+  inherit (pkgs) fetchurl nixos-icons;
+  inherit (config.home) username stateVersion;
+  inherit (osConfig) system;
+  inherit (secrets) kagi;
+in {
+  programs.firefox.profiles."${username}".search = {
     force = true;
     default = "Kagi";
     order = [ "Kagi" "Brave" "Nix Packages" "Nix Options" "NixOS Wiki" "Nixpkgs issues" "Home Manager Options" "GitHub" "Steam" "ProtonDB" "Wikipedia (en)" ];
@@ -11,7 +15,7 @@
           { template = "https://kagi.com/search";
             params = [
               { name = "q"; value = "{searchTerms}"; }
-              { name = "token"; value = "${secrets.kagi.token}"; }
+              { name = "token"; value = "${kagi.token}"; }
             ];
           }
           { template = "https://kagi.com/api/autosuggest";
@@ -21,7 +25,7 @@
             type = "application/x-suggestions+json";
           }
         ];
-        icon = "${pkgs.fetchurl {
+        icon = "${fetchurl {
           url = "https://raw.githubusercontent.com/kagisearch/browser_extensions/main/shared/icons/icon_32px.png";
           hash = "sha256-pycoRxLqXsQU97veVo0M9a/KCardMetqJzcW/tjbSOc=";
         }}";
@@ -41,7 +45,7 @@
             type = "application/x-suggestions+json";
           }
         ];
-        icon = "${pkgs.fetchurl {
+        icon = "${fetchurl {
           url = "https://brave.com/static-assets/images/brave-logo-sans-text.svg";
           hash = "sha256-JTD4D98hRLYvlpU6gcaYjJwxpsx8necuBpB5SFgXy+c=";
         }}";
@@ -51,26 +55,26 @@
         urls = [
           { template = "https://search.nixos.org/packages";
             params = [
-              { name = "channel"; value = "${osConfig.system.stateVersion}"; }
+              { name = "channel"; value = "${system.stateVersion}"; }
               { name = "type"; value = "packages"; }
               { name = "query"; value = "{searchTerms}"; }
             ];
           }
         ];
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        icon = "${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "@nixpackages" "@np" ];
       };
       "Nix Options" = {
         urls = [
           { template = "https://search.nixos.org/options";
             params = [
-              { name = "channel"; value = "${osConfig.system.stateVersion}"; }
+              { name = "channel"; value = "${system.stateVersion}"; }
               { name = "type"; value = "packages"; }
               { name = "query"; value = "{searchTerms}"; }
             ];
           }
         ];
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        icon = "${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "@nixoptions" "@no" ];
       };
       "NixOS Wiki" = {
@@ -81,22 +85,19 @@
             ];
           }
         ];
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        icon = "${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "@nixoswiki" "@nw" ];
       };
       "Home Manager Options" = {
         urls = [
           { template = "https://home-manager-options.extranix.com/";
             params = [
-              # TODO: replace with home.stateVersion when site include option
-              #
-              # Hardcoded previous stateVersion as a workaround
-              { name = "release"; value = "24.05"; }
+              { name = "release"; value = "release-${stateVersion}"; }
               { name = "query"; value = "{searchTerms}"; }
             ];
           }
         ];
-        icon = "${pkgs.fetchurl {
+        icon = "${fetchurl {
           url = "https://home-manager-options.extranix.com/images/favicon.png";
           hash = "sha256-oFp+eoTLXd0GAK/VrYRUeoXntJDfTu6VnzisEt+bW74";
         }}";
@@ -110,7 +111,7 @@
             ];
           }
         ];
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        icon = "${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "@nixpkgsissues" "@npi" ];
       };
       "GitHub" = {
@@ -122,7 +123,7 @@
             ];
           }
         ];
-        icon = "${pkgs.fetchurl {
+        icon = "${fetchurl {
           url = "https://github.com/favicon.ico";
           hash = "sha256-LuQyN9GWEAIQ8Xhue3O1fNFA9gE8Byxw29/9npvGlfg=";
         }}";
@@ -136,7 +137,7 @@
             ];
           }
         ];
-        icon = "${pkgs.fetchurl {
+        icon = "${fetchurl {
           url = "https://store.steampowered.com/favicon.ico";
           hash = "sha256-n4kKnevN/MwzkUmnlDvpr/nkySA8L6N9VnGlssiFA60=";
         }}";
@@ -150,7 +151,7 @@
             ];
           }
         ];
-        icon = "${pkgs.fetchurl {
+        icon = "${fetchurl {
           url = "https://www.protondb.com/favicon.ico";
           hash = "sha256-oauOp0EASNjMcThfzYJ2TfbaOYHBPL8LOp+9lmp4pmc=";
         }}";
