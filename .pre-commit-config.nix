@@ -8,6 +8,7 @@ rec {
   forbid-new-submodules.enable = true;
   trim-trailing-whitespace.enable = true;
   yamllint.enable = false;
+  typos.enable = true;
   markdownlint-cli2 = {
     enable = true;
     name = "markdownlint-cli2";
@@ -15,14 +16,6 @@ rec {
     package = pkgs.markdownlint-cli2;
     entry = "${markdownlint-cli2.package}/bin/markdownlint-cli2";
     types = [ "markdown" ];
-  };
-  codespell = {
-    enable = true;
-    name = "codespell";
-    description = "Checks for common misspellings in text files.";
-    package = pkgs.codespell;
-    entry = "${codespell.package}/bin/codespell";
-    types = [ "text" ];
   };
   gitleaks = {
     enable = true;
