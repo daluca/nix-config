@@ -49,6 +49,9 @@
       "files.associations" = {
         "flake.lock" = "json";
       };
+      "files.exclude" = {
+        "**/.jj" = true;
+      };
       # Telemetry
       "telemetry.telemetryLevel" = "off";
       "redhat.telemetry.enabled" = false;
