@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  inherit (pkgs) gnome-settings-daemon gnome-tour epiphany;
+  inherit (pkgs) gnome-settings-daemon gnome-tour epiphany geary yelp gnome-text-editor;
   inherit (pkgs.gnomeExtensions) appindicator;
   inherit (config.programs) firefox;
 in {
@@ -14,6 +14,9 @@ in {
   environment.gnome.excludePackages = [
     gnome-tour
     epiphany
+    geary
+    yelp
+    gnome-text-editor
   ];
 
   environment.systemPackages = [
