@@ -1,6 +1,8 @@
-{ config, lib, pkgs, osConfig, ... }:
-
-{
+{ config, secrets, inputs, ... }:
+let
+  inherit (config.home) username;
+  inherit (secrets) cloud;
+in {
   imports = [
     ./extensions
     ./search.nix
@@ -27,15 +29,18 @@
         "dom.security.https_only_mode" = true;
         # Sidebar
         "sidebar.revamp" = true;
-        "sidebar.verticalTabs" = false;
+        "sidebar.verticalTabs" = true;
         "sidebar.main.tools" = "history";
-        "sidebar.visibility" = "hide-sidebar";
+        "sidebar.visibility" = "always-show";
         # Sign-on
         "signon.autofillForms" = false;
         "signon.rememberSignons" = false;
         # Telemetery
         "app.shield.optoutstudies.enabled" = false;
         "datareporting.healthreport.uploadEnabled" = false;
+        # Toolbox
+        # Restore scrolling on vertical tab
+        "toolkit.scrollbox.smoothScroll" = false;
       };
     };
   };
