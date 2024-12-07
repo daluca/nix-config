@@ -33,6 +33,7 @@
     ../../nushell
     ../../heroic
     ../../signal-desktop
+    ../../discord
   ];
 
   sops.secrets."gsconnect/private.pem".sopsFile = ../../../secrets/artemis.sops.yaml;

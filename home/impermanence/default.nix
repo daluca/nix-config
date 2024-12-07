@@ -13,6 +13,7 @@
     ./thunderbird.nix
     ./firefox.nix
     ./signal.nix
+    ./discord.nix
   ];
 
   home.persistence.home = {
