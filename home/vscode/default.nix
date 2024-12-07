@@ -19,6 +19,7 @@
       ms-kubernetes-tools.vscode-kubernetes-tools
       redhat.vscode-yaml
       hashicorp.terraform
+      rust-lang.rust-analyzer
     ] ++ pkgs. vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "helm-ls";
