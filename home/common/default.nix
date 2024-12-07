@@ -19,7 +19,7 @@
   programs.bash.enable = true;
 
   nixpkgs.overlays = builtins.attrValues outputs.overlays ++ [
-    inputs.nur.overlay
+    inputs.nur.overlays.default
   ];
 
   xdg.enable = true;
