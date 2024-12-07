@@ -46,6 +46,7 @@ in {
         # Browser
         "browser.contentblocking.category" = "strict";
         "browser.discovery.enabled" = false;
+        "browser.toolbars.bookmarks.visibility" = "never";
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.activity-stream.topSitesRows" = 3;
         "browser.uiCustomization.state" = import ./layout.nix;
