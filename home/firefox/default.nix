@@ -17,6 +17,7 @@
         "browser.discovery.enabled" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.activity-stream.topSitesRows" = 3;
+        "browser.uiCustomization.state" = import ./layout.nix;
         # Privacy
         "privacy.donottrackheader.enabled" = true;
         "privacy.globalprivacycontrol.enabled" = true;
