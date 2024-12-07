@@ -13,6 +13,35 @@ in {
     enable = true;
     profiles."${config.home.username}" = {
       isDefault = true;
+      bookmarks = [
+        {
+          name = "Radio New Zealand";
+          tags = [ "news" ];
+          url = "https://www.rnz.co.nz/";
+        }
+        {
+          name = "YouTube";
+          tags = [ "media" ];
+          keyword = "yt";
+          url = "https://www.youtube.com/";
+        }
+        {
+          name = "Nextcloud";
+          url = "https://cloud.${cloud.domain}/";
+        }
+        {
+          name = "Miniflux";
+          url = "https://feeds.${cloud.domain}/";
+        }
+        {
+          name = "Linkwarden";
+          url = "https://links.${cloud.domain}/";
+        }
+        {
+          name = "Mealie";
+          url = "https://mealie.${cloud.domain}/";
+        }
+      ];
       settings = {
         # Browser
         "browser.contentblocking.category" = "strict";
