@@ -48,13 +48,6 @@ in {
 
   hardware.xpadneo.enable = true;
 
-  # TODO: Update to latest kernel when underlying issue has been fixed
-  # https://github.com/NixOS/nixpkgs/issues/357693
-  # https://github.com/atar-axis/xpadneo/issues/498
-  #
-  # This is a workaround to include xpadneo in linux kernel
-  boot.kernelPackages = mkForce pkgs.unstable.linuxPackages_6_11;
-
   systemd.user.extraConfig = ''
     DefaultLimitNOFILE=${builtins.toString (8 * 1024)}
   '';
