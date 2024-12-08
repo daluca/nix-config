@@ -7,7 +7,7 @@ rec {
   end-of-file-fixer.enable = true;
   forbid-new-submodules.enable = true;
   trim-trailing-whitespace.enable = true;
-  yamllint.enable = false;
+  yamllint.enable = true;
   typos.enable = true;
   markdownlint-cli2 = {
     enable = true;
