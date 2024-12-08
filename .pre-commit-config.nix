@@ -8,7 +8,11 @@ rec {
   forbid-new-submodules.enable = true;
   trim-trailing-whitespace.enable = true;
   yamllint.enable = true;
-  typos.enable = true;
+  typos = {
+    enable = true;
+    settings.configPath = builtins.toString ./typos.toml;
+    args = [ "--force-exclude" ];
+  };
   markdownlint-cli2 = {
     enable = true;
     name = "markdownlint-cli2";
