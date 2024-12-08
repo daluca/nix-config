@@ -108,6 +108,14 @@
       ];
     };
 
+    images.iso = (nixosSystem rec {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs outputs; };
+      modules = [
+        ./images/iso
+      ];
+    }).config.system.build.isoImage;
+
     images.raspberry-pi-4 = (nixosSystem rec {
       system = "aarch64-linux";
       specialArgs = { inherit inputs outputs system secrets; };
