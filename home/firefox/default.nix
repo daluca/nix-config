@@ -57,6 +57,11 @@ in {
           url = "https://www.rnz.co.nz/";
         }
         {
+          name = "Hacker News";
+          tags = [ "social" ];
+          url = "https://news.ycombinator.com/";
+        }
+        {
           name = "YouTube";
           tags = [ "media" ];
           keyword = "yt";
@@ -77,6 +82,10 @@ in {
         {
           name = "Mealie";
           url = "https://mealie.${cloud.domain}/";
+        }
+        {
+          name = "RSS Bridge";
+          url = "https://rssbridge.${cloud.domain}/";
         }
       ];
       settings = {
