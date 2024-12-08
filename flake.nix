@@ -36,9 +36,12 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    arkenfox.url = "github:/dwarfmaster/arkenfox-nixos";
+    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     arkenfox.inputs.nixpkgs.follows = "nixpkgs";
     arkenfox.inputs.pre-commit.follows = "git-hooks";
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = {self, nixpkgs, git-hooks, ...} @ inputs:

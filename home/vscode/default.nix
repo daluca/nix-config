@@ -1,13 +1,15 @@
 { lib, pkgs, ... }:
-
-{
+let
+  inherit (lib) getName;
+  inherit (pkgs.unstable) vscode;
+in {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode;
+    package = vscode;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     mutableExtensionsDir = false;
-    extensions = with pkgs.unstable.vscode-extensions; [
+    extensions = with pkgs.open-vsx; [
       vscodevim.vim
       eamodio.gitlens
       github.github-vscode-theme
@@ -20,19 +22,8 @@
       redhat.vscode-yaml
       hashicorp.terraform
       rust-lang.rust-analyzer
-    ] ++ pkgs. vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "helm-ls";
-        publisher = "helm-ls";
-        version = "1.0.0";
-        hash = "sha256-44CkW/TX9BfoMD+082n2f77TMkA6GdH9BRtRimDRLjc=";
-      }
-      {
-        name = "vscode-jsonnet";
-        publisher = "Grafana";
-        version = "0.6.1";
-        hash = "sha256-8t/9EJs9Ly6C89jM6HdCbeAdIvjSfePKD2WQwBtuJI0=";
-      }
+      helm-ls.helm-ls
+      grafana.vscode-jsonnet
     ];
     userSettings = {
       # Editor
@@ -72,7 +63,7 @@
     };
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
     "vscode"
   ];
 }

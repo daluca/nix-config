@@ -20,6 +20,7 @@
 
   nixpkgs.overlays = builtins.attrValues outputs.overlays ++ [
     inputs.nur.overlays.default
+    inputs.nix-vscode-extensions.overlays.default
   ];
 
   xdg.enable = true;
