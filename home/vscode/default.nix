@@ -1,7 +1,18 @@
 { lib, pkgs, ... }:
 let
   inherit (lib) getName;
+  inherit (lib.lists) flatten;
   inherit (pkgs.unstable) vscode;
+  vscode-kubernetes-tools = with pkgs.open-vsx; [
+    ms-kubernetes-tools.vscode-kubernetes-tools
+  ] ++ /* Dependencies */ [
+    redhat.vscode-yaml
+  ];
+  helm-ls' = with pkgs.open-vsx; [
+    helm-ls.helm-ls
+  ] ++ /* Dependencies */ [
+    vscode-kubernetes-tools
+  ];
 in {
   programs.vscode = {
     enable = true;
@@ -18,12 +29,12 @@ in {
       editorconfig.editorconfig
       skellock.just
       tamasfe.even-better-toml
-      ms-kubernetes-tools.vscode-kubernetes-tools
-      redhat.vscode-yaml
       hashicorp.terraform
       rust-lang.rust-analyzer
-      helm-ls.helm-ls
       grafana.vscode-jsonnet
+    ] ++ flatten [
+      vscode-kubernetes-tools
+      helm-ls'
     ];
     userSettings = {
       # Editor
