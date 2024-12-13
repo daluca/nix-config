@@ -101,7 +101,7 @@ in {
       custom-battery-notification-value = mkUint32 80;
     };
     "org/gnome/shell/extensions/gsconnect/device/${zenphone-10}/plugin/clipboard" = {
-      recieve-content = true; # spellchecker:disable-line
+      receive-content = true;
       send-content = true;
     };
     "org/gnome/shell/extensions/gsconnect/device/${zenphone-10}/plugin/notification" = {
