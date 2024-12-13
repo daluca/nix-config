@@ -1,6 +1,7 @@
-{ config, lib, secrets, ... }:
+{ config, lib, pkgs, secrets, ... }:
 let
   inherit (lib) mkIf;
+  inherit (pkgs) sops;
   inherit (config.programs) zsh gpg;
   inherit (secrets) user;
 in {
@@ -22,6 +23,7 @@ in {
       pull.rebase = true;
       rerere.enabled = true;
       url."git@github.com".insteadof = "github";
+      diff."sopsdiffer".textconv = "${sops}/bin/sops decrypt";
     };
   };
 
