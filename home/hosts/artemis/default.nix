@@ -35,6 +35,7 @@
     ../../signal-desktop
     ../../discord
     ../../lazygit
+    ../../email
   ];
 
   sops.secrets."gsconnect/private.pem".sopsFile = ../../../secrets/artemis.sops.yaml;
