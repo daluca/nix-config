@@ -68,6 +68,12 @@ in {
           url = "https://www.youtube.com/";
         }
         {
+          name = "Cricinfo";
+          tags = [ "sports" ];
+          keyword = "cric";
+          url = "https://www.espncricinfo.com/";
+        }
+        {
           name = "Nextcloud";
           url = "https://cloud.${cloud.domain}/";
         }
