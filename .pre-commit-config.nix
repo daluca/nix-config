@@ -8,6 +8,7 @@ rec {
   forbid-new-submodules.enable = true;
   trim-trailing-whitespace.enable = true;
   yamllint.enable = true;
+  yamlfmt.enable = true;
   typos = {
     enable = true;
     settings.configPath = builtins.toString ./typos.toml;

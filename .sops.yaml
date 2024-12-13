@@ -1,8 +1,7 @@
----
 keys:
-  - users: &users
+  - users:
       - &daluca age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
-  - hosts: &hosts
+  - hosts:
       - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
       - &stormwind age173lrwtphyuvfjhkjvw4xe5fy4lt2x97qcjr2eqjt46eq6q664egqfsp4v3
       - &ironforge age16g33d2sppsukw7tekmh2d3ppf22sscwfmm0anppcrdtj9h5p7eqqrw9zg0
@@ -30,3 +29,7 @@ creation_rules:
           - *artemis
           - *stormwind
           - *ironforge
+
+stores:
+  yaml:
+    indent: 2
