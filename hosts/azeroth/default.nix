@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.disko.nixosModules.disko
 
     ./disko.nix
 
