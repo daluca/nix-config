@@ -5,13 +5,17 @@
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.disko.nixosModules.disko
 
-    ./disko.nix
+    ./disko-btrfs.nix
 
     ../../nixos/common
+    ../../nixos/grub
     ../../nixos/openssh-server
   ];
 
-  networking.hostName = "azeroth";
+  networking = {
+    hostName = "azeroth";
+    hostId = "5c9bd4a2";
+  };
 
   sops.secrets.daluca-password.neededForUsers = true;
 
