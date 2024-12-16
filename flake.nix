@@ -108,6 +108,14 @@
       ];
     };
 
+    nixosConfigurations.azeroth = nixosSystem rec {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs outputs system secrets; };
+      modules = [
+        ./hosts/azeroth
+      ];
+    };
+
     images.iso = (nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = { inherit inputs outputs; };
