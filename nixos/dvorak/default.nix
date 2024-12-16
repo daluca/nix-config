@@ -11,7 +11,7 @@ in {
 
   console.useXkbConfig = true;
 
-  specialisation.gaming.configuration = {
-    services.xserver.xkb.variant = mkForce ",dvorak";
-  };
+  # specialisation.gaming.configuration = {
+  #   services.xserver.xkb.variant = mkForce ",dvorak";
+  # };
 }

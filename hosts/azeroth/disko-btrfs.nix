@@ -8,7 +8,7 @@
           type = "gpt";
           partitions = {
             ESP = {
-              size = "64M";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -37,7 +37,7 @@
                   };
                   "/swap" = {
                     mountpoint = "/swap";
-                    swap.swapfile.size = "32G";
+                    swap.swapfile.size = "16G";
                   };
                 };
                 mountpoint = "/";
