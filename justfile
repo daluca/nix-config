@@ -20,4 +20,7 @@ check:
     nix flake check --all-systems
 
 disko host:
-    nix --experimental-features "nix-command flakes" run github:nix-community/disko/v1.10.0 -- --modes disko --flake .#{{ host }}
+    nix --experimental-features "nix-command flakes" run github:nix-community/disko/v1.10.0 -- --mode disko --flake .#{{ host }}
+
+nixos-install host:
+    nixos-install --flake .#{{ host }} --no-root-passwd

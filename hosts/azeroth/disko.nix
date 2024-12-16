@@ -88,6 +88,12 @@
         rootFsOptions = {
           compression = "zstd";
         };
+        datasets = {
+          tank = {
+            type = "zfs_fs";
+            mountpoint = "/storage/tank";
+          };
+        };
       };
     };
   };
