@@ -21,7 +21,7 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-L" "nixos" "-f" ];
+                extraArgs = [ "-f" ];
                 subvolumes = {
                   "/rootfs" = {
                     mountpoint = "/";
@@ -83,16 +83,11 @@
     zpool = {
       storage = {
         type = "zpool";
-        mountpoint = "/storage";
-        mode = "mirror"; # raid2
+        mountpoint = "/mnt/tank";
+        mode = "mirror";
         rootFsOptions = {
-          compression = "zstd";
-        };
-        datasets = {
-          tank = {
-            type = "zfs_fs";
-            mountpoint = "/storage/tank";
-          };
+          compression = "lz4";
+          atime = "off";
         };
       };
     };
