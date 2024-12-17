@@ -18,7 +18,7 @@ in {
     hostId = "5c9bd4a2";
   };
 
-  boot.initrd.systemd.emergencyAccess = true;
+  boot.initrd.systemd.emergencyAccess = config.user.users.root.hashedPassword;
 
   sops.secrets.daluca-password.neededForUsers = true;
 
@@ -33,6 +33,7 @@ in {
   };
 
   users.users.root = {
+    hashedPassword = "$6$DEeqjCJ0NmLMM1Zr$8uUBcuWM2GHeQhuI6dN.nbL0PP/6nHu1P1hPIhP3mNdd0KPBO/dpIv0N8y6m1Uyr9k4jp9gVbDJCQBh1ejj/e/";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZuHaRedC+s+EbKgGj1ZBQ0tClxgfYt6XVd1grNUgjV daluca@artemis"
     ];
