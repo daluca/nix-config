@@ -18,6 +18,8 @@ in {
     hostId = "5c9bd4a2";
   };
 
+  boot.initrd.systemd.emergencyAccess = true;
+
   sops.secrets.daluca-password.neededForUsers = true;
 
   users.mutableUsers = false;
