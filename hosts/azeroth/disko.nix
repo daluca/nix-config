@@ -57,7 +57,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "storage";
+                pool = "zroot";
               };
             };
           };
@@ -73,7 +73,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "storage";
+                pool = "zroot";
               };
             };
           };
@@ -81,14 +81,18 @@
       };
     };
     zpool = {
-      storage = {
+      zroot = {
         type = "zpool";
-        mountpoint = "/mnt/tank";
+        mountpoint = "/storage";
         mode = "mirror";
+        options.mountpoint = "legacy";
         rootFsOptions = {
-          compression = "lz4";
+          compression = "zstd";
           atime = "off";
         };
+        postCreateHook = /* bash */ ''
+          zfs snapshot zroot@blank
+        '';
       };
     };
   };
