@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, ... }:
+{ lib, pkgs, inputs, outputs, ... }:
 let
   inherit (lib) mkDefault;
   inherit (pkgs) vim just;
@@ -9,6 +9,8 @@ in {
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nixpkgs.overlays = builtins.attrValues outputs.overlays;
 
   environment.systemPackages = [
     vim

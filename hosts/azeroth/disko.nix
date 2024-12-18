@@ -96,17 +96,17 @@
           zfs snapshot storage@blank
         '';
 
-        datasets = {
-          tv = {
-            type = "zfs_fs";
-            mountpoint = "/storage/tv";
-          };
+        # datasets = {
+        #   tv = {
+        #     type = "zfs_fs";
+        #     mountpoint = "/storage/tv";
+        #   };
 
-          movies = {
-            type = "zfs_fs";
-            mountpoint = "/storage/movies";
-          };
-        };
+        #   movies = {
+        #     type = "zfs_fs";
+        #     mountpoint = "/storage/movies";
+        #   };
+        # };
       };
     };
   };
