@@ -57,7 +57,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "zroot";
+                pool = "storage";
               };
             };
           };
@@ -73,7 +73,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "zroot";
+                pool = "storage";
               };
             };
           };
@@ -81,30 +81,30 @@
       };
     };
     zpool = {
-      zroot = {
+      storage = {
         type = "zpool";
-        # mountpoint = "/storage";
         mode = "mirror";
-        options.mountpoint = "legacy";
+        mountpoint = "/storage";
+
         rootFsOptions = {
           compression = "zstd";
           atime = "off";
-          "com.sut:auto-snapshot" = "false";
+          "com.sun:auto-snapshot" = "false";
         };
+
         postCreateHook = /* bash */ ''
-          zfs snapshot zroot@blank
+          zfs snapshot storage@blank
         '';
 
         datasets = {
-          root = {
+          tv = {
             type = "zfs_fs";
-            mountpoint = null;
+            mountpoint = "/storage/tv";
           };
 
-          "root/tank" = {
+          movies = {
             type = "zfs_fs";
-            options.mountpoint = "legacy";
-            mountpoint = "/tank";
+            mountpoint = "/storage/movies";
           };
         };
       };
