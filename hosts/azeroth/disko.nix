@@ -84,11 +84,11 @@
       storage = {
         type = "zpool";
         mode = "mirror";
-        mountpoint = "/storage";
 
         rootFsOptions = {
           compression = "zstd";
           atime = "off";
+          mountpoint = "none";
           "com.sun:auto-snapshot" = "false";
         };
 
@@ -96,17 +96,18 @@
           zfs snapshot storage@blank
         '';
 
-        # datasets = {
-        #   tv = {
-        #     type = "zfs_fs";
-        #     mountpoint = "/storage/tv";
-        #   };
+        datasets = {
+          root = {
+            type = "zfs_fs";
+            mountpoint = "none";
+          };
 
-        #   movies = {
-        #     type = "zfs_fs";
-        #     mountpoint = "/storage/movies";
-        #   };
-        # };
+          "root/tank" = {
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
+            mountpoint = "/tank";
+          };
+        };
       };
     };
   };
