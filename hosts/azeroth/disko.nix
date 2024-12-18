@@ -83,16 +83,30 @@
     zpool = {
       zroot = {
         type = "zpool";
-        mountpoint = "/storage";
+        # mountpoint = "/storage";
         mode = "mirror";
         options.mountpoint = "legacy";
         rootFsOptions = {
           compression = "zstd";
           atime = "off";
+          "com.sut:auto-snapshot" = "false";
         };
         postCreateHook = /* bash */ ''
           zfs snapshot zroot@blank
         '';
+
+        datasets = {
+          root = {
+            type = "zfs_fs";
+            mountpoint = null;
+          };
+
+          "root/tank" = {
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
+            mountpoint = "/tank";
+          };
+        };
       };
     };
   };
