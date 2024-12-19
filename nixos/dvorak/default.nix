@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkIf mkForce;
+  inherit (lib) mkIf;
   inherit (config.services.xserver.desktopManager) gnome;
 in {
   services.xserver.xkb = {

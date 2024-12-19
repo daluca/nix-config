@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (lib) mkEnableOption mkPackageOption mkOption mkIf literalExpression;
-  inherit (lib.types) package;
-  inherit (pkgs) garden-rs;
+  inherit (lib) mkEnableOption mkPackageOption mkIf;
   cfg = config.programs.garden-rs;
 in {
   options.programs.garden-rs = {

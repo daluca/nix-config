@@ -1,6 +1,6 @@
 { lib, osConfig, ... }:
 let
-  inherit (lib) mkIf mkForce;
+  inherit (lib) mkIf;
   inherit (lib.hm.gvariant) mkTuple;
   inherit (osConfig.services.xserver.desktopManager) gnome;
 in {
