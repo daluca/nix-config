@@ -36,7 +36,7 @@
     ../../signal-desktop
     ../../discord
     ../../lazygit
-    ../../email
+    ../../accounts
     ../../gaming
     ../../proton-bridge
   ];
