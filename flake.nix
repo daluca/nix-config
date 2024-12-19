@@ -56,12 +56,19 @@
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in {
-    checks = forAllSystems (system: {
-      pre-commit = git-hooks.lib.${system}.run {
-        src = ./.;
-        hooks = import ./.pre-commit-config.nix { pkgs = import nixpkgs { inherit system; overlays = builtins.attrValues self.overlays; }; };
-      };
-    } // inputs.deploy-rs.lib.${system}.deployChecks self.deploy);
+    checks = forAllSystems (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = builtins.attrValues self.overlays;
+        };
+      in {
+        pre-commit = git-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = import ./.pre-commit-config.nix { inherit pkgs; };
+        };
+      } // inputs.deploy-rs.lib.${system}.deployChecks self.deploy
+    );
 
     overlays = import ./overlays { inherit lib inputs; };
 
@@ -71,21 +78,26 @@
 
     deploy = import ./deploy { deploy-rs = inputs.deploy-rs; nixosConfigurations = self.nixosConfigurations; };
 
-    devShells = forAllSystems (system: {
-      default =  nixpkgs.legacyPackages.${system}.mkShell {
-        inherit (self.checks.${system}.pre-commit) shellHook;
-        name = "nix-config";
-        buildInputs = with nixpkgs.legacyPackages.${system}; [
-          sops
-          git-agecrypt
-          ssh-to-age
-          just
-          fd
-          deploy-rs
-        ] ++ self.checks.${system}.pre-commit.enabledPackages;
-        JUST_COMMAND_COLOR = "blue";
-      };
-    });
+    devShells = forAllSystems (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        pre-commit = self.checks.${system}.pre-commit;
+      in {
+        default = pkgs.mkShell {
+          inherit (pre-commit) shellHook;
+          name = "nix-config";
+          buildInputs = with pkgs; [
+            sops
+            git-agecrypt
+            ssh-to-age
+            just
+            fd
+            deploy-rs
+          ] ++ pre-commit.enabledPackages;
+          JUST_COMMAND_COLOR = "blue";
+        };
+      }
+    );
 
     nixosConfigurations.artemis = nixosSystem rec {
       system = "x86_64-linux";
