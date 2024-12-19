@@ -19,6 +19,9 @@
     sops-nix.url = "github:mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    disko.url = "github:nix-community/disko/v1.10.0";
+    disko.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
     nixvim.inputs.home-manager.follows = "home-manager";
@@ -113,6 +116,14 @@
       specialArgs = { inherit inputs outputs system secrets; };
       modules = [
         ./hosts/darnassus
+      ];
+    };
+
+    nixosConfigurations.azeroth = nixosSystem rec {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs outputs system secrets; };
+      modules = [
+        ./hosts/azeroth
       ];
     };
 

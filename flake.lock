@@ -68,6 +68,27 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734088167,
+        "narHash": "sha256-snPBgTqwn3FPZVdFC5yt7Bnk3squim1vZOZ8CObWykk=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "65a441502c9382d41ada1adbc9bd31d6c9b00fe2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "v1.10.0",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -462,11 +483,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1733605714,
-        "narHash": "sha256-4WeM9kU751V0xQLdceAy6nrswWAQlD1goSfACQiHPWI=",
+        "lastModified": 1734563430,
+        "narHash": "sha256-1cmPnY/tnIM/ZqR5Tv8ppzhcTODC+TWPA0iL5FQknZU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1e56a3b5efd3c4c1451f891863cfb72e471687f7",
+        "rev": "818caf0fd70d63ec72b4d64c06204154c2a75461",
         "type": "github"
       },
       "original": {
@@ -586,6 +607,7 @@
       "inputs": {
         "arkenfox": "arkenfox",
         "deploy-rs": "deploy-rs",
+        "disko": "disko",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
