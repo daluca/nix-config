@@ -108,6 +108,14 @@
       ];
     };
 
+    nixosConfigurations.darnassus = nixosSystem rec {
+      system = "aarch64-linux";
+      specialArgs = { inherit inputs outputs system secrets; };
+      modules = [
+        ./hosts/darnassus
+      ];
+    };
+
     images.iso = (nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = { inherit inputs outputs; };

@@ -5,6 +5,7 @@ keys:
       - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
       - &stormwind age173lrwtphyuvfjhkjvw4xe5fy4lt2x97qcjr2eqjt46eq6q664egqfsp4v3
       - &ironforge age16g33d2sppsukw7tekmh2d3ppf22sscwfmm0anppcrdtj9h5p7eqqrw9zg0
+      - &darnassus age15ncu4eqmt0sjjmwkkcgu90v09l36acwtvc26xh6a2d4azdvty4zqtdl9re
 
 creation_rules:
   - path_regex: stormwind\.sops\.yaml$
@@ -22,6 +23,11 @@ creation_rules:
       - age:
           - *daluca
           - *ironforge
+  - path_regex: darnassus\.sops\.yaml$
+    key_groups:
+      - age:
+          - *daluca
+          - *darnassus
   - path_regex: \.sops\.yaml$
     key_groups:
       - age:
@@ -29,6 +35,7 @@ creation_rules:
           - *artemis
           - *stormwind
           - *ironforge
+          - *darnassus
 
 stores:
   yaml:

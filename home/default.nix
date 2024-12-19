@@ -9,6 +9,8 @@ in {
       [ ./hosts/stormwind ]
     else if hostName == "ironforge" then
       [ ./hosts/ironforge ]
+    else if hostName == "darnassus" then
+      [ ./hosts/darnassus ]
     else
       [ ./common ];
 }
