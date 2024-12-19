@@ -16,6 +16,10 @@ in {
     vim
     disko
     just
+    ( pkgs.writeShellScriptBin "nix-config.sh" /* bash */ ''
+      echo "Downloading daluca/nix-config"
+      ${pkgs.git}/bin/git clone https://github.com/daluca/nix-config.git "''\${1:-nix-config}"
+    '')
   ];
 
   system.stateVersion = mkDefault "24.11";

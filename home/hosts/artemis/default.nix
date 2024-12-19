@@ -12,6 +12,7 @@
     ../../alacritty
     ../../doctl
 
+    ../../git
     ../../development
     ../../kubernetes
     ../../vscodium

@@ -57,7 +57,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "storage";
+                pool = "tank";
               };
             };
           };
@@ -73,7 +73,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "storage";
+                pool = "tank";
               };
             };
           };
@@ -81,7 +81,7 @@
       };
     };
     zpool = {
-      storage = {
+      tank = {
         type = "zpool";
         mode = "mirror";
 
@@ -93,19 +93,14 @@
         };
 
         postCreateHook = /* bash */ ''
-          zfs snapshot storage@blank
+          zfs snapshot tank@blank
         '';
 
         datasets = {
-          root = {
-            type = "zfs_fs";
-            mountpoint = "none";
-          };
-
-          "root/tank" = {
+          "storage" = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
-            mountpoint = "/tank";
+            mountpoint = "/storage";
           };
         };
       };
