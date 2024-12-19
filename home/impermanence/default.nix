@@ -14,6 +14,7 @@
     ./firefox.nix
     ./signal.nix
     ./discord.nix
+    ./proton-bridge.nix
   ];
 
   home.persistence.home = {

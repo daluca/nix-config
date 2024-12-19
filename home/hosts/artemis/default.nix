@@ -38,6 +38,7 @@
     ../../lazygit
     ../../email
     ../../gaming
+    ../../proton-bridge
   ];
 
   sops.secrets."gsconnect/private.pem".sopsFile = ../../../secrets/artemis.sops.yaml;
