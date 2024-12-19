@@ -8,7 +8,6 @@
     ../starship
     ../openssh
     ../secrets
-    ../git
   ];
 
   themes.catppuccin.flavour = "Mocha";
