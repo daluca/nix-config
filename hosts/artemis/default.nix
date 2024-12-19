@@ -1,6 +1,7 @@
-{ config, inputs, ... }:
-
-{
+{ config, lib, inputs, ... }:
+let
+  inherit (lib) mkForce;
+in {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
     inputs.nixos-hardware.nixosModules.common-cpu-intel
@@ -56,6 +57,8 @@
   };
 
   fileSystems."/persistent".neededForBoot = true;
+
+  boot.loader.grub.useOSProber = mkForce true;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

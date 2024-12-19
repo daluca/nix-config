@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -7,7 +5,7 @@
     enable = true;
     device = "nodev";
     efiSupport = true;
-    useOSProber = true;
+    useOSProber = false;
     default = "saved";
     extraEntries = ''
       menuentry "System restart" {
