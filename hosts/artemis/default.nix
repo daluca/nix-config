@@ -39,6 +39,10 @@
     sopsFile = ../../secrets/artemis.sops.yaml;
   };
 
+  sops.secrets."proton-bridge/password" = {
+    sopsFile = ../../secrets/artemis.sops.yaml;
+  };
+
   sops.secrets.daluca-password.neededForUsers = true;
 
   users.mutableUsers = false;
