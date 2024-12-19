@@ -11,6 +11,8 @@ in {
       [ ./hosts/ironforge ]
     else if hostName == "darnassus" then
       [ ./hosts/darnassus ]
+    else if hostName == "azeroth" then
+      [ ./hosts/azeroth ]
     else
       [ ./common ];
 }
