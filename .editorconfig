@@ -18,6 +18,10 @@ indent_size = 2
 indent_style = space
 indent_size = 2
 
+[git-agecrypt.toml]
+indent_style = space
+indent_size = 4
+
 [justfile,*.just]
 indent_style = space
 indent_size = 4
