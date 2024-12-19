@@ -6,10 +6,10 @@ in {
     enable = true;
     package = fzf;
     enableBashIntegration = false;
-    fileWidgetCommand = ''
+    fileWidgetCommand = /* bash */ ''
       fd --type file
     '';
-    changeDirWidgetCommand = ''
+    changeDirWidgetCommand = /* bash */ ''
       fd --type directory
     '';
   };
