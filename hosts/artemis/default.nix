@@ -28,6 +28,7 @@
     ../../nixos/smart-cards
     ../../nixos/tailscale
     ../../nixos/kanata
+    ../../nixos/gaming
   ];
 
   networking.hostName = "artemis";
