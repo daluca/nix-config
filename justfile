@@ -21,3 +21,9 @@ deploy host: check
 
 check:
     nix flake check --all-systems
+
+disko host:
+    disko --mode destroy,format,mount --flake .#{{ host }}
+
+nixos-install host:
+    nixos-install --flake .#{{ host }} --no-root-passwd
