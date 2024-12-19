@@ -4,8 +4,11 @@ hostname := `hostname`
 default:
     @just --list
 
-update-secrets:
-    sops updatekeys "$( fd sops.yaml )"
+update-secret-key:
+    fd "sops.yaml$" --exec sops updatekeys --yes
+
+rotate-secrets:
+    fd "sops.yaml$" --exec sops rotate --in-place
 
 build-image type:
     nix build .#images.{{ type }}
