@@ -4,6 +4,9 @@ hostname := `hostname`
 default:
     @just --list
 
+update:
+    nix flake update
+
 update-secret-key:
     fd "sops.yaml$" --exec sops updatekeys --yes
 
