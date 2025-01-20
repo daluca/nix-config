@@ -44,6 +44,12 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    catppuccin.inputs.nixpkgs-stable.follows = "nixpkgs";
+    catppuccin.inputs.home-manager.follows = "home-manager";
+    catppuccin.inputs.home-manager-stable.follows = "home-manager";
   };
 
   outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
