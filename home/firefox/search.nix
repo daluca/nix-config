@@ -25,10 +25,10 @@ in {
             type = "application/x-suggestions+json";
           }
         ];
-        icon = "${fetchurl {
+        icon = fetchurl {
           url = "https://raw.githubusercontent.com/kagisearch/browser_extensions/main/shared/icons/icon_32px.png";
           hash = "sha256-pycoRxLqXsQU97veVo0M9a/KCardMetqJzcW/tjbSOc=";
-        }}";
+        };
         definedAliases = [ "@kagi" "@k" ];
       };
       "Brave" = {
@@ -45,10 +45,10 @@ in {
             type = "application/x-suggestions+json";
           }
         ];
-        icon = "${fetchurl {
+        icon = fetchurl {
           url = "https://brave.com/static-assets/images/brave-logo-sans-text.svg";
           hash = "sha256-JTD4D98hRLYvlpU6gcaYjJwxpsx8necuBpB5SFgXy+c=";
-        }}";
+        };
         definedAliases = [ "@brave" "@b" ];
       };
       "Nix Packages" = {
@@ -97,10 +97,10 @@ in {
             ];
           }
         ];
-        icon = "${fetchurl {
+        icon = fetchurl {
           url = "https://home-manager-options.extranix.com/images/favicon.png";
           hash = "sha256-oFp+eoTLXd0GAK/VrYRUeoXntJDfTu6VnzisEt+bW74";
-        }}";
+        };
         definedAliases = [ "@homemanageroptions" "@hmo" ];
       };
       "Nixpkgs issues" = {
@@ -123,10 +123,10 @@ in {
             ];
           }
         ];
-        icon = "${fetchurl {
+        icon = fetchurl {
           url = "https://github.com/favicon.ico";
           hash = "sha256-LuQyN9GWEAIQ8Xhue3O1fNFA9gE8Byxw29/9npvGlfg=";
-        }}";
+        };
         definedAliases = [ "@github" ];
       };
       "Steam" = {
@@ -137,10 +137,10 @@ in {
             ];
           }
         ];
-        icon = "${fetchurl {
+        icon = fetchurl {
           url = "https://store.steampowered.com/favicon.ico";
           hash = "sha256-n4kKnevN/MwzkUmnlDvpr/nkySA8L6N9VnGlssiFA60=";
-        }}";
+        };
         definedAliases = [ "@steam" "@s" ];
       };
       "ProtonDB" = {
@@ -151,10 +151,10 @@ in {
             ];
           }
         ];
-        icon = "${fetchurl {
+        icon = fetchurl {
           url = "https://www.protondb.com/favicon.ico";
           hash = "sha256-oauOp0EASNjMcThfzYJ2TfbaOYHBPL8LOp+9lmp4pmc=";
-        }}";
+        };
         definedAliases = [ "@protondb" "@pdb" ];
       };
       "Wikipedia (en)".metaData.alias = "@wiki";
