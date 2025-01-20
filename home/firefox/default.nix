@@ -93,6 +93,10 @@ in {
           name = "RSS Bridge";
           url = "https://rssbridge.${cloud.domain}/";
         }
+        {
+          name = "Public WiFi Login";
+          url = "http://nmcheck.gnome.org/";
+        }
       ];
       settings = {
         # Browser
