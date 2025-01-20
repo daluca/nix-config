@@ -14,6 +14,10 @@ in {
       stormwind.extraOptions = zsh-login;
       ironforge.hostname = "192.168.1.232";
       ironforge.extraOptions = zsh-login;
+      darnassus.hostname = "10.2.74.60";
+      darnassus.extraOptions = zsh-login;
+      azeroth.hostname = "10.1.219.30";
+      azeroth.extraOptions = zsh-login;
     };
   };
 }
