@@ -14,6 +14,10 @@ let
     vscode-kubernetes-tools
   ];
 in {
+  imports = [
+    ./extensions
+  ];
+
   programs.vscode = {
     enable = true;
     package = vscode;
@@ -32,6 +36,8 @@ in {
       hashicorp.terraform
       rust-lang.rust-analyzer
       grafana.vscode-jsonnet
+      tomoki1207.pdf
+      mkhl.direnv
     ] ++ flatten [
       vscode-kubernetes-tools
       helm-ls'
