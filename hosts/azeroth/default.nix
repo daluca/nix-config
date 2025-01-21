@@ -1,7 +1,6 @@
-{ config, lib, inputs, ... }:
-let
-  inherit (lib) mkForce;
-in {
+{ config, inputs, ... }:
+
+{
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.disko.nixosModules.disko
@@ -37,11 +36,6 @@ in {
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZuHaRedC+s+EbKgGj1ZBQ0tClxgfYt6XVd1grNUgjV daluca@artemis"
     ];
-  };
-
-  services.openssh.settings = {
-    AllowUsers = mkForce null;
-    PermitRootLogin = mkForce "yes";
   };
 
   system.stateVersion = "24.11";

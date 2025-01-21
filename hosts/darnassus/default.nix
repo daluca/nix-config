@@ -36,11 +36,6 @@ in {
 
   networking.hostName = "darnassus";
 
-  services.openssh.settings = {
-    AllowUsers = mkForce null;
-    PermitRootLogin = mkForce "yes";
-  };
-
   hardware.raspberry-pi.config.pi4 = {
     dt-overlays.rpi-poe-plus = {
       enable = true;

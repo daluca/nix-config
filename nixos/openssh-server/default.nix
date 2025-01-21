@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 {
   services.openssh = {
@@ -6,8 +6,7 @@
     startWhenNeeded = true;
     ports = [ 22 ];
     settings = {
-      AllowUsers = [ config.home-manager.users.daluca.home.username ];
-      PermitRootLogin = "no";
+      AllowUsers = [ "root" config.home-manager.users.daluca.home.username ];
       PasswordAuthentication = false;
       X11Forwarding = false;
     };

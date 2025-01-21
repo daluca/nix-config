@@ -46,11 +46,6 @@ in {
     sopsFile = ../../secrets/ironforge.sops.yaml;
   };
 
-  services.openssh.settings = {
-    AllowUsers = mkForce null;
-    PermitRootLogin = mkForce "yes";
-  };
-
   services.tailscale.extraUpFlags = [
     "--advertise-routes=192.168.1.0/24"
     "--hostname=idris"
