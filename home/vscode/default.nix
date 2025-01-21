@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  inherit (lib) getName;
+  inherit (lib) getName concatStringsSep;
   inherit (lib.lists) flatten;
   inherit (pkgs.unstable) vscode;
   vscode-kubernetes-tools = with pkgs.open-vsx; [
@@ -47,7 +47,7 @@ in {
       "editor.rulers" = [ 80 ];
       "editor.renderWhitespace" = "trailing";
       "editor.fontLigatures" = true;
-      "editor.fontFamily" = lib.concatStringsSep ", " [
+      "editor.fontFamily" = concatStringsSep ", " [
         "FiraCode Nerd Font"
         "Menlo"
         "Monaco"
