@@ -76,14 +76,14 @@ in {
     };
     "org/gnome/clocks" = {
       world-clocks = [
-        ([ (mkDictionaryEntry [ "location" wellington ]) ])
-        ([ (mkDictionaryEntry [ "location" auckland ]) ])
-        ([ (mkDictionaryEntry [ "location" london ]) ])
-        ([ (mkDictionaryEntry [ "location" amsterdam ]) ])
+        [ (mkDictionaryEntry [ "location" wellington ]) ]
+        [ (mkDictionaryEntry [ "location" auckland ]) ]
+        [ (mkDictionaryEntry [ "location" london ]) ]
+        [ (mkDictionaryEntry [ "location" amsterdam ]) ]
       ];
     };
     "org/gnome/shell/world-clocks" = {
-      locations = [ london amsterdam ];
+      locations = [ wellington auckland london amsterdam ];
     };
   };
 
