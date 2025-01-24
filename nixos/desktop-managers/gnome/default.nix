@@ -30,4 +30,8 @@ in {
   # TODO: check if GNOME browser connection is working
   # TODO: update to home-manager config of firefox
   services.gnome.gnome-browser-connector.enable = mkIf firefox.enable true;
+
+  systemd.tmpfiles.rules = [
+    "L+ /run/gdm/.config/monitors.xml - - - - ${../../../home/desktop-managers/gnome/monitors.xml}"
+  ];
 }

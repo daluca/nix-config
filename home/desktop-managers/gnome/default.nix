@@ -87,9 +87,7 @@ in {
     };
   };
 
-  home.persistence.home = {
-    files = [
-      ".config/monitors.xml"
-    ];
-  };
+  systemd.user.tmpfiles.rules = [
+    "L+ /home/${config.home.username}/.config/monitors.xml - - - - ${./monitors.xml}"
+  ];
 }
