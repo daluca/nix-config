@@ -1,5 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
+  inherit (lib) mkAfter;
   inherit (pkgs) fetchFromGitHub;
 in {
   programs.zsh = rec {
@@ -10,6 +11,7 @@ in {
       size = history.save;
       path = "${config.home.homeDirectory}/${dotDir}/.zsh_history";
       share = true;
+      append = true;
       extended = true;
       ignoreSpace = true;
       ignoreAllDups = true;
@@ -38,5 +40,13 @@ in {
         "sudo"
       ];
     };
+    initExtra = mkAfter /* zsh */ /* bash */ ''
+      autoload -Uz add-zle-hook-widget
+      add-zle-hook-widget line-finish transient-prompt
+
+      function transient-prompt() {
+        PROMPT="$( starship module character )" RPROMPT="" zle .reset-prompt
+      }
+    '';
   };
 }
