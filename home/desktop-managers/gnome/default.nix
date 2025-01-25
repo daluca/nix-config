@@ -62,6 +62,9 @@ in {
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
     };
+    "org/gnome/desktop/peripherals/keyboard" = {
+      numlock-state = true;
+    };
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
     };
