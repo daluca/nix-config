@@ -14,14 +14,8 @@ in {
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    substituters = [
-      "https://nix-community.cachix.org"
-      "https://daluca.cachix.org"
-    ];
-    trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "daluca.cachix.org-1:0RGwTNBqaAHsdomzBSzwlA2rkGR0GeLOc+tlP95jW70="
-    ];
+    substituters = [ "https://nix-community.cachix.org" ];
+    trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
     download-buffer-size = 256 * 1024 * 1024; # 256MiB
   };
 
