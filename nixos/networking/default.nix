@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  networking.domain = "internal";
+
   # TODO: Remove when upstream resolves issue
   #
   # Workaround to remove --wait-for-startup flag
