@@ -11,7 +11,7 @@ rec {
   yamlfmt.enable = true;
   typos = {
     enable = true;
-    settings.configPath = builtins.toString ./typos.toml;
+    settings.configPath = "typos.toml";
     args = [ "--force-exclude" ];
   };
   markdownlint-cli2 = {
