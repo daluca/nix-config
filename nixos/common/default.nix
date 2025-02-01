@@ -10,6 +10,8 @@ in {
     ../home-manager
     ../secrets
     ../networking
+    ../../users/root
+    ../../users/daluca
   ];
 
   nix.settings = {
@@ -52,6 +54,8 @@ in {
     ] ++ (builtins.attrValues (filterAttrs (n: v: n != "LANGUAGE") config.i18n.extraLocaleSettings))
     ));
   };
+
+  users.mutableUsers = false;
 
   hardware.pulseaudio.enable = true;
 }

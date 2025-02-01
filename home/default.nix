@@ -1,18 +1,26 @@
-{ osConfig, ... }:
-let
-  inherit (osConfig.networking) hostName;
-in {
-  imports =
-    if hostName == "artemis" then
-      [ ./hosts/artemis ]
-    else if hostName == "stormwind" then
-      [ ./hosts/stormwind ]
-    else if hostName == "ironforge" then
-      [ ./hosts/ironforge ]
-    else if hostName == "darnassus" then
-      [ ./hosts/darnassus ]
-    else if hostName == "azeroth" then
-      [ ./hosts/azeroth ]
-    else
-      [ ./common ];
+{ inputs, outputs, ... }:
+
+{
+  imports = builtins.attrValues outputs.homeManagerModules ++ [
+    ./tmux
+    ./dvorak
+    ./zsh
+    ./starship
+    ./openssh
+    ./secrets
+    ./catppuccin
+  ];
+
+  programs.bash.enable = true;
+
+  nixpkgs.overlays = builtins.attrValues outputs.overlays ++ [
+    inputs.nur.overlays.default
+    inputs.nix-vscode-extensions.overlays.default
+  ];
+
+  xdg.enable = true;
+
+  home.stateVersion = "24.11";
+
+  programs.home-manager.enable = true;
 }

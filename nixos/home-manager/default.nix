@@ -9,6 +9,5 @@
     useGlobalPkgs = false;
     useUserPackages = false;
     extraSpecialArgs = { inherit inputs outputs system secrets; };
-    users.daluca = import ../../home;
   };
 }
