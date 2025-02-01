@@ -1,6 +1,6 @@
 {
   imports = [
-    ../../../home/common
+    ../../../home
     ../../../home/tools
     ../../../home/btop
     ../../../home/vim
