@@ -1,4 +1,4 @@
-{ config, lib, inputs, ... }:
+{ lib, inputs, ... }:
 let
   inherit (lib) mkForce;
 in {
@@ -21,7 +21,6 @@ in {
     ../../nixos/fwupd
     ../../nixos/openssh-server
     ../../nixos/nvidia
-    ../../nixos/networking
 
     ../../nixos/steam
     # ../../nixos/opensnitch
