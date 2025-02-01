@@ -1,32 +1,35 @@
 { config, lib, pkgs, ... }:
-
-{
-  boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
+let
+  inherit (config.boot) kernelPackages;
+  inherit (lib) mkForce;
+  inherit (pkgs.unstable) linuxPackages_latest;
+in {
+  boot.kernelPackages = linuxPackages_latest;
 
   specialisation.gaming.configuration = {
     system.nixos.tags = [ "gaming" ];
 
     hardware.graphics = {
-      enable = lib.mkForce true;
-      enable32Bit = lib.mkForce true;
+      enable = mkForce true;
+      enable32Bit = mkForce true;
     };
 
-    services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
+    services.xserver.videoDrivers = mkForce [ "nvidia" ];
 
     hardware.nvidia = {
-      modesetting.enable = lib.mkForce true;
-      package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.beta;
-      open = lib.mkForce true;
-      nvidiaSettings = lib.mkForce true;
+      modesetting.enable = mkForce true;
+      package = mkForce kernelPackages.nvidiaPackages.beta;
+      open = mkForce true;
+      nvidiaSettings = mkForce true;
       powerManagement = {
-        enable = lib.mkForce true;
-        finegrained = lib.mkForce true;
+        enable = mkForce true;
+        finegrained = mkForce true;
       };
       prime = {
-        reverseSync.enable = lib.mkForce true;
-        allowExternalGpu = lib.mkForce true;
-        intelBusId = lib.mkForce "PCI:0:2:0";
-        nvidiaBusId = lib.mkForce "PCI:48:0:0";
+        reverseSync.enable = mkForce true;
+        allowExternalGpu = mkForce true;
+        intelBusId = mkForce "PCI:0:2:0";
+        nvidiaBusId = mkForce "PCI:48:0:0";
       };
     };
   };

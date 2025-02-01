@@ -1,7 +1,8 @@
 { lib, ... }:
-
-{
-  hardware.pulseaudio.enable = lib.mkForce false;
+let
+  inherit (lib) mkForce;
+in {
+  hardware.pulseaudio.enable = mkForce false;
 
   security.rtkit.enable = true;
 

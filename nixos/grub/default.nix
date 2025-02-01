@@ -7,7 +7,7 @@
     efiSupport = true;
     useOSProber = false;
     default = "saved";
-    extraEntries = ''
+    extraEntries = /* grub */ ''
       menuentry "System restart" {
               echo "System rebooting..."
               reboot
