@@ -43,7 +43,7 @@ in {
   networking.hostName = "ironforge";
 
   sops.secrets."tailscale/preauthkey" = {
-    sopsFile = ../../secrets/ironforge.sops.yaml;
+    sopsFile = ./ironforge.sops.yaml;
   };
 
   services.tailscale.extraUpFlags = [

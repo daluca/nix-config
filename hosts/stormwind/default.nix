@@ -36,7 +36,7 @@ in {
   networking.hostName = "stormwind";
 
   sops.secrets."tailscale/preauthkey" = {
-    sopsFile = ../../secrets/stormwind.sops.yaml;
+    sopsFile = ./stormwind.sops.yaml;
   };
 
   services.tailscale.extraUpFlags = [
