@@ -23,9 +23,11 @@ in {
 
   networking.hostName = "stormwind";
 
-  sops.secrets."tailscale/preauthkey" = {
-    sopsFile = ./stormwind.sops.yaml;
-  };
+  sops.secrets."ssh_host_ed25519_key".sopsFile = ./stormwind.sops.yaml;
+
+  sops.secrets."ssh_host_rsa_key".sopsFile = ./stormwind.sops.yaml;
+
+  sops.secrets."tailscale/preauthkey".sopsFile = ./stormwind.sops.yaml;
 
   services.tailscale.extraUpFlags = [
     "--advertise-routes=10.0.0.0/14"

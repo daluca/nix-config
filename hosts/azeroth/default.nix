@@ -19,5 +19,9 @@
 
   boot.initrd.systemd.emergencyAccess = config.user.users.root.hashedPassword;
 
+  sops.secrets."ssh_host_ed25519_key".sopsFile = ./azeroth.sops.yaml;
+
+  sops.secrets."ssh_host_rsa_key".sopsFile = ./azeroth.sops.yaml;
+
   system.stateVersion = "24.11";
 }

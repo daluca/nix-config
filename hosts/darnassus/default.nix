@@ -17,6 +17,10 @@ in {
 
   networking.hostName = "darnassus";
 
+  sops.secrets."ssh_host_ed25519_key".sopsFile = ./darnassus.sops.yaml;
+
+  sops.secrets."ssh_host_rsa_key".sopsFile = ./darnassus.sops.yaml;
+
   hardware.raspberry-pi.config.pi4 = {
     dt-overlays.rpi-poe-plus = {
       enable = true;

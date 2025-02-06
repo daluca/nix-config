@@ -8,6 +8,7 @@ in {
   imports = [
     ../dvorak
     ../home-manager
+    ../openssh
     ../secrets
     ../networking
     ../../users/root

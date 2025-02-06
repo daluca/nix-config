@@ -34,6 +34,10 @@ in {
 
   nix.settings.warn-dirty = false;
 
+  sops.secrets."ssh_host_ed25519_key".sopsFile = ./artemis.sops.yaml;
+
+  sops.secrets."ssh_host_rsa_key".sopsFile = ./artemis.sops.yaml;
+
   sops.secrets."tailscale/preauthkey".sopsFile = ./artemis.sops.yaml;
 
   sops.secrets."proton-bridge/password".sopsFile = ./artemis.sops.yaml;
