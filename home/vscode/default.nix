@@ -62,7 +62,6 @@ in {
       # Telemetry
       "telemetry.telemetryLevel" = "off";
       "redhat.telemetry.enabled" = false;
-      "gitlens.telemetry.enabled" = false;
       # Theme
       "workbench.colorTheme" = "GitHub Dark";
       "workbench.iconTheme" = "material-icon-theme";
@@ -73,8 +72,6 @@ in {
       "workbench.startupEditor" = "none";
       "workbench.welcomePage.extraAnnouncements" = false;
       "workbench.welcomePage.walkthroughs.openOnInstall" = false;
-      # GitLens
-      "gitlens.showWelcomeOnInstall" = false;
     };
   };
 
