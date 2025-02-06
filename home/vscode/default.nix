@@ -59,6 +59,8 @@ in {
       "files.exclude" = {
         "**/.jj" = true;
       };
+      # Git
+      "git.autofetch" = true;
       # Telemetry
       "telemetry.telemetryLevel" = "off";
       "redhat.telemetry.enabled" = false;
