@@ -26,7 +26,6 @@ in {
     mutableExtensionsDir = false;
     extensions = with pkgs.open-vsx; [
       vscodevim.vim
-      eamodio.gitlens
       github.github-vscode-theme
       pkief.material-icon-theme
       jnoortheen.nix-ide
