@@ -5,7 +5,7 @@ in {
   imports = [
     "${inputs.nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
 
-    ../../nixos/openssh-server
+    ../../nixos/openssh/server
     ../../users/root
   ];
 

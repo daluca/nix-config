@@ -1,13 +1,12 @@
-{ config, lib, pkgs, system, ... }:
+{ pkgs, ... }:
 let
-  inherit (lib) mkForce;
   inherit (pkgs) vim;
 in {
   imports = [
     ../../images/raspberry-pi/4
 
     ../../nixos/common
-    ../../nixos/openssh-server
+    ../../nixos/openssh/server
   ];
 
   services.getty.autologinUser = "daluca";

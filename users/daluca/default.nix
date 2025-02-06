@@ -1,9 +1,11 @@
 { config, ... }:
-
-{
+let
+  inherit (config.sops) secrets;
+  inherit (config.home-manager.users.daluca.home) username;
+in {
   users.users.daluca = {
     isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets."daluca/password".path;
+    hashedPasswordFile = secrets."daluca/password".path;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keyFiles = [
       ./keys/id_ed25519.pub
@@ -15,6 +17,10 @@
     sopsFile = ./daluca.sops.yaml;
     key = "password";
   };
+
+  services.openssh.settings.AllowUsers = [
+    username
+  ];
 
   home-manager.users.daluca = import ./home;
 }

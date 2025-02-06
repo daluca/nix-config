@@ -9,9 +9,7 @@
 
     ../../nixos/common
     ../../nixos/grub
-    ../../nixos/openssh-server
-    ../../users/root
-    ../../users/daluca
+    ../../nixos/openssh/server
   ];
 
   networking = {

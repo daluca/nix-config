@@ -19,7 +19,6 @@ in {
     ../../nixos/thinkfan
     ../../nixos/grub
     ../../nixos/fwupd
-    ../../nixos/openssh-server
     ../../nixos/nvidia
     ../../nixos/distributed-builds
     ../../nixos/steam

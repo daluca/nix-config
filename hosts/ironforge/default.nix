@@ -7,7 +7,7 @@ in {
     ../../images/raspberry-pi/4
 
     ../../nixos/common
-    ../../nixos/openssh-server
+    ../../nixos/openssh/server
     ../../nixos/tailscale/server
     ../../nixos/adguardhome
 
