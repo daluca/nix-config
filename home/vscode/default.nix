@@ -28,7 +28,6 @@ in {
       vscodevim.vim
       github.github-vscode-theme
       pkief.material-icon-theme
-      jnoortheen.nix-ide
       editorconfig.editorconfig
       skellock.just
       tamasfe.even-better-toml
