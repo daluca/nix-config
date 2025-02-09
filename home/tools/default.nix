@@ -7,6 +7,7 @@ in {
     ../gron
     ../zoxide
     ../delta
+    ./ripgrep
   ];
 
   home.packages = [
