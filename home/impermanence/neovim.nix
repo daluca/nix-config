@@ -1,8 +1,9 @@
-{ config, lib, ... }:
+{ config, lib, system, inputs, ... }:
 let
   inherit (lib) mkIf;
-  inherit (config.programs) nixvim;
+  inherit (inputs.nixvim-config.packages.${system}) neovim;
 in {
-  home.persistence.home.directories = mkIf nixvim.enable
-    [ ".local/share/nvim" ];
+  home.persistence.home.directories = mkIf (builtins.elem neovim config.home.packages) [
+    ".local/share/nvim"
+  ];
 }

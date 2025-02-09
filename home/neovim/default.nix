@@ -4,11 +4,11 @@ let
 in {
   home.packages = [(
     neovim.extend {
-      config.colorschemes.catppuccin.settings.flavour = config.catppuccin.flavour;
+      config.colorschemes.catppuccin.settings.flavor = config.catppuccin.flavor;
     }
   )];
 
-  home.sessionVariable = {
+  home.sessionVariables = {
     EDITOR = "nvim";
   };
 
