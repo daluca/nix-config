@@ -22,11 +22,6 @@
     disko.url = "github:nix-community/disko/v1.10.0";
     disko.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    nixvim.inputs.home-manager.follows = "home-manager";
-    nixvim.inputs.git-hooks.follows = "git-hooks";
-
     terraform-oss.url = "github:nixos/nixpkgs/517501bcf14ae6ec47efd6a17dda0ca8e6d866f9";
 
     git-hooks.url = "github:cachix/git-hooks.nix";
@@ -47,6 +42,9 @@
 
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    nixvim-config.url = "github:daluca/nixvim-config";
+    nixvim-config.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
