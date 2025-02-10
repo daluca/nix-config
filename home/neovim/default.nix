@@ -4,7 +4,9 @@ let
 in {
   home.packages = [(
     neovim.extend {
-      config.colorschemes.catppuccin.settings.flavor = config.catppuccin.flavor;
+      config = {
+        colorschemes.catppuccin.settings.flavor = config.catppuccin.flavor;
+      };
     }
   )];
 
