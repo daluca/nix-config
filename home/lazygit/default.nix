@@ -4,6 +4,10 @@ let
 in {
   programs.lazygit = {
     enable = true;
+    settings = {
+      disableStartupPopups = true;
+      confirmOnQuit = true;
+    };
   };
 
   programs.git.aliases = {
