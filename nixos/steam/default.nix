@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 let
   inherit (lib) getName;
-  inherit (pkgs) GE-Proton9-24 GE-Proton9-23 GE-Proton9-22 GE-Proton9-21 GE-Proton9-20 GE-Proton9-19 GE-Proton8-32 GE-Proton7-55;
+  inherit (pkgs) GE-Proton9-25 GE-Proton9-24 GE-Proton9-23 GE-Proton9-22 GE-Proton9-21 GE-Proton9-20 GE-Proton8-32 GE-Proton7-55;
   inherit (pkgs.xorg) libXcursor libXi libXinerama libXScrnSaver;
   inherit (pkgs) libpng libpulseaudio libvorbis libkrb5 keyutils;
   inherit (pkgs.stdenv.cc) cc;
@@ -29,12 +29,12 @@ in {
     remotePlay.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
     extraCompatPackages = [
+      GE-Proton9-25
       GE-Proton9-24
       GE-Proton9-23
       GE-Proton9-22
       GE-Proton9-21
       GE-Proton9-20
-      GE-Proton9-19
       GE-Proton8-32
       GE-Proton7-55
     ];
