@@ -44,24 +44,6 @@ in {
 
   hardware.xpadneo.enable = true;
 
-  systemd.user.extraConfig = ''
-    DefaultLimitNOFILE=${builtins.toString (8 * 1024)}
-  '';
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "-";
-      item = "nofile";
-      value = builtins.toString (8 * 1024);
-    }
-    {
-      domain = "*";
-      type = "-";
-      item = "memlock";
-      value = builtins.toString (8 * 1024);
-    }
-  ];
-
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
     "steam"
     "steam-unwrapped"
