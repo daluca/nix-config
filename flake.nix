@@ -139,7 +139,15 @@
       ];
     };
 
-    images.iso = (nixosSystem rec {
+    nixosConfigurations.unifi = nixosSystem rec {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs outputs system secrets; };
+      modules = [
+        ./hosts/unifi
+      ];
+    };
+
+    images.iso = (nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs outputs; };
       modules = [

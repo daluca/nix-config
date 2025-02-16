@@ -1,7 +1,6 @@
-{ lib, inputs, ... }:
-let
-  inherit (lib) mkDefault mkImageMediaOverride;
-in {
+{ inputs, ... }:
+
+{
   imports = [
     "${inputs.nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
 
@@ -9,10 +8,5 @@ in {
     ../../users/root
   ];
 
-  services.openssh.settings = {
-    AllowUsers = mkImageMediaOverride null;
-    PermitRootLogin = mkImageMediaOverride "yes";
-  };
-
-  system.stateVersion = mkDefault "24.11";
+  system.stateVersion = "24.11";
 }
