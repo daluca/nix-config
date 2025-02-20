@@ -2,16 +2,20 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "garden-rs";
-  version = "1.10.1";
+  version = "2.0.0";
 
   src = fetchFromGitLab {
     owner = "garden-rs";
     repo = "garden";
     rev = "v${version}";
-    hash = "sha256-fYdrqUs+zeyt/JwwLPRo0GgPuccue+IHBeDCwCXDCgY=";
+    hash = "sha256-4cYrUD0fomlS+hatf5A965wkDjKV98QQG8dQGaLUCYs=";
   };
 
-  cargoHash = "sha256-buF0YuA47IrGbZkZ4kjRYUujNP0vsUpkALwhJOqmnzg=";
+  cargoLock.lockFile = ./Cargo.lock;
+
+  postPatch = /* bash */ ''
+    ln -s ${./Cargo.lock} Cargo.lock
+  '';
 
   doCheck = false;
 
