@@ -4,6 +4,7 @@ let
   inherit (pkgs) libraspberrypi;
 in {
   imports = [
+    inputs.raspberry-pi-nix.nixosModules.sd-image
     inputs.raspberry-pi-nix.nixosModules.raspberry-pi
   ];
 
