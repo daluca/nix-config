@@ -1,27 +1,8 @@
 {
-  nix = {
-    distributedBuilds = true;
-    buildMachines = [{
-      hostName = "eu.nixbuild.net";
-      system = "aarch64-linux";
-      maxJobs = 100;
-      supportedFeatures = [ "benchmark" "big-parallel" ];
-    }];
-  };
+  imports = [
+    ./darnassus.nix
+  ];
 
-  programs.ssh = {
-    knownHosts = {
-      nixbuild = {
-        hostNames = [ "eu.nixbuild.net" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
-      };
-    };
-    extraConfig = /* ssh */ ''
-      Host eu.nixbuild.net
-        PubkeyAcceptedKeyTypes ssh-ed25519
-        ServerAliveInterval 60
-        IPQoS throughput
-        IdentityFile /etc/ssh/ssh_host_ed25519_key
-    '';
-  };
+  nix.distributedBuilds = true;
+  nix.settings.builders-use-substitutes = true;
 }
