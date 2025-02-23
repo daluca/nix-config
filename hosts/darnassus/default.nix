@@ -7,6 +7,7 @@ in {
 
     ../../nixos/common
     ../../nixos/openssh/server
+    ../../users/remotebuild
   ];
 
   services.getty.autologinUser = "daluca";
