@@ -1,18 +1,16 @@
-let
-  zsh-login = {
-    RemoteCommand = "zsh --login";
-    RequestTTY = "force";
-  };
-in {
+{ config, ... }:
+
+{
   programs.ssh = {
     enable = true;
     compression = true;
     hashKnownHosts = true;
-    matchBlocks = {
-      stormwind.extraOptions = zsh-login;
-      ironforge.extraOptions = zsh-login;
-      darnassus.extraOptions = zsh-login;
-      azeroth.extraOptions = zsh-login;
+    matchBlocks."${config.home.username}" = {
+      match = "User ${config.home.username}";
+      extraOptions = {
+        RemoteCommand = "zsh --login";
+        RequestTTY = "yes";
+      };
     };
   };
 }
