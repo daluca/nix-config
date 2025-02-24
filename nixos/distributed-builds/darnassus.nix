@@ -1,7 +1,4 @@
-{ config, ... }:
-let
-  inherit (config.networking) domain;
-in {
+{
   nix.buildMachines = [{
     hostName = "darnassus";
     system = "aarch64-linux";
@@ -17,13 +14,4 @@ in {
     protocol = "ssh-ng";
     maxJobs = 4;
   }];
-
-  programs.ssh = {
-    knownHosts = {
-      darnassus = {
-        hostNames = [ "darnassus" "darnassus.${domain}" ];
-        publicKeyFile = ../../hosts/darnassus/keys/ssh_host_ed25519_key.pub;
-      };
-    };
-  };
 }
