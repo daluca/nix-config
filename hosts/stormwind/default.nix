@@ -1,4 +1,4 @@
-{ config, pkgs, system, ... }:
+{ pkgs, ... }:
 let
   inherit (pkgs) vim;
 in {

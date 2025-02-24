@@ -1,20 +1,15 @@
 { config, ... }:
 let
-  hostIPAddress = "10.0.0.10";
+  inherit (config.networking) domain;
 in {
   services.adguardhome.settings = {
     dns = {
-      bind_hosts = [ hostIPAddress ];
+      bind_hosts = [ "10.0.0.10" ];
       upstream_dns = [
-        "[/10.in-addr.arpa/]10.0.0.1"
-        "[/internal/]10.0.0.1"
+        "[//10.in-addr.arpa/${domain}/]10.0.0.1"
+        "[/ironforge.${domain}/]192.168.1.1"
       ];
-    };
-    filtering = {
-      rewrites = [{
-        domain = "${config.networking.hostName}.internal";
-        answer = hostIPAddress;
-      }];
+      hostsfile_enabled = false;
     };
   };
 }
