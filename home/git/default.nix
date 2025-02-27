@@ -1,8 +1,8 @@
 { config, lib, pkgs, secrets, ... }:
 let
   inherit (lib) mkIf;
-  inherit (pkgs) sops;
   inherit (config.programs) zsh gpg;
+  inherit (pkgs) sops git-agecrypt;
   inherit (secrets) user;
 in {
   programs.git = {
@@ -24,6 +24,12 @@ in {
       rerere.enabled = true;
       url."git@github.com".insteadof = "github";
       diff."sopsdiffer".textconv = "${sops}/bin/sops decrypt";
+      diff."git-agecrypt".textconv = "${git-agecrypt}/bin/git-agecrypt textconv";
+      filter."git-agecrypt" = {
+        required = true;
+        smudge = "${git-agecrypt}/bin/git-agecrypt smudge -f %f";
+        clean = "${git-agecrypt}/bin/git-agecrypt clean -f %f";
+      };
     };
   };
 
