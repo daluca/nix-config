@@ -28,6 +28,7 @@ in {
     ../../nixos/tailscale
     ../../nixos/kanata
     ../../nixos/gaming
+    ../../nixos/virtualisation
   ];
 
   networking.hostName = "artemis";
