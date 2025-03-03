@@ -1,6 +1,7 @@
 {
   imports = [
     ./darnassus.nix
+    ./azeroth.nix
   ];
 
   nix.distributedBuilds = true;

@@ -10,6 +10,7 @@
     ../../nixos/common
     ../../nixos/grub
     ../../nixos/openssh/server
+    ../../users/remotebuild
   ];
 
   networking = {
