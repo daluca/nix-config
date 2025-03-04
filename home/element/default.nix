@@ -1,11 +1,11 @@
-{ lib, pkgs, osConfig, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs.unstable; [
     element-desktop
   ];
 
-  home.persistence.home.directories = lib.mkIf osConfig.environment.persistence.system.enable [
+  home.persistence.home.directories = [
     ".config/Element"
   ];
 }

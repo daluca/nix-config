@@ -1,4 +1,4 @@
-{ lib, pkgs, osConfig, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -27,9 +27,7 @@
     pinentryPackage = pkgs.pinentry-gnome3;
   };
 
-  home.persistence.home = lib.mkIf osConfig.environment.persistence.system.enable {
-    directories = [
-      ".gnupg"
-    ];
-  };
+  home.persistence.home.directories = [
+    ".gnupg"
+  ];
 }

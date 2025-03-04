@@ -1,11 +1,9 @@
-{ lib, pkgs, osConfig, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [ doctl ];
 
-  home.persistence.home = lib.mkIf osConfig.environment.persistence.system.enable {
-    directories = [
-      ".config/doctl"
-    ];
-  };
+  home.persistence.home.directories = [
+    ".config/doctl"
+  ];
 }

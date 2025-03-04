@@ -1,11 +1,11 @@
-{ config, lib, pkgs, osConfig, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs.unstable; [
     velero
   ];
 
-  home.persistence.home.directories = lib.mkIf osConfig.environment.persistence.system.enable [
+  home.persistence.home.directories = [
     ".config/velero"
   ];
 
@@ -13,7 +13,7 @@
     namespace = "backups";
   };
 
-  programs.zsh.initExtra = lib.mkIf config.programs.zsh.enable /* zsh */ ''
+  programs.zsh.initExtra = /* zsh */ ''
     if [[ -x "$( command -v velero )" ]]; then
       eval "$(${pkgs.unstable.velero}/bin/velero completion zsh)"
     fi

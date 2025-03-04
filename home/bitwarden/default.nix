@@ -1,11 +1,11 @@
-{ lib, pkgs, osConfig, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs.unstable; [
     bitwarden-desktop
   ];
 
-  home.persistence.home.directories = lib.mkIf osConfig.environment.persistence.system.enable [
+  home.persistence.home.directories = [
     ".config/Bitwarden"
   ];
 }

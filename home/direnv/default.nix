@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 {
   programs.direnv = {
@@ -14,7 +14,7 @@
     };
   };
 
-  programs.zsh.oh-my-zsh.plugins = lib.mkIf ( config.programs.zsh.enable && config.programs.zsh.oh-my-zsh.enable ) [
+  programs.zsh.oh-my-zsh.plugins = [
     "direnv"
   ];
 }

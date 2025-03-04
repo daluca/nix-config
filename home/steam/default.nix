@@ -1,4 +1,4 @@
-{ lib, pkgs, osConfig, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -9,7 +9,7 @@
     mangohud
   ];
 
-  home.persistence.home.directories = lib.mkIf osConfig.environment.persistence.system.enable [
+  home.persistence.home.directories = [
     ".local/share/Steam"
   ];
 }

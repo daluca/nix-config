@@ -1,7 +1,6 @@
-{ config, lib, pkgs, secrets, ... }:
+{ config, pkgs, secrets, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (config.programs) zsh gpg;
+  inherit (config.programs) gpg;
   inherit (pkgs) sops git-agecrypt;
   inherit (secrets) user;
 in {
@@ -33,7 +32,7 @@ in {
     };
   };
 
-  programs.zsh.oh-my-zsh.plugins = mkIf ( zsh.enable && zsh.oh-my-zsh.enable ) [
+  programs.zsh.oh-my-zsh.plugins = [
     "git"
   ];
 }

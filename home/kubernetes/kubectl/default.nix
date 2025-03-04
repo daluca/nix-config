@@ -1,4 +1,4 @@
-{ lib, pkgs, osConfig, ... }:
+{ pkgs, ... }:
 let
   inherit (pkgs) kubectl kubectx;
 in {
@@ -17,7 +17,7 @@ in {
     k = "kubectl";
   };
 
-  home.persistence.home.directories = lib.mkIf osConfig.environment.persistence.system.enable [
+  home.persistence.home.directories = [
     ".kube"
   ];
 }

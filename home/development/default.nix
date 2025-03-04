@@ -1,10 +1,7 @@
-{ config, lib, pkgs, osConfig, ... }:
+{ config, pkgs, ... }:
 let
   inherit (pkgs.formats) yaml;
-  inherit (pkgs.unstable) zed-editor;
-  inherit (lib) mkIf;
   inherit (config.home) homeDirectory;
-  inherit (osConfig.environment) persistence;
 in {
   imports = [
     ../garden
@@ -13,11 +10,11 @@ in {
     ../jujutsu
   ];
 
-  home.persistence.home.directories = mkIf persistence.system.enable [
+  home.persistence.home.directories = [
     "code"
   ];
 
-  xdg.configFile."garden/garden.yaml".source = (yaml {}).generate "config" {
+  xdg.configFile."garden/garden.yaml".source = (yaml { }).generate "config" {
     garden = {
       root = "${homeDirectory}/code";
       includes = [

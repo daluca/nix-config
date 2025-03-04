@@ -13,7 +13,7 @@
     };
   };
 
-  environment.persistence.system.directories = lib.mkIf config.environment.persistence.system.enable [
+  environment.persistence.system.directories = [
     { directory = "/var/lib/docker"; mode = "0710"; }
   ];
 

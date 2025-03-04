@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf toLower;
+  inherit (lib) toLower;
   inherit (pkgs) tmuxPlugins;
-  inherit (config.programs) zsh fzf;
+  inherit (config.programs) zsh;
   inherit (config.themes) catppuccin;
 in {
   programs.tmux = {
@@ -24,9 +24,9 @@ in {
     terminal = "screen-256color";
   };
 
-  programs.zsh.oh-my-zsh.plugins = mkIf ( zsh.enable && zsh.oh-my-zsh.enable ) [
+  programs.zsh.oh-my-zsh.plugins = [
     "tmux"
   ];
 
-  programs.fzf.tmux.enableShellIntegration = mkIf fzf.enable true;
+  programs.fzf.tmux.enableShellIntegration = true;
 }
