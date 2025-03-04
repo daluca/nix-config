@@ -1,4 +1,4 @@
-{ lib, osConfig, outputs, ... }:
+{ lib, osConfig, inputs, outputs, ... }:
 let
   inherit (osConfig.networking) hostName;
 in {
@@ -6,6 +6,8 @@ in {
     let
       hostExtras = (./. + "/${hostName}.nix");
     in builtins.attrValues outputs.homeManagerModules ++ [
+      inputs.impermanence.homeManagerModules.impermanence
+
       ../../../home/tmux
       ../../../home/dvorak
       ../../../home/zsh
@@ -22,6 +24,8 @@ in {
     username = "daluca";
     homeDirectory = "/home/${username}";
   };
+
+  home.persistence.home.enable = lib.mkDefault false;
 
   themes.catppuccin.flavour = "Mocha";
 

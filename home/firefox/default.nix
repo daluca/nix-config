@@ -125,4 +125,8 @@ in {
       };
     };
   };
+
+  home.persistence.home.directories = [
+    ".mozilla"
+  ];
 }

@@ -18,4 +18,8 @@ in {
     n = "nvim";
     vimdiff = "nvim -d";
   };
+
+  home.persistence.home.directories = [
+    ".local/share/nvim"
+  ];
 }

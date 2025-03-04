@@ -12,4 +12,8 @@ in {
   };
 
   programs.fzf.enable = true;
+
+  home.persistence.home.directories = [
+    ".local/share/zoxide"
+  ];
 }

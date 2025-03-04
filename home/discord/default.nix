@@ -5,4 +5,8 @@ in {
   home.packages = [
     discord
   ];
+
+  home.persistence.home.directories = [
+    ".config/discord"
+  ];
 }

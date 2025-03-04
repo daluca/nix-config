@@ -13,4 +13,8 @@ in {
       };
     };
   };
+
+  home.persistence.home.directories = [
+    ".thunderbird"
+  ];
 }

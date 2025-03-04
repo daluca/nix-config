@@ -16,4 +16,9 @@ in {
   xdg.configFile."heroic/tools/proton/GE-Proton9-20".source = getOutput "steamcompattool" GE-Proton9-20;
   xdg.configFile."heroic/tools/proton/GE-Proton8-32".source = getOutput "steamcompattool" GE-Proton8-32;
   xdg.configFile."heroic/tools/proton/GE-Proton7-55".source = getOutput "steamcompattool" GE-Proton7-55;
+
+  home.persistence.home.directories = [
+    ".config/heroic"
+    ".local/share/Heroic"
+  ];
 }

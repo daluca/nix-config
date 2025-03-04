@@ -5,4 +5,8 @@ in {
   home.packages = [
     signal-desktop
   ];
+
+  home.persistence.home.directories = [
+    ".config/Signal"
+  ];
 }
