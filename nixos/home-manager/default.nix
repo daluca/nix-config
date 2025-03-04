@@ -6,8 +6,8 @@
   ];
 
   home-manager = {
-    useGlobalPkgs = false;
-    useUserPackages = false;
+    useGlobalPkgs = true;
+    useUserPackages = true;
     extraSpecialArgs = { inherit inputs outputs system secrets; };
   };
 }

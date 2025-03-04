@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }:
+{ outputs, ... }:
 
 {
   imports = builtins.attrValues outputs.homeManagerModules ++ [
@@ -12,11 +12,6 @@
   ];
 
   programs.bash.enable = true;
-
-  nixpkgs.overlays = builtins.attrValues outputs.overlays ++ [
-    inputs.nur.overlays.default
-    inputs.nix-vscode-extensions.overlays.default
-  ];
 
   xdg.enable = true;
 

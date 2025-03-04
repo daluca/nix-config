@@ -23,9 +23,4 @@ in {
   networking.firewall.allowedTCPPorts = [
     8443
   ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "unifi-controller"
-    "mongodb"
-  ];
 }

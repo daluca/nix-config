@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  inherit (lib) getName concatStringsSep;
+  inherit (lib) concatStringsSep;
   inherit (lib.lists) flatten;
   inherit (pkgs.unstable) vscode;
   vscode-kubernetes-tools = with pkgs.open-vsx; [
@@ -76,8 +76,4 @@ in {
       "workbench.welcomePage.walkthroughs.openOnInstall" = false;
     };
   };
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
-    "vscode"
-  ];
 }

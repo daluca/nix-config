@@ -1,6 +1,5 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 let
-  inherit (lib) getName;
   inherit (pkgs) GE-Proton9-25 GE-Proton9-24 GE-Proton9-23 GE-Proton9-22 GE-Proton9-21 GE-Proton9-20 GE-Proton8-32 GE-Proton7-55;
   inherit (pkgs.xorg) libXcursor libXi libXinerama libXScrnSaver;
   inherit (pkgs) libpng libpulseaudio libvorbis libkrb5 keyutils;
@@ -43,9 +42,4 @@ in {
   programs.gamemode.enable = true;
 
   hardware.xpadneo.enable = true;
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
-    "steam"
-    "steam-unwrapped"
-  ];
 }

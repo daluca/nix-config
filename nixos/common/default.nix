@@ -1,4 +1,4 @@
-{ config, lib, pkgs, outputs, ... }:
+{ config, lib, pkgs, inputs, outputs, ... }:
 let
   inherit (pkgs) nix-ld-rs;
   inherit (lib) lists attrsets;
@@ -22,7 +22,23 @@ in {
     download-buffer-size = 256 * 1024 * 1024; # 256MiB
   };
 
-  nixpkgs.overlays = builtins.attrValues outputs.overlays;
+  nixpkgs.overlays = builtins.attrValues outputs.overlays ++ [
+    inputs.nur.overlays.default
+    inputs.nix-vscode-extensions.overlays.default
+  ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ([
+    "discord"
+    "vscode"
+    "nvidia-x11"
+    "nvidia-settings"
+  ] ++ lib.optionals config.programs.steam.enable [
+    "steam"
+    "steam-unwrapped"
+  ] ++ lib.optionals config.services.unifi.enable [
+    "unifi-controller"
+    "mongodb"
+  ]);
 
   nix.gc = {
     automatic = true;
