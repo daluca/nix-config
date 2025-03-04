@@ -4,7 +4,6 @@ let
   inherit (osConfig.networking) hostName;
 in {
   imports = [
-    ../../../home
     ../../../home/desktop-managers/gnome
     ../../../home/impermanence
     ../../../home/tools
