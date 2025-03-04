@@ -11,7 +11,7 @@ in {
       ];
       hostsfile_enabled = false;
     };
-    user_rules = builtins.map (d: allowDomain d) [
+    user_rules = map (d: allowDomain d) [
       "opinionstage.com"
     ];
   };

@@ -52,7 +52,7 @@
     inherit (self) outputs;
     inherit (nixpkgs) lib;
     inherit (lib) nixosSystem;
-    secrets = builtins.fromTOML (builtins.readFile ./secrets/secrets.toml);
+    secrets = fromTOML (builtins.readFile ./secrets/secrets.toml);
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in {
