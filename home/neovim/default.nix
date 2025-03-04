@@ -1,4 +1,4 @@
-{ config, system, inputs, ... }:
+{ config, lib, system, inputs, ... }:
 let
   inherit (inputs.nixvim-config.packages.${system}) neovim;
 in {
@@ -11,7 +11,7 @@ in {
   )];
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = lib.mkForce "nvim";
   };
 
   home.shellAliases = {

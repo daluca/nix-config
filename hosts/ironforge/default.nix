@@ -1,8 +1,4 @@
-{ config, lib, pkgs, system, ... }:
-let
-  inherit (lib) mkForce;
-  inherit (pkgs) vim;
-in {
+{
   imports = [
     ../../images/raspberry-pi/4
 
@@ -17,10 +13,6 @@ in {
   nix.settings.trusted-users = [ "@wheel" ];
 
   services.getty.autologinUser = "daluca";
-
-  environment.systemPackages = [
-    vim
-  ];
 
   networking.hostName = "ironforge";
 

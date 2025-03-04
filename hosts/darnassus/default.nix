@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-  inherit (pkgs) vim;
-in {
+{
   imports = [
     ../../images/raspberry-pi/4
 
@@ -11,10 +8,6 @@ in {
   ];
 
   services.getty.autologinUser = "daluca";
-
-  environment.systemPackages = [
-    vim
-  ];
 
   networking.hostName = "darnassus";
 

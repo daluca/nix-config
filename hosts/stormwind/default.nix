@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-  inherit (pkgs) vim;
-in {
+{
   imports = [
     ../../images/raspberry-pi/4
 
@@ -16,10 +13,6 @@ in {
   nix.settings.trusted-users = [ "@wheel" ];
 
   services.getty.autologinUser = "daluca";
-
-  environment.systemPackages = [
-    vim
-  ];
 
   networking.hostName = "stormwind";
 
