@@ -8,7 +8,21 @@ in {
   programs.firefox.profiles."${username}".search = {
     force = true;
     default = "Kagi";
-    order = [ "Kagi" "Brave" "Nix Packages" "Nix Options" "NixOS Wiki" "Nixpkgs issues" "Home Manager Options" "GitHub" "Steam" "ProtonDB" "Wikipedia (en)" ];
+    order = [
+      "Kagi"
+      "Brave"
+      "Nix Packages"
+      "Nix Options"
+      "NixOS Wiki"
+      "Noogle"
+      "Home Manager Options"
+      "Nixpkgs issues"
+      "YouTube"
+      "GitHub"
+      "Steam"
+      "ProtonDB"
+      "Wikipedia (en)"
+    ];
     engines = {
       "Kagi" = {
         urls = [
