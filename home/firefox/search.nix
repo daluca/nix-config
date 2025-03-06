@@ -88,6 +88,17 @@ in {
         icon = "${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "@nixoswiki" "@nw" ];
       };
+      "Noogle" = {
+        urls = [
+          { template = "https://noogle.dev/q";
+            params = [
+              { name = "term"; value = "{searchTerms}"; }
+            ];
+          }
+        ];
+        icon = "${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        definedAliases = [ "@noogle" "@ng" ];
+      };
       "Home Manager Options" = {
         urls = [
           { template = "https://home-manager-options.extranix.com/";
