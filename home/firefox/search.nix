@@ -1,6 +1,6 @@
 { config, pkgs, osConfig, secrets, ... }:
 let
-  inherit (pkgs) fetchurl nixos-icons;
+  inherit (pkgs) fetchurl fetchzip nixos-icons;
   inherit (config.home) username stateVersion;
   inherit (osConfig) system;
   inherit (secrets) kagi;
@@ -113,6 +113,22 @@ in {
         ];
         icon = "${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = [ "@nixpkgsissues" "@npi" ];
+      };
+      "YouTube" = {
+        urls = [
+          { template = "https://youtube.com/results";
+            params = [
+              { name = "search_query"; value = "{searchTerms}"; }
+            ];
+          }
+        ];
+        icon = fetchzip {
+          url = "https://kstatic.googleusercontent.com/files/10450be01c1b184ffd2f49ede02f92c666f53fdf1b1cb6fa479f5e9d41cceb905e928c7be4f5593ff9edd0213a6cb096792e66ae17270b01e2cb909ee23a2955";
+          hash = "sha256-pjqUtd1vq0Oou/nMlzUU46V8zDYZlA4fDQMYvBRh6M4=";
+          extension = "zip";
+          stripRoot = false;
+        } + "/youtube_full_color_icon/digital_and_tv/yt_icon_rgb.png";
+        definedAliases = [ "@youtube" "@yt" ];
       };
       "GitHub" = {
         urls = [
