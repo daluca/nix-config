@@ -2,7 +2,7 @@
   imports = [
     ../../images/raspberry-pi/4
 
-    ../../nixos/common
+    ../.
     ../../nixos/openssh/server
     ../../users/remotebuild
   ];

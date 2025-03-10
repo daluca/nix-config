@@ -7,11 +7,11 @@ in {
     inputs.nixos-hardware.nixosModules.common-cpu-intel
 
     ./hardware-configuration.nix
+
+    ../.
+    ../../nixos/desktop-managers/gnome
     ../../nixos/swap
     ../../nixos/ssd
-
-    ../../nixos/common
-    ../../nixos/desktop-managers/gnome
     ../../nixos/pipewire
     ../../nixos/impermanence
     ../../nixos/fonts

@@ -76,7 +76,7 @@
 
     homeManagerModules = import ./modules/home-manager;
 
-    deploy = import ./hosts { deploy-rs = inputs.deploy-rs; nixosConfigurations = self.nixosConfigurations; };
+    deploy = import ./hosts/deploy.nix { deploy-rs = inputs.deploy-rs; nixosConfigurations = self.nixosConfigurations; };
 
     devShells = forAllSystems (system:
       let

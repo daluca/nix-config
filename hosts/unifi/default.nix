@@ -2,7 +2,7 @@
   imports = [
     ../../images/digitalocean
 
-    ../../nixos/common
+    ../.
     ../../nixos/openssh/server
     ../../nixos/unifi-controller
   ];

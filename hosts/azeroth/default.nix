@@ -7,7 +7,7 @@
 
     ./disko.nix
 
-    ../../nixos/common
+    ../.
     ../../nixos/grub
     ../../nixos/openssh/server
     ../../users/remotebuild
