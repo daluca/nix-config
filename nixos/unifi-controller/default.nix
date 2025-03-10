@@ -5,11 +5,11 @@ in {
   services.unifi = {
     enable = true;
     unifiPackage = unifi8.overrideAttrs (oldAttrs: rec {
-      version = "8.1.113";
+      version = "8.6.9";
 
       src = pkgs.fetchurl {
         url = "https://dl.ubnt.com/unifi/${version}/unifi_sysvinit_all.deb";
-        sha256 = "sha256-1knm+l8MSb7XKq2WIbehAnz7loRPjgnc+R98zpWKEAE=";
+        sha256 = "sha256-004ZJEoj23FyFEBznqrpPzQ9E6DYpD7gBxa3ewSunIo=";
       };
     });
     mongodbPackage = mongodb-7_0;
