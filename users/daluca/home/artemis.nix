@@ -1,42 +1,41 @@
-{ config, osConfig, ... }:
+{ config, lib, osConfig, ... }:
 let
   inherit (config.xdg) configHome;
   inherit (osConfig.networking) hostName;
 in {
-  imports = [
-    ../../../home/desktop-managers/gnome
-    ../../../home/impermanence
-    ../../../home/tools
-    ../../../home/firefox
-    ../../../home/alacritty
-    ../../../home/doctl
-    ../../../home/git
-    ../../../home/development
-    ../../../home/kubernetes
-    ../../../home/vscodium
-    ../../../home/btop
-    ../../../home/direnv
-    ../../../home/mpv
-    ../../../home/uutils
-    ../../../home/thunderbird
-    ../../../home/gnupg
-    ../../../home/bitwarden
-    ../../../home/libreoffice
-    ../../../home/nextcloud-client
-    ../../../home/velero
-    ../../../home/terraform
-    ../../../home/element
-    ../../../home/steam
-    ../../../home/neovim
-    ../../../home/nushell
-    ../../../home/heroic
-    ../../../home/signal-desktop
-    ../../../home/discord
-    ../../../home/lazygit
-    ../../../home/accounts
-    ../../../home/gaming
-    ../../../home/proton-bridge
-    # ../../../home/opensnitch
+  imports = map (m: lib.custom.relativeToHomeManagerModules m) [
+    "desktop-managers/gnome"
+    "impermanence"
+    "tools"
+    "firefox"
+    "alacritty"
+    "doctl"
+    "git"
+    "development"
+    "kubernetes"
+    "vscodium"
+    "btop"
+    "direnv"
+    "mpv"
+    "uutils"
+    "thunderbird"
+    "gnupg"
+    "bitwarden"
+    "libreoffice"
+    "nextcloud-client"
+    "velero"
+    "terraform"
+    "element"
+    "steam"
+    "neovim"
+    "nushell"
+    "heroic"
+    "signal-desktop"
+    "discord"
+    "lazygit"
+    "accounts"
+    "gaming"
+    "proton-bridge"
   ];
 
   sops.secrets."id_ed25519" = {

@@ -1,14 +1,15 @@
 { config, lib, pkgs, inputs, outputs, ... }:
 
 {
-  imports = [
-    ../nixos/dvorak
-    ../nixos/home-manager
-    ../nixos/openssh
-    ../nixos/secrets
-    ../nixos/networking
-    ../users/root
-    ../users/daluca
+  imports = map (m: lib.custom.relativeToNixosModules m) [
+    "dvorak"
+    "home-manager"
+    "openssh"
+    "secrets"
+    "networking"
+  ] ++ map (m: lib.custom.relativeToUsers m) [
+    "root"
+    "daluca"
   ];
 
   nix.settings = {

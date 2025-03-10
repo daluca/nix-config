@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, lib, inputs, ... }:
 
 {
   imports = [
@@ -6,11 +6,13 @@
     inputs.disko.nixosModules.disko
 
     ./disko.nix
-
-    ../.
-    ../../nixos/grub
-    ../../nixos/openssh/server
-    ../../users/remotebuild
+  ] ++ map (m: lib.custom.relativeToHosts m) [
+    "."
+  ] ++ map (m: lib.custom.relativeToNixosModules m) [
+    "grub"
+    "openssh/server"
+  ] ++ map (m: lib.custom.relativeToUsers m) [
+    "remotebuild"
   ];
 
   networking = {

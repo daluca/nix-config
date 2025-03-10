@@ -1,10 +1,13 @@
-{
-  imports = [
-    ../../images/digitalocean
+{ lib, ... }:
 
-    ../.
-    ../../nixos/openssh/server
-    ../../nixos/unifi-controller
+{
+  imports = map (m: lib.custom.relativeToRoot m) [
+    "images/digitalocean"
+  ] ++ map (m: lib.custom.relativeToHosts m) [
+    "."
+  ] ++ map (m: lib.custom.relativeToNixosModules m) [
+    "openssh/server"
+    "unifi-controller"
   ];
 
   networking.hostName = "unifi";

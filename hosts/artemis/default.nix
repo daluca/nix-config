@@ -1,34 +1,33 @@
 { lib, inputs, ... }:
-let
-  inherit (lib) mkForce;
-in {
+
+{
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
     inputs.nixos-hardware.nixosModules.common-cpu-intel
 
     ./hardware-configuration.nix
-
-    ../.
-    ../../nixos/desktop-managers/gnome
-    ../../nixos/swap
-    ../../nixos/ssd
-    ../../nixos/pipewire
-    ../../nixos/impermanence
-    ../../nixos/fonts
-    ../../nixos/firewall
-    ../../nixos/thinkfan
-    ../../nixos/grub
-    ../../nixos/fwupd
-    ../../nixos/nvidia
-    ../../nixos/distributed-builds
-    ../../nixos/steam
-    # ../../nixos/opensnitch
-    ../../nixos/docker
-    ../../nixos/smart-cards
-    ../../nixos/tailscale
-    ../../nixos/kanata
-    ../../nixos/gaming
-    ../../nixos/virtualisation
+  ] ++ map (m: lib.custom.relativeToHosts m) [
+    "."
+  ] ++ map (m: lib.custom.relativeToNixosModules m) [
+    "desktop-managers/gnome"
+    "swap"
+    "ssd"
+    "pipewire"
+    "impermanence"
+    "fonts"
+    "firewall"
+    "thinkfan"
+    "grub"
+    "fwupd"
+    "nvidia"
+    "distributed-builds"
+    "steam"
+    "docker"
+    "smart-cards"
+    "tailscale"
+    "kanata"
+    "gaming"
+    "virtualisation"
   ];
 
   networking.hostName = "artemis";
@@ -45,7 +44,7 @@ in {
 
   fileSystems."/persistent".neededForBoot = true;
 
-  boot.loader.grub.useOSProber = mkForce true;
+  boot.loader.grub.useOSProber = lib.mkForce true;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

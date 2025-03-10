@@ -7,17 +7,17 @@ in {
       hostExtras = (./. + "/${hostName}.nix");
     in builtins.attrValues outputs.homeManagerModules ++ [
       inputs.impermanence.homeManagerModules.impermanence
-
-      ../../../home/tmux
-      ../../../home/dvorak
-      ../../../home/zsh
-      ../../../home/starship
-      ../../../home/openssh
-      ../../../home/secrets
-      ../../../home/catppuccin
-      ../../../home/tools
-      ../../../home/btop
-      ../../../home/vim
+    ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
+      "tmux"
+      "dvorak"
+      "zsh"
+      "starship"
+      "openssh"
+      "secrets"
+      "catppuccin"
+      "tools"
+      "btop"
+      "vim"
     ] ++ lib.optional (builtins.pathExists hostExtras) hostExtras;
 
   home = rec {

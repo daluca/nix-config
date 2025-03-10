@@ -50,8 +50,8 @@
   outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
   let
     inherit (self) outputs;
-    inherit (nixpkgs) lib;
     inherit (lib) nixosSystem;
+    lib = nixpkgs.lib.extend (_final: _prev: { custom = import ./lib { inherit lib; }; });
     secrets = fromTOML (builtins.readFile ./secrets/secrets.toml);
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
@@ -101,7 +101,7 @@
 
     nixosConfigurations.artemis = nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs system secrets; };
+      specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/artemis
       ];
@@ -109,7 +109,7 @@
 
     nixosConfigurations.stormwind = nixosSystem rec {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs system secrets; };
+      specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/stormwind
       ];
@@ -117,7 +117,7 @@
 
     nixosConfigurations.ironforge = nixosSystem rec {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs system secrets; };
+      specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/ironforge
       ];
@@ -125,7 +125,7 @@
 
     nixosConfigurations.darnassus = nixosSystem rec {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs system secrets; };
+      specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/darnassus
       ];
@@ -133,7 +133,7 @@
 
     nixosConfigurations.azeroth = nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs system secrets; };
+      specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/azeroth
       ];
@@ -141,15 +141,15 @@
 
     nixosConfigurations.unifi = nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs system secrets; };
+      specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/unifi
       ];
     };
 
-    images.iso = (nixosSystem {
+    images.iso = (nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs; };
+      specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./images/iso
       ];
@@ -157,19 +157,15 @@
 
     images.raspberry-pi-4 = (nixosSystem rec {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs system secrets; };
+      specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./images/raspberry-pi/4
-        {
-          nixpkgs.buildPlatform.system = "x86_64-linux";
-          nixpkgs.hostPlatform.system = system;
-        }
       ];
     }).config.system.build.sdImage;
 
     images.digitalocean = (nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs system secrets; };
+      specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./images/digitalocean
       ];

@@ -1,13 +1,16 @@
+{ lib, ... }:
+
 {
   imports = [
-    ../../images/raspberry-pi/4
-
-    ../.
-    ../../nixos/openssh/server
-    ../../nixos/tailscale/server
-    ../../nixos/adguardhome
-
     ./adguardhome.nix
+  ] ++ map (m: lib.custom.relativeToRoot m) [
+    "images/raspberry-pi/4"
+  ] ++ map (m: lib.custom.relativeToHosts m) [
+    "."
+  ] ++ map (m: lib.custom.relativeToNixosModules m) [
+    "openssh/server"
+    "tailscale/server"
+    "adguardhome"
   ];
 
   nix.settings.trusted-users = [ "@wheel" ];
