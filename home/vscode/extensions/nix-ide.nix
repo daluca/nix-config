@@ -1,15 +1,17 @@
 { pkgs, ...}:
-let
-  inherit (pkgs) nixd;
-  inherit (pkgs.open-vsx.jnoortheen) nix-ide;
-in {
+
+{
   programs.vscode = {
-    extensions = [
-      nix-ide
+    extensions = with pkgs.open-vsx; [
+      jnoortheen.nix-ide
     ];
     userSettings = {
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${nixd}/bin/nixd";
+      "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
+      "nix.hiddenLanguageServerErrors" = [
+        "textDocument/definition"
+        "textDocument/documentSymbol"
+      ];
       "files.associations" = {
         "flake.lock" = "json";
       };
