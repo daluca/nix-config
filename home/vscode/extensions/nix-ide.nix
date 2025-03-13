@@ -10,6 +10,9 @@ in {
     userSettings = {
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "${nixd}/bin/nixd";
+      "files.associations" = {
+        "flake.lock" = "json";
+      };
     };
   };
 }

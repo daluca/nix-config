@@ -53,9 +53,6 @@ in {
         "monospace"
       ];
       # Files
-      "files.associations" = {
-        "flake.lock" = "json";
-      };
       "files.exclude" = {
         "**/.jj" = true;
       };
