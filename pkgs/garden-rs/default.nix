@@ -1,4 +1,4 @@
-{ lib, fetchFromGitLab, rustPlatform }:
+{ lib, fetchFromGitLab, rustPlatform, wayland, libGL, libxkbcommon }:
 
 rustPlatform.buildRustPackage rec {
   pname = "garden-rs";
@@ -13,8 +13,19 @@ rustPlatform.buildRustPackage rec {
 
   cargoLock.lockFile = ./Cargo.lock;
 
+  cargoBuildFlags = [ "--workspace" ];
+
   postPatch = /* bash */ ''
     ln -s ${./Cargo.lock} Cargo.lock
+  '';
+
+  postFixup = /* bash */ ''
+    patchelf $out/bin/garden-gui \
+      --add-rpath ${lib.makeLibraryPath [
+        wayland
+        libGL
+        libxkbcommon
+      ]}
   '';
 
   doCheck = false;
