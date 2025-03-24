@@ -28,6 +28,7 @@
     "kanata"
     "gaming"
     "virtualisation"
+    "battery"
   ];
 
   networking.hostName = "artemis";
