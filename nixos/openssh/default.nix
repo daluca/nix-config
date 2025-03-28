@@ -40,7 +40,7 @@ in {
       publicKeyFile = ../../hosts/stormwind/keys/ssh_host_rsa_key.pub;
     };
     ironforge = {
-      extraHostNames = [ "ironforge.${domain}" "192.168.1.232" ];
+      extraHostNames = [ "ironforge.${domain}" "192.168.1.10" ];
       publicKeyFile = ../../hosts/ironforge/keys/ssh_host_ed25519_key.pub;
     };
     "ironforge/rsa" = {

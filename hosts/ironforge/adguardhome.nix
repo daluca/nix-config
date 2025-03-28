@@ -5,7 +5,7 @@ let
 in {
   services.adguardhome.settings = {
     dns = {
-      bind_hosts = [ "192.168.1.232" ];
+      bind_hosts = [ "192.168.1.10" ];
       upstream_dns = [
         "[//168.192.in-addr.arpa/${domain}/]192.168.1.1"
       ];
