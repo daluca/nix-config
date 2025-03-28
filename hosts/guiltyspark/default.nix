@@ -31,5 +31,9 @@
     "--advertise-routes=192.168.1.0/24"
   ];
 
+  networking.localCommands = /* bash */ ''
+    ip rule add to 192.168.1.0/24 priority 2500 lookup main
+  '';
+
   system.stateVersion = "24.11";
 }
