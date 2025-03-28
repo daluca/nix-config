@@ -131,11 +131,11 @@
       ];
     };
 
-    nixosConfigurations.azeroth = nixosSystem rec {
+    nixosConfigurations.guiltyspark = nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
-        ./hosts/azeroth
+        ./hosts/guiltyspark
       ];
     };
 

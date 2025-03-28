@@ -55,13 +55,13 @@ in {
       hostNames = [ "darnassus" ] ++ darnassus.extraHostNames;
       publicKeyFile = ../../hosts/darnassus/keys/ssh_host_rsa_key.pub;
     };
-    azeroth = {
-      extraHostNames = [ "azeroth.${domain}" "10.1.219.30" ];
-      publicKeyFile = ../../hosts/azeroth/keys/ssh_host_ed25519_key.pub;
+    guiltyspark = {
+      extraHostNames = [ "guiltyspark.${domain}" "10.1.219.30" ];
+      publicKeyFile = ../../hosts/guiltyspark/keys/ssh_host_ed25519_key.pub;
     };
-    "azeroth/rsa" = {
-      hostNames = [ "azeroth" ] ++ azeroth.extraHostNames;
-      publicKeyFile = ../../hosts/azeroth/keys/ssh_host_rsa_key.pub;
+    "guiltyspark/rsa" = {
+      hostNames = [ "guiltyspark" ] ++ guiltyspark.extraHostNames;
+      publicKeyFile = ../../hosts/guiltyspark/keys/ssh_host_rsa_key.pub;
     };
     gainas = {
       extraHostNames = [ "gainas.${domain}" "10.2.161.172" ];

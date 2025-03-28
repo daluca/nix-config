@@ -1,6 +1,6 @@
 {
   nix.buildMachines = [{
-    hostName = "azeroth";
+    hostName = "guiltyspark";
     system = "x86_64-linux";
     supportedFeatures = [
       "nixos-test"

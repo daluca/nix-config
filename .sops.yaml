@@ -6,7 +6,7 @@ keys:
       - &stormwind age173lrwtphyuvfjhkjvw4xe5fy4lt2x97qcjr2eqjt46eq6q664egqfsp4v3
       - &ironforge age16g33d2sppsukw7tekmh2d3ppf22sscwfmm0anppcrdtj9h5p7eqqrw9zg0
       - &darnassus age102lual882fvygyw47twjzl65uey33u2ps8ulcrr8g258vaafwvpqsj6hyy
-      - &azeroth age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm
+      - &guiltyspark age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm
       - &unifi age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2
 
 creation_rules:
@@ -30,11 +30,11 @@ creation_rules:
       - age:
           - *daluca
           - *darnassus
-  - path_regex: azeroth\.sops\.yaml$
+  - path_regex: guiltyspark\.sops\.yaml$
     key_groups:
       - age:
           - *daluca
-          - *azeroth
+          - *guiltyspark
   - path_regex: unifi\.sops\.yaml$
     key_groups:
       - age:
@@ -48,7 +48,7 @@ creation_rules:
           - *stormwind
           - *ironforge
           - *darnassus
-          - *azeroth
+          - *guiltyspark
           - *unifi
 
 stores:
