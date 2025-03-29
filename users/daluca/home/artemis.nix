@@ -38,14 +38,8 @@ in {
     "proton-bridge"
   ];
 
-  sops.secrets."id_ed25519" = {
-    sopsFile = ../daluca.sops.yaml;
-    path = ".ssh/id_ed25519";
-  };
 
   sops.secrets."gsconnect/private.pem".sopsFile = ../../../hosts/artemis/artemis.sops.yaml;
-
-  home.file.".ssh/id_ed25519.pub".source = ../keys/id_ed25519.pub;
 
   programs.zsh.sessionVariables = {
     ZSH_TMUX_AUTOSTART = "true";
