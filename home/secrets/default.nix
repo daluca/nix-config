@@ -1,11 +1,9 @@
+{ config, lib, ... }:
+
 {
   sops = {
-    defaultSopsFile = ../../secrets/secrets.sops.yaml;
-    age = {
-      sshKeyPaths = [
-        "/etc/ssh/ssh_host_ed25519_key"
-      ];
-    };
+    defaultSopsFile = lib.custom.relativeToRoot "secrets/secrets.sops.yaml";
+    age.keyFile = "${config.xdg.configHome}/sops/age/nix-config.txt";
   };
 
   home.persistence.home.directories = [
