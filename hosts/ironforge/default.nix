@@ -30,6 +30,10 @@
     "--hostname=idris"
   ];
 
+  networking.localCommands = /* bash */ ''
+    ip rule add to 192.168.1.0/24 priority 2500 lookup main
+  '';
+
   hardware.raspberry-pi.config.pi4 = {
     dt-overlays.gpio-fan = {
       enable = true;
