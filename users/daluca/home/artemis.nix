@@ -1,8 +1,6 @@
-{ config, lib, osConfig, ... }:
-let
-  inherit (config.xdg) configHome;
-  inherit (osConfig.networking) hostName;
-in {
+{ config, lib, ... }:
+
+{
   imports = map (m: lib.custom.relativeToHomeManagerModules m) [
     "desktop-managers/gnome"
     "impermanence"
@@ -38,12 +36,11 @@ in {
     "proton-bridge"
   ];
 
-
-  sops.secrets."gsconnect/private.pem".sopsFile = ../../../hosts/artemis/artemis.sops.yaml;
+  sops.secrets."gsconnect/private.pem".sopsFile = lib.custom.relativeToHosts "artemis/artemis.sops.yaml";
 
   programs.zsh.sessionVariables = {
     ZSH_TMUX_AUTOSTART = "true";
-    ZSH_TMUX_DEFAULT_SESSION_NAME = "${hostName}";
-    ZSH_TMUX_CONFIG = "${configHome}/tmux/tmux.conf";
+    ZSH_TMUX_DEFAULT_SESSION_NAME = "artemis";
+    ZSH_TMUX_CONFIG = "${config.xdg.configHome}/tmux/tmux.conf";
   };
 }
