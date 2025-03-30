@@ -16,6 +16,7 @@
     "sonarr"
     "radarr"
     "sabnzbd"
+    "qbittorrent"
     "nginx"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"

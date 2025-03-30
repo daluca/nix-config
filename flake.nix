@@ -74,6 +74,8 @@
 
     packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
 
+    nixosModules = import ./modules/nixos;
+
     homeManagerModules = import ./modules/home-manager;
 
     deploy = import ./hosts/deploy.nix { deploy-rs = inputs.deploy-rs; nixosConfigurations = self.nixosConfigurations; };

@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, outputs, ... }:
 
 {
-  imports = map (m: lib.custom.relativeToNixosModules m) [
+  imports = builtins.attrValues outputs.nixosModules ++ map (m: lib.custom.relativeToNixosModules m) [
     "dvorak"
     "home-manager"
     "openssh"
