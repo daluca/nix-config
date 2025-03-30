@@ -12,6 +12,11 @@
     "grub"
     "openssh/server"
     "tailscale/server"
+    "jellyfin"
+    "sonarr"
+    "radarr"
+    "sabnzbd"
+    "nginx"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
   ];

@@ -35,6 +35,8 @@
   ] ++ lib.optionals config.services.unifi.enable [
     "unifi-controller"
     "mongodb"
+  ] ++ lib.optionals config.services.sabnzbd.enable [
+    "unrar"
   ]);
 
   nix.gc = {
