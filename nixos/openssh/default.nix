@@ -56,7 +56,7 @@ in {
       publicKeyFile = ../../hosts/darnassus/keys/ssh_host_rsa_key.pub;
     };
     guiltyspark = {
-      extraHostNames = [ "guiltyspark.${domain}" "10.1.219.30" ];
+      extraHostNames = [ "guiltyspark.${domain}" "192.168.1.21" ];
       publicKeyFile = ../../hosts/guiltyspark/keys/ssh_host_ed25519_key.pub;
     };
     "guiltyspark/rsa" = {
