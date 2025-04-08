@@ -33,6 +33,8 @@
 
   networking.hostName = "artemis";
 
+  time.timeZone = lib.mkForce "Europe/Amsterdam";
+
   nix.settings.warn-dirty = false;
 
   sops.secrets."ssh_host_ed25519_key".sopsFile = ./artemis.sops.yaml;

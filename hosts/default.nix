@@ -56,7 +56,7 @@
     package = pkgs.nix-ld-rs;
   };
 
-  time.timeZone = "Pacific/Auckland";
+  time.timeZone = "Etc/UTC";
 
   i18n = {
     defaultLocale = "en_NZ.UTF-8";
