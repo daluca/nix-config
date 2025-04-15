@@ -4,6 +4,7 @@
   services.sabnzbd = {
     enable = true;
     openFirewall = true;
+    group = "starr";
   };
 
   services.nginx.virtualHosts = {

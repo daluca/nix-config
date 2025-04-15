@@ -20,6 +20,7 @@
     "nginx"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
+    "starr"
   ];
 
   networking = {
