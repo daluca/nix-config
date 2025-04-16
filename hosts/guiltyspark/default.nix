@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ config, lib, pkgs, secrets, inputs, ... }:
 
 {
   imports = [
@@ -41,6 +41,20 @@
   networking.localCommands = /* bash */ ''
     ip rule add to 192.168.1.0/24 priority 2500 lookup main || true
   '';
+
+  security.acme.certs.${secrets.parents.domain} = {
+    domain = "*.${secrets.parents.domain}";
+    group = "nginx";
+    dnsProvider = "cloudflare";
+    environmentFile = "${pkgs.writeText "cloudflare-credentials" ''
+      CLOUDFLARE_DNS_API_TOKEN_FILE=${config.sops.secrets."cloudflare/apitoken".path}
+    ''}";
+  };
+
+  sops.secrets."cloudflare/apitoken" = {
+    owner = "acme";
+    sopsFile = ./guiltyspark.sops.yaml;
+  };
 
   system.stateVersion = "24.11";
 }
