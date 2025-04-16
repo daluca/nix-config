@@ -15,6 +15,7 @@
     "jellyfin"
     "sonarr"
     "radarr"
+    "prowlarr"
     "sabnzbd"
     "qbittorrent"
     "nginx"
