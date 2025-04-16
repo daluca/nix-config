@@ -13,6 +13,7 @@
     "openssh/server"
     "tailscale/server"
     "jellyfin"
+    "plex"
     "sonarr"
     "radarr"
     "prowlarr"
