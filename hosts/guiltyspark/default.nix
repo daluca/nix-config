@@ -19,6 +19,7 @@
     "prowlarr"
     "sabnzbd"
     "qbittorrent"
+    "jellyseerr"
     "nginx"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
