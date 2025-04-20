@@ -1,6 +1,7 @@
 { config, secrets, ... }:
 let
   allowDomain = domain: "@@||${domain}^";
+  blockDomain = domain: "||${domain}^";
 in {
   services.adguardhome.settings = {
     dns = {
@@ -18,6 +19,8 @@ in {
     };
     user_rules = map (d: allowDomain d) [
       "opinionstage.com"
+    ] ++ map (d: blockDomain d) [
+      "ota.onecloud.harman.com"
     ];
   };
 }
