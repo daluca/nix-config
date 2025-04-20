@@ -1,15 +1,16 @@
 { lib, pkgs, ... }:
 let
-  inherit (pkgs) unifi8 mongodb-7_0;
+  inherit (pkgs) unifi mongodb-7_0;
 in {
   services.unifi = {
     enable = true;
-    unifiPackage = unifi8.overrideAttrs (oldAttrs: rec {
-      version = "8.6.9";
+    # TODO: Remove package override in NixOS 25.05
+    unifiPackage = unifi.overrideAttrs (oldAttrs: rec {
+      version = "9.0.114";
 
       src = pkgs.fetchurl {
         url = "https://dl.ubnt.com/unifi/${version}/unifi_sysvinit_all.deb";
-        sha256 = "sha256-004ZJEoj23FyFEBznqrpPzQ9E6DYpD7gBxa3ewSunIo=";
+        sha256 = "sha256-3xumIIzr+tx60kPhPfSs2Kz2iJ39Kt5934Vca/MpUu4=";
       };
     });
     mongodbPackage = mongodb-7_0;
