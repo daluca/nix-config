@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   inherit (pkgs.nur.repos.rycee.firefox-addons) ublock-origin;
   hide-youtube-short = "https://github.com/gijsdev/ublock-hide-yt-shorts/raw/refs/tags/v1.10.0/list.txt";
@@ -32,6 +32,14 @@ in
       "easylist-notifications"
       "easylist-annoyances"
       hide-youtube-short
+    ];
+    userFilters = let
+      youtube-rows = builtins.toString 5;
+    in lib.concatStringsSep "\n" [
+      "youtube.com##ytd-rich-grid-row, #contents.ytd-rich-grid-row:style(display:contents !important;)"
+      "youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-items-per-row: ${youtube-rows} !important;)"
+      "youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-posts-per-row: ${youtube-rows} !important;)"
+      "youtube.com##ytd-browse[page-subtype=\"home\"] ytd-rich-section-renderer"
     ];
   };
 }
