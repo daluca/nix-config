@@ -1,9 +1,8 @@
 { pkgs, ... }:
-let
-  inherit (pkgs.unstable) signal-desktop-source;
-in {
+
+{
   home.packages = [
-    signal-desktop-source
+    pkgs.unstable.signal-desktop
   ];
 
   home.persistence.home.directories = [
