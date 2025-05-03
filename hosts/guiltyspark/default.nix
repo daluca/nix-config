@@ -1,6 +1,7 @@
-{ config, lib, pkgs, secrets, inputs, ... }:
-
-{
+{ config, lib, pkgs, inputs, ... }@args:
+let
+  secrets = args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
+in {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.disko.nixosModules.disko
@@ -20,6 +21,7 @@
     "sabnzbd"
     "qbittorrent"
     "jellyseerr"
+    "jellyplex-watched"
     "nginx"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
@@ -57,6 +59,12 @@
   sops.secrets."cloudflare/apitoken" = {
     owner = "acme";
     sopsFile = ./guiltyspark.sops.yaml;
+  };
+
+  services.jellyplex-watched = {
+    mappings.users = secrets.jellyplex-watched.users;
+    plex.tokens = [ secrets.plex.token ];
+    jellyfin.tokens = [ secrets.jellyfin.token ];
   };
 
   system.stateVersion = "24.11";

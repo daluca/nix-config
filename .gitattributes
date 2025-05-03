@@ -1,2 +1,2 @@
-secrets/secrets.toml filter=git-agecrypt diff=git-agecrypt
-secrets/*.sops.yaml diff=sopsdiffer
+**/secrets.toml filter=git-agecrypt diff=git-agecrypt
+**.sops.yaml diff=sopsdiffer
