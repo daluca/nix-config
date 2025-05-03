@@ -55,13 +55,17 @@
     secrets = fromTOML (builtins.readFile ./secrets/secrets.toml);
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    pkgs' = system: import nixpkgs {
+      inherit system;
+      overlays = with inputs; builtins.attrValues self.overlays ++ [
+        nur.overlays.default
+        nix-vscode-extensions.overlays.default
+      ];
+    };
   in {
     checks = forAllSystems (system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = builtins.attrValues self.overlays;
-        };
+        pkgs = pkgs' system;
       in {
         pre-commit = git-hooks.lib.${system}.run {
           src = ./.;
@@ -72,7 +76,12 @@
 
     overlays = import ./overlays { inherit lib inputs; };
 
-    packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
+    packages = forAllSystems (system:
+      let
+        pkgs = pkgs' system;
+      in
+        import ./pkgs { inherit pkgs; }
+    );
 
     nixosModules = import ./modules/nixos;
 
@@ -82,7 +91,7 @@
 
     devShells = forAllSystems (system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = pkgs' system;
         pre-commit = self.checks.${system}.pre-commit;
       in {
         default = pkgs.mkShell {
