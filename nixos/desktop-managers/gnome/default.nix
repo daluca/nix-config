@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  inherit (pkgs) gnome-settings-daemon gnome-tour epiphany geary yelp gnome-text-editor;
+  inherit (pkgs) gnome-settings-daemon gnome-tour epiphany geary yelp gnome-text-editor papers;
   inherit (pkgs.gnomeExtensions) appindicator;
   inherit (config.programs) firefox;
 in {
@@ -21,6 +21,7 @@ in {
 
   environment.systemPackages = [
     appindicator
+    papers
   ];
 
   services.udev.packages = [
