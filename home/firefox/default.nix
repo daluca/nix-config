@@ -105,6 +105,7 @@ in {
         "browser.toolbars.bookmarks.visibility" = "never";
         "browser.newtabpage.activity-stream.topSitesRows" = 3;
         "browser.uiCustomization.state" = import ./layout.nix;
+        "browser.tabs.groups.enabled" = true;
         # Privacy
         "privacy.donottrackheader.enabled" = true;
         "privacy.globalprivacycontrol.enabled" = true;
