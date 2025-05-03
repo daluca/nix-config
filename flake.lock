@@ -622,8 +622,7 @@
         "nixvim-config": "nixvim-config",
         "nur": "nur",
         "raspberry-pi-nix": "raspberry-pi-nix",
-        "sops-nix": "sops-nix",
-        "terraform-oss": "terraform-oss"
+        "sops-nix": "sops-nix"
       }
     },
     "rpi-bluez-firmware-src": {
@@ -807,22 +806,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "terraform-oss": {
-      "locked": {
-        "lastModified": 1695837737,
-        "narHash": "sha256-KcqmJ5hNacLuE7fkz5586kp/vt4NLo6+Prq3DMgrxpQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "517501bcf14ae6ec47efd6a17dda0ca8e6d866f9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "517501bcf14ae6ec47efd6a17dda0ca8e6d866f9",
         "type": "github"
       }
     },

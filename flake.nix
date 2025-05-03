@@ -22,8 +22,6 @@
     disko.url = "github:nix-community/disko/v1.11.0";
     disko.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    terraform-oss.url = "github:nixos/nixpkgs/517501bcf14ae6ec47efd6a17dda0ca8e6d866f9";
-
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
