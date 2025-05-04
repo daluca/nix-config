@@ -13,6 +13,7 @@ in {
     "grub"
     "openssh/server"
     "tailscale/server"
+    "cockpit"
     "jellyfin"
     "plex"
     "sonarr"
