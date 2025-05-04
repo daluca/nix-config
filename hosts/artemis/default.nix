@@ -20,7 +20,6 @@
     "grub"
     "fwupd"
     "nvidia"
-    "distributed-builds"
     "steam"
     "docker"
     "smart-cards"
