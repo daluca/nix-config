@@ -1,7 +1,7 @@
-{ inputs, system, ... }:
+{ pkgs, ... }:
 
 {
-  home.packages = with inputs.terraform-oss.legacyPackages.${system}.pkgs; [
+  home.packages = with pkgs; [
     terraform
   ];
 
