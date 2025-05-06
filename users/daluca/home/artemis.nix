@@ -35,6 +35,7 @@
     "gaming"
     "proton-bridge"
     "whatsapp"
+    "qrrs"
   ];
 
   sops.secrets."gsconnect/private.pem".sopsFile = lib.custom.relativeToHosts "artemis/artemis.sops.yaml";
