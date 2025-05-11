@@ -10,6 +10,7 @@
     ./clearurls.nix
     ./bypass-paywalls-clean.nix
     ./linkwarden.nix
+    ./consent-o-matic.nix
   ];
 
   programs.firefox.policies = {
