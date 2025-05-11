@@ -1,17 +1,16 @@
 { pkgs, ... }:
-let
-  inherit (pkgs) jq yq-go curl wl-clipboard file unzip dig;
-in {
+
+{
   imports = [
     ../fzf
     ../gron
     ../zoxide
     ../delta
     ./ripgrep
+    ./jq.nix
   ];
 
-  home.packages = [
-    jq
+  home.packages = with pkgs; [
     yq-go
     curl
     wl-clipboard
