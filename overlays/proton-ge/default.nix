@@ -13,6 +13,16 @@ final: prev: {
     '';
   });
 
+  GE-Proton10-1 = final.proton-ge-versioned.overrideAttrs rec {
+    pname = "GE-Proton10";
+    version = "1";
+
+    src = prev.fetchzip {
+      url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${pname}-${version}/${pname}-${version}.tar.gz";
+      hash = "sha256-sGKmfdxZK2quI7QamIGRaW1/ElwS/gJPeE4Tvh6icUo=";
+    };
+  };
+
   GE-Proton9-27 = final.proton-ge-versioned.overrideAttrs rec {
     pname = "GE-Proton9";
     version = "27";
