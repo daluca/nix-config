@@ -2,13 +2,13 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "garden-rs";
-  version = "2.1.0";
+  version = "2.2.0";
 
   src = fetchFromGitLab {
     owner = "garden-rs";
     repo = "garden";
     rev = "v${version}";
-    hash = "sha256-clgYWxKcnm2NTAlYh5u8/ryDV6KnH1dOavMj+Cj7FEo=";
+    hash = "sha256-HZY/4rXYFK+2L8ONF+tt2rxR1OzkzeLck3wvKbaETXw=";
   };
 
   cargoLock.lockFile = ./Cargo.lock;
