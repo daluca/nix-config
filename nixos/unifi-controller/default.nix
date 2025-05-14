@@ -1,11 +1,10 @@
 { lib, pkgs, ... }:
-let
-  inherit (pkgs) unifi mongodb-7_0;
-in {
+
+{
   services.unifi = {
     enable = true;
     # TODO: Remove package override in NixOS 25.05
-    unifiPackage = unifi.overrideAttrs (oldAttrs: rec {
+    unifiPackage = pkgs.unifi.overrideAttrs (oldAttrs: rec {
       version = "9.0.114";
 
       src = pkgs.fetchurl {
@@ -13,7 +12,7 @@ in {
         sha256 = "sha256-3xumIIzr+tx60kPhPfSs2Kz2iJ39Kt5934Vca/MpUu4=";
       };
     });
-    mongodbPackage = mongodb-7_0;
+    mongodbPackage = pkgs.mongodb-ce;
     openFirewall = true;
   };
 

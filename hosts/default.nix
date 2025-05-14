@@ -34,7 +34,7 @@
     "steam-unwrapped"
   ] ++ lib.optionals config.services.unifi.enable [
     "unifi-controller"
-    "mongodb"
+    "mongodb-ce"
   ] ++ lib.optionals config.services.sabnzbd.enable [
     "unrar"
   ]);
