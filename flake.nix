@@ -45,11 +45,11 @@
     nixvim-config.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, git-hooks, ...} @ inputs:
+  outputs = {self, nixpkgs, home-manager, git-hooks, ...} @ inputs:
   let
     inherit (self) outputs;
-    inherit (lib) nixosSystem;
-    lib = nixpkgs.lib.extend (_final: _prev: { custom = import ./lib { inherit lib; }; });
+    inherit (lib) nixosSystem homeManagerConfiguration;
+    lib = nixpkgs.lib.extend (_final: _prev: { custom = import ./lib { inherit lib; }; } // home-manager.lib);
     secrets = fromTOML (builtins.readFile ./secrets/secrets.toml);
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
@@ -153,6 +153,30 @@
       specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/unifi
+      ];
+    };
+
+    homeConfigurations."lucas.slebos@RRS-A00690" =
+    let
+      system = "x86_64-linux";
+      pkgs = pkgs' system;
+    in homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = { inherit inputs outputs lib system secrets; hostname = "RRS-A00746"; };
+      modules = [
+        ./users/lucas.slebos/home
+      ];
+    };
+
+    homeConfigurations."lucas.slebos@RRS-A00746" =
+    let
+      system = "x86_64-linux";
+      pkgs = pkgs' system;
+    in homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = { inherit inputs outputs lib system secrets; hostname = "RRS-A00746"; };
+      modules = [
+        ./users/lucas.slebos/home
       ];
     };
 
