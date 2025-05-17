@@ -29,6 +29,7 @@
           "ls"
           "misc"
           "mkdir"
+          "mkfifo"
           "mv"
           "od"
           "pr"
