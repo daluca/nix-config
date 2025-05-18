@@ -27,7 +27,6 @@ in {
       nix_shell = {
         disabled = false;
         symbol = " ";
-        heuristic = true;
       };
       os = {
         disabled = false;
