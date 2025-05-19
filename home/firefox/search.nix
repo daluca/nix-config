@@ -8,6 +8,7 @@ in {
   programs.firefox.profiles.${config.home.username}.search = {
     force = true;
     default = "Kagi";
+    privateDefault = "Kagi";
     order = [
       "Kagi"
       "Brave"
