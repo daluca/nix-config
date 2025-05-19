@@ -9,6 +9,7 @@ in {
     enable = true;
     shortcut = "a";
     baseIndex = 1;
+    historyLimit = 50000;
     secureSocket = true;
     extraConfig = /* tmux */ ''
       # Keybindings
