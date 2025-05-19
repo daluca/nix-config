@@ -43,6 +43,9 @@
 
     nixvim-config.url = "github:daluca/nixvim-config";
     nixvim-config.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    nixgl.url = "github:nix-community/nixgl";
+    nixgl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {self, nixpkgs, home-manager, git-hooks, ...} @ inputs:
@@ -55,9 +58,11 @@
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     pkgs' = system: import nixpkgs {
       inherit system;
+      config.allowUnfree = true;
       overlays = with inputs; builtins.attrValues self.overlays ++ [
         nur.overlays.default
         nix-vscode-extensions.overlays.default
+        nixgl.overlays.default
       ];
     };
   in {

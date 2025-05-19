@@ -1,22 +1,19 @@
-{ config, lib, pkgs, osConfig, ... }:
-let
-  inherit (pkgs.unstable) alacritty;
-  inherit (lib) mkIf;
-  inherit (config.programs) zsh;
-  inherit (osConfig.services.xserver.desktopManager) gnome;
-  font = "MesloLGS Nerd Font";
-in {
+{ config, pkgs, ... }:
+
+{
   programs.alacritty = {
     enable = true;
-    package = alacritty;
+    package = pkgs.unstable.alacritty;
     settings = {
-      terminal.shell = "${zsh.package}/bin/zsh";
-      font = {
+      terminal.shell = "${config.programs.zsh.package}/bin/zsh";
+      font = let
+        font = "MesloLGS Nerd Font";
+      in {
         size = 11.0;
-	      normal.family = "${font}";
-	      bold.family = "${font}";
-	      italic.family = "${font}";
-	      bold_italic.family = "${font}";
+	      normal.family = font;
+	      bold.family = font;
+	      italic.family = font;
+	      bold_italic.family = font;
       };
     };
   };
@@ -25,10 +22,9 @@ in {
 
   # TODO: Remove when underlying issue has been fixed
   # https://github.com/NixOS/nixpkgs/issues/22652
-  #
   # This is a workaround to for the cursor disappearing over Alacritty
   # https://github.com/alacritty/alacritty/issues/4780#issuecomment-890408502
-  home.sessionVariables = mkIf gnome.enable {
+  home.sessionVariables = {
     XCURSOR_THEME = "Adwaita";
   };
 }

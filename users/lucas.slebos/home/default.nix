@@ -9,10 +9,12 @@
       inputs.catppuccin.homeModules.default
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "ansible"
+      "alacritty"
       "bitwarden"
       "btop"
       "direnv"
       "fonts"
+      "ghostty"
       "git"
       "gron"
       "kubernetes"
@@ -35,6 +37,24 @@
   };
 
   home.persistence.home.enable = lib.mkDefault false;
+
+  home.packages = with pkgs; [
+    nixgl.nixGLIntel
+  ];
+
+  programs.alacritty.package = lib.mkForce (pkgs.unstable.alacritty.overrideAttrs (_: {
+    postFixup = /* bash */ ''
+      ${pkgs.gnused}/bin/sed -i "s|^Exec=alacritty|Exec=nixGLIntel alacritty|" $out/share/applications/Alacritty.desktop
+      chmod 0444 $out/share/applications/Alacritty.desktop
+    '';
+  }));
+
+  programs.ghostty.package = lib.mkForce (pkgs.unstable.ghostty.overrideAttrs (oldAttrs: {
+    postFixup = oldAttrs.postFixup + /* bash */ ''
+      substituteInPlace $out/share/applications/com.mitchellh.ghostty.desktop \
+        --replace Exec=ghostty "Exec=nixGLIntel ghostty"
+    '';
+  }));
 
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
