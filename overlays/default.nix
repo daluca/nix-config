@@ -59,6 +59,7 @@
         "nvidia-x11"
         "nvidia-settings"
         "plexmediaserver"
+        "slack"
       ];
     };
   };

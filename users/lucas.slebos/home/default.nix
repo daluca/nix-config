@@ -22,6 +22,7 @@
       "logseq"
       "neovim"
       "qrrs"
+      "slack"
       "starship"
       "tmux"
       "tools"
