@@ -1,27 +1,22 @@
-{ config, lib, pkgs, ... }:
-let
-  inherit (lib) toLower;
-  inherit (pkgs) tmuxPlugins;
-  inherit (config.programs) zsh;
-  inherit (config.themes) catppuccin;
-in {
+{ config, pkgs, ... }:
+
+{
   programs.tmux = {
     enable = true;
     shortcut = "a";
     baseIndex = 1;
     historyLimit = 50000;
     secureSocket = true;
-    extraConfig = /* tmux */ ''
+    extraConfig = with pkgs.tmuxPlugins; /* tmux */ ''
       # Keybindings
-      bind C-r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded..."
+      bind C-r source-file ${config.xdg.configHome}/tmux/tmux.conf \; display-message "Config reloaded..."
       bind a send-prefix
       # Plugins
-      run-shell ${tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
-      run-shell ${tmuxPlugins.yank}/share/tmux-plugins/yank/yank.tmux
-      # Config
-      set -g @catppuccin_flavour '${toLower catppuccin.flavour}'
+      run-shell ${yank}/share/tmux-plugins/yank/yank.tmux
+      run-shell ${cpu}/share/tmux-plugins/cpu/cpu.tmux
+      run-shell ${battery}/share/tmux-plugins/battery/battery.tmux
     '';
-    shell = "${zsh.package}/bin/zsh";
+    shell = "${config.programs.zsh.package}/bin/zsh";
     terminal = "screen-256color";
   };
 
@@ -32,6 +27,21 @@ in {
     oh-my-zsh.plugins = [
       "tmux"
     ];
+  };
+
+  catppuccin.tmux = {
+    enable = true;
+    extraConfig = /* tmux */ ''
+      set -g @catppuccin_window_status_style "rounded"
+      set -g status-right-length 100
+      set -g status-left-length 100
+      set -g status-left ""
+      set -g status-right "#{E:@catppuccin_status_application}"
+      set -agF status-right "#{E:@catppuccin_status_cpu}"
+      set -ag status-right "#{E:@catppuccin_status_session}"
+      set -ag status-right "#{E:@catppuccin_status_uptime}"
+      set -agF status-right "#{E:@catppuccin_status_battery}"
+    '';
   };
 
   programs.fzf.tmux.enableShellIntegration = true;
