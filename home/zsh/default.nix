@@ -41,7 +41,7 @@
     profileExtra = /* zsh */ /* bash */ ''
       export DISABLE_TMUX_AUTOSTART=true
     '';
-    initExtra = lib.mkAfter /* zsh */ /* bash */ ''
+    initContent = lib.mkOrder 500 /* zsh */ /* bash */ ''
       [[ -n "''${DISABLE_TMUX_AUTOSTART}" ]] || export ZSH_TMUX_AUTOSTART=true
 
       autoload -Uz add-zle-hook-widget

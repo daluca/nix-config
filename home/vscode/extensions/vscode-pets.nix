@@ -2,7 +2,7 @@
 let
   inherit (pkgs.open-vsx.tonybaloney) vscode-pets;
 in {
-  programs.vscode = {
+  programs.vscode.profiles.default = {
     extensions = [
       vscode-pets
     ];

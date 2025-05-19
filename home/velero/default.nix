@@ -13,7 +13,7 @@
     namespace = "backups";
   };
 
-  programs.zsh.initExtra = /* zsh */ ''
+  programs.zsh.initContent = /* zsh */ ''
     if [[ -x "$( command -v velero )" ]]; then
       eval "$(${pkgs.unstable.velero}/bin/velero completion zsh)"
     fi

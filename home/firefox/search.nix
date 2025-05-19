@@ -5,7 +5,7 @@ let
   inherit (osConfig) system;
   inherit (secrets) kagi;
 in {
-  programs.firefox.profiles."${username}".search = {
+  programs.firefox.profiles.${config.home.username}.search = {
     force = true;
     default = "Kagi";
     order = [
@@ -17,11 +17,11 @@ in {
       "Noogle"
       "Home Manager Options"
       "Nixpkgs issues"
-      "YouTube"
+      "youtube"
       "GitHub"
       "Steam"
       "ProtonDB"
-      "Wikipedia (en)"
+      "wikipedia"
     ];
     engines = {
       "Kagi" = {
@@ -198,10 +198,13 @@ in {
         };
         definedAliases = [ "@protondb" "@pdb" ];
       };
-      "Wikipedia (en)".metaData.alias = "@wiki";
-      "Google".metaData.hidden = true;
-      "Bing".metaData.hidden = true;
-      "DuckDuckGo".metaData.hidden = true;
+      wikipedia.metaData.alias = "@wiki";
+      ebay-nl.metaData.hidden = true;
+      ecosia.metaData.hidden = true;
+      google.metaData.hidden = true;
+      qwant.metaData.hidden = true;
+      bing.metaData.hidden = true;
+      ddg.metaData.hidden = true;
     };
   };
 }

@@ -49,55 +49,57 @@ in {
         "2700" /* ENHANCED TRACKING PROTECTION */ = {
           enable = true;
         };
+      bookmarks = {
+        force = true;
+        settings = [
+          {
+            name = "Radio New Zealand";
+            tags = [ "news" ];
+            url = "https://www.rnz.co.nz/";
+          }
+          {
+            name = "Hacker News";
+            tags = [ "social" ];
+            url = "https://news.ycombinator.com/";
+          }
+          {
+            name = "YouTube";
+            tags = [ "media" ];
+            keyword = "yt";
+            url = "https://www.youtube.com/";
+          }
+          {
+            name = "Cricinfo";
+            tags = [ "sports" ];
+            keyword = "cric";
+            url = "https://www.espncricinfo.com/";
+          }
+          {
+            name = "Nextcloud";
+            url = "https://cloud.${cloud.domain}/";
+          }
+          {
+            name = "Miniflux";
+            url = "https://feeds.${cloud.domain}/";
+          }
+          {
+            name = "Linkwarden";
+            url = "https://links.${cloud.domain}/";
+          }
+          {
+            name = "Mealie";
+            url = "https://mealie.${cloud.domain}/";
+          }
+          {
+            name = "RSS Bridge";
+            url = "https://rssbridge.${cloud.domain}/";
+          }
+          {
+            name = "Public WiFi Login";
+            url = "http://nmcheck.gnome.org/";
+          }
+        ];
       };
-      bookmarks = [
-        {
-          name = "Radio New Zealand";
-          tags = [ "news" ];
-          url = "https://www.rnz.co.nz/";
-        }
-        {
-          name = "Hacker News";
-          tags = [ "social" ];
-          url = "https://news.ycombinator.com/";
-        }
-        {
-          name = "YouTube";
-          tags = [ "media" ];
-          keyword = "yt";
-          url = "https://www.youtube.com/";
-        }
-        {
-          name = "Cricinfo";
-          tags = [ "sports" ];
-          keyword = "cric";
-          url = "https://www.espncricinfo.com/";
-        }
-        {
-          name = "Nextcloud";
-          url = "https://cloud.${cloud.domain}/";
-        }
-        {
-          name = "Miniflux";
-          url = "https://feeds.${cloud.domain}/";
-        }
-        {
-          name = "Linkwarden";
-          url = "https://links.${cloud.domain}/";
-        }
-        {
-          name = "Mealie";
-          url = "https://mealie.${cloud.domain}/";
-        }
-        {
-          name = "RSS Bridge";
-          url = "https://rssbridge.${cloud.domain}/";
-        }
-        {
-          name = "Public WiFi Login";
-          url = "http://nmcheck.gnome.org/";
-        }
-      ];
       settings = {
         # Browser
         "browser.contentblocking.category" = "strict";

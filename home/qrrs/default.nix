@@ -11,7 +11,7 @@
     fi
   '';
 
-  programs.zsh.initExtra = /* zsh */ /* bash */ ''
+  programs.zsh.initContent = /* zsh */ /* bash */ ''
     if [[ $options[zle] = on ]]; then
       eval "$(${pkgs.qrrs}/bin/qrrs --generate-completions zsh)"
     fi

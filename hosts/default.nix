@@ -73,5 +73,5 @@
 
   users.mutableUsers = false;
 
-  hardware.pulseaudio.enable = true;
+  services.pulseaudio.enable = true;
 }

@@ -2,7 +2,7 @@
 let
   inherit (lib) mkForce;
 in {
-  hardware.pulseaudio.enable = mkForce false;
+  services.pulseaudio.enable = mkForce false;
 
   security.rtkit.enable = true;
 

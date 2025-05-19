@@ -11,7 +11,7 @@ in {
     signing = {
       key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
       signByDefault = true;
-      gpgPath = "${gpg.package}/bin/gpg";
+      signer = "${gpg.package}/bin/gpg";
     };
     ignores = [
       "/.vscode/"

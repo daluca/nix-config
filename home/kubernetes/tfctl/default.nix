@@ -6,7 +6,7 @@ in {
     tfctl
   ];
 
-  programs.zsh.initExtra = /* zsh */ /* bash */ ''
+  programs.zsh.initContent = /* zsh */ /* bash */ ''
     eval "$(${tfctl}/bin/tfctl completion zsh)"; compdef _tfctl tfctl
   '';
 }

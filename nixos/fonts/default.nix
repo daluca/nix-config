@@ -1,7 +1,8 @@
 { pkgs, ... }:
 
 {
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Meslo" "FiraCode" ]; })
+  fonts.packages = with pkgs.nerd-fonts; [
+    meslo-lg
+    fira-code
   ];
 }
