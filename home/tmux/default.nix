@@ -25,9 +25,14 @@ in {
     terminal = "screen-256color";
   };
 
-  programs.zsh.oh-my-zsh.plugins = [
-    "tmux"
-  ];
+  programs.zsh = {
+    sessionVariables = {
+      ZSH_TMUX_CONFIG = "${config.xdg.configHome}/tmux/tmux.conf";
+    };
+    oh-my-zsh.plugins = [
+      "tmux"
+    ];
+  };
 
   programs.fzf.tmux.enableShellIntegration = true;
 }

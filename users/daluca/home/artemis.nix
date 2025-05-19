@@ -41,8 +41,6 @@
   sops.secrets."gsconnect/private.pem".sopsFile = lib.custom.relativeToHosts "artemis/artemis.sops.yaml";
 
   programs.zsh.sessionVariables = {
-    ZSH_TMUX_AUTOSTART = "true";
     ZSH_TMUX_DEFAULT_SESSION_NAME = "artemis";
-    ZSH_TMUX_CONFIG = "${config.xdg.configHome}/tmux/tmux.conf";
   };
 }

@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
-let
-  inherit (lib) mkAfter;
-  inherit (pkgs) fetchFromGitHub;
-in {
+
+{
   programs.zsh = rec {
     enable = true;
     dotDir = ".config/zsh";
@@ -26,7 +24,7 @@ in {
       {
         name = "zsh-nix-shell";
         file = "nix-shell.plugin.zsh";
-        src = fetchFromGitHub {
+        src = pkgs.fetchFromGitHub {
           owner = "chisui";
           repo = "zsh-nix-shell";
           rev = "v0.8.0";
@@ -40,7 +38,12 @@ in {
         "sudo"
       ];
     };
-    initExtra = mkAfter /* zsh */ /* bash */ ''
+    profileExtra = /* zsh */ /* bash */ ''
+      export DISABLE_TMUX_AUTOSTART=true
+    '';
+    initExtra = lib.mkAfter /* zsh */ /* bash */ ''
+      [[ -n "''${DISABLE_TMUX_AUTOSTART}" ]] || export ZSH_TMUX_AUTOSTART=true
+
       autoload -Uz add-zle-hook-widget
       add-zle-hook-widget line-finish transient-prompt
 
