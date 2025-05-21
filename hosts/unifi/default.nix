@@ -17,5 +17,5 @@
 
   sops.secrets."ssh_host_rsa_key".sopsFile = ./unifi.sops.yaml;
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }
