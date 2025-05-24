@@ -1,16 +1,7 @@
-{ config, lib, secrets, inputs, ... }:
+{ config, lib, secrets, ... }:
 let
   cert = config.security.acme.certs.${secrets.parents.domain};
 in {
-  # TODO: Remove when updated to 25.05
-  # https://github.com/NixOS/nixpkgs/issues/370118
-  # Workaround is to import unstable module
-  disabledModules = [ "services/monitoring/cockpit.nix" ];
-
-  imports = [
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/monitoring/cockpit.nix"
-  ];
-
   services.cockpit = {
     enable = true;
     openFirewall = true;
