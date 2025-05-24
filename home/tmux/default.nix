@@ -9,12 +9,23 @@
     secureSocket = true;
     clock24 = true;
     sensibleOnTop = true;
+    plugins = with pkgs.tmuxPlugins; [
+      yank
+    ];
     extraConfig = with pkgs.tmuxPlugins; /* tmux */ ''
       # Keybindings
       bind C-r source-file ${config.xdg.configHome}/tmux/tmux.conf \; display-message "Config reloaded..."
       bind a send-prefix
+      # Status bar
+      set -g status-right-length 100
+      set -g status-left-length 100
+      set -g status-left ""
+      set -g status-right "#{E:@catppuccin_status_application}"
+      set -agF status-right "#{E:@catppuccin_status_cpu}"
+      set -ag status-right "#{E:@catppuccin_status_session}"
+      set -ag status-right "#{E:@catppuccin_status_uptime}"
+      set -agF status-right "#{E:@catppuccin_status_battery}"
       # Plugins
-      run-shell ${yank}/share/tmux-plugins/yank/yank.tmux
       run-shell ${cpu}/share/tmux-plugins/cpu/cpu.tmux
       run-shell ${battery}/share/tmux-plugins/battery/battery.tmux
     '';
@@ -35,14 +46,6 @@
     enable = true;
     extraConfig = /* tmux */ ''
       set -g @catppuccin_window_status_style "rounded"
-      set -g status-right-length 100
-      set -g status-left-length 100
-      set -g status-left ""
-      set -g status-right "#{E:@catppuccin_status_application}"
-      set -agF status-right "#{E:@catppuccin_status_cpu}"
-      set -ag status-right "#{E:@catppuccin_status_session}"
-      set -ag status-right "#{E:@catppuccin_status_uptime}"
-      set -agF status-right "#{E:@catppuccin_status_battery}"
     '';
   };
 
