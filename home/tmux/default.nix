@@ -7,6 +7,7 @@
     baseIndex = 1;
     historyLimit = 50000;
     secureSocket = true;
+    clock24 = true;
     sensibleOnTop = true;
     extraConfig = with pkgs.tmuxPlugins; /* tmux */ ''
       # Keybindings
