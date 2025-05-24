@@ -68,6 +68,12 @@ in {
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
     };
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "firefox.desktop"
+        "com.mitchellh.ghostty.desktop"
+      ];
+    };
     "org/gnome/GWeather4" = {
       temperature-unit = "centigrade";
     };
