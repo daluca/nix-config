@@ -7,6 +7,7 @@
     baseIndex = 1;
     historyLimit = 50000;
     secureSocket = true;
+    sensibleOnTop = true;
     extraConfig = with pkgs.tmuxPlugins; /* tmux */ ''
       # Keybindings
       bind C-r source-file ${config.xdg.configHome}/tmux/tmux.conf \; display-message "Config reloaded..."
