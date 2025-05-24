@@ -65,6 +65,12 @@ in {
     "org/gnome/desktop/peripherals/keyboard" = {
       numlock-state = true;
     };
+    "org/gnome/desktop/input-sources" = {
+      xkb-options = [
+        "lv3:switch"
+        "compose:ralt"
+      ];
+    };
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
     };
