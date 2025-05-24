@@ -32,7 +32,7 @@ in {
       publicKeyFile = ../../hosts/artemis/keys/ssh_host_rsa_key.pub;
     };
     stormwind = {
-      extraHostNames = [ "storwind.${domain}" "10.0.0.10" ];
+      extraHostNames = [ "storwind.${domain}" "192.168.78.10" ];
       publicKeyFile = ../../hosts/stormwind/keys/ssh_host_ed25519_key.pub;
     };
     "stormwind/rsa" = {
