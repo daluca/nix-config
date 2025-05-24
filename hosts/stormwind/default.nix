@@ -26,8 +26,8 @@
   sops.secrets."tailscale/preauthkey".sopsFile = ./stormwind.sops.yaml;
 
   services.tailscale.extraUpFlags = [
-    "--advertise-routes=10.0.0.0/14"
-    "--hostname=akaroa"
+    "--advertise-routes=192.168.178.0/24"
+    "--hostname=waalsdorperweg"
   ];
 
   hardware.raspberry-pi.config.pi4 = {
