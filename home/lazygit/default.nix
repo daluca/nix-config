@@ -1,16 +1,18 @@
-{ config, ... }:
-let
-  inherit (config.programs) lazygit;
-in {
+{ pkgs, ... }:
+
+rec {
   programs.lazygit = {
     enable = true;
+    package = pkgs.unstable.lazygit;
     settings = {
       disableStartupPopups = true;
       confirmOnQuit = true;
     };
   };
 
+  catppuccin.lazygit.enable = true;
+
   programs.git.aliases = {
-    lazy = "!${lazygit.package}/bin/lazygit";
+    lazy = "!${programs.lazygit.package}/bin/lazygit";
   };
 }
