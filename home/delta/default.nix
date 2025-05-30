@@ -1,15 +1,10 @@
-{ config, lib, pkgs, ... }:
-let
-  inherit (lib) toLower;
-  inherit (pkgs) fetchFromGitHub;
-  inherit (pkgs.unstable) delta;
-  inherit (config.themes) catppuccin;
-in {
+{ pkgs, ... }:
 
+{
   programs.git = {
     delta = {
       enable = true;
-      package = delta;
+      package = pkgs.unstable.delta;
       options = {
         line-numbers = true;
       };
