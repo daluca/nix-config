@@ -17,6 +17,8 @@
       # Keybindings
       bind C-r source-file ${config.xdg.configHome}/tmux/tmux.conf \; display-message "Config reloaded..."
       bind a send-prefix
+      # Settings
+      set -g status-position top
       # Status bar
       set -g status-right-length 100
       set -g status-left-length 100
