@@ -1,25 +1,18 @@
-{ config, pkgs, ... }:
-let
-  inherit (pkgs.formats) yaml;
-  inherit (config.home) homeDirectory;
-in {
+{ pkgs, ... }:
+
+{
   imports = [
-    ../garden
-    ../direnv
-    ../just
-    ../jujutsu
+    ./garden.nix
+    ./direnv.nix
+    ./just.nix
+    ./jujutsu.nix
+  ];
+
+  home.packages = with pkgs.unstable; [
+    kondo
   ];
 
   home.persistence.home.directories = [
     "code"
   ];
-
-  xdg.configFile."garden/garden.yaml".source = (yaml { }).generate "config" {
-    garden = {
-      root = "${homeDirectory}/code";
-      includes = [
-        "${homeDirectory}/code/garden.yaml"
-      ];
-    };
-  };
 }
