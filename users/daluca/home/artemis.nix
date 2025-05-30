@@ -37,6 +37,7 @@
     "whatsapp"
     "qrrs"
     "ghostty"
+    "nh"
     "modern-unix"
   ];
 
