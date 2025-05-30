@@ -3,13 +3,13 @@
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
-  modifications = final: _prev: {
+  modifications = final: prev: {
     kubectlPlugins = {
       view-secret = final.pkgs.view-secret;
       ingress-nginx = final.pkgs.ingress-nginx;
     };
 
-    uutils-coreutils-done = (inputs.nixpkgs-unstable.legacyPackages.${final.system}.uutils-coreutils.override {
+    uutils-coreutils-done = (prev.uutils-coreutils.override {
       prefix = "";
       buildMulticallBinary = false;
     }).overrideAttrs (oldAttrs: {
