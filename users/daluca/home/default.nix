@@ -27,8 +27,6 @@ in {
 
   home.persistence.home.enable = lib.mkDefault false;
 
-  themes.catppuccin.flavour = "Mocha";
-
   programs.bash.enable = true;
 
   xdg.enable = true;

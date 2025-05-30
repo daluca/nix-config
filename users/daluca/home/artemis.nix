@@ -37,6 +37,7 @@
     "whatsapp"
     "qrrs"
     "ghostty"
+    "modern-unix"
   ];
 
   sops.secrets."gsconnect/private.pem".sopsFile = lib.custom.relativeToHosts "artemis/artemis.sops.yaml";
