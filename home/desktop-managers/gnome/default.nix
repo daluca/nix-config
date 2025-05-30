@@ -45,6 +45,17 @@ let
         [ (mkTuple [ (mkDouble "0.91402892926943036") (mkDouble "0.085346600422522706") ]) ]
       ]))
     ]));
+  the-hague =
+    (mkVariant (mkTuple [
+      (mkUint32 2)
+      (mkVariant (mkTuple [
+        "The Hague"
+        "EHRD"
+        true
+        [ (mkTuple [ (mkDouble "0.9066985464110543") (mkDouble "0.077667151713747662") ]) ]
+        [ (mkTuple [ (mkDouble "0.90896747443864678") (mkDouble "0.075223690760955586") ]) ]
+      ]))
+    ]));
 in {
   imports = [
     ../common
@@ -84,13 +95,14 @@ in {
       temperature-unit = "centigrade";
     };
     "org/gnome/Weather" = {
-      locations = [ wellington auckland london amsterdam ];
+      locations = [ the-hague wellington auckland london amsterdam ];
     };
     "org/gnome/shell/weather" = {
-      locations = [ wellington auckland london amsterdam ];
+      locations = [ the-hague wellington auckland london amsterdam ];
     };
     "org/gnome/clocks" = {
       world-clocks = [
+        [ (mkDictionaryEntry [ "location" the-hague ]) ]
         [ (mkDictionaryEntry [ "location" wellington ]) ]
         [ (mkDictionaryEntry [ "location" auckland ]) ]
         [ (mkDictionaryEntry [ "location" london ]) ]
@@ -98,7 +110,7 @@ in {
       ];
     };
     "org/gnome/shell/world-clocks" = {
-      locations = [ wellington auckland london amsterdam ];
+      locations = [ the-hague wellington auckland london amsterdam ];
     };
   };
 
