@@ -10,8 +10,15 @@
     clock24 = true;
     sensibleOnTop = true;
     keyMode = "vi";
+    mouse = true;
     plugins = with pkgs.tmuxPlugins; [
       yank
+      {
+        plugin = better-mouse-mode;
+        extraConfig = /* tmux */ ''
+          set -g @scroll-speed-num-lines-per-scroll "1"
+        '';
+      }
     ];
     extraConfig = with pkgs.tmuxPlugins; /* tmux */ ''
       # Keybindings
