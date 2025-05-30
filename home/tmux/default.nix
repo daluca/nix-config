@@ -9,6 +9,7 @@
     secureSocket = true;
     clock24 = true;
     sensibleOnTop = true;
+    keyMode = "vi";
     plugins = with pkgs.tmuxPlugins; [
       yank
     ];
