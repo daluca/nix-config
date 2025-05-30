@@ -12,7 +12,7 @@
       "alacritty"
       "bitwarden"
       "btop"
-      "direnv"
+      "development"
       "fonts"
       "ghostty"
       "git"
