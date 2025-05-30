@@ -31,7 +31,6 @@
     "discord"
     "lazygit"
     "accounts"
-    "gaming"
     "proton-bridge"
     "whatsapp"
     "qrrs"

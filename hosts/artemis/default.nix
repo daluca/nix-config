@@ -24,7 +24,6 @@
     "smart-cards"
     "tailscale"
     "kanata"
-    "gaming"
     "virtualisation"
     "battery"
   ];
