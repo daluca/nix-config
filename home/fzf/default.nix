@@ -1,18 +1,15 @@
 { pkgs, ... }:
-let
-  inherit (pkgs.unstable) fzf;
-in {
+
+{
   programs.fzf = {
     enable = true;
-    package = fzf;
+    package = pkgs.unstable.fzf;
     enableBashIntegration = false;
     fileWidgetCommand = /* bash */ ''
-      fd --type file
+      ${pkgs.unstable.fd}/bin/fd --type file
     '';
     changeDirWidgetCommand = /* bash */ ''
-      fd --type directory
+      ${pkgs.unstable.fd}/bin/fd --type directory
     '';
   };
-
-  programs.fd.enable = true;
 }
