@@ -13,7 +13,6 @@
     "kubernetes"
     "vscodium"
     "btop"
-    "direnv"
     "mpv"
     "uutils"
     "thunderbird"
@@ -37,6 +36,7 @@
     "whatsapp"
     "qrrs"
     "ghostty"
+    "yazi"
     "nh"
     "modern-unix"
   ];
