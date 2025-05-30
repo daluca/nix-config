@@ -2,10 +2,10 @@
 
 {
   home.packages = with pkgs; [
-    whatsapp-for-linux
+    wasistlos
   ];
 
   home.persistence.home.directories = [
-    ".local/share/whatsapp-for-linux"
+    ".local/share/wasistlos"
   ];
 }
