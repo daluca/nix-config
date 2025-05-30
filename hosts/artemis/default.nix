@@ -19,7 +19,6 @@
     "thinkfan"
     "grub"
     "fwupd"
-    "nvidia"
     "steam"
     "docker"
     "smart-cards"
