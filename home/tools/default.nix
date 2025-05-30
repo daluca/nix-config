@@ -6,7 +6,6 @@
     ../gron
     ../zoxide
     ../delta
-    ./ripgrep
     ./jq.nix
   ];
 
