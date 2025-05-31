@@ -61,6 +61,4 @@
       set -g @catppuccin_pane_active_border_style "##{?pane_in_mode,fg=#{@thm_peach},##{?pane_synchronized,fg=#{@thm_sky},fg=#{@thm_peach}}}" # spellchecker:disable-line
     '';
   };
-
-  programs.fzf.tmux.enableShellIntegration = true;
 }
