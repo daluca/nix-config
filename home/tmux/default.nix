@@ -58,6 +58,7 @@
       set -g @catppuccin_window_status_style "rounded"
       set -g @catppuccin_window_current_text " #{b:pane_current_path}"
       set -g @catppuccin_window_text " #{b:pane_current_path}"
+      set -g @catppuccin_pane_active_border_style "##{?pane_in_mode,fg=#{@thm_peach},##{?pane_synchronized,fg=#{@thm_sky},fg=#{@thm_peach}}}" # spellchecker:disable-line
     '';
   };
 

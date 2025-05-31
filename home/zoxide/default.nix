@@ -11,7 +11,9 @@ in {
     ];
   };
 
-  programs.fzf.enable = true;
+  home.sessionVariables = {
+    _ZO_FZF_OPTS = "--tmux center,60%,border-native";
+  };
 
   home.persistence.home.directories = [
     ".local/share/zoxide"
