@@ -1,33 +1,36 @@
 { config, pkgs, secrets, ... }:
-let
-  inherit (config.programs) gpg;
-  inherit (pkgs) sops git-agecrypt;
-  inherit (secrets) user;
-in {
+
+{
   programs.git = {
     enable = true;
     userName = "Lucas Slebos";
-    userEmail = user.email;
+    userEmail = secrets.user.email;
     signing = {
       key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
       signByDefault = true;
-      signer = "${gpg.package}/bin/gpg";
+      signer = "${config.programs.gpg.package}/bin/gpg";
     };
     ignores = [
       "/.vscode/"
     ];
     extraConfig = {
+      core.compression = 9;
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = true;
+      rebase.autoStash = true;
+      status.showStash = true;
+      status.showUntrackedFiles = "all";
       rerere.enabled = true;
       url."git@github.com".insteadof = "github";
-      diff."sopsdiffer".textconv = "${sops}/bin/sops decrypt";
-      diff."git-agecrypt".textconv = "${git-agecrypt}/bin/git-agecrypt textconv";
+      url."git@gitlab.com".insteadof = "gitlab";
+      url."ssh://git@codeberg.org".insteadof = "codeberg";
+      diff."sopsdiffer".textconv = "${pkgs.sops}/bin/sops decrypt";
+      diff."git-agecrypt".textconv = "${pkgs.git-agecrypt}/bin/git-agecrypt textconv";
       filter."git-agecrypt" = {
         required = true;
-        smudge = "${git-agecrypt}/bin/git-agecrypt smudge -f %f";
-        clean = "${git-agecrypt}/bin/git-agecrypt clean -f %f";
+        smudge = "${pkgs.git-agecrypt}/bin/git-agecrypt smudge -f %f";
+        clean = "${pkgs.git-agecrypt}/bin/git-agecrypt clean -f %f";
       };
     };
   };
