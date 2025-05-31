@@ -9,8 +9,6 @@ in {
   home.packages = [
     kubectl
     kubectx
-    # TODO: Make fzf conditionally check if already added
-    # fzf
   ];
 
   home.shellAliases = {
