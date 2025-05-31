@@ -7,7 +7,9 @@ rec {
     enableBashIntegration = false;
     settings = {
       dialect = "uk";
+      inline_height = 14;
       update_check = false;
+      keymap_mode = "vim-insert";
     };
   };
 
@@ -15,7 +17,7 @@ rec {
 
   programs.zsh.initContent = /* zsh */ /* bash */ ''
     atuin-setup() {
-      bindkey '^E' _atuin_search_widget
+      bindkey '^[r' atuin-search
 
       export ATUIN_NOBIND="true"
 
@@ -36,10 +38,25 @@ rec {
 
       zle -N fzf-atuin-history-widget
       bindkey '^R' fzf-atuin-history-widget
+      bindkey '^[OA' atuin-up-search
     }
 
     atuin-setup
   '';
+
+  programs.ghostty.settings = {
+    keybind = [
+      "alt+one=unbind"
+      "alt+two=unbind"
+      "alt+three=unbind"
+      "alt+four=unbind"
+      "alt+five=unbind"
+      "alt+six=unbind"
+      "alt+seven=unbind"
+      "alt+eight=unbind"
+      "alt+nine=unbind"
+    ];
+  };
 
   home.persistence.home.directories = [
     ".local/share/atuin"
