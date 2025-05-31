@@ -42,6 +42,9 @@
 
     nixgl.url = "github:nix-community/nixgl";
     nixgl.inputs.nixpkgs.follows = "nixpkgs";
+
+    fzf-preview.url = "github:niksingh710/fzf-preview";
+    fzf-preview.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {self, nixpkgs, home-manager, git-hooks, ...} @ inputs:

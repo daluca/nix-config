@@ -24,7 +24,7 @@ rec {
         setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
 
         selected=$(
-          eval ${programs.atuin.package}/bin/atuin search --cmd-only --reverse | ${config.programs.fzf.package}/bin/fzf --tmux center,60%,40%,border-native
+          eval ${programs.atuin.package}/bin/atuin search --cmd-only --reverse | ${config.programs.fzf.package}/bin/fzf --tmux center,60%,border-native
         )
         local ret=$?
         if [ -n "$selected" ]; then

@@ -4,6 +4,8 @@
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
   modifications = final: prev: {
+    fzf-preview = inputs.fzf-preview.packages.${final.system}.fzf-preview;
+
     kubectlPlugins = {
       view-secret = final.pkgs.view-secret;
       ingress-nginx = final.pkgs.ingress-nginx;

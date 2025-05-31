@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   inherit (pkgs.unstable) zoxide;
 in {
@@ -12,7 +12,12 @@ in {
   };
 
   home.sessionVariables = {
-    _ZO_FZF_OPTS = "--tmux center,60%,border-native";
+    _ZO_FZF_OPTS = lib.concatStringsSep " " [
+      "--preview '${pkgs.tree}/bin/tree -C {}'"
+      "--tmux center,80%,border-native"
+      "--select-1"
+      "--exit-0"
+    ];
   };
 
   home.persistence.home.directories = [
