@@ -16,5 +16,6 @@
     file
     unzip
     dig
+    tree
   ];
 }
