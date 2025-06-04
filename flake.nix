@@ -166,7 +166,7 @@
       pkgs = pkgs' system;
     in homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit inputs outputs lib system secrets; hostname = "RRS-A00746"; };
+      extraSpecialArgs = { inherit inputs outputs lib system secrets; hostname = "RRS-A00690"; };
       modules = [
         ./users/lucas.slebos/home
       ];
