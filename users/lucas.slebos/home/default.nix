@@ -74,6 +74,13 @@ in {
 
   targets.genericLinux.enable = true;
 
+  programs.vscode.profiles.default.userSettings = {
+    "files.associations" = {
+      "**/pre_tasks/*.yaml" = "ansible";
+      "**/pre_tasks/*.yml" = "ansible";
+    };
+  };
+
   programs.git = {
     includes = [
       {
