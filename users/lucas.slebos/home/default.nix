@@ -97,6 +97,115 @@ in {
     tag.gpgSign = false;
   };
 
+  programs.garden-rs.settings = {
+    garden.root = "${config.home.homeDirectory}/code";
+
+    trees = {
+      awx = {
+        url = "rrs:awx";
+        branch = "main";
+        path = "bitbucket/robin-radar-systems/awx";
+      };
+      "awx/release-candidate-1.6-dev" = {
+        worktree = "awx";
+        branch = "release/release-candidate-1.6-dev";
+        path = "bitbucket/robin-radar-systems/awx-releases/release-candidate-1.6-dev";
+      };
+      "awx/release-candidate-1.7-dev" = {
+        worktree = "awx";
+        branch = "release/release-candidate-1.7-dev";
+        path = "bitbucket/robin-radar-systems/awx-releases/release-candidate-1.7-dev";
+      };
+      apt-mirror = {
+        url = "rrs:apt-mirror";
+        path = "bitbucket/robin-radar-systems/apt-mirror";
+      };
+      kubernetes-cluster-deployment = {
+        url = "rrs:kubernetes-cluster-deployment";
+        path = "bitbucket/robin-radar-systems/kubernetes-cluster-deployment";
+      };
+      kubernetes-deployments = {
+        url = "rrs:kubernetes-deployments";
+        path = "bitbucket/robin-radar-systems/kubernetes-deployments";
+      };
+      network-install = {
+        url = "rrs:network-install";
+        path = "bitbucket/robin-radar-systems/network-install";
+      };
+      nix-config = {
+        url = "github:daluca/nix-config";
+        path = "github.com/daluca/nix-config";
+      };
+      nixvim-config = {
+        url = "github:daluca/nixvim-config";
+        path = "github.com/daluca/nixvim-config";
+      };
+      pipelines-devops = {
+        url = "rrs:pipelines-devops";
+        path = "bitbucket/robin-radar-systems/pipelines-devops";
+      };
+      robin-deployment = {
+        url = "rrs:robin-deployment";
+        path = "bitbucket/robin-radar-systems/robin-deployment";
+        branch = "main";
+      };
+      "robin-deployment/release-candidate-1.6-dev" = {
+        worktree = "robin-deployment";
+        branch = "release/release-candidate-1.6-dev";
+        path = "bitbucket/robin-radar-systems/robin-deployment-releases/release-candidate-1.6-dev";
+      };
+      "robin-deployment/release-candidate-1.7-dev" = {
+        worktree = "robin-deployment";
+        branch = "release/release-candidate-1.7-dev";
+        path = "bitbucket/robin-radar-systems/robin-deployment-releases/release-candidate-1.7-dev";
+      };
+      robin-scripts = {
+        url = "rrs:robin-scripts";
+        path = "bitbucket/robin-radar-systems/robin-scripts";
+      };
+    };
+
+    groups = {
+      devops = [
+        "awx"
+        "awx/release-candidate-1.6-dev"
+        "awx/release-candidate-1.7-dev"
+        "apt-mirror"
+        "kubernetes-cluster-deployment"
+        "kubernetes-deployments"
+        "network-install"
+        "pipelines-devops"
+        "robin-deployment"
+        "robin-deployment/release-candidate-1.6-dev"
+        "robin-deployment/release-candidate-1.7-dev"
+        "robin-scripts"
+      ];
+      personal = [
+        "nix-config"
+        "nixvim-config"
+      ];
+    };
+
+    gardens = {
+      personal.groups = [
+        "personal"
+      ];
+      robin-radar-systems.groups = [
+        "devops"
+      ];
+      all.groups = [
+        "devops"
+        "personal"
+      ];
+    };
+
+    commands = {
+      git = "git \"$@\"";
+      pull = "git pull \"$@\"";
+      status = "git status --short \"$@\"";
+    };
+  };
+
   programs.bash.enable = true;
 
   xdg.enable = true;
