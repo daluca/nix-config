@@ -2,11 +2,17 @@
 let
   inherit (lib) mkEnableOption mkPackageOption mkIf;
   cfg = config.programs.garden-rs;
-in {
+in with lib; {
   options.programs.garden-rs = {
     enable = mkEnableOption "Garden grows and cultivates collections of Git trees";
 
     package = mkPackageOption pkgs "garden-rs" { };
+
+    settings = lib.mkOption {
+      type = types.attrs;
+      default = null;
+      description = "garden-rs global config file";
+    };
 
     enableBashIntegration = mkEnableOption "Bash Integration" // {
       default = true;
@@ -23,6 +29,8 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = [ cfg.package ];
+
+    xdg.configFile."garden/garden.yaml".source = (pkgs.formats.yaml { }).generate "garden.yaml" cfg.settings;
 
     programs.bash.initExtra = mkIf cfg.enableBashIntegration ''
       if [[ :$SHELLOPTS: =~ :(vi|emacs): ]]; then
