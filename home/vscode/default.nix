@@ -1,26 +1,13 @@
 { lib, pkgs, ... }:
-let
-  inherit (lib) concatStringsSep;
-  inherit (lib.lists) flatten;
-  inherit (pkgs.unstable) vscode;
-  vscode-kubernetes-tools = with pkgs.open-vsx; [
-    ms-kubernetes-tools.vscode-kubernetes-tools
-  ] ++ /* Dependencies */ [
-    redhat.vscode-yaml
-  ];
-  helm-ls' = with pkgs.open-vsx; [
-    helm-ls.helm-ls
-  ] ++ /* Dependencies */ [
-    vscode-kubernetes-tools
-  ];
-in {
+
+{
   imports = [
     ./extensions
   ];
 
   programs.vscode = {
     enable = true;
-    package = vscode;
+    package = pkgs.unstable.vscode;
     mutableExtensionsDir = false;
     profiles.default = {
       enableUpdateCheck = false;
@@ -37,16 +24,13 @@ in {
         grafana.vscode-jsonnet
         tomoki1207.pdf
         mkhl.direnv
-      ] ++ flatten [
-        vscode-kubernetes-tools
-        helm-ls'
       ];
       userSettings = {
         # Editor
         "editor.rulers" = [ 80 ];
         "editor.renderWhitespace" = "trailing";
         "editor.fontLigatures" = true;
-        "editor.fontFamily" = concatStringsSep ", " [
+        "editor.fontFamily" = lib.concatStringsSep ", " [
           "FiraCode Nerd Font"
           "Menlo"
           "Monaco"
@@ -54,19 +38,28 @@ in {
           "monospace"
         ];
         # Files
+        "files.trimTrailingWhitespace" = true;
+        "files.insertFinalNewline" = true;
         "files.exclude" = {
           "**/.jj" = true;
         };
         # Git
         "git.autofetch" = true;
+        "git.blame.editorDecoration.enabled" = true;
+        "workbench.colorCustomizations" = {
+          "git.blame.editorDecorationForeground" = "#444d56";
+        };
         # Telemetry
         "telemetry.telemetryLevel" = "off";
         "redhat.telemetry.enabled" = false;
+        # Terminal
+        "terminal.integrated.defaultProfile.linux" = "zsh";
         # Theme
         "workbench.colorTheme" = "GitHub Dark";
         "workbench.iconTheme" = "material-icon-theme";
         # Trusted
         "security.workspace.trust.enabled" = false;
+        "workbench.trustedDomains.promptInTrustedWorkspace" = false;
         # Welcome
         "update.showReleaseNotes" = false;
         "workbench.startupEditor" = "none";

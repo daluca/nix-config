@@ -1,9 +1,12 @@
 {
   imports = [
-    ./vscode-pets.nix
+    ./ansible.nix
+    ./bash.nix
+    ./helm.nix
+    ./ipxe.nix
+    ./just.nix
     ./nix-ide.nix
     ./tinymist.nix
-    ./just.nix
-    ./bash.nix
+    ./vscode-pets.nix
   ];
 }
