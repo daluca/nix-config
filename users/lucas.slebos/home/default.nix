@@ -1,6 +1,7 @@
-{ config, lib, pkgs, hostname, inputs, outputs, ... }:
-
-{
+{ config, lib, pkgs, hostname, inputs, outputs, ... }@args:
+let
+  secrets = args.secrets // builtins.fromTOML (builtins.readFile ../secrets.toml);
+in {
   imports =
     let
       hostExtras = (./. + "/${hostname}.nix");
@@ -72,6 +73,29 @@
   ];
 
   targets.genericLinux.enable = true;
+
+  programs.git = {
+    includes = [
+      {
+        condition = "hasconfig:remote.*.url:git@bitbucket.org:robin-radar-systems/**";
+        path = "robin-radar-systems";
+      }
+      {
+        condition = "hasconfig:remote.*.url:rrs:**";
+        path = "robin-radar-systems";
+      }
+    ];
+    extraConfig = {
+      url."git@bitbucket.org".insteadof = "bitbucket";
+      url."git@bitbucket.org:robin-radar-systems/".insteadof = "rrs:";
+    };
+  };
+
+  xdg.configFile."git/robin-radar-systems".text = lib.generators.toGitINI {
+    user.email = secrets.email;
+    commit.gpgSign = false;
+    tag.gpgSign = false;
+  };
 
   programs.bash.enable = true;
 

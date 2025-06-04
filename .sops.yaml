@@ -12,6 +12,10 @@ keys:
       - &RRS-A00746 age1w3wwy6e42f3xahzz45a5qra6d73jzl66g0vghxcvz2ak9pnufvcsjgn8ma
 
 creation_rules:
+  - path_regex: lucas\.slebos\.sops\.yaml$
+    key_groups:
+      - age:
+          - *daluca
   - path_regex: stormwind\.sops\.yaml$
     key_groups:
       - age:
