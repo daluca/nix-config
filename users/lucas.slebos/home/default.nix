@@ -18,6 +18,7 @@ in {
       "ghostty"
       "git"
       "gron"
+      "kanata"
       "kubernetes"
       "lazygit"
       "logseq"
