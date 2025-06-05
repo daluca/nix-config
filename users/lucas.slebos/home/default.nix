@@ -26,6 +26,7 @@ in {
       "neovim"
       "nh"
       "qrrs"
+      "secrets"
       "slack"
       "starship"
       "tmux"
@@ -212,6 +213,20 @@ in {
       pull = "git pull \"$@\"";
       status = "git status --short \"$@\"";
     };
+  };
+
+  sops.secrets."dev.kubeconfig" = {
+    sopsFile = ../lucas.slebos.sops.yaml;
+    path = ".kube/dev.kubeconfig";
+  };
+
+  sops.secrets."prod.kubeconfig" = {
+    sopsFile = ../lucas.slebos.sops.yaml;
+    path = ".kube/prod.kubeconfig";
+  };
+
+  home.sessionVariables = {
+    KUBECONFIG = "${config.home.homeDirectory}/.kube/dev.kubeconfig:${config.home.homeDirectory}/.kube/prod.kubeconfig";
   };
 
   programs.bash.enable = true;
