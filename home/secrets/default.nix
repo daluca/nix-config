@@ -2,7 +2,7 @@
 
 {
   imports = [
-    inputs.sops-nix.homeManagerModules.default
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
   sops = {

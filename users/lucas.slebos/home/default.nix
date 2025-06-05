@@ -6,8 +6,8 @@ in {
     let
       hostExtras = (./. + "/${hostname}.nix");
     in builtins.attrValues outputs.homeManagerModules ++ [
-      inputs.impermanence.homeManagerModules.default
-      inputs.catppuccin.homeModules.default
+      inputs.impermanence.homeManagerModules.impermanence
+      inputs.catppuccin.homeModules.catppuccin
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "ansible"
       "alacritty"
