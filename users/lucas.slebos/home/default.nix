@@ -123,6 +123,11 @@ in {
 
   home.file.".ssh/id_rsa.pub".source = ../keys/id_rsa.pub;
 
+  home.file.".ssh/authorized_keys".text = lib.concatStringsSep "\n" (map (f: builtins.readFile f) [
+    ../keys/id_ed25519.pub
+    ../keys/id_rsa.pub
+  ]);
+
   programs.ssh = with secrets; {
     enable = true;
     matchBlocks = {
