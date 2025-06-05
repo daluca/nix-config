@@ -131,7 +131,7 @@ in {
         hostname = "awx.${domains.general}";
       };
       robin-user = {
-        host = "*-8888 *-9999 *-awx *-68 *-test";
+        host = "*-8888 *-9999 *-awx *-68 *-test *-230";
         user = "robin";
         extraOptions = {
           StrictHostKeyChecking = "no";
