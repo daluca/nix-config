@@ -3,9 +3,6 @@
     "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
     "age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm",
 ]
-"users/lucas.slebos/secrets.toml" = [
-    "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
-]
 "secrets/secrets.toml" = [
     "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
     "age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt",
@@ -16,4 +13,8 @@
     "age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2",
     "age16c3hdsmh4ygkzfe0ekz0cg266jsjszn3pdrlstzkg0tpnmyy24rspr7m9k",
     "age1w3wwy6e42f3xahzz45a5qra6d73jzl66g0vghxcvz2ak9pnufvcsjgn8ma",
+]
+"users/lucas.slebos/secrets.toml" = [
+    "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
+    "age1d60rtn66jj8mkx4quvwjn66mrqja83ux2flknqlreh09p06rkvpqnj7ygw",
 ]

@@ -106,6 +106,69 @@ in {
     tag.gpgSign = false;
   };
 
+  programs.ssh = with secrets; {
+    enable = true;
+    matchBlocks = {
+      awx = {
+        user = "awx";
+        hostname = "awx.${domains.general}";
+      };
+      robin-user = {
+        host = "*-8888 *-9999 *-awx *-68 *-test";
+        user = "robin";
+        extraOptions = {
+          StrictHostKeyChecking = "no";
+          UserKnownHostsFile = "/dev/null";
+        };
+      };
+      "*-awx" = {
+        proxyJump = "awx";
+      };
+      iris-8888 = {
+        hostname = "10.200.100.107";
+      };
+      iris-9999 = {
+        hostname = "10.200.100.93";
+      };
+      iris-9999-awx = {
+        hostname = "192.168.50.112";
+      };
+      iris-9999-68 = {
+        hostname = "10.200.68.25";
+      };
+      max-8888 = {
+        hostname = "10.200.100.96";
+      };
+      sts-8888 = {
+        hostname = "10.200.100.94";
+      };
+      lts-8888 = {
+        hostname = "10.200.100.95";
+      };
+      max-9999 = {
+        hostname = "10.200.100.104";
+      };
+      sts-9999 = {
+        hostname = "10.200.100.105";
+      };
+      lts-9999 = {
+        hostname = "10.200.100.106";
+      };
+      k700-test = {
+        hostname = "10.200.230.201";
+      };
+      "aptly-ssh.dev.${domains.devops}" = {
+        user = "aptly";
+      };
+      "aptly-ssh.prod.${domains.devops}" = {
+        user = "aptly";
+      };
+      mps-9999-230 = {
+        hostname = "10.200.230.202";
+      };
+    };
+  };
+
   programs.garden-rs.settings = {
     garden.root = "${config.home.homeDirectory}/code";
 
