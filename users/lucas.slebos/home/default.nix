@@ -11,6 +11,7 @@ in {
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "ansible"
       "alacritty"
+      "atuin"
       "bitwarden"
       "btop"
       "development"
@@ -306,6 +307,10 @@ in {
 
   home.sessionVariables = {
     KUBECONFIG = "${config.home.homeDirectory}/.kube/dev.kubeconfig:${config.home.homeDirectory}/.kube/prod.kubeconfig";
+  };
+
+  programs.atuin.daemon = {
+    enable = true;
   };
 
   programs.bash.enable = true;
