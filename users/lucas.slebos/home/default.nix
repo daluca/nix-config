@@ -106,6 +106,22 @@ in {
     tag.gpgSign = false;
   };
 
+  sops.secrets."id_ed25519" = {
+    sopsFile = ../lucas.slebos.sops.yaml;
+    path = ".ssh/id_ed25519";
+    mode = "0600";
+  };
+
+  home.file.".ssh/id_ed25519.pub".source = ../keys/id_ed25519.pub;
+
+  sops.secrets."id_rsa" = {
+    sopsFile = ../lucas.slebos.sops.yaml;
+    path = ".ssh/id_rsa";
+    mode = "0600";
+  };
+
+  home.file.".ssh/id_rsa.pub".source = ../keys/id_rsa.pub;
+
   programs.ssh = with secrets; {
     enable = true;
     matchBlocks = {
