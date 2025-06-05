@@ -314,10 +314,6 @@ in {
     KUBECONFIG = "${config.home.homeDirectory}/.kube/dev.kubeconfig:${config.home.homeDirectory}/.kube/prod.kubeconfig";
   };
 
-  programs.atuin.daemon = {
-    enable = true;
-  };
-
   programs.bash.enable = true;
 
   xdg.enable = true;

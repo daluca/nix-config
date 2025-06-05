@@ -5,6 +5,7 @@ rec {
     enable = true;
     package = pkgs.unstable.atuin;
     enableBashIntegration = false;
+    daemon.enable = true;
     settings = {
       dialect = "uk";
       inline_height = 14;
