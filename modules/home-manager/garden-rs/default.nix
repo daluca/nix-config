@@ -10,7 +10,7 @@ in with lib; {
 
     settings = lib.mkOption {
       type = types.attrs;
-      default = null;
+      default = { };
       description = "garden-rs global config file";
     };
 
@@ -30,7 +30,9 @@ in with lib; {
   config = mkIf cfg.enable {
     home.packages = [ cfg.package ];
 
-    xdg.configFile."garden/garden.yaml".source = (pkgs.formats.yaml { }).generate "garden.yaml" cfg.settings;
+    xdg.configFile."garden/garden.yaml" = lib.mkIf (cfg.settings != { }) {
+      source = (pkgs.formats.yaml { }).generate "garden.yaml" cfg.settings;
+    };
 
     programs.bash.initExtra = mkIf cfg.enableBashIntegration ''
       if [[ :$SHELLOPTS: =~ :(vi|emacs): ]]; then
