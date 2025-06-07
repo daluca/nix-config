@@ -1,51 +1,41 @@
-{ stdenv, fetchFromGitHub, nodejs, pnpm_9, corepack, turbo }:
+{ stdenv, lib, fetchurl, libva-utils, ffmpeg, which, makeWrapper }:
 
-stdenv.mkDerivation (finalAttrs: rec {
+stdenv.mkDerivation rec {
   pname = "tunarr";
-  version = "0.19.3";
+  version = "0.20.1";
 
-  src = fetchFromGitHub {
-    owner = "chrisbenincasa";
-    repo = "tunarr";
-    rev = "v${version}";
-    hash = "sha256-DAp8aZoiulpFSuB+AC/FKz3DwEW0+EUPTUhKjakxUwQ=";
+  phases = [ "unpackPhase" "installPhase" ];
+
+  src = fetchurl {
+    url = "https://github.com/chrisbenincasa/tunarr/releases/download/v${version}/tunarr-${version}-linux-x64";
+    hash = "sha256-K7xj75C6oltUAmohRD3WZHWue1OinKf63Tya+gS5ZTY=";
   };
 
   nativeBuildInputs = [
-    nodejs
-    pnpm_9.configHook
-    corepack
-    turbo
+    makeWrapper
   ];
 
-  pnpmDeps = pnpm_9.fetchDeps {
-    inherit (finalAttrs) pname version src;
-    hash = "sha256-tbC582aTSlzhGyUrYSpEIbLzVy6DqyxC2E00olcgV4Q=";
-  };
-
-  buildPhase = /* bash */ ''
-    runHook preBuild
-
-    # turbo run build
-
-    pnpm turbo bundle --filter=@tunarr/web
-
-    pnpm turbo make-bin -- --target linux-x64
-
-    ls -latr
-
-    # pnpm turbo bundle --filter=@tunarr/web
-
-    # pnpm turbo make-bin -- --target linux-x64
-
-    runHook postBuild
+  unpackPhase = /* bash */ ''
+    cp ${src} ./tunarr-${version}-linux-x64
   '';
 
   installPhase = /* bash */ ''
     runHook preInstall
 
-    cp -r dist/ $out/
+    install -m755 -D tunarr-${version}-linux-x64 $out/bin/tunarr
+
+    wrapProgram $out/bin/${pname} \
+      --prefix PATH : ${which}/bin \
+      --prefix PATH : ${libva-utils}/bin
+      # --prefix PATH : ${ffmpeg}/bin
 
     runHook postInstall
   '';
-})
+
+  meta = with lib; {
+    description = "Create a classic TV experience using your own media - IPTV backed by Plex/Jellyfin/Emby";
+    homepage = "https://tunarr.com/";
+    mainProgram = "tunarr";
+    license = licenses.zlib;
+  };
+}

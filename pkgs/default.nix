@@ -1,7 +1,7 @@
 { pkgs }:
 let
   inherit (pkgs.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
-  callPackage = pkgs.lib.callPackageWith ( pkgs // { inherit buildFirefoxXpiAddon; });
+  callPackage = pkgs.lib.callPackageWith ( pkgs // { inherit buildFirefoxXpiAddon; } );
 in {
   garden-rs = callPackage ./garden-rs { };
   jsonnet-debugger = callPackage ./jsonnet-debugger { };
@@ -11,4 +11,5 @@ in {
   ingress-nginx = callPackage ./kubectl-ingress-nginx { };
   bypass-paywalls-clean = callPackage ./bypass-paywalls-clean { };
   terraform = callPackage ./terraform { };
+  tunarr = callPackage ./tunarr { };
 }

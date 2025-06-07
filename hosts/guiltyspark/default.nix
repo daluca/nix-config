@@ -23,6 +23,7 @@ in {
     "qbittorrent"
     "jellyseerr"
     "jellyplex-watched"
+    "tunarr"
     "nginx"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
