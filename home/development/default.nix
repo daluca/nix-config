@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ./garden.nix
     ./direnv.nix
-    ./just.nix
+    ./garden-rs.nix
     ./jujutsu.nix
+    ./just.nix
   ];
 
   home.packages = with pkgs.unstable; [
