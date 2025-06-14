@@ -32,7 +32,7 @@ in {
       publicKeyFile = ../../hosts/artemis/keys/ssh_host_rsa_key.pub;
     };
     stormwind = {
-      extraHostNames = [ "storwind.${domain}" "192.168.78.10" ];
+      extraHostNames = [ "storwind.${domain}" "192.168.178.10" ];
       publicKeyFile = ../../hosts/stormwind/keys/ssh_host_ed25519_key.pub;
     };
     "stormwind/rsa" = {
@@ -48,7 +48,7 @@ in {
       publicKeyFile = ../../hosts/ironforge/keys/ssh_host_rsa_key.pub;
     };
     darnassus = {
-      extraHostNames = [ "darnassus.${domain}" "10.2.74.60" ];
+      extraHostNames = [ "darnassus.${domain}" "192.168.178.11" ];
       publicKeyFile = ../../hosts/darnassus/keys/ssh_host_ed25519_key.pub;
     };
     "darnassus/rsa" = {

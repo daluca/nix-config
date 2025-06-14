@@ -5,23 +5,27 @@
     enable = true;
     compression = true;
     hashKnownHosts = true;
-    matchBlocks."${config.home.username}" = {
-      match = "User ${config.home.username} Host *,!${lib.concatStringsSep ",!" [
-        "192.168.1.1"
-        "192.168.1.2"
-        "192.168.1.3"
-        "192.168.1.4"
-      ]}";
-      extraOptions = {
-        RemoteCommand = "zsh --login";
-        RequestTTY = "yes";
+    matchBlocks = {
+      ${config.home.username} = {
+        match = "User ${config.home.username} Host *,!${lib.concatStringsSep ",!" [
+          "192.168.1.1"
+          "192.168.1.2"
+          "192.168.1.3"
+          "192.168.1.4"
+        ]}";
+        extraOptions = {
+          RemoteCommand = "zsh --login";
+          RequestTTY = "yes";
+        };
       };
-    };
-    matchBlocks.usg = {
-      host = "192.168.1.1";
-      extraOptions = {
-        PubkeyAcceptedKeyTypes = "+ssh-rsa";
+      usg = {
+        host = "192.168.1.1";
+        extraOptions = {
+          PubkeyAcceptedKeyTypes = "+ssh-rsa";
+        };
       };
+      stormwind.hostname = "192.168.178.10";
+      darnassus.hostname = "192.168.178.11";
     };
   };
 

@@ -1,7 +1,6 @@
 {
   imports = [
     ./darnassus.nix
-    ./guiltyspark.nix
   ];
 
   nix.distributedBuilds = true;

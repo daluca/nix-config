@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = map (m: lib.custom.relativeToRoot m) [
@@ -20,13 +20,12 @@
   sops.secrets."ssh_host_rsa_key".sopsFile = ./darnassus.sops.yaml;
 
   hardware.raspberry-pi.config.pi4 = {
-    dt-overlays.rpi-poe-plus = {
+    dt-overlays.gpio-fan = {
       enable = true;
       params = {
-        poe_fan_temp0 = { enable = true; value = 65 * 1000; };
-        poe_fan_temp1 = { enable = true; value = 70 * 1000; };
-        poe_fan_temp2 = { enable = true; value = 75 * 1000; };
-        poe_fan_temp3 = { enable = true; value = 80 * 1000; };
+        gpiopin = { enable = true; value = 14; };
+        temp = { enable = true; value = 80 * 1000; };
+        hyst = { enable = true; value = 10 * 1000; };
       };
     };
   };

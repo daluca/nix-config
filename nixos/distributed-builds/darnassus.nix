@@ -1,6 +1,6 @@
 {
   nix.buildMachines = [{
-    hostName = "darnassus";
+    hostName = "192.168.178.11";
     system = "aarch64-linux";
     supportedFeatures = [
       "nixos-test"
