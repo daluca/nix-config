@@ -1,14 +1,9 @@
-{ config, pkgs, secrets, ... }:
-let
-  inherit (pkgs.unstable) adguardhome;
-in {
-  imports = [
-    ../unbound
-  ];
+{ config, lib, pkgs, secrets, ... }:
 
+{
   services.adguardhome = {
     enable = true;
-    package = adguardhome;
+    package = pkgs.unstable.adguardhome;
     mutableSettings = false;
     openFirewall = true;
     port = 80;
@@ -36,6 +31,33 @@ in {
         id = 1;
       }];
     };
+  };
+
+  services.unbound = {
+    enable = true;
+    package = pkgs.unbound-full;
+    resolveLocalQueries = false;
+    settings = {
+      server = {
+        interface = [ "127.0.0.1@5353" ];
+        verbosity = 2;
+        module-config = "\"${lib.concatStringsSep " " [
+          "validator"
+          "cachedb"
+          "iterator"
+        ]}\"";
+      };
+      remote-control.control-enable = true;
+      cachedb = {
+        backend = "redis";
+        redis-server-path = config.services.redis.servers.unbound.unixSocket;
+      };
+   };
+  };
+
+  services.redis.servers.unbound = {
+    enable = true;
+    group = config.services.unbound.group;
   };
 
   networking.firewall = rec {
