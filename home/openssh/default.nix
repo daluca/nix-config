@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, secrets, ... }:
 
 {
   programs.ssh = {
@@ -26,6 +26,9 @@
       };
       stormwind.hostname = "192.168.178.10";
       darnassus.hostname = "192.168.178.11";
+      ironforge.hostname = "192.168.1.10";
+      guiltyspark.hostname = "192.168.1.21";
+      unifi.hostname = secrets.unifi.ipv4-address;
     };
   };
 
