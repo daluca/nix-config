@@ -63,6 +63,15 @@ in {
     sopsFile = ./guiltyspark.sops.yaml;
   };
 
+  services.cloudflare-dyndns = {
+    enable = true;
+    proxied = true;
+    apiTokenFile = config.sops.secrets."cloudflare/apitoken".path;
+    domains = [
+      secrets.parents.domain
+    ];
+  };
+
   services.jellyplex-watched = {
     mappings.users = secrets.jellyplex-watched.users;
     plex.tokens = [ secrets.plex.token ];
