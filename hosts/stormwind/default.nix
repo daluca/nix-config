@@ -19,6 +19,10 @@
 
   networking.hostName = "stormwind";
 
+  networking.localCommands = /* bash */ ''
+    ip rule add to 192.168.178.0/24 priority 2500 lookup main || true
+  '';
+
   sops.secrets."ssh_host_ed25519_key".sopsFile = ./stormwind.sops.yaml;
 
   sops.secrets."ssh_host_rsa_key".sopsFile = ./stormwind.sops.yaml;
