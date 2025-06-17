@@ -36,6 +36,7 @@ in {
       "uutils"
       "vim"
       "vscodium"
+      "yazi"
       "zsh"
     ] ++ lib.optional (builtins.pathExists hostExtras) hostExtras;
 
