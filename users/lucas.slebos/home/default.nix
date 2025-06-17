@@ -6,6 +6,7 @@ in {
     let
       hostExtras = (./. + "/${hostname}.nix");
     in builtins.attrValues outputs.homeManagerModules ++ [
+      outputs.nixosModules.host
       inputs.impermanence.homeManagerModules.impermanence
       inputs.catppuccin.homeModules.catppuccin
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [

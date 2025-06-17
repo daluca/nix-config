@@ -1,4 +1,6 @@
 {
+  host.battery = true;
+
   programs.ssh.matchBlocks = {
     RRS-A00690 = {
       hostname = "10.200.100.85";

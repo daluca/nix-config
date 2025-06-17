@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.tmux = {
@@ -34,7 +34,9 @@
       set -agF status-right "#{E:@catppuccin_status_cpu}"
       set -ag status-right "#{E:@catppuccin_status_session}"
       set -ag status-right "#{E:@catppuccin_status_uptime}"
+    '' + lib.optionalString config.host.battery /* tmux */ ''
       set -agF status-right "#{E:@catppuccin_status_battery}"
+    '' + /* tmux */ ''
       # Plugins
       run-shell ${cpu}/share/tmux-plugins/cpu/cpu.tmux
       run-shell ${battery}/share/tmux-plugins/battery/battery.tmux

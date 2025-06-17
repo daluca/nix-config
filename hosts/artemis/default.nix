@@ -35,6 +35,8 @@
 
   nix.settings.warn-dirty = false;
 
+  host.battery = true;
+
   networking.localCommands = /* bash */ ''
     ip rule add to 192.168.178.0/24 priority 2500 lookup main || true
   '';
