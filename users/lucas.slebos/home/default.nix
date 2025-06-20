@@ -237,6 +237,14 @@ in {
         url = "rrs:apt-mirror";
         path = "bitbucket.org/robin-radar-systems/apt-mirror";
       };
+      bitwarden-vault = {
+        url = "rrs:bitwarden_vault";
+        path = "bitbucket.org/robin-radar-systems/bitwarden-vault";
+      };
+      image-pipeline = {
+        url = "rrs:image-pipeline";
+        path = "bitbucket.org/robin-radar-systems/image-pipeline";
+      };
       kubernetes-cluster-deployment = {
         url = "rrs:kubernetes-cluster-deployment";
         path = "bitbucket.org/robin-radar-systems/kubernetes-cluster-deployment";
@@ -266,6 +274,11 @@ in {
         path = "bitbucket.org/robin-radar-systems/robin-deployment";
         branch = "main";
       };
+      "robin-deployment/release-candidate-1.5-dev" = {
+        worktree = "robin-deployment";
+        branch = "release/release-candidate-1.5-dev";
+        path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.5-dev";
+      };
       "robin-deployment/release-candidate-1.6-dev" = {
         worktree = "robin-deployment";
         branch = "release/release-candidate-1.6-dev";
@@ -280,6 +293,10 @@ in {
         url = "rrs:robin-scripts";
         path = "bitbucket.org/robin-radar-systems/robin-scripts";
       };
+      robin-software-modules = {
+        url = "rrs:robin-software-modules";
+        path = "bitbucket.org/robin-radar-systems/robin-software-modules";
+      };
     };
 
     groups = {
@@ -288,14 +305,18 @@ in {
         "awx/release-candidate-1.6-dev"
         "awx/release-candidate-1.7-dev"
         "apt-mirror"
+        "bitwarden-vault"
+        "image-pipeline"
         "kubernetes-cluster-deployment"
         "kubernetes-deployments"
         "network-install"
         "pipelines-devops"
         "robin-deployment"
+        "robin-deployment/release-candidate-1.5-dev"
         "robin-deployment/release-candidate-1.6-dev"
         "robin-deployment/release-candidate-1.7-dev"
         "robin-scripts"
+        "robin-software-modules"
       ];
       personal = [
         "nix-config"
