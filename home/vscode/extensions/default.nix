@@ -7,6 +7,7 @@
     ./just.nix
     ./nix-ide.nix
     ./tinymist.nix
+    ./typos.nix
     ./vscode-pets.nix
   ];
 }
