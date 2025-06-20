@@ -57,6 +57,23 @@ in {
 
   home.packages = with pkgs; [
     nixgl.nixGLIntel
+    (lib.hiPrio (pkgs.bitwarden-cli.overrideAttrs (oldAttrs: rec {
+      inherit (oldAttrs) pname;
+      version = "2024.12.0";
+
+      src = pkgs.fetchFromGitHub {
+        owner = "bitwarden";
+        repo = "clients";
+        tag = "cli-v${version}";
+        hash = "sha256-3aN2t8/qhN0sjACvtip45efHQJl8nEMNre0+oBL1/go=";
+      };
+
+      npmDeps = pkgs.fetchNpmDeps {
+        inherit src;
+        name = "${pname}-${version}-npm-deps";
+        hash = "sha256-EtIcqbubAYN9I9wbw17oHiVshd3GtQayFtdgqWP7Pgg=";
+      };
+    })))
   ];
 
   programs.alacritty.package = lib.mkForce (pkgs.unstable.alacritty.overrideAttrs (_: {
