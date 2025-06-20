@@ -221,33 +221,33 @@ in {
       awx = {
         url = "rrs:awx";
         branch = "main";
-        path = "bitbucket/robin-radar-systems/awx";
+        path = "bitbucket.org/robin-radar-systems/awx";
       };
       "awx/release-candidate-1.6-dev" = {
         worktree = "awx";
         branch = "release/release-candidate-1.6-dev";
-        path = "bitbucket/robin-radar-systems/awx-releases/release-candidate-1.6-dev";
+        path = "bitbucket.org/robin-radar-systems/awx-releases/release-candidate-1.6-dev";
       };
       "awx/release-candidate-1.7-dev" = {
         worktree = "awx";
         branch = "release/release-candidate-1.7-dev";
-        path = "bitbucket/robin-radar-systems/awx-releases/release-candidate-1.7-dev";
+        path = "bitbucket.org/robin-radar-systems/awx-releases/release-candidate-1.7-dev";
       };
       apt-mirror = {
         url = "rrs:apt-mirror";
-        path = "bitbucket/robin-radar-systems/apt-mirror";
+        path = "bitbucket.org/robin-radar-systems/apt-mirror";
       };
       kubernetes-cluster-deployment = {
         url = "rrs:kubernetes-cluster-deployment";
-        path = "bitbucket/robin-radar-systems/kubernetes-cluster-deployment";
+        path = "bitbucket.org/robin-radar-systems/kubernetes-cluster-deployment";
       };
       kubernetes-deployments = {
         url = "rrs:kubernetes-deployments";
-        path = "bitbucket/robin-radar-systems/kubernetes-deployments";
+        path = "bitbucket.org/robin-radar-systems/kubernetes-deployments";
       };
       network-install = {
         url = "rrs:network-install";
-        path = "bitbucket/robin-radar-systems/network-install";
+        path = "bitbucket.org/robin-radar-systems/network-install";
       };
       nix-config = {
         url = "github:daluca/nix-config";
@@ -259,26 +259,26 @@ in {
       };
       pipelines-devops = {
         url = "rrs:pipelines-devops";
-        path = "bitbucket/robin-radar-systems/pipelines-devops";
+        path = "bitbucket.org/robin-radar-systems/pipelines-devops";
       };
       robin-deployment = {
         url = "rrs:robin-deployment";
-        path = "bitbucket/robin-radar-systems/robin-deployment";
+        path = "bitbucket.org/robin-radar-systems/robin-deployment";
         branch = "main";
       };
       "robin-deployment/release-candidate-1.6-dev" = {
         worktree = "robin-deployment";
         branch = "release/release-candidate-1.6-dev";
-        path = "bitbucket/robin-radar-systems/robin-deployment-releases/release-candidate-1.6-dev";
+        path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.6-dev";
       };
       "robin-deployment/release-candidate-1.7-dev" = {
         worktree = "robin-deployment";
         branch = "release/release-candidate-1.7-dev";
-        path = "bitbucket/robin-radar-systems/robin-deployment-releases/release-candidate-1.7-dev";
+        path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.7-dev";
       };
       robin-scripts = {
         url = "rrs:robin-scripts";
-        path = "bitbucket/robin-radar-systems/robin-scripts";
+        path = "bitbucket.org/robin-radar-systems/robin-scripts";
       };
     };
 
