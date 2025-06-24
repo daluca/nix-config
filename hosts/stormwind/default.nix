@@ -17,7 +17,22 @@
 
   services.getty.autologinUser = "daluca";
 
-  networking.hostName = "stormwind";
+  networking = {
+    hostName = "stormwind";
+    useDHCP = false;
+    interfaces.end0 = {
+      ipv4.addresses = [
+        {
+          address = "192.168.178.10";
+          prefixLength = 24;
+        }
+      ];
+    };
+    defaultGateway = {
+      address = "192.168.178.1";
+      interface = "end0";
+    };
+  };
 
   networking.localCommands = /* bash */ ''
     ip rule add to 192.168.178.0/24 priority 2500 lookup main || true
