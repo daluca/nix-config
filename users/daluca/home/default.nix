@@ -6,6 +6,7 @@ in {
     let
       hostExtras = (./. + "/${hostName}.nix");
     in builtins.attrValues outputs.homeManagerModules ++ [
+      outputs.nixosModules.host
       inputs.impermanence.homeManagerModules.impermanence
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "tmux"
