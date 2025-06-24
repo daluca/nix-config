@@ -11,6 +11,9 @@
           "[/ironforge.${config.networking.domain}/]192.168.1.1"
           "[/${secrets.parents.domain}/]192.168.1.10"
         ];
+        fallback_dns = [
+          "192.168.1.10"
+        ];
         hostsfile_enabled = false;
         local_domain_name = config.networking.domain;
       };

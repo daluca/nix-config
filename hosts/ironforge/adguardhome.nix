@@ -7,8 +7,10 @@ in {
     dns = {
       bind_hosts = [ "192.168.1.10" ];
       upstream_dns = [
-        "192.168.178.10"
         "[//168.192.in-addr.arpa/${config.networking.domain}/]192.168.1.1"
+      ];
+      fallback_dns = [
+        "192.168.178.10"
       ];
       hostsfile_enabled = false;
     };
