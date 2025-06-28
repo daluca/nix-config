@@ -671,7 +671,8 @@
         "nixvim-config": "nixvim-config",
         "nur": "nur",
         "raspberry-pi-nix": "raspberry-pi-nix",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "zen-browser": "zen-browser"
       }
     },
     "rpi-bluez-firmware-src": {
@@ -909,6 +910,29 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751093194,
+        "narHash": "sha256-mlrXp76ulgniJEE34FtO8GSF2LxLcib1+MBh7BwgmdM=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "6644da1c6eec4b4cf0b7d81d089aa64c0f9abc82",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

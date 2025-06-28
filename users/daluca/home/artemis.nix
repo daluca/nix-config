@@ -39,6 +39,7 @@
     "nh"
     "modern-unix"
     "atuin"
+    "zen-browser"
   ];
 
   sops.secrets."gsconnect/private.pem".sopsFile = lib.custom.relativeToHosts "artemis/artemis.sops.yaml";
