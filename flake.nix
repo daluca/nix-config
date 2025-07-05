@@ -58,7 +58,7 @@
     lib = nixpkgs.lib.extend (_final: _prev: { custom = import ./lib { inherit lib; }; } // home-manager.lib);
     secrets = fromTOML (builtins.readFile ./secrets/secrets.toml);
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
-    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    forAllSystems = lib.genAttrs supportedSystems;
     pkgs' = system: import nixpkgs {
       inherit system;
       config.allowUnfree = true;
