@@ -3,7 +3,7 @@
 {
   programs.gpg.publicKeys = [
     {
-      source = ./7626A2AB23757525-2024-07-03.asc;
+      source = ./7626A2AB23757525-2025-07-05.asc;
       trust = "ultimate";
     }
     {
