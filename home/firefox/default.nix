@@ -3,8 +3,8 @@
 {
   programs.firefox = {
     enable = true;
-    policies = import ./policies.nix // import ./extensions.nix { inherit lib pkgs; } ;
-    profiles.${config.home.username} = {
+    policies = import ./policies.nix // import ./extensions.nix { inherit config lib pkgs; } ;
+    profiles.default = {
       id = 0;
       isDefault = true;
       search = import ./search.nix { inherit config pkgs osConfig secrets; };

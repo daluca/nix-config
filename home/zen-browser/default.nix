@@ -11,8 +11,8 @@ in {
     nativeMessagingHosts = with pkgs; [
       firefoxpwa
     ];
-    policies = firefoxModule "policies" // firefoxModule "extensions" { inherit lib pkgs; };
-    profiles.${config.home.username} = {
+    policies = firefoxModule "policies" // firefoxModule "extensions" { inherit config lib pkgs; };
+    profiles.default = {
       search = firefoxModule "search" { inherit config pkgs osConfig secrets; };
       bookmarks = firefoxModule "bookmarks" { inherit config lib secrets; };
       settings = firefoxModule "arkenfox" // {

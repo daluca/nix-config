@@ -1,11 +1,11 @@
-{ lib, pkgs }:
+{ config, lib, pkgs }:
 let
   inherit (pkgs) bypass-paywalls-clean;
 in with pkgs.nur.repos.rycee.firefox-addons; {
   ExtensionUpdate = false;
-  ExtensionSettings."*".installation_mode = "blocked";
 
   ExtensionSettings = {
+    "*".installation_mode = "blocked";
     ${ublock-origin.addonId} = {
       install_url = "file://${ublock-origin}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${ublock-origin.addonId}.xpi";
       installation_mode = "force_installed";
@@ -46,6 +46,7 @@ in with pkgs.nur.repos.rycee.firefox-addons; {
       install_url = "file://${consent-o-matic}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${consent-o-matic.addonId}.xpi";
       installation_mode = "force_installed";
     };
+  } // lib.optionalAttrs (! config.host.work) {
     ${bypass-paywalls-clean.addonId} = {
       install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${bypass-paywalls-clean.addonId}.xpi";
       installation_mode = "force_installed";
