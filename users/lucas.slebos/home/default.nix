@@ -248,24 +248,14 @@ in {
     garden.root = "${config.home.homeDirectory}/code";
 
     trees = {
-      awx = {
-        url = "rrs:awx";
-        branch = "main";
-        path = "bitbucket.org/robin-radar-systems/awx";
-      };
-      "awx/release-candidate-1.6-dev" = {
-        worktree = "awx";
-        branch = "release/release-candidate-1.6-dev";
-        path = "bitbucket.org/robin-radar-systems/awx-releases/release-candidate-1.6-dev";
-      };
-      "awx/release-candidate-1.7-dev" = {
-        worktree = "awx";
-        branch = "release/release-candidate-1.7-dev";
-        path = "bitbucket.org/robin-radar-systems/awx-releases/release-candidate-1.7-dev";
-      };
       apt-mirror = {
         url = "rrs:apt-mirror";
         path = "bitbucket.org/robin-radar-systems/apt-mirror";
+      };
+      awx-management = {
+        url = "rrs:awx-management";
+        branch = "main";
+        path = "bitbucket.org/robin-radar-systems/awx-management";
       };
       bitwarden-vault = {
         url = "rrs:bitwarden_vault";
@@ -331,10 +321,8 @@ in {
 
     groups = {
       devops = [
-        "awx"
-        "awx/release-candidate-1.6-dev"
-        "awx/release-candidate-1.7-dev"
         "apt-mirror"
+        "awx-management"
         "bitwarden-vault"
         "image-pipeline"
         "kubernetes-cluster-deployment"
