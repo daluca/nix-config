@@ -98,6 +98,36 @@ in {
 
   targets.genericLinux.enable = true;
 
+  programs.firefox.profiles.default.bookmarks.settings = [
+    {
+      name = "Odoo (ERP)";
+      url = "https://erp.${secrets.domains.general}/";
+    }
+    {
+      name = "Robin Fileshare";
+      url = "https://fileshare.${secrets.domains.general}/";
+    }
+    {
+      name = "SD API";
+      url = "https://software-api-admin.${secrets.domains.general}/login";
+    }
+  ];
+
+  programs.zen-browser.profiles.default.bookmarks.settings = [
+    {
+      name = "Odoo (ERP)";
+      url = "https://erp.${secrets.domains.general}/";
+    }
+    {
+      name = "Robin Fileshare";
+      url = "https://fileshare.${secrets.domains.general}/";
+    }
+    {
+      name = "SD API";
+      url = "https://software-api-admin.${secrets.domains.general}/login";
+    }
+  ];
+
   programs.vscode.profiles.default.userSettings = {
     "files.associations" = {
       "**/pre_tasks/*.yaml" = "ansible";

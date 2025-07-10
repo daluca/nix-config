@@ -14,7 +14,7 @@ in {
     policies = firefoxModule "policies" // firefoxModule "extensions" { inherit lib pkgs; };
     profiles.${config.home.username} = {
       search = firefoxModule "search" { inherit config pkgs osConfig secrets; };
-      bookmarks = firefoxModule "bookmarks" { inherit secrets; };
+      bookmarks = firefoxModule "bookmarks" { inherit config lib secrets; };
       settings = firefoxModule "arkenfox" // {
         # Browser
         "browser.startup.page" = 1;
