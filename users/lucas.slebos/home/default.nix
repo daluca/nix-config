@@ -185,65 +185,61 @@ in {
     }"
   ];
 
-  programs.ssh = with secrets; {
+  programs.ssh = {
     enable = true;
     matchBlocks = {
-      awx = {
-        user = "awx";
-        hostname = "awx.${domains.general}";
-      };
       robin-user = {
-        host = "*-8888 *-9999 *-awx *-68 *-test *-230";
+        host = "*-230 *-231 *-232";
         user = "robin";
         extraOptions = {
           StrictHostKeyChecking = "no";
           UserKnownHostsFile = "/dev/null";
         };
       };
-      "*-awx" = {
-        proxyJump = "awx";
-      };
-      iris-8888 = {
-        hostname = "10.200.100.107";
-      };
-      iris-9999 = {
-        hostname = "10.200.100.93";
-      };
-      iris-9999-awx = {
-        hostname = "192.168.50.112";
-      };
-      iris-9999-68 = {
-        hostname = "10.200.68.25";
-      };
-      max-8888 = {
-        hostname = "10.200.100.96";
-      };
-      sts-8888 = {
-        hostname = "10.200.100.94";
-      };
-      lts-8888 = {
-        hostname = "10.200.100.95";
-      };
-      max-9999 = {
-        hostname = "10.200.100.104";
-      };
-      sts-9999 = {
-        hostname = "10.200.100.105";
-      };
-      lts-9999 = {
-        hostname = "10.200.100.106";
-      };
-      k700-test = {
-        hostname = "10.200.230.201";
-      };
-      "aptly-ssh.dev.${domains.devops}" = {
-        user = "aptly";
-      };
-      "aptly-ssh.prod.${domains.devops}" = {
-        user = "aptly";
-      };
       mps-9999-230 = {
         hostname = "10.200.230.202";
+      };
+      mps-9999-231 = {
+        hostname = "10.200.231.202";
+      };
+      mps-9999-232 = {
+        hostname = "10.200.232.202";
+      };
+      max-9999-230 = {
+        hostname = "10.200.230.207";
+      };
+      max-9999-231 = {
+        hostname = "10.200.231.207";
+      };
+      max-9999-232 = {
+        hostname = "10.200.232.207";
+      };
+      lts-9999-230 = {
+        hostname = "10.200.230.208";
+      };
+      lts-9999-231 = {
+        hostname = "10.200.231.208";
+      };
+      lts-9999-232 = {
+        hostname = "10.200.232.208";
+      };
+      sts-9999-230 = {
+        hostname = "10.200.230.206";
+      };
+      sts-9999-231 = {
+        hostname = "10.200.231.206";
+      };
+      sts-9999-232 = {
+        hostname = "10.200.232.206";
+      };
+      k700-9999-230 = {
+        hostname = "10.200.230.201";
+      };
+      k700-9999-231 = {
+        hostname = "10.200.231.201";
+      };
+      k700-9999-232 = {
+        hostname = "10.200.232.201";
       };
     };
   };
