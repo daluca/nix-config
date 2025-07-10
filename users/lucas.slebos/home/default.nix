@@ -63,19 +63,19 @@ in {
     nixgl.nixGLIntel
     (lib.hiPrio (pkgs.bitwarden-cli.overrideAttrs (oldAttrs: rec {
       inherit (oldAttrs) pname;
-      version = "2024.12.0";
+      version = "2025.5.0";
 
       src = pkgs.fetchFromGitHub {
         owner = "bitwarden";
         repo = "clients";
         tag = "cli-v${version}";
-        hash = "sha256-3aN2t8/qhN0sjACvtip45efHQJl8nEMNre0+oBL1/go=";
+        hash = "sha256-8jVKwqKhTfhur226SER4sb1i4dY+TjJRYmOY8YtO6CY=";
       };
 
       npmDeps = pkgs.fetchNpmDeps {
         inherit src;
         name = "${pname}-${version}-npm-deps";
-        hash = "sha256-EtIcqbubAYN9I9wbw17oHiVshd3GtQayFtdgqWP7Pgg=";
+        hash = "sha256-0IoBPRGdtkMeTrT5cqZLHB/WrUCONtsJ6YHh0y4K5Ls=";
       };
     })))
   ];
