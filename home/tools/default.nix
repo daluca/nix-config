@@ -17,5 +17,6 @@
     unzip
     dig
     tree
+    entr
   ];
 }
