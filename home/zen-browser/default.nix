@@ -1,5 +1,6 @@
-{ config, lib, pkgs, secrets, osConfig, inputs, ... }:
+{ config, lib, pkgs, secrets, inputs, ... }@args:
 let
+  osConfig = (if args ? "osConfig" then args.osConfig else { system.stateVersion = config.home.stateVersion; });
   firefoxModule = module: import (lib.custom.relativeToHomeManagerModules "firefox/${module}.nix");
 in {
   imports = [

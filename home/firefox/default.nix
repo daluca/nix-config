@@ -1,6 +1,7 @@
-{ config, lib, pkgs, osConfig, secrets, ... }:
-
-{
+{ config, lib, pkgs, secrets, ... }@args:
+let
+  osConfig = (if args ? "osConfig" then args.osConfig else { system.stateVersion = config.home.stateVersion; });
+in {
   programs.firefox = {
     enable = true;
     policies = import ./policies.nix // import ./extensions.nix { inherit config lib pkgs; } ;

@@ -1,6 +1,7 @@
-{ config, pkgs, osConfig, secrets }:
-
-{
+{ config, pkgs, secrets, ... }@args:
+let
+  osConfig = (if args ? "osConfig" then args.osConfig else { system.stateVersion = config.home.stateVersion; });
+in {
   force = true;
   default = "Kagi";
   privateDefault = "Kagi";
