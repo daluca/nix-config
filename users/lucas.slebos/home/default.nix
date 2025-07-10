@@ -53,6 +53,8 @@ in {
     };
   };
 
+  host.work = true;
+
   home.persistence.home.enable = lib.mkDefault false;
 
   home.packages = with pkgs; [
