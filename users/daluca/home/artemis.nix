@@ -43,6 +43,8 @@
     "systemctl-tui"
   ];
 
+  sops.age.keyFile = lib.mkOverride 10 "/persistent/system/var/lib/sops-nix/key.txt";
+
   sops.secrets."gsconnect/private.pem".sopsFile = lib.custom.relativeToHosts "artemis/artemis.sops.yaml";
 
   programs.zsh.sessionVariables = {

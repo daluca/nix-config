@@ -1,6 +1,7 @@
 keys:
+  - &master age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
   - users:
-      - &daluca age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
+      - &daluca age1t7uj9cz0dwrm555qred7n49t5c2shtuuwwsc6ryd3fewunx7x32s7rlkt0
       - &lucas-slebos age1d60rtn66jj8mkx4quvwjn66mrqja83ux2flknqlreh09p06rkvpqnj7ygw
   - hosts:
       - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
@@ -13,55 +14,62 @@ keys:
       - &RRS-A00746 age1w3wwy6e42f3xahzz45a5qra6d73jzl66g0vghxcvz2ak9pnufvcsjgn8ma
 
 creation_rules:
+  - path_regex: daluca\.sops\.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *daluca
   - path_regex: lucas\.slebos\.sops\.yaml$
     key_groups:
       - age:
-          - *daluca
+          - *master
           - *lucas-slebos
   - path_regex: stormwind\.sops\.yaml$
     key_groups:
       - age:
-          - *daluca
+          - *master
           - *stormwind
   - path_regex: artemis\.sops\.yaml$
     key_groups:
       - age:
-          - *daluca
+          - *master
           - *artemis
   - path_regex: ironforge\.sops\.yaml$
     key_groups:
       - age:
-          - *daluca
+          - *master
           - *ironforge
   - path_regex: darnassus\.sops\.yaml$
     key_groups:
       - age:
-          - *daluca
+          - *master
           - *darnassus
   - path_regex: guiltyspark\.sops\.yaml$
     key_groups:
       - age:
-          - *daluca
+          - *master
           - *guiltyspark
   - path_regex: unifi\.sops\.yaml$
     key_groups:
       - age:
-          - *daluca
+          - *master
           - *unifi
   - path_regex: RRS-A00690\.sops\.yaml$
     key_groups:
       - age:
-          - *daluca
+          - *master
           - *RRS-A00690
   - path_regex: RRS-A00746\.sops\.yaml$
     key_groups:
       - age:
-          - *daluca
+          - *master
           - *RRS-A00746
   - path_regex: \.sops\.yaml$
     key_groups:
       - age:
+          - *master
           - *daluca
+          - *lucas-slebos
           - *artemis
           - *stormwind
           - *ironforge
