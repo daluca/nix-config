@@ -367,13 +367,14 @@ in {
     path = ".kube/dev.kubeconfig";
   };
 
+  sops.secrets."stg.kubeconfig" = {
+    sopsFile = ../lucas.slebos.sops.yaml;
+    path = ".kube/stg.kubeconfig";
+  };
+
   sops.secrets."prod.kubeconfig" = {
     sopsFile = ../lucas.slebos.sops.yaml;
     path = ".kube/prod.kubeconfig";
-  };
-
-  home.sessionVariables = {
-    KUBECONFIG = "${config.home.homeDirectory}/.kube/dev.kubeconfig:${config.home.homeDirectory}/.kube/prod.kubeconfig";
   };
 
   programs.bash.enable = true;
