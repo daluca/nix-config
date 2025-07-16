@@ -31,6 +31,7 @@ in {
       "secrets"
       "slack"
       "starship"
+      "syncthing"
       "systemctl-tui"
       "tmux"
       "tools"
