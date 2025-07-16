@@ -1,6 +1,25 @@
 { config, lib, pkgs, hostname, inputs, outputs, ... }@args:
 let
   secrets = args.secrets // builtins.fromTOML (builtins.readFile ../secrets.toml);
+
+  additionalBookmarks = [
+    {
+      name = "Odoo (ERP)";
+      url = "https://erp.${secrets.domains.general}/";
+    }
+    {
+      name = "Robin Fileshare";
+      url = "https://fileshare.${secrets.domains.general}/";
+    }
+    {
+      name = "SD API";
+      url = "https://software-api-admin.${secrets.domains.general}/login";
+    }
+    {
+      name = "vSphere";
+      url = "https://photon-machine.${secrets.domains.general}/";
+    }
+  ];
 in {
   imports =
     let
@@ -101,35 +120,9 @@ in {
 
   targets.genericLinux.enable = true;
 
-  programs.firefox.profiles.default.bookmarks.settings = [
-    {
-      name = "Odoo (ERP)";
-      url = "https://erp.${secrets.domains.general}/";
-    }
-    {
-      name = "Robin Fileshare";
-      url = "https://fileshare.${secrets.domains.general}/";
-    }
-    {
-      name = "SD API";
-      url = "https://software-api-admin.${secrets.domains.general}/login";
-    }
-  ];
+  programs.firefox.profiles.default.bookmarks.settings = additionalBookmarks;
 
-  programs.zen-browser.profiles.default.bookmarks.settings = [
-    {
-      name = "Odoo (ERP)";
-      url = "https://erp.${secrets.domains.general}/";
-    }
-    {
-      name = "Robin Fileshare";
-      url = "https://fileshare.${secrets.domains.general}/";
-    }
-    {
-      name = "SD API";
-      url = "https://software-api-admin.${secrets.domains.general}/login";
-    }
-  ];
+  programs.zen-browser.profiles.default.bookmarks.settings = additionalBookmarks;
 
   programs.vscode.profiles.default.userSettings = {
     "files.associations" = {
