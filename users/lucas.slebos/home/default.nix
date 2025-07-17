@@ -377,6 +377,15 @@ in {
     path = ".kube/prod.kubeconfig";
   };
 
+  services.syncthing.settings = {
+    folders = {
+      "${config.home.homeDirectory}/Documents" = {
+        label = "Documents";
+        id = "documents";
+      };
+    };
+  };
+
   programs.bash.enable = true;
 
   xdg.enable = true;
