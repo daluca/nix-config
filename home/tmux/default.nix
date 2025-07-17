@@ -19,6 +19,13 @@
           set -g @scroll-speed-num-lines-per-scroll "1"
         '';
       }
+      {
+        plugin = tmux-sessionx;
+        extraConfig = /* tmux */ ''
+          set -g @sessionx-bind "C-o"
+          set -g @sessionx-prefix "off"
+        '';
+      }
     ];
     extraConfig = with pkgs.tmuxPlugins; /* tmux */ ''
       # Keybindings
