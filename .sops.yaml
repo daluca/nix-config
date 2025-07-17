@@ -10,8 +10,6 @@ keys:
       - &darnassus age102lual882fvygyw47twjzl65uey33u2ps8ulcrr8g258vaafwvpqsj6hyy
       - &guiltyspark age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm
       - &unifi age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2
-      - &RRS-A00690 age16c3hdsmh4ygkzfe0ekz0cg266jsjszn3pdrlstzkg0tpnmyy24rspr7m9k
-      - &RRS-A00746 age1w3wwy6e42f3xahzz45a5qra6d73jzl66g0vghxcvz2ak9pnufvcsjgn8ma
 
 creation_rules:
   - path_regex: daluca\.sops\.yaml$
@@ -54,16 +52,6 @@ creation_rules:
       - age:
           - *master
           - *unifi
-  - path_regex: RRS-A00690\.sops\.yaml$
-    key_groups:
-      - age:
-          - *master
-          - *RRS-A00690
-  - path_regex: RRS-A00746\.sops\.yaml$
-    key_groups:
-      - age:
-          - *master
-          - *RRS-A00746
   - path_regex: \.sops\.yaml$
     key_groups:
       - age:
@@ -76,8 +64,6 @@ creation_rules:
           - *darnassus
           - *guiltyspark
           - *unifi
-          - *RRS-A00690
-          - *RRS-A00746
 
 stores:
   yaml:
