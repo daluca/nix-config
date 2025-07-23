@@ -37,6 +37,9 @@
       plugins = [
         "sudo"
       ];
+      extraConfig = /* zsh */ /* bash */ ''
+        zstyle ':omz:update' mode disabled
+      '';
     };
     profileExtra = /* zsh */ /* bash */ ''
       export DISABLE_TMUX_AUTOSTART=true
