@@ -48,7 +48,7 @@ in {
       publicKeyFile = ../../hosts/ironforge/keys/ssh_host_rsa_key.pub;
     };
     darnassus = {
-      extraHostNames = [ "darnassus.${domain}" "192.168.178.11" ];
+      extraHostNames = [ "darnassus.${domain}" "192.168.1.212" ];
       publicKeyFile = ../../hosts/darnassus/keys/ssh_host_ed25519_key.pub;
     };
     "darnassus/rsa" = {

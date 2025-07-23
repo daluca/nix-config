@@ -26,7 +26,7 @@
   sops.secrets."tailscale/preauthkey".sopsFile = ./ironforge.sops.yaml;
 
   services.tailscale.extraUpFlags = [
-    "--advertise-routes=192.168.1.0/24"
+    "--advertise-routes=192.168.1.0/26"
     "--hostname=new-zealand"
   ];
 

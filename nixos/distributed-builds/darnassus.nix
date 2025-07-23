@@ -1,6 +1,6 @@
 {
   nix.buildMachines = [{
-    hostName = "192.168.178.11";
+    hostName = "192.168.1.212";
     system = "aarch64-linux";
     supportedFeatures = [
       "nixos-test"

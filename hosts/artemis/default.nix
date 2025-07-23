@@ -10,7 +10,6 @@
     "."
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "desktop-managers/gnome"
-    "distributed-builds"
     "swap"
     "ssd"
     "pipewire"
