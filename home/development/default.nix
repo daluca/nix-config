@@ -4,7 +4,6 @@
   imports = [
     ./direnv.nix
     ./garden-rs.nix
-    ./jujutsu.nix
     ./just.nix
   ];
 
