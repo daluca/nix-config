@@ -27,7 +27,7 @@
 
   services.tailscale.extraUpFlags = [
     "--advertise-routes=192.168.1.0/24"
-    "--hostname=idris"
+    "--hostname=new-zealand"
   ];
 
   networking.localCommands = /* bash */ ''

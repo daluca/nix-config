@@ -46,7 +46,7 @@
 
   services.tailscale.extraUpFlags = [
     "--advertise-routes=192.168.178.0/24"
-    "--hostname=waalsdorperweg"
+    "--hostname=the-netherlands"
   ];
 
   hardware.raspberry-pi.config.pi4 = {
