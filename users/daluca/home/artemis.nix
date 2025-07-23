@@ -41,6 +41,7 @@
     "atuin"
     "zen-browser"
     "systemctl-tui"
+    "jujutsu"
   ];
 
   sops.age.keyFile = lib.mkOverride 10 "/persistent/system/var/lib/sops-nix/key.txt";

@@ -39,6 +39,7 @@ in {
       "ghostty"
       "git"
       "gron"
+      "jujutsu"
       "kanata"
       "kubernetes"
       "lazygit"
@@ -152,6 +153,15 @@ in {
     user.email = secrets.email;
     commit.gpgSign = false;
     tag.gpgSign = false;
+  };
+
+  xdg.configFile."jj/conf.d/work.toml".source = (pkgs.formats.toml { }).generate "work.toml" {
+    "--when.repositories" = [
+      "${config.home.homeDirectory}/code/bitbucket/robin-radar-systems"
+    ];
+    user.email = secrets.email;
+    signing.behavior = "drop";
+    git.signing-on-push = false;
   };
 
   sops.secrets."id_ed25519" = {
