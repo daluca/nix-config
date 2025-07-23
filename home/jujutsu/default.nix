@@ -38,4 +38,8 @@
       ];
     };
   };
+
+  home.packages = with pkgs; [
+    lazyjj
+  ];
 }
