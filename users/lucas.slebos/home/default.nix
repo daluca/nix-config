@@ -47,6 +47,7 @@ in {
       "modern-unix"
       "neovim"
       "nh"
+      "nixGL"
       "qrrs"
       "secrets"
       "slack"
@@ -80,8 +81,7 @@ in {
 
   home.persistence.home.enable = lib.mkDefault false;
 
-  home.packages = with pkgs; [
-    nixgl.nixGLIntel
+  home.packages = [
     (lib.hiPrio (pkgs.bitwarden-cli.overrideAttrs (oldAttrs: rec {
       inherit (oldAttrs) pname;
       version = "2025.5.0";
@@ -101,19 +101,10 @@ in {
     })))
   ];
 
-  programs.alacritty.package = lib.mkForce (pkgs.unstable.alacritty.overrideAttrs (_: {
-    postFixup = /* bash */ ''
-      ${pkgs.gnused}/bin/sed -i "s|^Exec=alacritty|Exec=nixGLIntel alacritty|" $out/share/applications/Alacritty.desktop
-      chmod 0444 $out/share/applications/Alacritty.desktop
-    '';
-  }));
+  programs.alacritty.package = lib.mkForce (config.lib.nixGL.wrap pkgs.unstable.alacritty);
 
-  programs.ghostty.package = lib.mkForce (pkgs.unstable.ghostty.overrideAttrs (oldAttrs: {
-    postFixup = oldAttrs.postFixup + /* bash */ ''
-      substituteInPlace $out/share/applications/com.mitchellh.ghostty.desktop \
-        --replace Exec=ghostty "Exec=nixGLIntel ghostty"
-    '';
-  }));
+  programs.ghostty.package = lib.mkForce (config.lib.nixGL.wrap pkgs.unstable.ghostty);
+
 
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
