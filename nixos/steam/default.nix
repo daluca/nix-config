@@ -23,10 +23,12 @@
     remotePlay.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
     extraCompatPackages = with pkgs; [
+      GE-Proton10-10
+      GE-Proton10-9
+      GE-Proton10-8
+      GE-Proton10-7
+      GE-Proton10-6
       GE-Proton10-4
-      GE-Proton10-3
-      GE-Proton10-2
-      GE-Proton10-1
       GE-Proton9-27
       GE-Proton8-32
       GE-Proton7-55
