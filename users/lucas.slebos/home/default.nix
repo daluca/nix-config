@@ -179,7 +179,7 @@ in {
     }"
   ];
 
-  programs.ssh = {
+  programs.ssh = with secrets; {
     enable = true;
     matchBlocks = {
       robin-user = {
@@ -234,6 +234,10 @@ in {
       };
       k700-9999-232 = {
         hostname = "10.200.232.201";
+      };
+      aptly-user = {
+        host = "aptly-ssh.*.${domains.devops}";
+        user = "aptly";
       };
     };
   };
