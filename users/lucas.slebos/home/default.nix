@@ -124,26 +124,27 @@ in {
   };
 
   programs.git = {
-    includes = [
+    includes =
+    let
+      robin-radar-systems = pkgs.writeText "robin-radar-systems-git-config" (lib.generators.toGitINI {
+        user.email = secrets.email;
+        commit.gpgSign = false;
+        tag.gpgSign = false;
+      });
+    in [
       {
         condition = "hasconfig:remote.*.url:git@bitbucket.org:robin-radar-systems/**";
-        path = "robin-radar-systems";
+        path = robin-radar-systems;
       }
       {
         condition = "hasconfig:remote.*.url:rrs:**";
-        path = "robin-radar-systems";
+        path = robin-radar-systems;
       }
     ];
     extraConfig = {
       url."git@bitbucket.org".insteadof = "bitbucket";
       url."git@bitbucket.org:robin-radar-systems/".insteadof = "rrs:";
     };
-  };
-
-  xdg.configFile."git/robin-radar-systems".text = lib.generators.toGitINI {
-    user.email = secrets.email;
-    commit.gpgSign = false;
-    tag.gpgSign = false;
   };
 
   xdg.configFile."jj/conf.d/work.toml".source = (pkgs.formats.toml { }).generate "work.toml" {
