@@ -147,7 +147,7 @@ in {
     };
   };
 
-  xdg.configFile."jj/conf.d/work.toml".source = (pkgs.formats.toml { }).generate "work.toml" {
+  xdg.configFile."jj/conf.d/robin-radar-systems.toml".source = (pkgs.formats.toml { }).generate "robin-radar-systems.toml" {
     "--when".repositories = [
       "${config.home.homeDirectory}/code/bitbucket/robin-radar-systems"
     ];
