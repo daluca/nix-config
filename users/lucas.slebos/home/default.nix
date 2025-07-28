@@ -20,6 +20,52 @@ let
       url = "https://photon-machine.${secrets.domains.general}/";
     }
   ];
+  global-pre-commit-config = pkgs.writeText "global-pre-commit-config" (lib.generators.toYAML { } {
+    repos = [
+      {
+        repo = "local";
+        hooks = [
+          {
+            id = "typos";
+            name = "typos";
+            entry = lib.getExe pkgs.typos;
+            args = [
+              "--force-exclude"
+              "--config=${pkgs.writers.writeTOML "global-typos-config" {
+                default = {
+                  extend-ignore-re = [
+                    "(?Rm)^.*(#|//)\\s*spellchecker:disable-line$"
+                  ];
+                  extend-words = {
+                    hpe = "hpe"; # spellchecker:disable-line
+                  };
+                };
+              }}"
+            ];
+            language = "system";
+            stages = [
+              "pre-commit"
+            ];
+            types = [
+              "text"
+            ];
+          }
+          {
+            id = "ansible-lint";
+            name = "ansible-lint";
+            entry = lib.getExe pkgs.ansible-lint;
+            language = "system";
+            stages = [
+              "pre-commit"
+            ];
+            types = [
+              "file"
+            ];
+          }
+        ];
+      }
+    ];
+  });
 in {
   imports =
     let
@@ -82,6 +128,18 @@ in {
   home.persistence.home.enable = lib.mkDefault false;
 
   home.packages = [
+    (pkgs.writeShellScriptBin "pre-commit" /* bash */ ''
+      set -eou pipefail
+
+      if [ "$#" -eq 0 ]; then
+        ${lib.getExe pkgs.pre-commit} --help
+      elif [ "$1" == "run" ]; then
+        shift
+        ${lib.getExe pkgs.pre-commit} run --config ${global-pre-commit-config} "$@"
+      else
+        ${lib.getExe pkgs.pre-commit} "$@"
+      fi
+    '')
     (lib.hiPrio (pkgs.bitwarden-cli.overrideAttrs (oldAttrs: rec {
       inherit (oldAttrs) pname;
       version = "2025.5.0";
@@ -144,6 +202,19 @@ in {
     extraConfig = {
       url."git@bitbucket.org".insteadof = "bitbucket";
       url."git@bitbucket.org:robin-radar-systems/".insteadof = "rrs:";
+    };
+    hooks = {
+      pre-commit = pkgs.writeShellScript "pre-commit" /* bash */ ''
+        set -euo pipefail
+
+        INSTALL_PYTHON=${lib.getExe pkgs.python3}
+        ARGS=(hook-impl --config=${global-pre-commit-config} --hook-type=pre-commit)
+
+        HERE=$(cd "$(dirname "$0")" && pwd)
+        ARGS+=(--hook-dir "''${HERE}" -- "$@")
+
+        exec ${lib.getExe pkgs.pre-commit} "''${ARGS[@]}"
+      '';
     };
   };
 
