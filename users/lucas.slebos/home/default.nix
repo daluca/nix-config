@@ -237,30 +237,23 @@ in {
       url."git@bitbucket.org".insteadof = "bitbucket";
       url."git@bitbucket.org:robin-radar-systems/".insteadof = "rrs:";
     };
-    hooks = {
-      pre-commit = pkgs.writeShellScript "pre-commit" /* bash */ ''
+    hooks = let
+      git-hook = hook: pkgs.writeShellScript hook /* bash */ ''
         set -euo pipefail
 
         INSTALL_PYTHON=${lib.getExe pkgs.python3}
-        ARGS=(hook-impl --config=${pre-commit.configFile} --hook-type=pre-commit)
+        ARGS=(hook-impl --config=${pre-commit.configFile} --hook-type=${hook})
 
         HERE=$(cd "$(dirname "$0")" && pwd)
         ARGS+=(--hook-dir "''${HERE}" -- "$@")
 
         exec ${lib.getExe pkgs.pre-commit} "''${ARGS[@]}"
       '';
-      prepare-commit-msg = pkgs.writeShellScript "prepare-commit-msg" /* bash */ ''
-        set -euo pipefail
-
-        INSTALL_PYTHON=${lib.getExe pkgs.python3}
-        ARGS=(hook-impl --config=${pre-commit.configFile} --hook-type=prepare-commit-msg)
-
-        HERE=$(cd "$(dirname "$0")" && pwd)
-        ARGS+=(--hook-dir "''${HERE}" -- "$@")
-
-        exec ${lib.getExe pkgs.pre-commit} "''${ARGS[@]}"
-      '';
-    };
+      pre-commit-hooks = hook-types: lib.genAttrs hook-types (hook: git-hook hook);
+    in pre-commit-hooks [
+      "pre-commit"
+      "prepare-commit-msg"
+    ];
   };
 
   xdg.configFile."jj/conf.d/robin-radar-systems.toml".source = (pkgs.formats.toml { }).generate "robin-radar-systems.toml" {
