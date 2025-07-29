@@ -5,6 +5,7 @@ let
 in {
   users.users.daluca = {
     isNormalUser = true;
+    description = "Lucas Slebos";
     hashedPasswordFile = secrets."daluca/password".path;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keyFiles = [
