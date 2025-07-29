@@ -261,7 +261,7 @@ in {
       "${config.home.homeDirectory}/code/bitbucket/robin-radar-systems"
     ];
     user.email = secrets.email;
-    git.signing-on-push = false;
+    git.sign-on-push = false;
   };
 
   sops.secrets."id_ed25519" = {

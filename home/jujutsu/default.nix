@@ -25,7 +25,7 @@
       };
       git = {
         auto-local-bookmark = true;
-        signing-on-push = true;
+        sign-on-push = true;
         executable-path = lib.getExe config.programs.git.package;
       };
       "--scope" = [
