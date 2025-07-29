@@ -195,6 +195,7 @@ in {
       "**/pre_tasks/*.yaml" = "ansible";
       "**/pre_tasks/*.yml" = "ansible";
     };
+    "typos.config" = typos-config;
   };
 
   programs.git = {
