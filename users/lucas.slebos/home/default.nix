@@ -20,7 +20,7 @@ let
       url = "https://photon-machine.${secrets.domains.general}/";
     }
   ];
-  typos-config = pkgs.writers.writeTOML "global-typos-config" {
+  typos-config = pkgs.writers.writeTOML "global-typos-config.toml" {
     default = {
       extend-ignore-re = [
         "(?Rm)^.*(#|//)\\s*spellchecker:disable-line$"
@@ -30,6 +30,12 @@ let
         ba = "ba"; # spellchecker:disable-line
         hda = "hda"; # spellchecker:disable-line
       };
+    };
+  };
+  commitlint-rs-config = pkgs.writers.writeYAML "global-commitlint-rs-config.yaml" {
+    rules.description-format = {
+      level = "error";
+      format = "^RDDO-[0-9]+";
     };
   };
   pre-commit = (inputs.git-hooks.lib.${pkgs.system}.run {
@@ -56,6 +62,24 @@ let
         description = "gitleaks hook";
         package = pkgs.gitleaks;
         entry = "${lib.getExe gitleaks.package} protect --verbose --redact --staged";
+      };
+      commitlint-rs = {
+        enable = true;
+        description = "commitlint-rs hook";
+        package = (pkgs.writeShellScriptBin "commitlint" /* bash */ ''
+          set -euo pipefail
+
+          exec ${lib.getExe pkgs.commitlint-rs} --edit "$( [[ -f .git ]] && cut -f2 -d' ' .git || echo ./.git )/COMMIT_EDITMSG" "$@"
+        '');
+        entry = lib.getExe commitlint-rs.package;
+        args = [
+          "--config=${commitlint-rs-config}"
+        ];
+        stages = [
+          "prepare-commit-msg"
+        ];
+        pass_filenames = false;
+        require_serial = true;
       };
     };
   }).config;
@@ -201,6 +225,17 @@ in {
 
         INSTALL_PYTHON=${lib.getExe pkgs.python3}
         ARGS=(hook-impl --config=${pre-commit.configFile} --hook-type=pre-commit)
+
+        HERE=$(cd "$(dirname "$0")" && pwd)
+        ARGS+=(--hook-dir "''${HERE}" -- "$@")
+
+        exec ${lib.getExe pkgs.pre-commit} "''${ARGS[@]}"
+      '';
+      prepare-commit-msg = pkgs.writeShellScript "prepare-commit-msg" /* bash */ ''
+        set -euo pipefail
+
+        INSTALL_PYTHON=${lib.getExe pkgs.python3}
+        ARGS=(hook-impl --config=${pre-commit.configFile} --hook-type=prepare-commit-msg)
 
         HERE=$(cd "$(dirname "$0")" && pwd)
         ARGS+=(--hook-dir "''${HERE}" -- "$@")
