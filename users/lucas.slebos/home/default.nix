@@ -412,6 +412,11 @@ in {
         branch = "release/release-candidate-1.8";
         path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.8";
       };
+      "robin-deployment/release-candidate-1.9" = {
+        worktree = "robin-deployment";
+        branch = "release/release-candidate-1.9";
+        path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.9";
+      };
       robin-scripts = {
         url = "rrs:robin-scripts";
         path = "bitbucket.org/robin-radar-systems/robin-scripts";
@@ -437,6 +442,7 @@ in {
         "robin-deployment/release-candidate-1.6-dev"
         "robin-deployment/release-candidate-1.7-dev"
         "robin-deployment/release-candidate-1.8"
+        "robin-deployment/release-candidate-1.9"
         "robin-scripts"
         "robin-software-modules"
       ];
