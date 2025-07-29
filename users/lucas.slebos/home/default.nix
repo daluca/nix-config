@@ -198,6 +198,23 @@ in {
     "typos.config" = typos-config;
   };
 
+  programs.direnv.config = {
+    whitelist.prefix = [
+      "${config.home.homeDirectory}/code/bitbucket.org/robin-radar-systems"
+    ];
+  };
+
+  home.file."code/bitbucket.org/robin-radar-systems/robin-deployment-releases/.envrc".text = /* bash */ ''
+    source_up_if_exists
+    dotenv_if_exists
+  '';
+
+  home.file."code/bitbucket.org/robin-radar-systems/robin-deployment-releases/.env".text = /* bash */ ''
+    ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."robin-deployment.txt".path}
+  '';
+
+  sops.secrets."robin-deployment.txt".sopsFile = ../lucas.slebos.sops.yaml;
+
   programs.git = {
     includes =
     let
