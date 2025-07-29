@@ -18,6 +18,11 @@
         backend = "gpg";
         backends.gpg.programs = lib.getExe config.programs.gpg.package;
       };
+      aliases = let
+        command = exec: [ "util" "exec" "--" ] ++ [ exec ];
+      in {
+        lazy = command (lib.getExe pkgs.lazyjj);
+      };
       git = {
         auto-local-bookmark = true;
         signing-on-push = true;
