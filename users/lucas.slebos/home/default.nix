@@ -20,52 +20,45 @@ let
       url = "https://photon-machine.${secrets.domains.general}/";
     }
   ];
-  global-pre-commit-config = pkgs.writeText "global-pre-commit-config" (lib.generators.toYAML { } {
-    repos = [
-      {
-        repo = "local";
-        hooks = [
-          {
-            id = "typos";
-            name = "typos";
-            entry = lib.getExe pkgs.typos;
-            args = [
-              "--force-exclude"
-              "--config=${pkgs.writers.writeTOML "global-typos-config" {
-                default = {
-                  extend-ignore-re = [
-                    "(?Rm)^.*(#|//)\\s*spellchecker:disable-line$"
-                  ];
-                  extend-words = {
-                    hpe = "hpe"; # spellchecker:disable-line
-                  };
-                };
-              }}"
-            ];
-            language = "system";
-            stages = [
-              "pre-commit"
-            ];
-            types = [
-              "text"
-            ];
-          }
-          {
-            id = "ansible-lint";
-            name = "ansible-lint";
-            entry = lib.getExe pkgs.ansible-lint;
-            language = "system";
-            stages = [
-              "pre-commit"
-            ];
-            types = [
-              "file"
-            ];
-          }
+  typos-config = pkgs.writers.writeTOML "global-typos-config" {
+    default = {
+      extend-ignore-re = [
+        "(?Rm)^.*(#|//)\\s*spellchecker:disable-line$"
+      ];
+      extend-words = {
+        hpe = "hpe"; # spellchecker:disable-line
+        ba = "ba"; # spellchecker:disable-line
+        hda = "hda"; # spellchecker:disable-line
+      };
+    };
+  };
+  pre-commit = (inputs.git-hooks.lib.${pkgs.system}.run {
+    src = ./.;
+    hooks = rec {
+      check-added-large-files.enable = true;
+      check-merge-conflicts.enable = true;
+      detect-private-keys.enable = true;
+      forbid-new-submodules.enable = true;
+      end-of-file-fixer.enable = true;
+      trim-trailing-whitespace.enable = true;
+      ansible-lint.enable = true;
+      yamllint.enable = true;
+      shellcheck.enable = true;
+      typos = {
+        enable = true;
+        settings.configPath = builtins.toString typos-config;
+        args = [
+          "--force-exclude"
         ];
-      }
-    ];
-  });
+      };
+      gitleaks = {
+        enable = true;
+        description = "gitleaks hook";
+        package = pkgs.gitleaks;
+        entry = "${lib.getExe gitleaks.package} protect --verbose --redact --staged";
+      };
+    };
+  }).config;
 in {
   imports =
     let
@@ -135,7 +128,7 @@ in {
         ${lib.getExe pkgs.pre-commit} --help
       elif [ "$1" == "run" ]; then
         shift
-        ${lib.getExe pkgs.pre-commit} run --config ${global-pre-commit-config} "$@"
+        ${lib.getExe pkgs.pre-commit} run --config ${pre-commit.configFile} "$@"
       else
         ${lib.getExe pkgs.pre-commit} "$@"
       fi
@@ -162,7 +155,6 @@ in {
   programs.alacritty.package = lib.mkForce (config.lib.nixGL.wrap pkgs.unstable.alacritty);
 
   programs.ghostty.package = lib.mkForce (config.lib.nixGL.wrap pkgs.unstable.ghostty);
-
 
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
@@ -208,7 +200,7 @@ in {
         set -euo pipefail
 
         INSTALL_PYTHON=${lib.getExe pkgs.python3}
-        ARGS=(hook-impl --config=${global-pre-commit-config} --hook-type=pre-commit)
+        ARGS=(hook-impl --config=${pre-commit.configFile} --hook-type=pre-commit)
 
         HERE=$(cd "$(dirname "$0")" && pwd)
         ARGS+=(--hook-dir "''${HERE}" -- "$@")
