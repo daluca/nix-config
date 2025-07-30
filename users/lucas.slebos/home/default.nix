@@ -92,7 +92,6 @@ in {
       inputs.impermanence.homeManagerModules.impermanence
       inputs.catppuccin.homeModules.catppuccin
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
-      "ansible"
       "alacritty"
       "atuin"
       "bitwarden"
@@ -198,19 +197,22 @@ in {
     "typos.config" = typos-config;
   };
 
-  programs.direnv.config = {
-    whitelist.prefix = [
-      "${config.home.homeDirectory}/code/bitbucket.org/robin-radar-systems"
-    ];
-  };
+  programs.direnv.config.whitelist.prefix = [
+    "${config.home.homeDirectory}/code/bitbucket.org/robin-radar-systems"
+  ];
+
+  home.file."code/bitbucket.org/robin-radar-systems/.envrc".text = /* bash */ ''
+    use flake
+    dotenv
+  '';
+
+  home.file."code/bitbucket.org/robin-radar-systems/.env".text = /* bash */ ''
+    ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."robin-deployment.txt".path}
+  '';
 
   home.file."code/bitbucket.org/robin-radar-systems/robin-deployment-releases/.envrc".text = /* bash */ ''
     source_up_if_exists
     dotenv_if_exists
-  '';
-
-  home.file."code/bitbucket.org/robin-radar-systems/robin-deployment-releases/.env".text = /* bash */ ''
-    ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."robin-deployment.txt".path}
   '';
 
   sops.secrets."robin-deployment.txt".sopsFile = ../lucas.slebos.sops.yaml;
@@ -287,6 +289,7 @@ in {
         ../keys/id_rsa.pub
       ]))
     }"
+    "L+ ${config.home.homeDirectory}/code/bitbucket.org/robin-radar-systems/flake.nix 0644 lucas.slebos lucas.slebos - ${./development/flake.nix}"
   ];
 
   programs.ssh = with secrets; {
