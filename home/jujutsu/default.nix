@@ -21,6 +21,8 @@
       aliases = let
         command = exec: [ "util" "exec" "--" ] ++ [ exec ];
       in {
+        pull = [ "git" "fetch" ];
+        push = [ "git" "push" ];
         lazy = command (lib.getExe pkgs.lazyjj);
       };
       git = {
