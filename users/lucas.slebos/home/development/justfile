@@ -1,0 +1,11 @@
+[private]
+default:
+    just --list
+
+[no-cd]
+checks:
+    pre-commit run --all-files
+
+[no-cd]
+init:
+    jj git init --colocate . || true

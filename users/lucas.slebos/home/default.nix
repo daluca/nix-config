@@ -201,6 +201,8 @@ in {
     "${config.home.homeDirectory}/code/bitbucket.org/robin-radar-systems"
   ];
 
+  home.file."code/bitbucket.org/robin-radar-systems/justfile".source = ./development/justfile;
+
   home.file."code/bitbucket.org/robin-radar-systems/.envrc".text = /* bash */ ''
     use flake
     dotenv
