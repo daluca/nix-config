@@ -291,7 +291,7 @@ in {
         ../keys/id_rsa.pub
       ]))
     }"
-    "L+ ${config.home.homeDirectory}/code/bitbucket.org/robin-radar-systems/flake.nix 0644 lucas.slebos lucas.slebos - ${./development/flake.nix}"
+    "C ${config.home.homeDirectory}/code/bitbucket.org/robin-radar-systems/flake.nix 0664 lucas.slebos lucas.slebos - ${./development/flake.nix}"
   ];
 
   programs.ssh = with secrets; {
