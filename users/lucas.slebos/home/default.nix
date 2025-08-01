@@ -31,6 +31,9 @@ let
         hda = "hda"; # spellchecker:disable-line
       };
     };
+    files.extend-exclude = [
+      "**.asc"
+    ];
   };
   commitlint-rs-config = pkgs.writers.writeYAML "global-commitlint-rs-config.yaml" {
     rules.description-format = {
