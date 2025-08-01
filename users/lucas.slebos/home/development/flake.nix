@@ -18,7 +18,6 @@
         default = pkgs.mkShell {
           name = "robin-radar-systems";
           packages = with pkgs; [
-            ansible-lint
             just
           ];
           JUST_COMMAND_RUNNER = "blue";
