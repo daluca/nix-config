@@ -237,6 +237,9 @@ in {
         path = robin-radar-systems;
       }
     ];
+    ignores = [
+      "**/.ansible/"
+    ];
     extraConfig = {
       url."git@bitbucket.org".insteadof = "bitbucket";
       url."git@bitbucket.org:robin-radar-systems/".insteadof = "rrs:";
