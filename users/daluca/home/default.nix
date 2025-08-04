@@ -28,8 +28,6 @@ in {
 
   home.persistence.home.enable = lib.mkDefault false;
 
-  sops.age.keyFile = lib.mkForce "/var/lib/sops-nix/key.txt";
-
   programs.bash.enable = true;
 
   xdg.enable = true;
