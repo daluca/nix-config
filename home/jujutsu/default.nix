@@ -19,10 +19,19 @@
         backends.gpg.programs = lib.getExe config.programs.gpg.package;
       };
       aliases = let
-        command = exec: [ "util" "exec" "--" ] ++ [ exec ];
+        command = exec: [ "util" "exec" "--" ] ++ lib.flatten [ exec ];
+        bash = script: command [ "${pkgs.runtimeShell}" "-c" script "" ];
       in {
         pull = [ "git" "fetch" ];
-        push = [ "git" "push" ];
+        push = bash /* bash */ ''
+          set -euo pipefail
+
+          [ "$#" -ge 1 ] && REVSET="bookmarks($1)" || REVSET="@-"
+
+          CHANGED_FILES="$( jj log --no-graph -r "mutable()::@- & fork_point(trunk())-::''${REVSET}" --name-only --no-pager -T "" )"
+          [[ -z "''${CHANGED_FILES}" ]] && echo "No mutable files changed, no checks to run." || pre-commit run --file "''${CHANGED_FILES}"
+          jj git push -r "''${1:-@-}"
+        '';
         lazy = command (lib.getExe pkgs.lazyjj);
       };
       git = {
