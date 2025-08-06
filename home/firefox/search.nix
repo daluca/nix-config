@@ -42,6 +42,22 @@ in {
       };
       definedAliases = [ "@kagi" "@k" ];
     };
+    "Kagi Translate" = {
+      urls = [
+        { template = "https://translate.kagi.com";
+          params = [
+            { name = "from"; value = "auto"; }
+            { name = "to"; value = "en"; }
+            { name = "text"; value = "{searchTerms}"; }
+          ];
+        }
+      ];
+      icon = pkgs.fetchurl {
+        url = "https://translate.kagi.com/icons/favicon-96x96.png";
+        hash = "sha256-1Pteqogg0MiRd1Q1XW5hWjimyLnaOLgAbj+kAkfsWEg=";
+      };
+      definedAliases = [ "@kagitranslate" "@kt" ];
+    };
     "Brave" = {
       urls = [
         { template = "https://search.brave.com/search";
