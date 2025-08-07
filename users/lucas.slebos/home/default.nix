@@ -213,6 +213,19 @@ in {
 
   home.file."code/bitbucket.org/robin-radar-systems/.env".text = /* bash */ ''
     ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."robin-deployment.txt".path}
+    YAMLLINT_CONFIG_FILE=${pkgs.writers.writeYAML "global-yamllint-config.yaml" {
+      extends = "default";
+      rules = {
+        line-length.max = 120;
+        comments.min-spaces-from-content = 1;
+        comments-indentation = false;
+        braces.max-spaces-inside = 1;
+        octal-values = {
+          forbid-implicit-octal = true;
+          forbid-explicit-octal = true;
+        };
+      };
+    }}
   '';
 
   home.file."code/bitbucket.org/robin-radar-systems/robin-deployment-releases/.envrc".text = /* bash */ ''
