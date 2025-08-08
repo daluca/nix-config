@@ -96,6 +96,7 @@ in {
       inputs.catppuccin.homeModules.catppuccin
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "alacritty"
+      "bash"
       "atuin"
       "bitwarden"
       "btop"
@@ -529,8 +530,6 @@ in {
       };
     };
   };
-
-  programs.bash.enable = true;
 
   xdg.enable = true;
 

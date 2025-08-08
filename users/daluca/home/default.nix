@@ -9,16 +9,17 @@ in {
       outputs.nixosModules.host
       inputs.impermanence.homeManagerModules.impermanence
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
-      "tmux"
+      "bash"
+      "btop"
+      "catppuccin"
       "dvorak"
-      "zsh"
-      "starship"
       "openssh"
       "secrets"
-      "catppuccin"
+      "starship"
+      "tmux"
       "tools"
-      "btop"
       "vim"
+      "zsh"
     ] ++ lib.optional (builtins.pathExists hostExtras) hostExtras;
 
   home = rec {
@@ -27,8 +28,6 @@ in {
   };
 
   home.persistence.home.enable = lib.mkDefault false;
-
-  programs.bash.enable = true;
 
   xdg.enable = true;
 
