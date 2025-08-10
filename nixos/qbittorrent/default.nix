@@ -4,7 +4,7 @@ let
 in rec {
   services.qbittorrent = {
     enable = true;
-    port = 8081;
+    webuiPort = 8081;
     openFirewall = true;
   };
 
@@ -15,7 +15,7 @@ in rec {
       sslCertificateKey = "${cert.directory}/key.pem";
       sslTrustedCertificate = "${cert.directory}/chain.pem";
       locations."/" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString services.qbittorrent.port}";
+        proxyPass = "http://127.0.0.1:${builtins.toString services.qbittorrent.webuiPort}";
       };
     };
   };
