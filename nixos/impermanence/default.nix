@@ -1,7 +1,6 @@
 { config, lib, inputs, ... }:
-let
-  inherit (lib) mkIf mkAfter;
-in {
+
+{
   imports = [
     inputs.impermanence.nixosModules.impermanence
 
@@ -12,7 +11,9 @@ in {
     ./tailscale.nix
   ];
 
-  programs.fuse.userAllowOther = mkIf config.home-manager.users.daluca.home.persistence.home.allowOther true;
+  programs.fuse.userAllowOther = lib.mkIf config.home-manager.users.daluca.home.persistence.home.allowOther true;
+
+  fileSystems."/persistent".neededForBoot = true;
 
   environment.persistence.system = {
     persistentStoragePath = "/persistent/system";
@@ -28,13 +29,13 @@ in {
     ];
   };
 
-  boot.initrd.postDeviceCommands = mkIf ( config.fileSystems."/".fsType == "btrfs" ) (mkAfter /* bash */ ''
+  boot.initrd.postResumeCommands = lib.mkIf ( config.fileSystems."/".fsType == "btrfs" ) (lib.mkAfter /* bash */ ''
     mkdir /btrfs_tmp
-    mount /dev/root_vg/root /btrfs_tmp
-    if [[ -e /btrfs_tmp/root ]]; then
+    mount /dev/pool/root /btrfs_tmp
+    if [[ -e /btrfs_tmp/@rootfs ]]; then
       mkdir -p /btrfs_tmp/old_roots
-      timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
-      mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+      TIMESTAMP=$(date --date="@$(stat -c %Y /btrfs_tmp/@rootfs)" "+%Y-%m-%-d_%H:%M:%S")
+      mv /btrfs_tmp/@rootfs "/btrfs_tmp/old_roots/''${TIMESTAMP}"
     fi
 
     delete_subvolume_recursively() {
@@ -49,11 +50,7 @@ in {
       delete_subvolume_recursively "$i"
     done
 
-    for i in $(find /btrfs_tmp/old_roots/ -maxdepth 4 -path "*/var/lib/*" -name "swapfile"); do
-      rm "$i"
-    done
-
-    btrfs subvolume create /btrfs_tmp/root
+    btrfs subvolume create /btrfs_tmp/@rootfs
     umount /btrfs_tmp
   '');
 }

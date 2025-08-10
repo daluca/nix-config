@@ -33,13 +33,11 @@ nixos-install host:
     nixos-install --flake .#{{ host }} --no-root-passwd
 
 ssh-to-age key:
-    #! /usr/bin/env bash
+    #! /usr/bin/env -S nix shell nixpkgs#bash nixpkgs#ssh-to-age --command bash
 
     set -euo pipefail
 
     PUBLIC_AGE_KEY="$( ssh-to-age -i {{ key }}.pub )"
-
-    # public key: $( ssh-to-age -i {{ key }}.pub )
 
     cat <<- EOF > nix-config.txt
     # created: $(date --iso-8601=seconds)

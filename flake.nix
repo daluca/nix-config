@@ -101,7 +101,6 @@
         pre-commit = self.checks.${system}.pre-commit;
       in {
         default = pkgs.mkShell {
-          inherit (pre-commit) shellHook;
           name = "nix-config";
           buildInputs = with pkgs; [
             sops
@@ -112,6 +111,9 @@
             deploy-rs
           ] ++ pre-commit.enabledPackages;
           JUST_COMMAND_COLOR = "blue";
+          shellHook = pre-commit.shellHook + /* bash */ ''
+            PATH="$PWD/bin:$PATH"
+          '';
         };
       }
     );
@@ -161,6 +163,14 @@
       specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/unifi
+      ];
+    };
+
+    nixosConfigurations.alpha = nixosSystem rec {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs outputs lib system secrets; };
+      modules = [
+        ./hosts/alpha
       ];
     };
 

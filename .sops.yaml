@@ -10,6 +10,7 @@ keys:
       - &darnassus age102lual882fvygyw47twjzl65uey33u2ps8ulcrr8g258vaafwvpqsj6hyy
       - &guiltyspark age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm
       - &unifi age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2
+      - &alpha age1eyaws92hs5r7tv5elrhd8cd7axq0pa7azn5xnnxeuldv2q4l0ycsx7u3jj
 
 creation_rules:
   - path_regex: daluca\.sops\.yaml$
@@ -52,6 +53,11 @@ creation_rules:
       - age:
           - *master
           - *unifi
+  - path_regex: alpha\.sops\.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *alpha
   - path_regex: \.sops\.yaml$
     key_groups:
       - age:
