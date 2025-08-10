@@ -28,7 +28,7 @@
       darnassus.hostname = "192.168.1.212";
       ironforge.hostname = "192.168.1.10";
       guiltyspark.hostname = "192.168.1.21";
-      unifi.hostname = secrets.unifi.ipv4-address;
+      unifi.hostname = secrets.hosts.unifi.ipv4-address;
     };
   };
 
