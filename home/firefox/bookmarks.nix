@@ -98,5 +98,9 @@
       name = "Office - Helpdesk";
       url = "mailto:office-helpdesk@robinradar.com";
     }
+    {
+      name = "KMS - Workwear";
+      url = "https://kms3.zijlstraberoepskleding.nl/";
+    }
   ];
 }
