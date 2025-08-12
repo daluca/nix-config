@@ -1,6 +1,7 @@
-{ lib, inputs, ... }:
-
-{
+{ config, lib, inputs, ... }@args:
+let
+  secrets = args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
+in {
   imports = [
     inputs.disko.nixosModules.disko
 
@@ -13,7 +14,33 @@
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "adguardhome"
     "impermanence"
+    "nginx"
   ];
+
+  services.adguardhome = {
+    port = lib.mkForce 3000;
+    settings = {
+      users = lib.mkForce [
+        {
+          name = config.home-manager.users.daluca.home.username;
+          password = secrets.adguardhome.daluca.password;
+        }
+      ];
+      dns.bind_hosts = [
+        secrets.hosts.alpha.ipv4-address
+      ];
+    };
+  };
+
+  services.nginx.virtualHosts = {
+    "adguardhome.daluca.io" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${builtins.toString config.services.adguardhome.port}";
+      };
+    };
+  };
 
   networking.hostName = "alpha";
 
