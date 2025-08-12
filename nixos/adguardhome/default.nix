@@ -61,7 +61,6 @@
   };
 
   networking.firewall = rec {
-    allowedTCPPorts = [ 53 ];
-    allowedUDPPorts = allowedTCPPorts;
+    allowedUDPPorts = [ 53 ];
   };
 }
