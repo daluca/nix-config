@@ -4,7 +4,7 @@ let
 in {
   environment.etc."ssh/ssh_host_ed25519_key.pub".source = lib.custom.relativeToHosts "${hostName}/keys/ssh_host_ed25519_key.pub";
 
-  environment.etc."ssh/ssh_host_ed25519_key" = {
+  environment.etc."ssh/ssh_host_ed25519_key" = lib.mkIf config.environment.persistence.system.enable {
     source = config.sops.secrets."ssh_host_ed25519_key".path;
     mode = "0400";
   };
@@ -13,7 +13,7 @@ in {
 
   environment.etc."ssh/ssh_host_rsa_key.pub".source = lib.custom.relativeToHosts "${hostName}/keys/ssh_host_rsa_key.pub";
 
-  environment.etc."ssh/ssh_host_rsa_key" = {
+  environment.etc."ssh/ssh_host_rsa_key" = lib.mkIf config.environment.persistence.system.enable {
     source = config.sops.secrets."ssh_host_rsa_key".path;
     mode = "0400";
   };

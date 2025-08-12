@@ -5,7 +5,7 @@
     inputs.disko.nixosModules.disko
 
     ./disko.nix
-    ./hardware-config.nix
+    ./hardware-configuration.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
     "images/hetzner"
   ] ++ map (m: lib.custom.relativeToHosts m) [

@@ -70,6 +70,7 @@ creation_rules:
           - *darnassus
           - *guiltyspark
           - *unifi
+          - *alpha
 
 stores:
   yaml:
