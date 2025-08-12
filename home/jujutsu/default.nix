@@ -26,7 +26,29 @@
         push = bash /* bash */ ''
           set -euo pipefail
 
-          [ "$#" -ge 1 ] && REVSET="bookmarks($1)" || REVSET="@-"
+          POSITIONAL_ARGS=()
+          BOOKMARK=""
+
+          while [[ "$#" -gt 0 ]]; do
+            case "$1" in
+              --bookmark|--revisions|-b|-r)
+                BOOKMARK="$2"
+                shift 2
+                ;;
+              --help|-h)
+                jj git push --help
+                exit 0
+                ;;
+              *)
+                POSITIONAL_ARGS+=("$1")
+                shift
+                ;;
+            esac
+          done
+
+          set -- "''${POSITIONAL_ARGS[@]}"
+
+          REVSET="''${BOOKMARK:-@-}"
 
           CHANGED_FILES="$( jj log --no-graph -r "mutable()::@- & fork_point(trunk())-::''${REVSET}" --name-only --no-pager -T "" | sort -u )"
           readarray -t CHANGED_FILES <<< "''${CHANGED_FILES}"
@@ -36,7 +58,7 @@
             pre-commit run --file "''${CHANGED_FILES[@]}"
           fi
 
-          jj git push -r "''${1:-@-}"
+          jj git push --bookmark "''${REVSET}" "''${POSITIONAL_ARGS[@]}"
         '';
         lazy = command (lib.getExe pkgs.lazyjj);
       };
