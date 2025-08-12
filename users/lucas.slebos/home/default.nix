@@ -84,6 +84,19 @@ let
         pass_filenames = false;
         require_serial = true;
       };
+      cloud-init = {
+        enable = true;
+        description = "cloud-init hook";
+        package = (pkgs.writeShellScriptBin "cloud-init" /* bash */ ''
+          set -euo pipefail
+
+          for file in "$@"; do
+            ${pkgs.cloud-init}/bin/cloud-init schema --config-file "''${file}"
+          done
+        '');
+        entry = lib.getExe cloud-init.package;
+        files = "user-data$";
+      };
     };
   }).config;
 in {
