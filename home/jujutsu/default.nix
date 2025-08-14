@@ -58,7 +58,7 @@
             pre-commit run --file "''${CHANGED_FILES[@]}"
           fi
 
-          jj git push --bookmark "''${REVSET}" "''${POSITIONAL_ARGS[@]}"
+          jj git push --revisions "''${REVSET}" "''${POSITIONAL_ARGS[@]}"
         '';
         lazy = command (lib.getExe pkgs.lazyjj);
       };
