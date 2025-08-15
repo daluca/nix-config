@@ -18,10 +18,22 @@
         backend = "gpg";
         backends.gpg.programs = lib.getExe config.programs.gpg.package;
       };
+      revset-aliases = {
+        "closest_bookmark(revset)" = "heads(::revset & bookmarks())";
+        "closest_pushable(revset)" = "heads(::revset & mutable() & ~description(exact:\"\") & (~empty() | merges()))";
+      };
       aliases = let
         command = exec: [ "util" "exec" "--" ] ++ lib.flatten [ exec ];
         bash = script: command [ "${pkgs.runtimeShell}" "-c" script "" ];
       in {
+        tug = [
+          "bookmark"
+          "move"
+          "--from"
+          "closest_bookmark(@)"
+          "--to"
+          "closest_pushable(@)"
+        ];
         pull = [ "git" "fetch" ];
         push = bash /* bash */ ''
           set -euo pipefail
