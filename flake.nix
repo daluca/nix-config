@@ -75,7 +75,7 @@
       in {
         pre-commit = git-hooks.lib.${system}.run {
           src = ./.;
-          hooks = import ./.pre-commit-config.nix { inherit pkgs; };
+          hooks = import ./.pre-commit-config.nix { inherit lib pkgs; };
         };
       } // inputs.deploy-rs.lib.${system}.deployChecks self.deploy
     );

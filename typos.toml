@@ -1,8 +1,8 @@
 [default]
 extend-ignore-re = [
-  "sha256-.*=",
+  "(?Rm)^.*(#|//)\\s*spellchecker:disable-line$",
   "ENC\\[.*\\]",
-  "(?Rm)^.*(#|//)\\s*spellchecker:disable-line$"
+  "sha256-.*="
 ]
 
 [default.extend-words]
@@ -10,6 +10,6 @@ referers = "referers"
 
 [files]
 extend-exclude = [
-  "**.sops.yaml",
-  "**.asc"
+  "**.asc",
+  "**.sops.yaml"
 ]
