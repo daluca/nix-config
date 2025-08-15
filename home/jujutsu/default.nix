@@ -9,7 +9,11 @@
         email = secrets.user.email;
       };
       ui = {
-        default-command = "log";
+        default-command = [
+          "log"
+          "-r"
+          "(trunk()..@):: | (trunk()..@)-"
+        ];
         diff-editor = ":builtin";
       };
       signing = {
