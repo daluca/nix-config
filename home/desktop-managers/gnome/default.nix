@@ -107,14 +107,12 @@ in {
     "org/gnome/clocks" = {
       world-clocks = [
         [ (mkDictionaryEntry [ "location" the-hague ]) ]
-        [ (mkDictionaryEntry [ "location" wellington ]) ]
         [ (mkDictionaryEntry [ "location" auckland ]) ]
         [ (mkDictionaryEntry [ "location" london ]) ]
-        [ (mkDictionaryEntry [ "location" amsterdam ]) ]
       ];
     };
     "org/gnome/shell/world-clocks" = {
-      locations = [ the-hague wellington auckland london amsterdam ];
+      locations = [ the-hague auckland london ];
     };
   };
 
