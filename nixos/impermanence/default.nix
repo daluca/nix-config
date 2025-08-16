@@ -1,9 +1,7 @@
-{ config, lib, inputs, ... }:
+{ config, lib, ... }:
 
 {
   imports = [
-    inputs.impermanence.nixosModules.impermanence
-
     ./sudo.nix
     ./bluetooth.nix
     ./openssh.nix
@@ -14,6 +12,8 @@
   programs.fuse.userAllowOther = lib.mkIf config.home-manager.users.daluca.home.persistence.home.allowOther true;
 
   fileSystems."/persistent".neededForBoot = true;
+
+  environment.persistence.system.enable = true;
 
   environment.persistence.system = {
     persistentStoragePath = "/persistent/system";

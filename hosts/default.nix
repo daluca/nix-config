@@ -1,7 +1,9 @@
 { config, lib, pkgs, inputs, outputs, ... }:
 
 {
-  imports = builtins.attrValues outputs.nixosModules ++ map (m: lib.custom.relativeToNixosModules m) [
+  imports = [
+    inputs.impermanence.nixosModules.impermanence
+  ] ++ builtins.attrValues outputs.nixosModules ++ map (m: lib.custom.relativeToNixosModules m) [
     "dvorak"
     "home-manager"
     "openssh"
@@ -72,6 +74,8 @@
   };
 
   users.mutableUsers = false;
+
+  environment.persistence.system.enable = lib.mkDefault false;
 
   services.pulseaudio.enable = true;
 }
