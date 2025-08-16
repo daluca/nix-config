@@ -30,7 +30,7 @@
 
   networking.hostName = "artemis";
 
-  time.timeZone = lib.mkForce "Europe/Amsterdam";
+  time.timeZone = "Europe/Amsterdam";
 
   nix.settings.warn-dirty = false;
 

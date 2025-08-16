@@ -58,7 +58,7 @@
     package = pkgs.nix-ld-rs;
   };
 
-  time.timeZone = "Etc/UTC";
+  time.timeZone = lib.mkDefault "Etc/UTC";
 
   i18n = {
     defaultLocale = "en_NZ.UTF-8";
