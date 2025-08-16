@@ -74,7 +74,7 @@ sops -d --extract '["id_rsa"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_hos
 sops -d --extract '["id_ed25519"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_ed25519_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
 
 # Set the correct permissions so sshd will accept the key
-chmod -c 0600 \
+chmod -c 0400 \
   "${temp}/${IMPERMANENCE}/var/lib/sops-nix/keys.txt" \
   "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_ed25519_key" \
   "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_rsa_key" \
