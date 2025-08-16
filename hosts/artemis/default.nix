@@ -9,6 +9,7 @@
   ] ++ map (m: lib.custom.relativeToHosts m) [
     "."
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
+    "auto-cpufreq"
     "desktop-managers/gnome"
     "swap"
     "ssd"

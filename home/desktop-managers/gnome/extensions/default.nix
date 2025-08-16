@@ -1,6 +1,7 @@
 {
   imports = [
     ./app-indicator.nix
+    ./auto-cpufreq-switcher.nix
     ./caffeine.nix
     ./gsconnect
     ./no-overview.nix
