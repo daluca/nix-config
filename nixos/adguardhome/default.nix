@@ -58,7 +58,11 @@
     group = config.services.unbound.group;
   };
 
-  networking.firewall = rec {
+  networking.firewall = {
     allowedUDPPorts = [ 53 ];
   };
+
+  environment.persistence.system.directories = [
+    { directory = "/var/lib/private/AdGuardHome"; }
+  ];
 }
