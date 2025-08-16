@@ -86,8 +86,12 @@ in {
       night-light-enabled = true;
     };
     "org/gnome/shell" = {
-      favorite-apps = [
-        "firefox.desktop"
+      favorite-apps = (
+        if config.programs.zen-browser.enable then
+          [ "zen-beta.desktop" ]
+        else
+          [ "firefox.desktop" ]
+      ) ++ [
         "com.mitchellh.ghostty.desktop"
       ];
     };
