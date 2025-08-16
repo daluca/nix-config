@@ -7,6 +7,7 @@ rec {
     settings = {
       disableStartupPopups = true;
       confirmOnQuit = true;
+      gui.useHunkModeInStagingView = true;
     };
   };
 
