@@ -14,7 +14,7 @@
     uutils-coreutils-done = (prev.uutils-coreutils.override {
       prefix = "";
       buildMulticallBinary = false;
-    }).overrideAttrs (oldAttrs: {
+    }).overrideAttrs (_oldAttrs: {
       preBuild = /* bash */ ''
         makeFlagsArray+=(SKIP_UTILS="${lib.concatStringsSep " " [
           "cat"

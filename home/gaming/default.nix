@@ -1,4 +1,4 @@
-{ config, lib, osConfig, ... }:
+{ lib, osConfig, ... }:
 let
   inherit (lib) mkForce mkIf;
   inherit (lib.hm.gvariant) mkTuple;

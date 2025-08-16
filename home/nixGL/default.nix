@@ -8,7 +8,7 @@
   };
 
   nixpkgs.overlays = [
-    (final: prev: {
+    (_final: prev: {
       alacritty = config.lib.nixGL.wrap prev.alacritty;
       ghostty = config.lib.nixGL.wrap prev.ghostty;
     })

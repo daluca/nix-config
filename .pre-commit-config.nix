@@ -9,6 +9,10 @@ rec {
   trim-trailing-whitespace.enable = true;
   yamllint.enable = true;
   yamlfmt.enable = true;
+  deadnix = {
+    enable = true;
+    settings.edit = true;
+  };
   typos = {
     enable = true;
     settings.configPath = "typos.toml";

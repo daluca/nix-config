@@ -69,7 +69,7 @@
       "en_US.UTF-8"
       "en_AU.UTF-8"
       config.i18n.defaultLocale
-    ] ++ (builtins.attrValues (lib.filterAttrs (n: v: n != "LANGUAGE") config.i18n.extraLocaleSettings))
+    ] ++ (builtins.attrValues (lib.filterAttrs (n: _v: n != "LANGUAGE") config.i18n.extraLocaleSettings))
     ));
   };
 

@@ -4,7 +4,7 @@
   programs.steam = {
     enable = true;
     package = pkgs.steam.override {
-      extraLibraries = pkg: with pkgs; [
+      extraLibraries = _pkg: with pkgs; [
         # Work-around for wayland
         # https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338
         xorg.libXcursor
