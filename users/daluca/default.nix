@@ -1,7 +1,7 @@
-{ config, ... }:
+{ config, ... }@args:
 let
-  inherit (config.sops) secrets;
   inherit (config.home-manager.users.daluca.home) username;
+  secrets = config.sops.secrets // args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
 in {
   users.users.daluca = {
     isNormalUser = true;
@@ -18,6 +18,13 @@ in {
     sopsFile = ./daluca.sops.yaml;
     key = "password";
   };
+
+  services.adguardhome.settings.users = [
+    {
+      name = username;
+      password = secrets.adguardhome.password;
+    }
+  ];
 
   services.openssh.settings.AllowUsers = [
     username

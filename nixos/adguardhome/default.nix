@@ -8,10 +8,6 @@
     openFirewall = true;
     port = 80;
     settings = {
-      users = [{
-        name = config.home-manager.users.daluca.home.username;
-        password = secrets.adguardhome.password;
-      }];
       dns = {
         bind_hosts = [
           "127.0.0.1"
@@ -24,12 +20,14 @@
           "149.112.112.112"
         ];
       };
-      filters = [{
-        enabled = true;
-        url = "https://big.oisd.nl/";
-        name = "oisd big";
-        id = 1;
-      }];
+      filters = [
+        {
+          enabled = true;
+          url = "https://big.oisd.nl/";
+          name = "oisd big";
+          id = 1;
+        }
+      ];
     };
   };
 
