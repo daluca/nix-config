@@ -1,8 +1,8 @@
 {
   imports = [
     ./app-indicator.nix
-    ./gsconnect
     ./caffeine.nix
+    ./gsconnect
     ./no-overview.nix
     ./tailscale-qs.nix
   ];
