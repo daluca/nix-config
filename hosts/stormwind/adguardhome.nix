@@ -15,17 +15,23 @@
           "192.168.1.10"
         ];
         hostsfile_enabled = false;
-        local_domain_name = config.networking.domain;
       };
       dhcp = {
         enabled = true;
         interface_name = "end0";
+        local_domain_name = config.networking.domain;
         dhcpv4 = {
           gateway_ip = "192.168.178.1";
           subnet_mask = "255.255.255.0";
           range_start = "192.168.178.100";
           range_end = "192.168.178.200";
           lease_duration = 60 * 60 * 24;
+          options = [
+            # TODO: Remove when issue has been fixed
+            # https://github.com/AdguardTeam/AdGuardHome/issues/6749
+            # Work around: Manually supply option
+            "15 text ${config.networking.domain}"
+          ];
         };
       };
     };
