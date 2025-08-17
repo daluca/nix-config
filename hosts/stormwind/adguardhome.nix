@@ -8,7 +8,7 @@
         bind_hosts = [ "192.168.178.10" ];
         upstream_dns = [
           "[//178.168.192.in-addr.arpa/${config.networking.domain}/]192.168.178.1"
-          "[/ironforge.${config.networking.domain}/]192.168.1.1"
+          "[/guiltyspark.${config.networking.domain}/ironforge.${config.networking.domain}/]192.168.1.1"
           "[/${secrets.parents.domain}/]192.168.1.10"
         ];
         fallback_dns = [
