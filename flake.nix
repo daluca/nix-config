@@ -105,7 +105,6 @@
           packages = with pkgs; [
             sops
             git-agecrypt
-            ssh-to-age
             just
             fd
             deploy-rs
