@@ -102,7 +102,7 @@
       in {
         default = pkgs.mkShell {
           name = "nix-config";
-          buildInputs = with pkgs; [
+          packages = with pkgs; [
             sops
             git-agecrypt
             ssh-to-age
