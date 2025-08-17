@@ -31,6 +31,7 @@
         "editor.renderWhitespace" = "trailing";
         "editor.fontLigatures" = true;
         "editor.fontFamily" = lib.concatStringsSep ", " [
+          "Monaspace Argon Var"
           "FiraCode Nerd Font"
           "Menlo"
           "Monaco"

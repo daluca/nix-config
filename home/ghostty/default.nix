@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.ghostty = {
@@ -6,14 +6,27 @@
     package = pkgs.unstable.ghostty;
     enableZshIntegration = true;
     settings = let
-      font = "MesloLGS Nerd Font";
+      font = "Monaspace Krypton Var";
     in {
-      command = "${config.programs.zsh.package}/bin/zsh";
+      command = lib.getExe config.programs.zsh.package;
       font-size = 11;
       font-family = font;
       font-family-bold = font;
       font-family-italic = font;
       font-family-bold-italic = font;
+      font-feature = [
+        "+calt"
+        "+ss01"
+        "+ss02"
+        "+ss03"
+        "+ss04"
+        "+ss05"
+        "+ss06"
+        "+ss07"
+        "+ss08"
+        "+ss09"
+        "+liga"
+      ];
     };
   };
 
