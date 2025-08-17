@@ -57,7 +57,7 @@ rec {
         [[ "$( ${lib.getExe pkgs.file} "''${toml}" )" =~ ASCII ]] && VALID_FILES+=( "''${toml}" )
       done
 
-      ${lib.getExe pkgs.toml-sort} --in-place --all "''${VALID_FILES[@]}"
+      ${lib.getExe pkgs.toml-sort} --trailing-comma-inline-array --in-place --all "''${VALID_FILES[@]}"
     '';
     entry = lib.getExe toml-sort.package;
     types = [ "toml" ];
