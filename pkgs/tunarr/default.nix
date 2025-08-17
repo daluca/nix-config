@@ -1,14 +1,14 @@
-{ stdenv, lib, fetchurl, libva-utils, ffmpeg, which, makeWrapper }:
+{ stdenv, lib, fetchurl, libva-utils, which, makeWrapper }:
 
 stdenv.mkDerivation rec {
   pname = "tunarr";
-  version = "0.20.1";
+  version = "0.21.4";
 
   phases = [ "unpackPhase" "installPhase" ];
 
   src = fetchurl {
     url = "https://github.com/chrisbenincasa/tunarr/releases/download/v${version}/tunarr-${version}-linux-x64";
-    hash = "sha256-K7xj75C6oltUAmohRD3WZHWue1OinKf63Tya+gS5ZTY=";
+    hash = "sha256-+3/utCpkITzSPNrFhknjoenIc5fpaq7bIe4+tS62l1c=";
   };
 
   nativeBuildInputs = [
@@ -27,7 +27,6 @@ stdenv.mkDerivation rec {
     wrapProgram $out/bin/${pname} \
       --prefix PATH : ${which}/bin \
       --prefix PATH : ${libva-utils}/bin
-      # --prefix PATH : ${ffmpeg}/bin
 
     runHook postInstall
   '';
