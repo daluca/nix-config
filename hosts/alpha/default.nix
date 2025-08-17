@@ -33,7 +33,7 @@ in {
   };
 
   services.nginx.virtualHosts = {
-    "adguardhome.daluca.io" = {
+    "adguardhome.${secrets.cloud.domain}" = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
