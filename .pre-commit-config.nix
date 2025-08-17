@@ -31,9 +31,6 @@ rec {
     package = pkgs.gitleaks;
     entry = "${gitleaks.package}/bin/gitleaks protect --verbose --redact --staged";
     pass_filenames = false;
-    excludes = [
-      "secrets.toml"
-    ];
   };
   commitlint-rs = {
     enable = false;
