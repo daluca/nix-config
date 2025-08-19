@@ -18,5 +18,6 @@
     dig
     tree
     entr
+    toml-cli
   ];
 }
