@@ -38,6 +38,13 @@
           "--to"
           "closest_pushable(@)"
         ];
+        reset = [
+          "rebase"
+          "--source"
+          "@"
+          "--destination"
+          "trunk()"
+        ];
         pull = [ "git" "fetch" ];
         push = bash /* bash */ ''
           set -euo pipefail
