@@ -338,54 +338,40 @@ in {
           UserKnownHostsFile = "/dev/null";
         };
       };
-      mps-9999-230 = {
-        hostname = "10.200.230.202";
-      };
-      mps-9999-231 = {
-        hostname = "10.200.231.202";
-      };
-      mps-9999-232 = {
-        hostname = "10.200.232.202";
-      };
-      max-9999-230 = {
-        hostname = "10.200.230.207";
-      };
-      max-9999-231 = {
-        hostname = "10.200.231.207";
-      };
-      max-9999-232 = {
-        hostname = "10.200.232.207";
-      };
-      lts-9999-230 = {
-        hostname = "10.200.230.208";
-      };
-      lts-9999-231 = {
-        hostname = "10.200.231.208";
-      };
-      lts-9999-232 = {
-        hostname = "10.200.232.208";
-      };
-      sts-9999-230 = {
-        hostname = "10.200.230.206";
-      };
-      sts-9999-231 = {
-        hostname = "10.200.231.206";
-      };
-      sts-9999-232 = {
-        hostname = "10.200.232.206";
-      };
-      k700-9999-230 = {
-        hostname = "10.200.230.201";
-      };
-      k700-9999-231 = {
-        hostname = "10.200.231.201";
-      };
-      k700-9999-232 = {
-        hostname = "10.200.232.201";
-      };
       aptly-user = {
-        host = "aptly-ssh.*.${domains.devops}";
+        host = "aptly-ssh*.${domains.devops}";
         user = "aptly";
+      };
+      ansible-user = {
+        host = "k8s-*-nfs";
+        user = "ansible";
+      };
+      mps-9999-230.hostname = "10.200.230.202";
+      mps-9999-231.hostname = "10.200.231.202";
+      mps-9999-232.hostname = "10.200.232.202";
+      max-9999-230.hostname = "10.200.230.207";
+      max-9999-231.hostname = "10.200.231.207";
+      max-9999-232.hostname = "10.200.232.207";
+      lts-9999-230.hostname = "10.200.230.208";
+      lts-9999-231.hostname = "10.200.231.208";
+      lts-9999-232.hostname = "10.200.232.208";
+      sts-9999-230.hostname = "10.200.230.206";
+      sts-9999-231.hostname = "10.200.231.206";
+      sts-9999-232.hostname = "10.200.232.206";
+      k700-9999-230.hostname = "10.200.230.201";
+      k700-9999-231.hostname = "10.200.231.201";
+      k700-9999-232.hostname = "10.200.232.201";
+      k8s-dev-nfs.hostname = "10.200.68.126";
+      k8s-stg-nfs.hostname = "10.200.68.94";
+      k8s-prod-nfs.hostname = "10.200.68.62";
+      aptly-hetzner-vm = {
+        hostname = secrets.hosts.aptly-hetzner.ipv4-address;
+        user = "root";
+      };
+      aptly-hetzner-docker = {
+        host = "aptly-ssh-docker.prod.${secrets.domains.devops}";
+        hostname = secrets.hosts.aptly-hetzner.ipv4-address;
+        port = 2222;
       };
     };
   };
