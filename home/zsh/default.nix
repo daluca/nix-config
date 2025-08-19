@@ -30,6 +30,9 @@
           rev = "v0.8.0";
           hash = "sha256-Z6EYQdasvpl1P78poj9efnnLj7QQg13Me8x1Ryyw+dM=";
         };
+      {
+        name = "fzf-tab";
+        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
       }
     ];
     oh-my-zsh = {
@@ -39,6 +42,7 @@
       ];
       extraConfig = /* zsh */ /* bash */ ''
         zstyle ':omz:update' mode disabled
+        zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
       '';
     };
     profileExtra = /* zsh */ /* bash */ ''
