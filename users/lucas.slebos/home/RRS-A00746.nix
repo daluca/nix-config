@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   host.battery = true;
@@ -7,7 +7,7 @@
     RRS-A00690 = {
       hostname = "10.200.100.85";
       extraOptions = {
-        RemoteCommand = "zsh --login";
+        RemoteCommand = "${lib.getExe pkgs.zsh} --login";
         RequestTTY = "yes";
       };
     };
