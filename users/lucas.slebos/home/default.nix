@@ -393,6 +393,14 @@ in {
         url = "rrs:bitwarden_vault";
         path = "bitbucket.org/robin-radar-systems/bitwarden-vault";
       };
+      containers = {
+        url = "rrs:containers";
+        path = "bitbucket.org/robin-radar-systems/containers";
+      };
+      dbmanager = {
+        url = "rrs:dbmanager";
+        path = "bitbucket.org/robin-radar-systems/dbmanager";
+      };
       image-pipeline = {
         url = "rrs:image-pipeline";
         path = "bitbucket.org/robin-radar-systems/image-pipeline";
@@ -466,6 +474,8 @@ in {
         "apt-mirror"
         "awx-management"
         "bitwarden-vault"
+        "containers"
+        "dbmanager"
         "image-pipeline"
         "kubernetes-cluster-deployment"
         "kubernetes-deployments"
