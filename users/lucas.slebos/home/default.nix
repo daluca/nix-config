@@ -263,6 +263,17 @@ in {
 
   sops.secrets."dbmanager.txt".sopsFile = ../lucas.slebos.sops.yaml;
 
+  home.file."code/bitbucket.org/robin-radar-systems/awx-management/.envrc".text = /* bash */ ''
+    source_up_if_exists
+    dotenv_if_exists
+  '';
+
+  home.file."code/bitbucket.org/robin-radar-systems/awx-management/.env".text = /* bash */ ''
+    ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."awx-management.txt".path}
+  '';
+
+  sops.secrets."awx-management.txt".sopsFile = ../lucas.slebos.sops.yaml;
+
   programs.git = {
     includes =
     let
