@@ -226,7 +226,6 @@ in {
   '';
 
   home.file."code/bitbucket.org/robin-radar-systems/.env".text = /* bash */ ''
-    ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."robin-deployment.txt".path}
     YAMLLINT_CONFIG_FILE=${pkgs.writers.writeYAML "global-yamllint-config.yaml" {
       extends = "default";
       rules = {
@@ -247,7 +246,22 @@ in {
     dotenv_if_exists
   '';
 
+  home.file."code/bitbucket.org/robin-radar-systems/robin-deployment-releases/.env".text = /* bash */ ''
+    ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."robin-deployment.txt".path}
+  '';
+
   sops.secrets."robin-deployment.txt".sopsFile = ../lucas.slebos.sops.yaml;
+
+  home.file."code/bitbucket.org/robin-radar-systems/dbmanager/.envrc".text = /* bash */ ''
+    source_up_if_exists
+    dotenv_if_exists
+  '';
+
+  home.file."code/bitbucket.org/robin-radar-systems/dbmanager/.env".text = /* bash */ ''
+    ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."dbmanager.txt".path}
+  '';
+
+  sops.secrets."dbmanager.txt".sopsFile = ../lucas.slebos.sops.yaml;
 
   programs.git = {
     includes =
@@ -269,6 +283,8 @@ in {
     ];
     ignores = [
       "**/.ansible/"
+      "/.envrc"
+      "/.env"
     ];
     extraConfig = {
       url."git@bitbucket.org".insteadof = "bitbucket";
