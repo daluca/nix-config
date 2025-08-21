@@ -69,6 +69,14 @@ in {
       hostNames = [ "unifi" ] ++ unifi.extraHostNames;
       publicKeyFile = ../../hosts/unifi/keys/ssh_host_rsa_key.pub;
     };
+    alfa = {
+      extraHostNames = [ "alfa.${domain}" secrets.hosts.alfa.ipv4-address ];
+      publicKeyFile = ../../hosts/alfa/keys/ssh_host_ed25519_key.pub;
+    };
+    "alfa/rsa" = {
+      hostNames = [ "alfa" ] ++ alfa.extraHostNames;
+      publicKeyFile = ../../hosts/alfa/keys/ssh_host_rsa_key.pub;
+    };
     alpha = {
       extraHostNames = [ "alpha.${domain}" secrets.hosts.alpha.ipv4-address ];
       publicKeyFile = ../../hosts/alpha/keys/ssh_host_ed25519_key.pub;
