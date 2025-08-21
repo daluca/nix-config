@@ -30,6 +30,7 @@
       guiltyspark.hostname = "192.168.1.21";
       unifi.hostname = secrets.hosts.unifi.ipv4-address;
       alpha.hostname = secrets.hosts.alpha.ipv4-address;
+      alfa.hostname = secrets.hosts.alfa.ipv4-address;
     };
   };
 

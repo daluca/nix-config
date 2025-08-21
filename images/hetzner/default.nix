@@ -1,19 +1,15 @@
-{ lib, modulesPath, ... }:
+{ lib, inputs, ... }:
 
 {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    (modulesPath + "/profiles/qemu-guest.nix")
+    inputs.srvos.nixosModules.server
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "root"
   ];
 
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = false;
-  };
+  boot.initrd.systemd.enable = false;
 
   systemd.enableEmergencyMode = false;
 }

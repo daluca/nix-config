@@ -11,6 +11,7 @@ keys:
       - &guiltyspark age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm
       - &unifi age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2
       - &alpha age1eyaws92hs5r7tv5elrhd8cd7axq0pa7azn5xnnxeuldv2q4l0ycsx7u3jj
+      - &alfa age19fzpnfhta58lm5wduycq6j6th3x2r8d0zv9fqejh06zcllp00e8qlvlfzr
 
 creation_rules:
   - path_regex: daluca\.sops\.yaml$
@@ -58,6 +59,11 @@ creation_rules:
       - age:
           - *master
           - *alpha
+  - path_regex: alfa\.sops\.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *alfa
   - path_regex: \.sops\.yaml$
     key_groups:
       - age:
@@ -71,6 +77,7 @@ creation_rules:
           - *guiltyspark
           - *unifi
           - *alpha
+          - *alfa
 
 stores:
   yaml:

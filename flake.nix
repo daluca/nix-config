@@ -49,6 +49,9 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs-unstable";
     zen-browser.inputs.home-manager.follows = "home-manager";
+
+    srvos.url = "github:nix-community/srvos";
+    srvos.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = {self, nixpkgs, home-manager, git-hooks, ...} @ inputs:
@@ -170,6 +173,14 @@
       specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/alpha
+      ];
+    };
+
+    nixosConfigurations.alfa = nixosSystem rec {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs outputs lib system secrets; };
+      modules = [
+        ./hosts/alfa
       ];
     };
 
