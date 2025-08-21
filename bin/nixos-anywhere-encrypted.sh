@@ -15,6 +15,8 @@ function usage() {
 POSITIONAL_ARGS=()
 
 IMPERMANENCE=""
+DEBUG=false
+DEBUG_NIXOS_ANYWHERE=""
 
 while [[ "$#" -ge 1 ]]; do
   case "$1" in
@@ -27,6 +29,7 @@ while [[ "$#" -ge 1 ]]; do
       shift 2
       ;;
     --help|-h)
+      DEBUG=true
       set +x
       usage
       exit 0
@@ -50,6 +53,7 @@ done
 set -- "${POSITIONAL_ARGS[@]}"
 
 IMPERMANENCE=${IMPERMANENCE#/}
+[[ "${DEBUG}" == "true" ]] && DEBUG_NIXOS_ANYWHERE="--debug"
 
 # Create a temporary directory
 temp="$(mktemp -d)"
@@ -74,7 +78,7 @@ sops -d --extract '["id_rsa"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_hos
 sops -d --extract '["id_ed25519"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_ed25519_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
 
 # Set the correct permissions so sshd will accept the key
-chmod -c 0400 \
+chmod 0400 \
   "${temp}/${IMPERMANENCE}/var/lib/sops-nix/keys.txt" \
   "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_ed25519_key" \
   "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_rsa_key" \
@@ -85,5 +89,6 @@ nixos-anywhere \
   --extra-files "${temp}" \
   --chown "/${IMPERMANENCE%/*}/home/daluca/" 1000:100 \
   --disk-encryption-keys /tmp/passwd <( sops -d --extract '["disk-encryption-key"]' "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml" ) \
+  "${DEBUG_NIXOS_ANYWHERE}" \
   --flake ".#${NIXOS_HOST}" \
   --target-host "${POSITIONAL_ARGS[@]}"
