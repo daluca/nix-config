@@ -27,6 +27,7 @@
     "kanata"
     "virtualisation"
     "battery"
+    "distributed-builds"
   ];
 
   networking.hostName = "artemis";
