@@ -168,14 +168,6 @@
       ];
     };
 
-    nixosConfigurations.alpha = nixosSystem rec {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
-      modules = [
-        ./hosts/alpha
-      ];
-    };
-
     nixosConfigurations.alfa = nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = { inherit inputs outputs lib system secrets; };
