@@ -13,8 +13,6 @@
     "adguardhome"
   ];
 
-  nix.settings.trusted-users = [ "@wheel" ];
-
   services.getty.autologinUser = "daluca";
 
   networking.hostName = "ironforge";
