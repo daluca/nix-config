@@ -20,8 +20,6 @@ in {
       "tools"
       "vim"
       "zsh"
-    ] ++ lib.optionals (osConfig.environment.persistence.system.enable) map (m: lib.custom.relativeToHomeManagerModules m) [
-      "impermanence"
     ] ++ lib.optional (builtins.pathExists hostExtras) hostExtras;
 
   home = rec {

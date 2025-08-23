@@ -176,6 +176,14 @@
       ];
     };
 
+    nixosConfigurations.bravo = nixosSystem rec {
+      system = "aarch64-linux";
+      specialArgs = { inherit inputs outputs lib system secrets; };
+      modules = [
+        ./hosts/bravo
+      ];
+    };
+
     homeConfigurations."lucas.slebos@RRS-A00690" =
     let
       system = "x86_64-linux";

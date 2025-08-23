@@ -12,6 +12,7 @@ keys:
       - &unifi age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2
       - &alpha age1eyaws92hs5r7tv5elrhd8cd7axq0pa7azn5xnnxeuldv2q4l0ycsx7u3jj
       - &alfa age19fzpnfhta58lm5wduycq6j6th3x2r8d0zv9fqejh06zcllp00e8qlvlfzr
+      - &bravo age182zncdt5xn9m2yjrxf0mfa5l26y0fhddzcfwvyg49t02dsmzeucsupagxs
 
 creation_rules:
   - path_regex: daluca\.sops\.yaml$
@@ -64,6 +65,11 @@ creation_rules:
       - age:
           - *master
           - *alfa
+  - path_regex: bravo\.sops\.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *bravo
   - path_regex: \.sops\.yaml$
     key_groups:
       - age:
@@ -78,6 +84,7 @@ creation_rules:
           - *unifi
           - *alpha
           - *alfa
+          - *bravo
 
 stores:
   yaml:

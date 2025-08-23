@@ -8,5 +8,6 @@
     guiltyspark = import ./guiltyspark/deploy.nix { inherit deploy-rs nixosConfigurations; };
     unifi = import ./unifi/deploy.nix { inherit deploy-rs nixosConfigurations; };
     alfa = import ./alfa/deploy.nix { inherit deploy-rs nixosConfigurations; };
+    bravo = import ./bravo/deploy.nix { inherit deploy-rs nixosConfigurations; };
   };
 }
