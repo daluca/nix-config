@@ -1,6 +1,6 @@
 {
   imports = [
-    ./darnassus.nix
+    ./bravo.nix
   ];
 
   nix.distributedBuilds = true;

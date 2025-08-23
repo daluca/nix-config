@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   users.users.remotebuild = {
@@ -6,8 +6,8 @@
     home = "/var/empty";
     createHome = false;
     group = config.users.groups.remotebuild.name;
-    openssh.authorizedKeys.keyFiles = [
-      ../../hosts/artemis/keys/ssh_host_ed25519_key.pub
+    openssh.authorizedKeys.keyFiles = map (m: lib.custom.relativeToHosts m) [
+      "artemis/keys/ssh_host_ed25519_key.pub"
     ];
   };
 
