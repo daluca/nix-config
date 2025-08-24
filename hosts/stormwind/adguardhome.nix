@@ -8,7 +8,6 @@
         bind_hosts = [ "192.168.178.10" ];
         upstream_dns = [
           "[//178.168.192.in-addr.arpa/${config.networking.domain}/]192.168.178.1"
-          "[/guiltyspark.${config.networking.domain}/ironforge.${config.networking.domain}/]192.168.1.1"
           "[/${secrets.parents.domain}/]192.168.1.10"
         ];
         fallback_dns = [
@@ -16,6 +15,16 @@
         ];
         hostsfile_enabled = false;
       };
+      filtering.rewrites = [
+        {
+          domain = "ironforge.${config.networking.domain}";
+          answer = "192.168.1.10";
+        }
+        {
+          domain = "guiltyspark.${config.networking.domain}";
+          answer = "192.168.1.21";
+        }
+      ];
       dhcp = {
         enabled = true;
         interface_name = "end0";
