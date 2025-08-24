@@ -14,12 +14,20 @@ in {
       ];
       hostsfile_enabled = false;
     };
-    filtering = {
-      rewrites = [{
+    filtering.rewrites = [
+      {
+        domain = "ironforge.${config.networking.domain}";
+        answer = "192.168.1.10";
+      }
+      {
+        domain = secrets.parents.domain;
+        answer = "192.168.1.21";
+      }
+      {
         domain = "*.${secrets.parents.domain}";
         answer = "192.168.1.21";
-      }];
-    };
+      }
+    ];
     user_rules = map (d: allowDomain d) [
       "opinionstage.com"
     ] ++ map (d: blockDomain d) [
