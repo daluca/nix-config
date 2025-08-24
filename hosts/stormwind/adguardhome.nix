@@ -1,6 +1,7 @@
 { config, secrets, ... }:
-
-{
+let
+  hours = 60 * 60;
+in {
   services.adguardhome = {
     allowDHCP = true;
     settings = {
@@ -34,7 +35,7 @@
           subnet_mask = "255.255.255.0";
           range_start = "192.168.178.100";
           range_end = "192.168.178.200";
-          lease_duration = 60 * 60 * 24;
+          lease_duration = 24 * hours;
           options = [
             "6 ips 192.168.178.10,${secrets.hosts.alfa.ipv4-address}"
             # TODO: Remove when issue has been fixed
