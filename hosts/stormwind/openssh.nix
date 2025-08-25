@@ -4,7 +4,7 @@
   programs.ssh = {
     knownHosts = rec {
       stormwind = {
-        extraHostNames = [ "storwind.${config.networking.domain}" "192.168.178.10" ];
+        extraHostNames = [ "stormwind.${config.networking.domain}" "192.168.178.10" ];
         publicKeyFile = lib.custom.relativeToHosts "stormwind/keys/ssh_host_ed25519_key.pub";
       };
       "stormwind/rsa" = {
