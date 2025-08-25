@@ -38,7 +38,7 @@
           "--to"
           "closest_pushable(@)"
         ];
-        reset = [
+        retrunk = [
           "rebase"
           "--source"
           "@"
