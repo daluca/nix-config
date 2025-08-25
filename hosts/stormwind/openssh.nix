@@ -15,10 +15,6 @@
     extraConfig = /* ssh */ ''
       Host stormwind
         HostName 192.168.178.10
-        PubkeyAcceptedKeyTypes ssh-ed25519
-        ServerAliveInterval 60
-        IPQoS throughput
-        IdentityFile /etc/ssh/ssh_host_ed25519_key
     '';
   };
 }

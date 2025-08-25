@@ -15,10 +15,6 @@
     extraConfig = /* ssh */ ''
       Host alfa
         HostName ${secrets.hosts.alfa.ipv4-address}
-        PubkeyAcceptedKeyTypes ssh-ed25519
-        ServerAliveInterval 60
-        IPQoS throughput
-        IdentityFile /etc/ssh/ssh_host_ed25519_key
     '';
   };
 }

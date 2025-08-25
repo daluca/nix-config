@@ -15,10 +15,6 @@
     extraConfig = /* ssh */ ''
       Host bravo
         HostName ${secrets.hosts.bravo.ipv4-address}
-        PubkeyAcceptedKeyTypes ssh-ed25519
-        ServerAliveInterval 60
-        IPQoS throughput
-        IdentityFile /etc/ssh/ssh_host_ed25519_key
     '';
   };
 }
