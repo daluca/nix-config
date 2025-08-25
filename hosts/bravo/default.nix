@@ -14,7 +14,15 @@ in {
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "impermanence"
+    "nginx"
+    "firefly-iii"
   ];
+
+  services.firefly-iii.virtualHost = "firefly.${secrets.cloud.domain}";
+
+  services.firefly-iii-data-importer.virtualHost = "firefly-importer.${secrets.cloud.domain}";
+
+  sops.secrets."firefly-iii/app.key".sopsFile = ./bravo.sops.yaml;
 
   networking.hostName = "bravo";
 
