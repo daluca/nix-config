@@ -63,6 +63,6 @@
   };
 
   environment.persistence.system.directories = [
-    { directory = "/var/lib/private/AdGuardHome"; }
+    { directory = "/var/lib/private/AdGuardHome"; mode = "0700"; }
   ];
 }
