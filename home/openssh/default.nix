@@ -24,13 +24,6 @@
           PubkeyAcceptedKeyTypes = "+ssh-rsa";
         };
       };
-      stormwind.hostname = "192.168.178.10";
-      darnassus.hostname = "192.168.1.212";
-      ironforge.hostname = "192.168.1.10";
-      guiltyspark.hostname = "192.168.1.21";
-      unifi.hostname = secrets.hosts.unifi.ipv4-address;
-      alfa.hostname = secrets.hosts.alfa.ipv4-address;
-      bravo.hostname = secrets.hosts.bravo.ipv4-address;
     };
   };
 
