@@ -18,12 +18,32 @@ in {
       };
       filtering.rewrites = [
         {
+          domain = "stormwind.${config.networking.domain}";
+          answer = "192.168.178.10";
+        }
+        {
           domain = "ironforge.${config.networking.domain}";
           answer = "192.168.1.10";
         }
         {
           domain = "guiltyspark.${config.networking.domain}";
           answer = "192.168.1.21";
+        }
+        {
+          domain = "darnassus.${config.networking.domain}";
+          answer = "192.168.1.212";
+        }
+        {
+          domain = "alfa.${config.networking.domain}";
+          answer = secrets.hosts.alfa.ipv4-address;
+        }
+        {
+          domain = "bravo.${config.networking.domain}";
+          answer = secrets.hosts.bravo.ipv4-address;
+        }
+        {
+          domain = "unifi.${config.networking.domain}";
+          answer = secrets.hosts.unifi.ipv4-address;
         }
       ];
       dhcp = {
