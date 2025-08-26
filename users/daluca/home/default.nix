@@ -1,6 +1,7 @@
 { lib, osConfig, inputs, outputs, ... }:
 let
   inherit (osConfig.networking) hostName;
+  secrets = builtins.fromTOML (builtins.readFile ../secrets.toml);
 in {
   imports =
     let
@@ -13,6 +14,7 @@ in {
       "btop"
       "catppuccin"
       "dvorak"
+      "ntfy"
       "openssh"
       "secrets"
       "starship"
@@ -25,6 +27,9 @@ in {
   home = rec {
     username = "daluca";
     homeDirectory = "/home/${username}";
+    sessionVariables = {
+      NTFY_TOKEN = secrets.ntfy.token;
+    };
   };
 
   home.persistence.home.enable = lib.mkDefault false;
