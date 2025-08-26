@@ -16,6 +16,7 @@ in {
     "impermanence"
     "nginx"
     "firefly-iii"
+    "ntfy-sh"
   ];
 
   services.firefly-iii.virtualHost = "firefly.${secrets.cloud.domain}";
@@ -23,6 +24,8 @@ in {
   services.firefly-iii-data-importer.virtualHost = "firefly-importer.${secrets.cloud.domain}";
 
   sops.secrets."firefly-iii/app.key".sopsFile = ./bravo.sops.yaml;
+
+  services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
 
   networking.hostName = "bravo";
 
