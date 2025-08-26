@@ -1,20 +1,14 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 {
-  programs.ssh = {
-    knownHosts = rec {
-      darnassus = {
-        extraHostNames = [ "darnassus.${config.networking.domain}" "192.168.1.212" ];
-        publicKeyFile = lib.custom.relativeToHosts "darnassus/keys/ssh_host_ed25519_key.pub";
-      };
-      "darnassus/rsa" = {
-        hostNames = [ "darnassus" ] ++ darnassus.extraHostNames;
-        publicKeyFile = lib.custom.relativeToHosts "darnassus/keys/ssh_host_rsa_key.pub";
-      };
+  programs.ssh.knownHosts = rec {
+    darnassus = {
+      extraHostNames = [ "darnassus.${config.networking.domain}" "192.168.1.212" ];
+      publicKeyFile = ./keys/ssh_host_ed25519_key.pub;
     };
-    extraConfig = /* ssh */ ''
-      Host darnassus
-        HostName 192.168.1.212
-    '';
+    "darnassus/rsa" = {
+      hostNames = [ "darnassus" ] ++ darnassus.extraHostNames;
+      publicKeyFile = ./keys/ssh_host_rsa_key.pub;
+    };
   };
 }
