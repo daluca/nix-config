@@ -127,6 +127,7 @@ in {
       "neovim"
       "nh"
       "nixGL"
+      "ntfy"
       "qrrs"
       "secrets"
       "slack"
@@ -201,6 +202,8 @@ in {
   ];
 
   targets.genericLinux.enable = true;
+
+  sops.secrets."ntfy/token".sopsFile = ../lucas.slebos.sops.yaml;
 
   programs.firefox.profiles.default.bookmarks.settings = additionalBookmarks;
 
