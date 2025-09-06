@@ -1,6 +1,5 @@
-{ lib, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 let
-  inherit (lib) mkDefault;
   inherit (pkgs) libraspberrypi;
 in {
   imports = [
@@ -17,6 +16,4 @@ in {
   environment.systemPackages = [
     libraspberrypi
   ];
-
-  system.stateVersion = mkDefault "25.05";
 }
