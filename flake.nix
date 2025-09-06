@@ -28,6 +28,8 @@
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     raspberry-pi-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
+
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
@@ -54,7 +56,7 @@
     srvos.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, home-manager, git-hooks, ...} @ inputs:
+  outputs = {self, nixpkgs, home-manager, git-hooks, nixos-raspberrypi, ...} @ inputs:
   let
     inherit (self) outputs;
     inherit (lib) nixosSystem homeManagerConfiguration;
@@ -149,6 +151,21 @@
       specialArgs = { inherit inputs outputs lib system secrets; };
       modules = [
         ./hosts/darnassus
+      ];
+    };
+
+    nixosConfigurations.dalaran =
+    let
+      system = "aarch64-linux";
+      pkgs = pkgs' system;
+      lib = nixos-raspberrypi.inputs.nixpkgs.lib.extend (_final: _prev: {
+        custom = import ./lib { lib = nixos-raspberrypi.inputs.nixpkgs.lib; };
+      } // home-manager.lib );
+    in nixos-raspberrypi.lib.nixosSystemFull {
+      inherit pkgs;
+      specialArgs = { inherit inputs outputs lib system secrets nixos-raspberrypi; };
+      modules = [
+        ./hosts/dalaran
       ];
     };
 

@@ -8,6 +8,8 @@ function usage() {
   echo "Options:"
   echo "  -c  --nixos-configuration     NixOS configuration to deploy"
   echo "  -i  --impermanence            Toggle impermanence paths"
+  echo "  -p  --phases                  Comma separated list of nixos-anywhere phases"
+  echo "                                  Default: kexec,disko,install,reboot"
   echo "      --aarch64                 Use aarch64-linux kexec image"
   echo "  -h  --help                    Print this help message"
   echo "      --debug                   Toggle bash debug output"
@@ -17,6 +19,7 @@ POSITIONAL_ARGS=()
 
 IMPERMANENCE=""
 AARCH64=false
+NIXOS_ANYWHERE_PHASES="kexec,disko,install,reboot"
 DEBUG=false
 KEXEC=""
 DEBUG_NIXOS_ANYWHERE=""
@@ -34,6 +37,10 @@ while [[ "$#" -ge 1 ]]; do
     --aarch64|--arm64)
       AARCH64=true
       shift
+      ;;
+    --phases|-p)
+      NIXOS_ANYWHERE_PHASES="$2"
+      shift 2
       ;;
     --help|-h)
       usage
@@ -94,6 +101,7 @@ chmod 0400 \
 # Install NixOS to the host system with our secrets
 nixos-anywhere \
   "${DEBUG_NIXOS_ANYWHERE}" \
+  --phases "${NIXOS_ANYWHERE_PHASES}" \
   --extra-files "${temp}" \
   --chown "/${IMPERMANENCE%/*}/home/daluca/" 1000:100 \
   --disk-encryption-keys /tmp/passwd <( sops -d --extract '["disk-encryption-key"]' "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml" ) \

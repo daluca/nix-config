@@ -8,6 +8,7 @@ keys:
       - &stormwind age173lrwtphyuvfjhkjvw4xe5fy4lt2x97qcjr2eqjt46eq6q664egqfsp4v3
       - &ironforge age16g33d2sppsukw7tekmh2d3ppf22sscwfmm0anppcrdtj9h5p7eqqrw9zg0
       - &darnassus age102lual882fvygyw47twjzl65uey33u2ps8ulcrr8g258vaafwvpqsj6hyy
+      - &dalaran age13n7tntegd6zw8ne0n4at2zlxz425xptlwsceu36tg7tw56f8upcssr4u8u
       - &guiltyspark age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm
       - &unifi age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2
       - &alpha age1eyaws92hs5r7tv5elrhd8cd7axq0pa7azn5xnnxeuldv2q4l0ycsx7u3jj
@@ -45,6 +46,11 @@ creation_rules:
       - age:
           - *master
           - *darnassus
+  - path_regex: dalaran\.sops\.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *dalaran
   - path_regex: guiltyspark\.sops\.yaml$
     key_groups:
       - age:
