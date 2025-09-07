@@ -10,6 +10,8 @@ in {
     "images/hetzner/cloud/x86"
   ] ++ map (m: lib.custom.relativeToHosts m) [
     "."
+  ] ++ map (m: lib.custom.relativeToUsers m) [
+    "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "impermanence"
     "adguardhome"
