@@ -11,5 +11,7 @@
 
   boot.initrd.systemd.enable = false;
 
+  documentation.nixos.enable = false;
+
   systemd.enableEmergencyMode = false;
 }
