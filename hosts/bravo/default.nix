@@ -29,6 +29,10 @@ in {
 
   networking.hostName = "bravo";
 
+  nix.settings.secret-key-files = config.sops.secrets."cache-priv-key.pem".path;
+
+  sops.secrets."cache-priv-key.pem".sopsFile = ./bravo.sops.yaml;
+
   boot = {
     kernelParams = [ "ip=dhcp" ];
     initrd = {

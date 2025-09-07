@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ config, lib, inputs, ... }:
 
 {
   imports = [
@@ -16,6 +16,10 @@
   ];
 
   networking.hostName = "dalaran";
+
+  nix.settings.secret-key-files = config.sops.secrets."cache-priv-key.pem".path;
+
+  sops.secrets."cache-priv-key.pem".sopsFile = ./dalaran.sops.yaml;
 
   sops.secrets."ssh_host_ed25519_key".sopsFile = ./dalaran.sops.yaml;
 

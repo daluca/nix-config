@@ -2,7 +2,10 @@
 let
   GiB = 1024 * 1024 * 1024;
 in {
-  imports = [
+  imports = (
+    builtins.filter (f: baseNameOf f == "cache.nix") (lib.filesystem.listFilesRecursive (lib.custom.relativeToHosts "."))
+  ) ++ [
+
     inputs.impermanence.nixosModules.impermanence
   ] ++ builtins.attrValues outputs.nixosModules ++ map (m: lib.custom.relativeToNixosModules m) [
     "dvorak"

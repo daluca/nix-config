@@ -17,4 +17,6 @@
       speedFactor = 5;
     }
   ];
+
+  nix.settings.substituters = [ "ssh-ng://remotebuild@dalaran?ssh-key=/etc/ssh/ssh_host_ed25519_key" ];
 }

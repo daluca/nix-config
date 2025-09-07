@@ -43,6 +43,10 @@ in {
 
   networking.hostName = "alfa";
 
+  nix.settings.secret-key-files = config.sops.secrets."cache-priv-key.pem".path;
+
+  sops.secrets."cache-priv-key.pem".sopsFile = ./alfa.sops.yaml;
+
   boot = {
     kernelParams = [ "ip=dhcp" ];
     initrd = {
