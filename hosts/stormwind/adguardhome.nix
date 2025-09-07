@@ -58,7 +58,7 @@ in {
           range_end = "192.168.178.200";
           lease_duration = 24 * hours;
           options = [
-            "6 ips 192.168.178.10,${secrets.hosts.alfa.ipv4-address}"
+            "6 ips 192.168.178.10,9.9.9.9,149.112.112.112"
             # TODO: Remove when issue has been fixed
             # https://github.com/AdguardTeam/AdGuardHome/issues/6749
             # Work around: Manually supply option
