@@ -22,25 +22,12 @@
     trusted-users = [ "@wheel" ];
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   nixpkgs.overlays = builtins.attrValues outputs.overlays ++ [
     inputs.nur.overlays.default
     inputs.nix-vscode-extensions.overlays.default
   ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ([
-    "discord"
-    "vscode"
-    "nvidia-x11"
-    "nvidia-settings"
-  ] ++ lib.optionals config.programs.steam.enable [
-    "steam"
-    "steam-unwrapped"
-  ] ++ lib.optionals config.services.unifi.enable [
-    "unifi-controller"
-    "mongodb-ce"
-  ] ++ lib.optionals config.services.sabnzbd.enable [
-    "unrar"
-  ]);
 
   nix.gc = {
     automatic = true;
