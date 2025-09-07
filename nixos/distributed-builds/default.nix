@@ -1,6 +1,8 @@
 {
   imports = [
+    ./alfa.nix
     ./bravo.nix
+    ./dalaran.nix
   ];
 
   nix.distributedBuilds = true;
