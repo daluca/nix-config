@@ -1,6 +1,7 @@
 { config, lib, pkgs, inputs, outputs, ... }:
-
-{
+let
+  GiB = 1024 * 1024 * 1024;
+in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
   ] ++ builtins.attrValues outputs.nixosModules ++ map (m: lib.custom.relativeToNixosModules m) [
@@ -18,7 +19,7 @@
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [ "https://nix-community.cachix.org" ];
     trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
-    download-buffer-size = 256 * 1024 * 1024; # 256MiB
+    download-buffer-size = 1 * GiB;
     trusted-users = [ "@wheel" ];
   };
 
