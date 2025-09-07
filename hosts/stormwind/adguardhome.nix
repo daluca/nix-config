@@ -12,7 +12,8 @@ in {
           "[/${secrets.parents.domain}/]192.168.1.10"
         ];
         fallback_dns = [
-          "192.168.1.10"
+          "9.9.9.9"
+          "149.112.112.112"
         ];
         hostsfile_enabled = false;
       };
