@@ -32,6 +32,8 @@ in {
     };
   };
 
+  sops.secrets."ntfy/token".sopsFile = ../daluca.sops.yaml;
+
   home.persistence.home.enable = lib.mkDefault false;
 
   xdg.enable = true;
