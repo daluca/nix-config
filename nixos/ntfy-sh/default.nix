@@ -25,4 +25,8 @@ in {
       };
     };
   };
+
+  environment.persistence.system.directories = [
+    { directory = "/var/lib/ntfy-sh"; mode = "0775"; }
+  ];
 }
