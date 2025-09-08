@@ -12,6 +12,14 @@ in {
     };
   };
 
+  systemd.services.ntfy-sh.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    PrivateTmp = lib.mkForce false;
+    UMask = "0002";
+  };
+
+  users.users.daluca.extraGroups = [ "ntfy-sh" ];
+
   services.nginx.virtualHosts =
   let
     url = lib.last (builtins.match "^https?://(.*)$" ntfy-sh.settings.base-url);
