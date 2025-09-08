@@ -1,7 +1,6 @@
 { lib, osConfig, inputs, outputs, ... }:
 let
   inherit (osConfig.networking) hostName;
-  secrets = builtins.fromTOML (builtins.readFile ../secrets.toml);
 in {
   imports =
     let
@@ -27,9 +26,6 @@ in {
   home = rec {
     username = "daluca";
     homeDirectory = "/home/${username}";
-    sessionVariables = {
-      NTFY_TOKEN = secrets.ntfy.token;
-    };
   };
 
   sops.secrets."ntfy/token".sopsFile = ../daluca.sops.yaml;
