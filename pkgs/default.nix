@@ -12,4 +12,5 @@ in {
   bypass-paywalls-clean = callPackage ./bypass-paywalls-clean { };
   terraform = callPackage ./terraform { };
   tunarr = callPackage ./tunarr { };
+  ntfyd = callPackage ./ntfyd { };
 }
