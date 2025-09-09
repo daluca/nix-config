@@ -96,7 +96,7 @@ in with lib; {
 
   config = lib.mkIf cfg.enable {
     systemd.services.tunarr = {
-      description = " Create a classic TV experience using your own media - IPTV backed by Plex/Jellyfin/Emby";
+      description = "Create a classic TV experience using your own media - IPTV backed by Plex/Jellyfin/Emby";
       wants = [ "network.target" ];
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
