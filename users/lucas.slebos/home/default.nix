@@ -203,6 +203,14 @@ in {
 
   targets.genericLinux.enable = true;
 
+  services.ntfyd = {
+    token = secrets.ntfy.token;
+    topics = [
+      "RRS-A00690"
+      "RRS-A00746"
+    ];
+  };
+
   sops.secrets."ntfy/token".sopsFile = ../lucas.slebos.sops.yaml;
 
   programs.firefox.profiles.default.bookmarks.settings = additionalBookmarks;

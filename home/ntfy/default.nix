@@ -18,4 +18,9 @@ in {
       default-token = config.sops.placeholder."ntfy/token";
     };
   };
+
+  services.ntfyd = {
+    enable = true;
+    server = "ntfy.${secrets.cloud.domain}";
+  };
 }
