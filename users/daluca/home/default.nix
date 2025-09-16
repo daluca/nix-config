@@ -8,6 +8,7 @@ in {
     in builtins.attrValues outputs.homeManagerModules ++ [
       outputs.nixosModules.host
       inputs.impermanence.homeManagerModules.impermanence
+      inputs.nix-index-database.homeModules.nix-index
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "bash"
       "btop"

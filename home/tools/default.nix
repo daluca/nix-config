@@ -7,6 +7,7 @@
     ../zoxide
     ../delta
     ./jq.nix
+    ./comma.nix
   ];
 
   home.packages = with pkgs; [
