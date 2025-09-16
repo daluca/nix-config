@@ -41,7 +41,7 @@
         retrunk = [
           "rebase"
           "--source"
-          "@"
+          "all:@::"
           "--destination"
           "trunk()"
         ];
