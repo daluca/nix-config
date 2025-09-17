@@ -43,11 +43,11 @@ in {
   sops.secrets."tailscale/preauthkey".sopsFile = ./guiltyspark.sops.yaml;
 
   services.tailscale.extraUpFlags = [
-    "--advertise-routes=192.168.1.0/24"
+    "--advertise-routes=192.168.10.0/24"
   ];
 
   networking.localCommands = /* bash */ ''
-    ip rule add to 192.168.1.0/24 priority 2500 lookup main || true
+    ip rule add to 192.168.10.0/24 priority 2500 lookup main || true
   '';
 
   security.acme.certs.${secrets.parents.domain} = {

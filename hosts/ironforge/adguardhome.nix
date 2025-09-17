@@ -5,27 +5,28 @@ let
 in {
   services.adguardhome.settings = {
     dns = {
-      bind_hosts = [ "192.168.1.10" ];
+      bind_hosts = [ "192.168.10.10" ];
       upstream_dns = [
-        "[//168.192.in-addr.arpa/${config.networking.domain}/]192.168.1.1"
+        "[//168.192.in-addr.arpa/${config.networking.domain}/]192.168.10.254"
       ];
       fallback_dns = [
-        "192.168.178.10"
+        "9.9.9.9"
+        "149.112.112.112"
       ];
       hostsfile_enabled = false;
     };
     filtering.rewrites = [
       {
         domain = "ironforge.${config.networking.domain}";
-        answer = "192.168.1.10";
+        answer = "192.168.10.10";
       }
       {
         domain = secrets.parents.domain;
-        answer = "192.168.1.21";
+        answer = "192.168.10.20";
       }
       {
         domain = "*.${secrets.parents.domain}";
-        answer = "192.168.1.21";
+        answer = "192.168.10.20";
       }
     ];
     user_rules = map (d: allowDomain d) [

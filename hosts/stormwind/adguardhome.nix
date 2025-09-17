@@ -9,7 +9,7 @@ in {
         bind_hosts = [ "192.168.178.10" ];
         upstream_dns = [
           "[//178.168.192.in-addr.arpa/${config.networking.domain}/]192.168.178.1"
-          "[/${secrets.parents.domain}/]192.168.1.10"
+          "[/${secrets.parents.domain}/]192.168.10.10"
         ];
         fallback_dns = [
           "9.9.9.9"
@@ -24,11 +24,11 @@ in {
         }
         {
           domain = "ironforge.${config.networking.domain}";
-          answer = "192.168.1.10";
+          answer = "192.168.10.10";
         }
         {
           domain = "guiltyspark.${config.networking.domain}";
-          answer = "192.168.1.21";
+          answer = "192.168.10.20";
         }
         {
           domain = "darnassus.${config.networking.domain}";
@@ -58,7 +58,7 @@ in {
           range_end = "192.168.178.200";
           lease_duration = 24 * hours;
           options = [
-            "6 ips 192.168.178.10,9.9.9.9,149.112.112.112"
+            "6 ips 192.168.178.10"
             # TODO: Remove when issue has been fixed
             # https://github.com/AdguardTeam/AdGuardHome/issues/6749
             # Work around: Manually supply option
