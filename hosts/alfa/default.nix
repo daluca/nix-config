@@ -15,6 +15,7 @@ in {
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "impermanence"
     "nginx"
+    "tailscale/server"
   ];
 
 
@@ -23,6 +24,8 @@ in {
       enableACME = true;
     };
   };
+
+  sops.secrets."tailscale/preauthkey".sopsFile = ./alfa.sops.yaml;
 
   networking.hostName = "alfa";
 
