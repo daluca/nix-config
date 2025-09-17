@@ -2,14 +2,14 @@
 
 python312.pkgs.buildPythonApplication rec {
   pname = "jellyplex-watched";
-  version = "7.0.3";
+  version = "8.3.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "luigi311";
     repo = "JellyPlex-Watched";
     rev = "v${version}";
-    hash = "sha256-V45Lw0YsR7qyp9t6n7D5vWsirxKYLFYEtgGhKfpStpA=";
+    hash = "sha256-M5QLJiBVgVvp/RoliFddgsroJDNyrcKl38hSjEhFksM=";
   };
 
   nativeBuildInputs = [ python312.pkgs.wrapPython ];
