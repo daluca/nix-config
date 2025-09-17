@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation rec {
   pname = "tunarr";
-  version = "0.21.4";
+  version = "0.22.2";
 
   phases = [ "unpackPhase" "installPhase" ];
 
   src = fetchurl {
     url = "https://github.com/chrisbenincasa/tunarr/releases/download/v${version}/tunarr-${version}-linux-x64";
-    hash = "sha256-+3/utCpkITzSPNrFhknjoenIc5fpaq7bIe4+tS62l1c=";
+    hash = "sha256-quWqnwsrWCPDRaD/DhDOuV/RcBYnFCTKrb4rjgi5XIY=";
   };
 
   nativeBuildInputs = [
