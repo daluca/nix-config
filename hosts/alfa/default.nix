@@ -14,14 +14,23 @@ in {
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "impermanence"
+    "atticd"
     "nginx"
     "tailscale/server"
   ];
 
+  sops.secrets."atticd/token".sopsFile = ./alfa.sops.yaml;
 
   services.nginx.virtualHosts = {
+    "attic.${secrets.cloud.domain}" = {
       forceSSL = true;
       enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8080";
+      };
+      extraConfig = /* nginx */ ''
+        client_max_body_size 1G;
+      '';
     };
   };
 
