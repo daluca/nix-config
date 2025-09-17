@@ -7,6 +7,7 @@ in {
     inputs.disko.nixosModules.disko
 
     ./disko.nix
+    ./media.nix
   ] ++ map (m: lib.custom.relativeToHosts m) [
     "."
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
