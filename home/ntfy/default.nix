@@ -7,7 +7,8 @@ in {
   ];
 
   home.sessionVariables = {
-    NTFY_TOPIC = osConfig.networking.hostName;
+    NTFY_TOPIC = "hosts";
+    NTFY_TITLE = osConfig.networking.hostName;
     NTFY_QUIET = builtins.toString true;
   };
 
