@@ -1,6 +1,7 @@
-{ lib, ... }:
-
-{
+{ lib, ... }@args:
+let
+  secrets = args.secrets // builtins.fromTOML (builtins.readFile ../secrets.toml);
+in {
   imports = map (m: lib.custom.relativeToHomeManagerModules m) [
     "desktop-managers/gnome"
     "impermanence"
@@ -42,7 +43,15 @@
     "zen-browser"
     "systemctl-tui"
     "jujutsu"
+    "ntfyd"
   ];
+
+  services.ntfyd = {
+    token = secrets.ntfy.token;
+    topics = [
+      "hosts"
+    ];
+  };
 
   sops.age.keyFile = lib.mkOverride 10 "/persistent/system/var/lib/sops-nix/key.txt";
 
