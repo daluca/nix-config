@@ -6,6 +6,9 @@
   ];
 
   xdg.configFile = with pkgs; {
+    "heroic/tools/proton/GE-Proton10-15".source = lib.getOutput "steamcompattool" GE-Proton10-15;
+    "heroic/tools/proton/GE-Proton10-14".source = lib.getOutput "steamcompattool" GE-Proton10-14;
+    "heroic/tools/proton/GE-Proton10-13".source = lib.getOutput "steamcompattool" GE-Proton10-13;
     "heroic/tools/proton/GE-Proton10-12".source = lib.getOutput "steamcompattool" GE-Proton10-12;
     "heroic/tools/proton/GE-Proton10-11".source = lib.getOutput "steamcompattool" GE-Proton10-11;
     "heroic/tools/proton/GE-Proton10-10".source = lib.getOutput "steamcompattool" GE-Proton10-10;
