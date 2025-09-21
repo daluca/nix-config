@@ -5,6 +5,7 @@
     inputs.disko.nixosModules.disko
 
     ./disko.nix
+    ./adguardhome.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
     "images/raspberry-pi/5"
   ] ++ map (m: lib.custom.relativeToHosts m) [
@@ -13,6 +14,7 @@
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
+    "adguardhome"
   ];
 
   networking.hostName = "dalaran";

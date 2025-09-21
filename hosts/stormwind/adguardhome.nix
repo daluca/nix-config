@@ -3,7 +3,6 @@ let
   hours = 60 * 60;
 in {
   services.adguardhome = {
-    allowDHCP = true;
     settings = {
       dns = {
         bind_hosts = [ "192.168.178.10" ];
@@ -58,7 +57,7 @@ in {
           range_end = "192.168.178.200";
           lease_duration = 24 * hours;
           options = [
-            "6 ips 192.168.178.10"
+            "6 ips 192.168.178.10,192.168.178.11"
             # TODO: Remove when issue has been fixed
             # https://github.com/AdguardTeam/AdGuardHome/issues/6749
             # Work around: Manually supply option
