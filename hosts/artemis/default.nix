@@ -25,7 +25,6 @@
     "smart-cards"
     "tailscale"
     "kanata"
-    "virtualisation"
     "battery"
     "distributed-builds"
   ];
