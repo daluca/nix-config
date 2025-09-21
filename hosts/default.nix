@@ -28,9 +28,10 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.overlays = builtins.attrValues outputs.overlays ++ [
-    inputs.nur.overlays.default
-    inputs.nix-vscode-extensions.overlays.default
+  nixpkgs.overlays = with inputs; builtins.attrValues outputs.overlays ++ [
+    nur.overlays.default
+    nix-vscode-extensions.overlays.default
+    proton-ge.overlays.default
   ];
 
   nix.gc = {

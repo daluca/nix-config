@@ -52,8 +52,6 @@
     });
   };
 
-  proton-ge = import ./proton-ge;
-
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;

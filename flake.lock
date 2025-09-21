@@ -730,6 +730,26 @@
         "type": "github"
       }
     },
+    "proton-ge": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1758478261,
+        "narHash": "sha256-+Xbeeh/Qq/ypQqUNqoXd2adtCmV4tI3H3gA0PSFaEE4=",
+        "owner": "daluca",
+        "repo": "proton-ge-overlay",
+        "rev": "d97ad622d17614127ef2902300dc1c58df6abf8c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "daluca",
+        "repo": "proton-ge-overlay",
+        "type": "github"
+      }
+    },
     "raspberry-pi-nix": {
       "inputs": {
         "libcamera-src": "libcamera-src",
@@ -777,6 +797,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim-config": "nixvim-config",
         "nur": "nur",
+        "proton-ge": "proton-ge",
         "raspberry-pi-nix": "raspberry-pi-nix",
         "sops-nix": "sops-nix",
         "srvos": "srvos",
