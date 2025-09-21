@@ -1,9 +1,11 @@
 { lib, ... }:
-
-{
-  swapDevices = lib.mkForce [{
-    # TODO: Replace with btrfs swap volume
-    device = "/var/lib/swapfile";
-    size = 8 * 1024;
-  }];
+let
+  GiB = 1024;
+in {
+  swapDevices = lib.mkForce [
+    {
+      device = "/var/lib/swap/swapfile";
+      size = 16 * GiB;
+    }
+  ];
 }

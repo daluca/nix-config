@@ -34,6 +34,12 @@
       options = [ "subvol=persistent" "compress=zstd" "noatime" ];
     };
 
+  fileSystems."/var/lib/swap" =
+    { device = "/dev/root_vg/root";
+      fsType = "btrfs";
+      options = [ "subvol=swap" "defaults" ];
+    };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/AAA4-90DA";
       fsType = "vfat";

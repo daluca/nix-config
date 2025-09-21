@@ -75,10 +75,6 @@
       delete_subvolume_recursively "$i"
     done
 
-    for i in $(find /btrfs_tmp/old_roots/ -maxdepth 4 -path "*/var/lib/*" -name "swapfile"); do
-      rm "$i"
-    done
-
     btrfs subvolume create /btrfs_tmp/root
     umount /btrfs_tmp
   '');
