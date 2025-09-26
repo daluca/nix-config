@@ -92,7 +92,7 @@
       } // inputs.deploy-rs.lib.${system}.deployChecks self.deploy
     );
 
-    overlays = import ./overlays { inherit lib inputs; };
+    overlays = import ./overlays { inherit inputs; };
 
     packages = forAllSystems (system:
       let
