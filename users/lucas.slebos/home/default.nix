@@ -1,4 +1,4 @@
-{ config, lib, pkgs, hostname, inputs, outputs, ... }@args:
+{ config, lib, pkgs, hostname, system, inputs, outputs, ... }@args:
 let
   secrets = args.secrets // builtins.fromTOML (builtins.readFile ../secrets.toml);
 
@@ -41,7 +41,7 @@ let
       format = "^RDDO-[0-9]+";
     };
   };
-  pre-commit = (inputs.git-hooks.lib.${pkgs.system}.run {
+  pre-commit = (inputs.git-hooks.lib.${system}.run {
     src = ./.;
     hooks = rec {
       check-added-large-files.enable = true;
@@ -55,10 +55,10 @@ let
       shellcheck.enable = true;
       typos = {
         enable = true;
-        settings.configPath = builtins.toString typos-config;
-        args = [
-          "--force-exclude"
-        ];
+        settings = {
+          configPath = builtins.toString typos-config;
+          config = { };
+        };
       };
       gitleaks = {
         enable = true;
