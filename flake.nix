@@ -36,8 +36,8 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    catppuccin.url = "github:catppuccin/nix";
-    catppuccin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixvim-config.url = "github:daluca/nixvim-config";
     nixvim-config.inputs.nixpkgs.follows = "nixpkgs-unstable";
