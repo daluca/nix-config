@@ -472,17 +472,17 @@ in {
         path = "bitbucket.org/robin-radar-systems/robin-deployment";
         branch = "main";
       };
-      "robin-deployment/release-candidate-1.5-dev" = {
+      "robin-deployment/release-candidate-1.5" = {
         worktree = "robin-deployment";
         branch = "release/release-candidate-1.5-dev";
         path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.5-dev";
       };
-      "robin-deployment/release-candidate-1.6-dev" = {
+      "robin-deployment/release-candidate-1.6" = {
         worktree = "robin-deployment";
         branch = "release/release-candidate-1.6-dev";
         path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.6-dev";
       };
-      "robin-deployment/release-candidate-1.7-dev" = {
+      "robin-deployment/release-candidate-1.7" = {
         worktree = "robin-deployment";
         branch = "release/release-candidate-1.7-dev";
         path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.7-dev";
@@ -496,6 +496,11 @@ in {
         worktree = "robin-deployment";
         branch = "release/release-candidate-1.9";
         path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.9";
+      };
+      "robin-deployment/release-candidate-1.10" = {
+        worktree = "robin-deployment";
+        branch = "release/release-candidate-1.10";
+        path = "bitbucket.org/robin-radar-systems/robin-deployment-releases/release-candidate-1.10";
       };
       robin-scripts = {
         url = "rrs:robin-scripts";
@@ -520,11 +525,12 @@ in {
         "network-install"
         "pipelines-devops"
         "robin-deployment"
-        "robin-deployment/release-candidate-1.5-dev"
-        "robin-deployment/release-candidate-1.6-dev"
-        "robin-deployment/release-candidate-1.7-dev"
+        "robin-deployment/release-candidate-1.5"
+        "robin-deployment/release-candidate-1.6"
+        "robin-deployment/release-candidate-1.7"
         "robin-deployment/release-candidate-1.8"
         "robin-deployment/release-candidate-1.9"
+        "robin-deployment/release-candidate-1.10"
         "robin-scripts"
         "robin-software-modules"
       ];
