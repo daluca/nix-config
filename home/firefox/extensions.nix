@@ -1,7 +1,6 @@
 { config, lib, pkgs }:
-let
-  inherit (pkgs) bypass-paywalls-clean;
-in with pkgs.nur.repos.rycee.firefox-addons; {
+
+with pkgs; with pkgs.nur.repos.rycee.firefox-addons; {
   ExtensionUpdate = false;
 
   ExtensionSettings = {

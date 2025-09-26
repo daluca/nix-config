@@ -1,9 +1,9 @@
 { lib, inputs, ... }:
 
 {
-  imports = [
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
+  imports = with inputs; [
+    nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+    nixos-hardware.nixosModules.common-cpu-intel
 
     ./hardware-configuration.nix
   ] ++ map (m: lib.custom.relativeToHosts m) [

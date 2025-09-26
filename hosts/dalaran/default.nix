@@ -1,8 +1,8 @@
 { config, lib, inputs, ... }:
 
 {
-  imports = [
-    inputs.disko.nixosModules.disko
+  imports = with inputs; [
+    disko.nixosModules.disko
 
     ./disko.nix
     ./adguardhome.nix

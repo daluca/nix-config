@@ -2,9 +2,9 @@
 let
   secrets = args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
 in {
-  imports = [
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.disko.nixosModules.disko
+  imports = with inputs; [
+    nixos-hardware.nixosModules.common-cpu-intel
+    disko.nixosModules.disko
 
     ./disko.nix
     ./media.nix

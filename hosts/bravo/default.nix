@@ -2,8 +2,8 @@
 let
   secrets = config.sops.secrets // args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
 in {
-  imports = [
-    inputs.disko.nixosModules.disko
+  imports = with inputs; [
+    disko.nixosModules.disko
 
     ./disko.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
