@@ -5,10 +5,9 @@ in {
   imports =
     let
       hostExtras = (./. + "/${hostName}.nix");
-    in builtins.attrValues outputs.homeManagerModules ++ [
+    in with inputs; builtins.attrValues outputs.homeManagerModules ++ [
       outputs.nixosModules.host
-      inputs.impermanence.homeManagerModules.impermanence
-      inputs.nix-index-database.homeModules.nix-index
+      impermanence.homeManagerModules.impermanence
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "bash"
       "btop"
