@@ -128,6 +128,7 @@ in {
       "nh"
       "nixGL"
       "ntfy"
+      "ntfyd"
       "qrrs"
       "secrets"
       "slack"
@@ -206,8 +207,7 @@ in {
   services.ntfyd = {
     token = secrets.ntfy.token;
     topics = [
-      "RRS-A00690"
-      "RRS-A00746"
+      "hosts"
     ];
   };
 
