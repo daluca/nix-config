@@ -18,4 +18,6 @@ in {
   sops.secrets."tailscale/preauthkey" = {
     owner = daluca.home.username;
   };
+
+  networking.firewall.trustedInterfaces = [ "tailscaled0" ];
 }
