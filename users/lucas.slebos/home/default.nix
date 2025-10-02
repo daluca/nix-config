@@ -103,10 +103,10 @@ in {
   imports =
     let
       hostExtras = (./. + "/${hostname}.nix");
-    in builtins.attrValues outputs.homeManagerModules ++ [
+    in with inputs; builtins.attrValues outputs.homeManagerModules ++ [
       outputs.nixosModules.host
-      inputs.impermanence.homeManagerModules.impermanence
-      inputs.catppuccin.homeModules.catppuccin
+      impermanence.homeManagerModules.impermanence
+      catppuccin.homeModules.catppuccin
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "alacritty"
       "bash"
@@ -157,6 +157,8 @@ in {
       warn-dirty = false;
     };
   };
+
+  catppuccin.cache.enable = true;
 
   host.work = true;
 
