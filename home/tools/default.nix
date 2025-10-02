@@ -13,7 +13,6 @@
   home.packages = with pkgs; [
     yq-go
     curl
-    wl-clipboard
     file
     unzip
     dig

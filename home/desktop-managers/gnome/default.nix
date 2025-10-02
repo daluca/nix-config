@@ -1,4 +1,4 @@
-{ config, lib, osConfig, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 let
   inherit (lib.hm.gvariant) mkVariant mkTuple mkUint32 mkDouble;
   wellington =
@@ -118,5 +118,9 @@ in {
 
   systemd.user.tmpfiles.rules = [
     "L+ /home/${config.home.username}/.config/monitors.xml - - - - ${./monitors.xml}"
+  ];
+
+  home.packages = with pkgs; [
+    wl-clipboard
   ];
 }
