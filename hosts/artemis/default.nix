@@ -27,6 +27,7 @@
     "kanata"
     "battery"
     "distributed-builds"
+    "scanners"
   ];
 
   networking.hostName = "artemis";
