@@ -1,4 +1,4 @@
-{ config, lib, inputs, ... }@args:
+{ lib, inputs, ... }@args:
 let
   secrets = args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
 in {
@@ -21,7 +21,7 @@ in {
 
 
   services.nginx.virtualHosts = {
-    "attic.${secrets.cloud.domain}" = {
+    "attic.${secrets.domain.general}" = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
