@@ -19,7 +19,6 @@ in {
     "tailscale/server"
   ];
 
-  sops.secrets."atticd/token".sopsFile = ./alfa.sops.yaml;
 
   services.nginx.virtualHosts = {
     "attic.${secrets.cloud.domain}" = {
@@ -34,13 +33,7 @@ in {
     };
   };
 
-  sops.secrets."tailscale/preauthkey".sopsFile = ./alfa.sops.yaml;
-
   networking.hostName = "alfa";
-
-  nix.settings.secret-key-files = config.sops.secrets."cache-priv-key.pem".path;
-
-  sops.secrets."cache-priv-key.pem".sopsFile = ./alfa.sops.yaml;
 
   boot = {
     kernelParams = [ "ip=dhcp" ];
@@ -63,10 +56,6 @@ in {
       };
     };
   };
-
-  sops.secrets."ssh_host_ed25519_key".sopsFile = ./alfa.sops.yaml;
-
-  sops.secrets."ssh_host_rsa_key".sopsFile = ./alfa.sops.yaml;
 
   system.stateVersion = "25.05";
 }

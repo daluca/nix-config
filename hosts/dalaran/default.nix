@@ -19,14 +19,6 @@
 
   networking.hostName = "dalaran";
 
-  nix.settings.secret-key-files = config.sops.secrets."cache-priv-key.pem".path;
-
-  sops.secrets."cache-priv-key.pem".sopsFile = ./dalaran.sops.yaml;
-
-  sops.secrets."ssh_host_ed25519_key".sopsFile = ./dalaran.sops.yaml;
-
-  sops.secrets."ssh_host_rsa_key".sopsFile = ./dalaran.sops.yaml;
-
   hardware.raspberry-pi.config = {
     all.base-dt-params = {
       pciex1_gen = {

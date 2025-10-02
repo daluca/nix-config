@@ -19,7 +19,10 @@
     ];
     min-free = 10 * 1024 * 1024; # 10MiB
     max-free = 200 * 1024 * 1024; # 200MiB
+    secret-key-files = config.sops.secrets."cache-priv-key.pem".path;
   };
+
+  sops.secrets."cache-priv-key.pem" = { };
 
   systemd.services.nix-daemon.serviceConfig = {
     MemoryAccounting = true;

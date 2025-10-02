@@ -36,12 +36,6 @@ in {
     hostId = "5c9bd4a2";
   };
 
-  sops.secrets."ssh_host_ed25519_key".sopsFile = ./guiltyspark.sops.yaml;
-
-  sops.secrets."ssh_host_rsa_key".sopsFile = ./guiltyspark.sops.yaml;
-
-  sops.secrets."tailscale/preauthkey".sopsFile = ./guiltyspark.sops.yaml;
-
   services.tailscale.extraUpFlags = [
     "--advertise-routes=192.168.10.0/24"
   ];
@@ -51,8 +45,6 @@ in {
   '';
 
   security.acme.certs.${secrets.parents.domain}.domain = "*.${secrets.parents.domain}";
-
-  sops.secrets."cloudflare/api-token".sopsFile = ./guiltyspark.sops.yaml;
 
   services.cloudflare-dyndns = {
     enable = true;

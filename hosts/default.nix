@@ -20,6 +20,10 @@ in {
 
   catppuccin.cache.enable = true;
 
+  sops.secrets."ssh_host_ed25519_key" = { };
+
+  sops.secrets."ssh_host_rsa_key" = { };
+
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [ "https://nix-community.cachix.org" ];

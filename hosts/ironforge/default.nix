@@ -17,12 +17,6 @@
 
   networking.hostName = "ironforge";
 
-  sops.secrets."ssh_host_ed25519_key".sopsFile = ./ironforge.sops.yaml;
-
-  sops.secrets."ssh_host_rsa_key".sopsFile = ./ironforge.sops.yaml;
-
-  sops.secrets."tailscale/preauthkey".sopsFile = ./ironforge.sops.yaml;
-
   services.tailscale.extraUpFlags = [
     "--advertise-routes=192.168.10.0/24"
     "--hostname=new-zealand"

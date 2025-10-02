@@ -46,14 +46,6 @@
     ip rule add to 192.168.178.0/24 priority 2500 lookup main || true
   '';
 
-  sops.secrets."ssh_host_ed25519_key".sopsFile = ./artemis.sops.yaml;
-
-  sops.secrets."ssh_host_rsa_key".sopsFile = ./artemis.sops.yaml;
-
-  sops.secrets."tailscale/preauthkey".sopsFile = ./artemis.sops.yaml;
-
-  sops.secrets."proton-bridge/password".sopsFile = ./artemis.sops.yaml;
-
   boot.initrd.postResumeCommands = lib.mkForce (lib.mkAfter /* bash */ ''
     mkdir /btrfs_tmp
     mount /dev/root_vg/root /btrfs_tmp

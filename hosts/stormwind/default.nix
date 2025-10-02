@@ -36,12 +36,6 @@
     ip rule add to 192.168.178.0/24 priority 2500 lookup main || true
   '';
 
-  sops.secrets."ssh_host_ed25519_key".sopsFile = ./stormwind.sops.yaml;
-
-  sops.secrets."ssh_host_rsa_key".sopsFile = ./stormwind.sops.yaml;
-
-  sops.secrets."tailscale/preauthkey".sopsFile = ./stormwind.sops.yaml;
-
   services.tailscale.extraUpFlags = [
     "--advertise-routes=192.168.178.0/24"
     "--hostname=the-netherlands"

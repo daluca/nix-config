@@ -23,15 +23,9 @@ in {
 
   services.firefly-iii-data-importer.virtualHost = "firefly-importer.${secrets.cloud.domain}";
 
-  sops.secrets."firefly-iii/app.key".sopsFile = ./bravo.sops.yaml;
-
   services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
 
   networking.hostName = "bravo";
-
-  nix.settings.secret-key-files = config.sops.secrets."cache-priv-key.pem".path;
-
-  sops.secrets."cache-priv-key.pem".sopsFile = ./bravo.sops.yaml;
 
   boot = {
     kernelParams = [ "ip=dhcp" ];
@@ -54,10 +48,6 @@ in {
       };
     };
   };
-
-  sops.secrets."ssh_host_ed25519_key".sopsFile = ./bravo.sops.yaml;
-
-  sops.secrets."ssh_host_rsa_key".sopsFile = ./bravo.sops.yaml;
 
   system.stateVersion = "25.05";
 }

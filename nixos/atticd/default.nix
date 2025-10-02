@@ -6,11 +6,11 @@
     environmentFile = config.sops.templates."atticd.env".path;
   };
 
-  sops.templates."atticd.env" = {
-    content = lib.generators.toKeyValue { } {
-      ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64 = config.sops.placeholder."atticd/token";
-    };
+  sops.templates."atticd.env".content = lib.generators.toKeyValue { } {
+    ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64 = config.sops.placeholder."atticd/token";
   };
+
+  sops.secrets."atticd/token" = { };
 
   environment.systemPackages = with pkgs; [
     attic-server
