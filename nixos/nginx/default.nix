@@ -1,4 +1,4 @@
-{ lib, pkgs, secrets, ... }:
+{ lib, pkgs, secrets, inputs, ... }:
 let
   cloudflare-ipv4 = lib.splitString "\n" (builtins.readFile (builtins.fetchurl {
     url = "https://www.cloudflare.com/ips-v4";
@@ -16,6 +16,15 @@ let
     real_ip_header CF-Connecting-IP;
   '';
 in {
+  # NOTE: Remove in NixOS 25.11
+  disabledModules = [
+    "services/web-servers/nginx/default.nix"
+  ];
+
+  imports = with inputs; [
+    (nixpkgs-unstable + "/nixos/modules/services/web-servers/nginx")
+  ];
+
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;
