@@ -3,7 +3,7 @@ id_rsa: ENC[AES256_GCM,data:vVGkZH4nUcBSAdx/qoBxMQ/Y7MNxG9zqPQNQMYBspNnu4YB0mOOX
 tailscale:
   preauthkey: ENC[AES256_GCM,data:Vkaz6Exy08TQ1Bw7huEMKdgjzNcMPylk0GaYzmvRutcYxBVZuLNJcsDWaW2zjupk,iv:2jGAtsdfxpT+QfZgzXC7XCQQNADRrKhLTJW5YagoT0U=,tag:A2rRBDGdIlDqa6teGAj4qQ==,type:str]
 cloudflare:
-  apitoken: ENC[AES256_GCM,data:kg70OdyNg/ORMOEz2HYN0gLK7sz3/ojhkv/akqZJCU8XSMe4rA0gSQ==,iv:DLNGlxdIK5cw2ue/nC+jBJcA8CwE6A9h582iwb30iA8=,tag:w3A6YvYrNIZZQWC7/K0WOw==,type:str]
+  api-token: ENC[AES256_GCM,data:Bsw53tgxDdyzd6VGrDIVM70U4dVuXFuYubiv0E1IN5ZDl2MUQMUqCw==,iv:85+dspdma3YkSFsWqRoKID6hP0JE7sjhIKpp5yu9iBc=,tag:USTSPD7HUsDFez3aNxR6hA==,type:str]
 sops:
   age:
     - recipient: age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
@@ -24,7 +24,7 @@ sops:
         KzlNV2ZINTFRUy80dGlkSXc0R2IyS3MKqQyA1mb54phuCp2e3/TlhMPLurHVwAe3
         CgxH5flC13XGUB3ySrTXmiIcGM5JNOdV7HNSSgJ55MCLh6f0y/1ikw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-07-12T20:06:52Z"
-  mac: ENC[AES256_GCM,data:P7t9dA0zBNzUUtlYmghGr6LVGX7y8As9eI7AuYxUx0q/uS6MWIg0nl7A1ja838OgMJmXylppu51mfEAofEd3zqSF4gXr3lTjdSleg9AENG48P5BRIdni5N89zqpiOc0H/1ZZmi/hNth1W//G2VpETDtmBDajAWAU7ralsAUtk8A=,iv:7m1FBFwWO/lvma6eNBAgfMERP8YHfuDGrvHQRMeU9QQ=,tag:XvKArkGtptCgLFq8gnwy9Q==,type:str]
+  lastmodified: "2025-10-02T17:41:19Z"
+  mac: ENC[AES256_GCM,data:PTYEt/RVgGi0xZ+YOX6bLEN5GM2lWi8F+9kKZrhX5gGvC7286c9mY83dLR9DgKzw/9LVDj+xq/xryPOvkxuwODuDloXD55XqkiQGOEsV66kAfAejb/w94MnezJd5esqiZkHjyYf1fj6sSaRais2H0kQeeSUqN+8dofny/s8H+aA=,iv:N9F2GfJao24Syi0ie1MIA8cW+sClm6vOUoM4G41isUE=,tag:1TXex0yS52NQfi9Qn3VVRw==,type:str]
   unencrypted_suffix: _unencrypted
-  version: 3.9.4
+  version: 3.10.2

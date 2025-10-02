@@ -4,6 +4,8 @@ id_rsa: ENC[AES256_GCM,data:cdphBZeQqoTP36t9weN1wlc5o/xeZLpj9iKCBCI1jeWTCeStE6Vf
 cache-priv-key.pem: ENC[AES256_GCM,data:Tb/nTFrpuhiBGxP6s96vIovgo7l7+1ilJzB+M9EJ6oos+LywzLDsNH+GJazLo9MoOTobf/4O4bJIKJrrLqwEElz5NTMj6GLvPZdm+cdCBPIma+rHTzLWZ9ffml0Obw==,iv:cq6vAAFV7e/kCN3kHpqj3Gw9mTvy8+BvCqFWzWJbsjc=,tag:3yEz7sNbKuVJ7k6ImaZWlQ==,type:str]
 firefly-iii:
   app.key: ENC[AES256_GCM,data:e3xuttl7nrarLIY/z7KQjo90D8LYLxftmxGkf/rC7VfSTU6v5supYd0OjKUNO4misiy9,iv:3riAjDKtNh41U73dXkyZ/bB10VOuOoqBreOBE6z13ro=,tag:kowwvRzywvlKoyP48fALMA==,type:str]
+cloudflare:
+  api-token: ENC[AES256_GCM,data:IdT59e4YJRpw1ECUhCCWhHVd44PreKL+5KlEcZ/3UVngIygF1G71sQ==,iv:OPY8jVaM914d8Ni6SeTR+TRNnNKkEVNsgPOt3yLJEE4=,tag:pMmtL3oRI4zFYtdsvJlHbg==,type:str]
 sops:
   age:
     - recipient: age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
@@ -24,7 +26,7 @@ sops:
         VTZUcjFaNDk5Ukp1Z1NIdUdzZ09kOEkKuAB3anoZspyrL12QYttJu6uYBn8Qff/K
         x2Auvf6a/xeWFsV293hN/hxAZQoWmB2CPPQVz5V4a7HWAllTgfglVg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-09-07T14:54:12Z"
-  mac: ENC[AES256_GCM,data:oEX5/p3B+DaRoczZ/ymKNeY2Q11nO1F+8cz9hHxxSKTnT+R3HtMjF+G03/N6S5as2dnIwdtZXOi2J1i1uEu/zy+Ek+uHgK++QxsbMbPcvN6KmY8iGI7dRO1l4amwGQK9kabMbP2jqtjSiEQySJSBqRrohgKrUMORpPbJLkzu8SU=,iv:6vtJh3mwOBlKaocHcciVxOzM/bzT3mdGKkWy1teWIiU=,tag:Fk8zaV46E26Rs3y08KMglw==,type:str]
+  lastmodified: "2025-09-29T21:07:51Z"
+  mac: ENC[AES256_GCM,data:y5g/W3KSpA0I2q9wBJlmK5sXf2wk17qJLAlDg+2liNRPU4TAf/iY/QQPKwVL5gmezFD6SGhfOeTptmKjU3XVdKFTdzbmvEm0Iquu0Y5Sy8Zwk4n3jEgIGNEyeZ5tfhmImBIaprnPncdJdzWekvxylq13ZnxlSGeFDgqAPj6CiEg=,iv:vU0Vqhm5PTgK7E1EinVZytY4t3i9uPCdkJ84981Ol2U=,tag:B8TtpjSWVu9JrnY/38Mlfg==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.10.2

@@ -50,24 +50,14 @@ in {
     ip rule add to 192.168.10.0/24 priority 2500 lookup main || true
   '';
 
-  security.acme.certs.${secrets.parents.domain} = {
-    domain = "*.${secrets.parents.domain}";
-    group = "nginx";
-    dnsProvider = "cloudflare";
-    environmentFile = "${pkgs.writeText "cloudflare-credentials" ''
-      CLOUDFLARE_DNS_API_TOKEN_FILE=${config.sops.secrets."cloudflare/apitoken".path}
-    ''}";
-  };
+  security.acme.certs.${secrets.parents.domain}.domain = "*.${secrets.parents.domain}";
 
-  sops.secrets."cloudflare/apitoken" = {
-    owner = "acme";
-    sopsFile = ./guiltyspark.sops.yaml;
-  };
+  sops.secrets."cloudflare/api-token".sopsFile = ./guiltyspark.sops.yaml;
 
   services.cloudflare-dyndns = {
     enable = true;
     proxied = true;
-    apiTokenFile = config.sops.secrets."cloudflare/apitoken".path;
+    apiTokenFile = config.sops.secrets."cloudflare/api-token".path;
     domains = [
       secrets.parents.domain
     ];

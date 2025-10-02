@@ -1,4 +1,4 @@
-{ lib, pkgs, secrets, inputs, ... }:
+{ config, lib, pkgs, secrets, inputs, ... }:
 let
   cloudflare-ipv4 = lib.splitString "\n" (builtins.readFile (builtins.fetchurl {
     url = "https://www.cloudflare.com/ips-v4";
@@ -34,13 +34,30 @@ in {
     '';
   };
 
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "letsencrypt@${secrets.email.alias.primary}";
-  };
-
   networking.firewall.allowedTCPPorts = [
     80
     443
+  ];
+
+  security.acme = {
+    acceptTerms = true;
+    defaults = {
+      email = "letsencrypt@${secrets.email.alias.primary}";
+      group = "nginx";
+      dnsResolver = "1.1.1.1:53";
+      dnsProvider = "cloudflare";
+      credentialFiles = {
+        CLOUDFLARE_DNS_API_TOKEN_FILE = config.sops.secrets."cloudflare/api-token".path;
+      };
+    };
+  };
+
+  sops.secrets."cloudflare/api-token" = {
+    owner = "acme";
+    group = "acme";
+  };
+
+  environment.persistence.system.directories = [
+    { directory = "/var/lib/acme"; user = "acme"; group = "acme"; }
   ];
 }
