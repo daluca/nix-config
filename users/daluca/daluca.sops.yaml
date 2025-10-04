@@ -5,6 +5,8 @@ ntfy:
 gmail:
   primary:
     password: ENC[AES256_GCM,data:lNNzqQ+sFUdDFLOa92LNow==,iv:r6reZJttr7WJ2rX5BfgLzhdgqc9qrhdI3DwXiT/HzKE=,tag:MHvMr3HamSiHzwS57ljkig==,type:str]
+proton-bridge:
+  password: ENC[AES256_GCM,data:ZypYM0AdqGmof/ViWt2lhIQ3rgzQ+A==,iv:DrQivtQQphu/ytwopCMI/QSBsSglgv+hA62rjRBQ/CM=,tag:A9aFetepNinovAcOYexp8Q==,type:str]
 sops:
   age:
     - recipient: age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
@@ -25,7 +27,7 @@ sops:
         amRydy9KK1pqZXdIWDRxZXZHZkFldFkKS5c/MBTeXfpOxedjpxuMZI5yoZscN6gE
         2efdqVrgOqrp4EYP5qNnL6wzk1L4xsvQI0lvPULZ0TH8c9ZpzVOUnA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-02T18:01:49Z"
-  mac: ENC[AES256_GCM,data:53WcF9OEJb0Y3zD1ttPzZGc0W7t6qaxIrgheCdPT76jnWx9b5bXOj2GeF887xFLmyt/ALmMtISkCACLrDbMJJSFZOcDGeDZcB43k9IKB98DNciELv0GAXWIgiRJxg0wQ641JGnlikccZS8Rfnhno4wNP/c2DtiyA3qJpTI8gwjQ=,iv:1gxaCVlfrwsOIRMHSQH7d2so/R5dfPnClk7r8nVmVk4=,tag:r4SG6z8frZsL0MdStYjYdQ==,type:str]
+  lastmodified: "2025-10-04T14:47:32Z"
+  mac: ENC[AES256_GCM,data:Z5lW+DPp+eVvRM4YO30F1ULrhjRRcSmevYY9aP2uEi3sZ9HVe/jDV0vIHUpuyYVaH1GgEGBJx8cebZaJI8mRJiQpGy5B/YrE3JV3LpEetjiawZjCZ8rMdOrXkyYOzLATtASa0asGbLmLkAckZzqaZ5nQX+nU2dW9DF2K36pXRzA=,iv:vIjizYBlCg65Y+Qr/3nRlHjcfIdMvXn8Y2iVFlGSA3c=,tag:tBgbV5VnJrENzsuNXBbspQ==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.10.2

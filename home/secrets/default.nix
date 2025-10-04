@@ -1,12 +1,13 @@
 { config, lib, inputs, ... }:
-
-{
-  imports = [
-    inputs.sops-nix.homeManagerModules.sops
+let
+  inherit (config.home) username;
+in {
+  imports = with inputs; [
+    sops-nix.homeManagerModules.sops
   ];
 
   sops = {
-    defaultSopsFile = lib.custom.relativeToRoot "secrets/secrets.sops.yaml";
+    defaultSopsFile = lib.custom.relativeToUsers "${username}/${username}.sops.yaml";
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     age.sshKeyPaths = [
       "${config.home.homeDirectory}/.ssh/id_ed25519"
