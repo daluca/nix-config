@@ -28,6 +28,7 @@
     "battery"
     "distributed-builds"
     "scanners"
+    "attic-watch-store"
   ];
 
   networking.hostName = "artemis";
