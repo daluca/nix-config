@@ -738,11 +738,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758478261,
-        "narHash": "sha256-+Xbeeh/Qq/ypQqUNqoXd2adtCmV4tI3H3gA0PSFaEE4=",
+        "lastModified": 1759583175,
+        "narHash": "sha256-EOd1ZqhJgRJYv7kQfIcmamnffb38CvJXF8Io9yj8mqQ=",
         "owner": "daluca",
         "repo": "proton-ge-overlay",
-        "rev": "d97ad622d17614127ef2902300dc1c58df6abf8c",
+        "rev": "f793409fbb3a4e066d45f03f9a5ecbb5b4f1f0ac",
         "type": "github"
       },
       "original": {
