@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
+{ config, lib, pkgs, secrets, inputs, outputs, ... }:
 let
   GiB = 1024 * 1024 * 1024;
 in {
@@ -26,8 +26,14 @@ in {
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    substituters = [ "https://nix-community.cachix.org" ];
-    trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    substituters = [
+      "https://nix-community.cachix.org"
+      "https://attic.${secrets.domain.general}/production"
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "production:fGtC1cQt7NrvIl7VD8nqnYsICCYK5CKQdxuZiYp+Q40="
+    ];
     download-buffer-size = 1 * GiB;
     trusted-users = [ "@wheel" ];
   };
