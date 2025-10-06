@@ -6,7 +6,6 @@ in {
     builtins.filter (f: baseNameOf f == "cache.nix") (lib.filesystem.listFilesRecursive (lib.custom.relativeToHosts "."))
   ) ++ [
     impermanence.nixosModules.impermanence
-    catppuccin.nixosModules.catppuccin
   ] ++ builtins.attrValues outputs.nixosModules ++ map (m: lib.custom.relativeToNixosModules m) [
     "dvorak"
     "home-manager"
@@ -17,8 +16,6 @@ in {
     "root"
     "daluca"
   ];
-
-  catppuccin.cache.enable = true;
 
   sops.secrets."ssh_host_ed25519_key" = { };
 

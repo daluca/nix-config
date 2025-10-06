@@ -164,8 +164,6 @@ in {
     };
   };
 
-  catppuccin.cache.enable = true;
-
   host.work = true;
 
   home.persistence.home.enable = lib.mkDefault false;
