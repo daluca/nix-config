@@ -7,7 +7,7 @@
     RRS-A00690 = {
       hostname = "10.200.100.85";
       extraOptions = {
-        RemoteCommand = "${lib.getExe pkgs.zsh} --login";
+        RemoteCommand = "zsh --login";
         RequestTTY = "yes";
       };
     };
