@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 rec {
   programs.atuin = {
@@ -8,7 +8,7 @@ rec {
     daemon.enable = true;
     settings = {
       dialect = "uk";
-      inline_height = 14;
+      inline_height = 19;
       update_check = false;
       keymap_mode = "vim-insert";
     };
@@ -27,7 +27,7 @@ rec {
         setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
 
         selected=$(
-          eval ${programs.atuin.package}/bin/atuin search --cmd-only --reverse | ${config.programs.fzf.package}/bin/fzf --tmux center,60%,border-native
+          eval ${lib.getExe programs.atuin.package} search --cmd-only --reverse | ${lib.getExe config.programs.fzf.package} --tmux center,60%,border-native
         )
         local ret=$?
         if [ -n "$selected" ]; then

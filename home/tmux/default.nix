@@ -22,7 +22,7 @@
       {
         plugin = tmux-sessionx;
         extraConfig = /* tmux */ ''
-          set -g @sessionx-bind "C-o"
+          set -g @sessionx-bind "C-e"
           set -g @sessionx-prefix "off"
         '';
       }
