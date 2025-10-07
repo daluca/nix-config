@@ -198,7 +198,7 @@ in {
 
   programs.alacritty.package = lib.mkForce (config.lib.nixGL.wrap pkgs.unstable.alacritty);
 
-  programs.ghostty.package = lib.mkForce (config.lib.nixGL.wrap pkgs.unstable.ghostty);
+  programs.ghostty.package = lib.mkForce (config.lib.nixGL.wrap pkgs.ghostty);
 
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
