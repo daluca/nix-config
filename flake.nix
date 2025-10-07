@@ -114,13 +114,13 @@
       in {
         default = pkgs.mkShell {
           name = "nix-config";
-          packages = with pkgs; [
+          packages = with pkgs; pre-commit.enabledPackages ++ [
             sops
             git-agecrypt
             just
             fd
             deploy-rs
-          ] ++ pre-commit.enabledPackages;
+          ];
           JUST_COMMAND_COLOR = "blue";
           shellHook = pre-commit.shellHook + /* bash */ ''
             PATH="$PWD/bin:$PATH"
