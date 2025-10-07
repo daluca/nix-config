@@ -1,6 +1,7 @@
-{ config, lib, pkgs, ... }:
-
-{
+{ config, ... }@args:
+let
+  secrets = args.secrets // builtins.fromTOML (builtins.readFile ../secrets.toml);
+in {
   host.battery = true;
 
   programs.ssh.matchBlocks = {
@@ -24,7 +25,7 @@
       ];
     };
     devices.RRS-A00690 = {
-      id = "7NYBZDL-ASE6YDX-YMUMTRV-QF6YD7Z-SJJEZZK-B2S2PVH-7L3SCW6-XXE4KQQ";
+      id = secrets.syncthing.RRS-A00690.id;
       address = [
         "tcp://10.200.100.85"
       ];

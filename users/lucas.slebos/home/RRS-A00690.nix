@@ -1,6 +1,7 @@
-{ config, ... }:
-
-{
+{ config, ... }@args:
+let
+  secrets = args.secrets // builtins.fromTOML (builtins.readFile ../secrets.toml);
+in {
   programs.zsh.sessionVariables = {
     ZSH_TMUX_DEFAULT_SESSION_NAME = "RRS-A00690";
   };
@@ -12,7 +13,7 @@
       ];
     };
     devices.RRS-A00746 = {
-      id = "N23RY5M-BUHNUFC-YJZGTEW-POG4QVW-JDUNK52-XP5MPJY-WEVJDZG-5D77DA5";
+      id = secrets.syncthing.RRS-A00746.id;
       address = [
         "tcp://10.200.105.58"
       ];
