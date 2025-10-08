@@ -21,6 +21,13 @@ in {
 
   sops.secrets."ssh_host_rsa_key" = { };
 
+  sops.templates."netrc".content = ''
+    machine attic.${secrets.domain.general}
+    password ${config.sops.placeholder."attic/api-token"}
+  '';
+
+  sops.secrets."attic/api-token" = { };
+
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
@@ -33,6 +40,7 @@ in {
     ];
     download-buffer-size = 1 * GiB;
     trusted-users = [ "@wheel" ];
+    netrc-file = config.sops.templates."netrc".path;
   };
 
   nixpkgs.config.allowUnfree = true;
