@@ -1,8 +1,10 @@
-{ config, secrets, ... }:
+{ config, lib, secrets, ... }:
 let
   hours = 60 * 60;
 in {
   services.adguardhome = {
+    port = 80;
+    openFirewall = true;
     settings = {
       dns = {
         bind_hosts = [ "192.168.178.10" ];

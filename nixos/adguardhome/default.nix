@@ -5,8 +5,6 @@
     enable = true;
     package = pkgs.unstable.adguardhome;
     mutableSettings = false;
-    openFirewall = true;
-    port = 80;
     settings = {
       dns = {
         bind_hosts = [
