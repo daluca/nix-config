@@ -19,7 +19,6 @@
         editorconfig.editorconfig
         skellock.just
         tamasfe.even-better-toml
-        hashicorp.terraform
         rust-lang.rust-analyzer
         grafana.vscode-jsonnet
         tomoki1207.pdf
