@@ -217,8 +217,6 @@ in {
     ];
   };
 
-  sops.secrets."ntfy/token".sopsFile = ../lucas.slebos.sops.yaml;
-
   programs.firefox.profiles.default.bookmarks.settings = additionalBookmarks;
 
   programs.zen-browser.profiles.default.bookmarks.settings = additionalBookmarks;
@@ -267,8 +265,6 @@ in {
     ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."robin-deployment.txt".path}
   '';
 
-  sops.secrets."robin-deployment.txt".sopsFile = ../lucas.slebos.sops.yaml;
-
   home.file."code/bitbucket.org/robin-radar-systems/dbmanager/.envrc".text = /* bash */ ''
     source_up_if_exists
     dotenv_if_exists
@@ -278,8 +274,6 @@ in {
     ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."dbmanager.txt".path}
   '';
 
-  sops.secrets."dbmanager.txt".sopsFile = ../lucas.slebos.sops.yaml;
-
   home.file."code/bitbucket.org/robin-radar-systems/awx-management/.envrc".text = /* bash */ ''
     source_up_if_exists
     dotenv_if_exists
@@ -288,8 +282,6 @@ in {
   home.file."code/bitbucket.org/robin-radar-systems/awx-management/.env".text = /* bash */ ''
     ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."awx-management.txt".path}
   '';
-
-  sops.secrets."awx-management.txt".sopsFile = ../lucas.slebos.sops.yaml;
 
   programs.git = {
     includes =
@@ -346,7 +338,6 @@ in {
   };
 
   sops.secrets."id_ed25519" = {
-    sopsFile = ../lucas.slebos.sops.yaml;
     path = ".ssh/id_ed25519";
     mode = "0600";
   };
@@ -354,7 +345,6 @@ in {
   home.file.".ssh/id_ed25519.pub".source = ../keys/id_ed25519.pub;
 
   sops.secrets."id_rsa" = {
-    sopsFile = ../lucas.slebos.sops.yaml;
     path = ".ssh/id_rsa";
     mode = "0600";
   };
@@ -566,19 +556,10 @@ in {
     };
   };
 
-  sops.secrets."dev.kubeconfig" = {
-    sopsFile = ../lucas.slebos.sops.yaml;
-    path = ".kube/dev.kubeconfig";
-  };
-
-  sops.secrets."stg.kubeconfig" = {
-    sopsFile = ../lucas.slebos.sops.yaml;
-    path = ".kube/stg.kubeconfig";
-  };
-
-  sops.secrets."prod.kubeconfig" = {
-    sopsFile = ../lucas.slebos.sops.yaml;
-    path = ".kube/prod.kubeconfig";
+  sops.secrets = {
+    "dev.kubeconfig".path = ".kube/dev.kubeconfig";
+    "stg.kubeconfig".path = ".kube/stg.kubeconfig";
+    "prod.kubeconfig".path = ".kube/prod.kubeconfig";
   };
 
   services.syncthing.settings = {
