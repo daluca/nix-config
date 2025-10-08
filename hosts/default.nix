@@ -24,8 +24,8 @@ in {
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
-      "https://nix-community.cachix.org"
-      "https://attic.${secrets.domain.general}/production"
+      "https://nix-community.cachix.org?priority=50"
+      "https://attic.${secrets.domain.general}/production?priority=60"
     ];
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
