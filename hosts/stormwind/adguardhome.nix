@@ -47,6 +47,10 @@ in {
           domain = "unifi.${config.networking.domain}";
           answer = secrets.hosts.unifi.ipv4-address;
         }
+        {
+          domain = "paperless.${secrets.domain.general}";
+          answer = "192.168.178.11";
+        }
       ];
       dhcp = {
         enabled = true;

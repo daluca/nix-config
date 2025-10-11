@@ -1,4 +1,4 @@
-{ config, lib, inputs, ... }:
+{ config, lib, secrets, inputs, ... }:
 
 {
   imports = with inputs; [
@@ -14,8 +14,32 @@
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
+    "nginx"
     "adguardhome"
+    "paperless"
   ];
+
+  security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
+
+  services.nginx.virtualHosts =
+  let
+    cert = config.security.acme.certs.${secrets.domain.general};
+    sslCertificate = "${cert.directory}/fullchain.pem";
+    sslCertificateKey = "${cert.directory}/key.pem";
+    sslTrustedCertificate = "${cert.directory}/chain.pem";
+  in {
+    "paperless.${secrets.domain.general}" = {
+      inherit sslCertificate sslCertificateKey sslTrustedCertificate;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${builtins.toString config.services.paperless.port}";
+      };
+    };
+  };
+
+  services.paperless.settings = {
+    PAPERLESS_URL = "https://paperless.${secrets.domain.general}";
+  };
 
   networking.hostName = "dalaran";
 

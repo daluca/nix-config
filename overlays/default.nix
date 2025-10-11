@@ -16,10 +16,21 @@
     neovim = nixvim-config.packages.${final.system}.neovim;
   };
 
-  unstable-packages = final: _prev: {
+  unstable-packages = final: _prev: with inputs; {
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;
       config.allowUnfree = true;
+      overlays = [(
+        final: prev: {
+          pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [(
+            _pythonFinal: pythonPrev: {
+              img2pdf = pythonPrev.img2pdf.overridePythonAttrs {
+                doCheck = false;
+              };
+            }
+          )];
+        }
+      )];
     };
   };
 }
