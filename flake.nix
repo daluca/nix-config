@@ -60,6 +60,10 @@
 
     proton-ge.url = "github:daluca/proton-ge-overlay";
     proton-ge.inputs.nixpkgs.follows = "nixpkgs";
+
+    colmena.url = "github:zhaofengli/colmena";
+    colmena.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    colmena.inputs.stable.follows = "nixpkgs";
   };
 
   outputs = {self, nixpkgs, home-manager, git-hooks, nixos-raspberrypi, ...} @ inputs:
@@ -120,6 +124,7 @@
             just
             fd
             deploy-rs
+            colmena
           ];
           JUST_COMMAND_COLOR = "blue";
           shellHook = pre-commit.shellHook + /* bash */ ''
@@ -128,6 +133,10 @@
         };
       }
     );
+
+    colmenaHive = inputs.colmena.lib.makeHive outputs.colmena;
+
+    colmena = import ./hosts/colmena.nix { inherit inputs outputs; };
 
     nixosConfigurations.artemis = nixosSystem rec {
       system = "x86_64-linux";

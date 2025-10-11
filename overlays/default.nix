@@ -3,13 +3,15 @@
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
-  modifications = final: _prev: {
-    fzf-preview = inputs.fzf-preview.packages.${final.system}.fzf-preview;
+  modifications = final: _prev: with inputs; {
+    fzf-preview = fzf-preview.packages.${final.system}.fzf-preview;
 
     kubectlPlugins = {
       view-secret = final.pkgs.view-secret;
       ingress-nginx = final.pkgs.ingress-nginx;
     };
+
+    colmena = colmena.packages.${final.system}.colmena;
   };
 
   unstable-packages = final: _prev: {
