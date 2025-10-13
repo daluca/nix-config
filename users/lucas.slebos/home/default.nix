@@ -405,7 +405,7 @@ in {
       k700-9999-232.hostname = "10.200.232.201";
       k8s-dev-nfs.hostname = "10.200.68.126";
       k8s-stg-nfs.hostname = "10.200.68.94";
-      k8s-prod-nfs.hostname = "10.200.68.62";
+      k8s-prod-nfs.hostname = "10.200.68.200";
       aptly-hetzner-vm = {
         hostname = secrets.hosts.aptly-hetzner.ipv4-address;
         user = "root";
