@@ -265,6 +265,8 @@ in {
     ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."robin-deployment.txt".path}
   '';
 
+  sops.secrets."robin-deployment.txt" = { };
+
   home.file."code/bitbucket.org/robin-radar-systems/dbmanager/.envrc".text = /* bash */ ''
     source_up_if_exists
     dotenv_if_exists
@@ -274,10 +276,14 @@ in {
     ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."dbmanager.txt".path}
   '';
 
+  sops.secrets."dbmanager.txt" = { };
+
   home.file."code/bitbucket.org/robin-radar-systems/awx-management/.envrc".text = /* bash */ ''
     source_up_if_exists
     dotenv_if_exists
   '';
+
+  sops.secrets."awx-management.txt" = { };
 
   home.file."code/bitbucket.org/robin-radar-systems/awx-management/.env".text = /* bash */ ''
     ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."awx-management.txt".path}
