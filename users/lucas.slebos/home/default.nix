@@ -291,6 +291,15 @@ in {
     ANSIBLE_VAULT_PASSWORD_FILE=${config.sops.secrets."awx-management.txt".path}
   '';
 
+  sops.secrets."dockerhub/api-token" = { };
+
+  sops.templates."docker/config.json" = {
+    path = ".docker/config.json";
+    content = builtins.toJSON {
+      auths."https://index.docker.io/v1/".auth = config.sops.placeholder."dockerhub/api-token";
+    };
+  };
+
   programs.git = {
     includes =
     let
