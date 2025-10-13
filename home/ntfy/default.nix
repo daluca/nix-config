@@ -19,4 +19,6 @@ in {
       default-token = config.sops.placeholder."ntfy/token";
     };
   };
+
+  sops.secrets."ntfy/token" = { };
 }
