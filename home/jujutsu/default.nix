@@ -41,7 +41,7 @@
         retrunk = [
           "rebase"
           "--source"
-          "all:@::"
+          "all:fork_point(@ | trunk())+::@"
           "--destination"
           "trunk()"
         ];
