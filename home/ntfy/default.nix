@@ -10,6 +10,11 @@ in {
     NTFY_TOPIC = "hosts";
     NTFY_TITLE = osConfig.networking.hostName;
     NTFY_QUIET = builtins.toString true;
+    NTFY_LONG_EXCLUDED = lib.concatStringsSep " " [
+      "nvim" "n"
+      "garden" "g"
+      "k9s"
+    ];
   };
 
   sops.templates."ntfy-client.yaml" = {
@@ -21,4 +26,11 @@ in {
   };
 
   sops.secrets."ntfy/token" = { };
+
+  programs.zsh.plugins = [
+    {
+      name = "ntfy-long-command";
+      src = ./zsh-plugin;
+    }
+  ];
 }
