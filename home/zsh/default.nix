@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./transient-prompt.nix
+  ];
+
   programs.zsh = rec {
     enable = true;
     dotDir = ".config/zsh";
@@ -45,15 +49,8 @@
     profileExtra = /* zsh */ /* bash */ ''
       export DISABLE_TMUX_AUTOSTART=true
     '';
-    initContent = lib.mkOrder 500 /* zsh */ /* bash */ ''
+    initContent = lib.mkBefore /* zsh */ /* bash */ ''
       [[ -n "''${DISABLE_TMUX_AUTOSTART}" ]] || export ZSH_TMUX_AUTOSTART=true
-
-      autoload -Uz add-zle-hook-widget
-      add-zle-hook-widget line-finish transient-prompt
-
-      function transient-prompt() {
-        PROMPT="$( starship module character )" RPROMPT="" zle .reset-prompt
-      }
     '';
   };
 
