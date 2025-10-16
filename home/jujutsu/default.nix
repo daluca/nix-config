@@ -40,8 +40,8 @@
         ];
         retrunk = [
           "rebase"
-          "--source"
-          "all:fork_point(@ | trunk())+::@"
+          "--revisions"
+          "fork_point(@ | trunk())+::@ | @::"
           "--destination"
           "trunk()"
         ];
