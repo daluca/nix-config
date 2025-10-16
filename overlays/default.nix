@@ -12,6 +12,8 @@
     };
 
     colmena = colmena.packages.${final.system}.colmena;
+
+    neovim = nixvim-config.packages.${final.system}.neovim;
   };
 
   unstable-packages = final: _prev: {

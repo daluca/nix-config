@@ -170,7 +170,7 @@ in {
 
   home.persistence.home.enable = lib.mkDefault false;
 
-  home.packages = [
+  home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "pre-commit" /* bash */ ''
       set -eou pipefail
 
@@ -183,7 +183,7 @@ in {
         ${lib.getExe pkgs.pre-commit} "$@"
       fi
     '')
-    (lib.hiPrio (pkgs.bitwarden-cli.overrideAttrs (oldAttrs: rec {
+    (lib.hiPrio (bitwarden-cli.overrideAttrs (oldAttrs: rec {
       inherit (oldAttrs) pname;
       version = "2025.5.0";
 
@@ -200,6 +200,23 @@ in {
         hash = "sha256-0IoBPRGdtkMeTrT5cqZLHB/WrUCONtsJ6YHh0y4K5Ls=";
       };
     })))
+    (lib.hiPrio (neovim.extend {
+      config = {
+        colorschemes.catppuccin.settings.flavor = config.catppuccin.flavor;
+
+        plugins.lsp.servers.typos_lsp = {
+          extraOptions = {
+            init_options.config = typos-config;
+          };
+        };
+
+        extraConfigLua = /* lua */ ''
+          require("url-open").setup({
+            open_app = "zen-beta",
+          })
+        '';
+      };
+    }))
   ];
 
   programs.alacritty.package = lib.mkForce (config.lib.nixGL.wrap pkgs.unstable.alacritty);

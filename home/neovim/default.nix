@@ -1,8 +1,7 @@
-{ config, lib, system, inputs, ... }:
-let
-  inherit (inputs.nixvim-config.packages.${system}) neovim;
-in {
-  home.packages = [(
+{ config, lib, pkgs, ... }:
+
+{
+  home.packages = with pkgs; [(
     neovim.extend {
       config = {
         colorschemes.catppuccin.settings.flavor = config.catppuccin.flavor;
