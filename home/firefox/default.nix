@@ -21,6 +21,7 @@ in {
         "browser.newtabpage.activity-stream.topSitesRows" = 3;
         "browser.uiCustomization.state" = import ./layout.nix;
         "browser.tabs.groups.enabled" = true;
+        "browser.sessionstore.resume_from_crash" = true;
         # Privacy
         "privacy.donottrackheader.enabled" = true;
         "privacy.globalprivacycontrol.enabled" = true;
