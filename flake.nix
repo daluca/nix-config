@@ -134,7 +134,7 @@
       }
     );
 
-    colmenaHive = inputs.colmena.lib.makeHive outputs.colmena;
+    colmenaHive = inputs.colmena.lib.makeHive self.colmena;
 
     colmena = import ./hosts/colmena.nix { inherit inputs outputs; };
 
