@@ -118,7 +118,7 @@
       in {
         default = pkgs.mkShell {
           name = "nix-config";
-          packages = with pkgs; pre-commit.enabledPackages ++ [
+          packages = with pkgs.unstable; pre-commit.enabledPackages ++ [
             sops
             git-agecrypt
             just
