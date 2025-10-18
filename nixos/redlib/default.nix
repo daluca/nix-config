@@ -1,0 +1,3 @@
+{
+  services.redlib.enable = true;
+}

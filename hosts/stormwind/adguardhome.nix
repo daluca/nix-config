@@ -51,6 +51,10 @@ in {
           domain = "paperless.${secrets.domain.general}";
           answer = "192.168.178.11";
         }
+        {
+          domain = "redlib.${secrets.domain.general}";
+          answer = "192.168.178.11";
+        }
       ];
       dhcp = {
         enabled = true;

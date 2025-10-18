@@ -17,6 +17,7 @@
     "nginx"
     "adguardhome"
     "paperless"
+    "redlib"
   ];
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
@@ -33,6 +34,16 @@
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.paperless.port}";
+      };
+    };
+    "redlib.${secrets.domain.general}" = {
+      inherit sslCertificate sslCertificateKey sslTrustedCertificate;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${builtins.toString config.services.redlib.port}";
+      };
+      locations."/dns-query" = {
+        proxyPass = "http://127.0.0.1:${builtins.toString config.services.redlib.port}";
       };
     };
   };

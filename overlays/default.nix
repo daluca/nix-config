@@ -14,6 +14,16 @@
     };
   };
 
+  python3 = _final: prev: {
+    pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [(
+      _pythonFinal: pythonPrev: {
+        cfn-lint = pythonPrev.cfn-lint.overridePythonAttrs {
+          doCheck = false;
+        };
+      }
+    )];
+  };
+
   unstable-packages = final: _prev: with inputs; {
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;
