@@ -73,9 +73,4 @@ in {
       };
     };
   };
-
-  networking.firewall = rec {
-    allowedTCPPorts = [ 67 ];
-    allowedUDPPorts = allowedTCPPorts;
-  };
 }

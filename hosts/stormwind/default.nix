@@ -32,6 +32,11 @@
     };
   };
 
+  networking.firewall = rec {
+    allowedTCPPorts = [ 67 ];
+    allowedUDPPorts = allowedTCPPorts;
+  };
+
   networking.localCommands = /* bash */ ''
     ip rule add to 192.168.178.0/24 priority 2500 lookup main || true
   '';
