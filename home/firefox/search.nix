@@ -12,6 +12,7 @@ in {
     "NixOS Options"
     "NixOS Wiki"
     "Noogle"
+    "Nix Package Versions"
     "Home Manager Options"
     "Nixpkgs Issues"
     "youtube"
@@ -26,7 +27,7 @@ in {
         { template = "https://kagi.com/search";
           params = [
             { name = "q"; value = "{searchTerms}"; }
-            { name = "token"; value = "${secrets.kagi.token}"; }
+            { name = "token"; value = secrets.kagi.token; }
           ];
         }
         { template = "https://kagi.com/api/autosuggest";
@@ -82,7 +83,7 @@ in {
       urls = [
         { template = "https://search.nixos.org/packages";
           params = [
-            { name = "channel"; value = "${osConfig.system.stateVersion}"; }
+            { name = "channel"; value = osConfig.system.stateVersion; }
             { name = "type"; value = "packages"; }
             { name = "query"; value = "{searchTerms}"; }
           ];
@@ -95,7 +96,7 @@ in {
       urls = [
         { template = "https://search.nixos.org/options";
           params = [
-            { name = "channel"; value = "${osConfig.system.stateVersion}"; }
+            { name = "channel"; value = osConfig.system.stateVersion; }
             { name = "type"; value = "packages"; }
             { name = "query"; value = "{searchTerms}"; }
           ];
@@ -125,6 +126,18 @@ in {
       ];
       icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
       definedAliases = [ "@noogle" "@ng" ];
+    };
+    "Nix Package Versions" = {
+      urls = [
+        { template = "https://lazamar.co.uk/nix-versions";
+          params = [
+            { name = "channel"; value = osConfig.system.stateVersion; }
+            { name = "package"; value = "{searchTerms}"; }
+          ];
+        }
+      ];
+      icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      definedAliases = [ "@nixversions" "@nv" ];
     };
     "Home Manager Options" = {
       urls = [
