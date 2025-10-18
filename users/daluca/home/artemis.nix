@@ -21,6 +21,7 @@ in {
     "bitwarden"
     "libreoffice"
     "nextcloud-client"
+    "neovide"
     "velero"
     "terraform"
     "element"

@@ -124,6 +124,7 @@ in {
       "lazygit"
       "logseq"
       "modern-unix"
+      "neovide"
       "neovim"
       "nh"
       "nixGL"

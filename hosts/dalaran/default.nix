@@ -18,6 +18,7 @@
     "adguardhome"
     "paperless"
     "redlib"
+    "home-assistant"
   ];
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
@@ -44,6 +45,14 @@
       };
       locations."/dns-query" = {
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.redlib.port}";
+      };
+    };
+    "home-assistant.${secrets.domain.general}" = {
+      inherit sslCertificate sslCertificateKey sslTrustedCertificate;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${builtins.toString config.services.home-assistant.config.http.server_port}";
+        proxyWebsockets = true;
       };
     };
   };
