@@ -50,6 +50,10 @@ with pkgs; with pkgs.nur.repos.rycee.firefox-addons; {
       install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${bypass-paywalls-clean.addonId}.xpi";
       installation_mode = "force_installed";
     };
+    ${libredirect.addonId} = {
+      install_url = "file://${libredirect}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${libredirect.addonId}.xpi";
+      installation_mode = "force_installed";
+    };
   };
 
   "3rdparty".Extensions.${ublock-origin.addonId}.adminSettings =
