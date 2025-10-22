@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }@args:
+{ config, lib, inputs, ... }@args:
 let
   secrets = args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
 in {
@@ -43,6 +43,8 @@ in {
   '';
 
   security.acme.certs.${secrets.parents.domain}.domain = "*.${secrets.parents.domain}";
+
+  services.nginx.virtualHosts = import ./routes.nix { inherit config secrets; };
 
   services.cloudflare-dyndns = {
     enable = true;
