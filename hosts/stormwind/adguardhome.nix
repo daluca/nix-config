@@ -1,4 +1,4 @@
-{ config, lib, secrets, ... }:
+{ config, secrets, ... }:
 let
   hours = 60 * 60;
 in {
@@ -18,7 +18,17 @@ in {
         ];
         hostsfile_enabled = false;
       };
-      filtering.rewrites = [
+      filtering.rewrites =
+      let
+        dalaran = subdomain: {
+          domain = "${subdomain}.${secrets.domain.general}";
+          answer = "192.168.178.11";
+        };
+        externalHost = hostName: {
+          domain = "${hostName}.${config.networking.domain}";
+          answer = secrets.hosts.${hostName}.ipv4-address;
+        };
+      in [
         {
           domain = "stormwind.${config.networking.domain}";
           answer = "192.168.178.10";
@@ -35,26 +45,19 @@ in {
           domain = "darnassus.${config.networking.domain}";
           answer = "192.168.1.212";
         }
+        (externalHost "alfa")
+        (externalHost "bravo")
+        (externalHost "charlie")
+        (externalHost "unifi")
         {
-          domain = "alfa.${config.networking.domain}";
-          answer = secrets.hosts.alfa.ipv4-address;
-        }
-        {
-          domain = "bravo.${config.networking.domain}";
-          answer = secrets.hosts.bravo.ipv4-address;
-        }
-        {
-          domain = "unifi.${config.networking.domain}";
-          answer = secrets.hosts.unifi.ipv4-address;
-        }
-        {
-          domain = "paperless.${secrets.domain.general}";
+          domain = secrets.domain.general;
           answer = "192.168.178.11";
         }
-        {
-          domain = "redlib.${secrets.domain.general}";
-          answer = "192.168.178.11";
-        }
+        (dalaran "paperless")
+        (dalaran "redlib")
+        (dalaran "adguardhome")
+        (dalaran "home-assistant")
+        (dalaran "firefly")
       ];
       dhcp = {
         enabled = true;
