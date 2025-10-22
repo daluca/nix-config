@@ -2,11 +2,10 @@
 
 {
   imports = [
+    ./..
     ./adguardhome.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
     "images/raspberry-pi/4"
-  ] ++ map (m: lib.custom.relativeToHosts m) [
-    "."
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
     "tailscale/server"

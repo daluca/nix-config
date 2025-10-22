@@ -5,11 +5,9 @@ in {
   imports = with inputs; [
     nixos-hardware.nixosModules.common-cpu-intel
     disko.nixosModules.disko
-
+  ] ++ [
+    ./..
     ./disko.nix
-    ./media.nix
-  ] ++ map (m: lib.custom.relativeToHosts m) [
-    "."
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "grub"
     "openssh/server"

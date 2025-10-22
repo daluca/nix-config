@@ -4,12 +4,11 @@ let
 in {
   imports = with inputs; [
     disko.nixosModules.disko
-
+  ] ++ [
+    ./..
     ./disko.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
     "images/hetzner/cloud/x86"
-  ] ++ map (m: lib.custom.relativeToHosts m) [
-    "."
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
@@ -18,7 +17,6 @@ in {
     "nginx"
     "tailscale/server"
   ];
-
 
   services.nginx.virtualHosts = {
     "attic.${secrets.domain.general}" = {

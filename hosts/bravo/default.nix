@@ -4,12 +4,11 @@ let
 in {
   imports = with inputs; [
     disko.nixosModules.disko
-
+  ] ++ [
+    ./..
     ./disko.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
     "images/hetzner/cloud/arm"
-  ] ++ map (m: lib.custom.relativeToHosts m) [
-    "."
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [

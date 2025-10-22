@@ -3,13 +3,12 @@
 {
   imports = with inputs; [
     disko.nixosModules.disko
-
+  ] ++ [
+    ./..
     ./disko.nix
     ./adguardhome.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
     "images/raspberry-pi/5"
-  ] ++ map (m: lib.custom.relativeToHosts m) [
-    "."
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
