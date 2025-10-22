@@ -48,6 +48,16 @@
 
           colmena = colmena.packages.${final.system}.colmena;
 
+          paperless-ngx = prev.paperless-ngx.overrideAttrs (oldAttrs: {
+            passthru = oldAttrs.passthru // {
+              nltkData = with prev.nltk-data; [
+                punkt-tab
+                snowball-data
+                stopwords
+              ];
+            };
+          });
+
           pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [(
             _pythonFinal: pythonPrev: {
               img2pdf = pythonPrev.img2pdf.overridePythonAttrs {
