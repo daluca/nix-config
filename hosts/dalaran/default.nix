@@ -19,6 +19,7 @@
     "paperless"
     "redlib"
     "home-assistant"
+    "firefly-iii"
   ];
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
@@ -29,17 +30,17 @@
     sslCertificate = "${cert.directory}/fullchain.pem";
     sslCertificateKey = "${cert.directory}/key.pem";
     sslTrustedCertificate = "${cert.directory}/chain.pem";
-  in {
-    "paperless.${secrets.domain.general}" = {
+    tls = {
       inherit sslCertificate sslCertificateKey sslTrustedCertificate;
       forceSSL = true;
+    };
+  in {
+    "paperless.${secrets.domain.general}" = tls // {
       locations."/" = {
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.paperless.port}";
       };
     };
-    "redlib.${secrets.domain.general}" = {
-      inherit sslCertificate sslCertificateKey sslTrustedCertificate;
-      forceSSL = true;
+    "redlib.${secrets.domain.general}" = tls // {
       locations."/" = {
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.redlib.port}";
       };
@@ -47,19 +48,23 @@
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.redlib.port}";
       };
     };
-    "home-assistant.${secrets.domain.general}" = {
-      inherit sslCertificate sslCertificateKey sslTrustedCertificate;
-      forceSSL = true;
+    "home-assistant.${secrets.domain.general}" = tls // {
       locations."/" = {
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.home-assistant.config.http.server_port}";
         proxyWebsockets = true;
       };
     };
+    "${config.services.firefly-iii.virtualHost}" = tls;
+    "${config.services.firefly-iii-data-importer.virtualHost}" = tls;
   };
 
   services.paperless.settings = {
     PAPERLESS_URL = "https://paperless.${secrets.domain.general}";
   };
+
+  services.firefly-iii.virtualHost = "firefly.${secrets.domain.general}";
+
+  services.firefly-iii-data-importer.virtualHost = "firefly-importer.${secrets.domain.general}";
 
   networking.hostName = "dalaran";
 

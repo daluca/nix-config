@@ -7,6 +7,8 @@ paperless:
   superuser-password: ENC[AES256_GCM,data:k60jXSQ/1UT3kiDyvYodSjiw+Ds+FcccMNm2c45PSto=,iv:DOz5arlYS4g+0vQFWtO5Lnvo15FTCh6W9+fL08N4Jas=,tag:/FtQ59kFquzNbQKFQz4ORg==,type:str]
 cloudflare:
   api-token: ENC[AES256_GCM,data:x8NBh8AC6NdhgowR2J++qgJTI1oaaamK2SmqmRtqX7s854X6PWrCiw==,iv:N0qmw64AMbLJo4ABYsJNTKrEPlINXRdCf7Asi9A6Foc=,tag:XbzICqVt/tYOslzXANKonA==,type:str]
+firefly-iii:
+  app.key: ENC[AES256_GCM,data:d58CDRrM4xykGQahWTxq/vedoXxWBJvamMpkyyuOuU5Y4OZM8tpYUWrTf0PaAAwbMbiv,iv:O6TJbx6TTC1Sbir7JXi/JRSWLx9yQOTqZAbAS8XBaVk=,tag:EVVMwVZCthNqddFWEWRQpA==,type:str]
 sops:
   age:
     - recipient: age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
@@ -27,7 +29,7 @@ sops:
         VHIvZ1pNSnlMd3JuanlTd05QdlpsMDQKNK3acGpx5VblbGY3cwOHM0IpBweT405a
         9k/GBNgoz/KF54hSR4AD3Ngm42509w7GWapnoj1QfB5b+P83zYl/kA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-08T20:43:32Z"
-  mac: ENC[AES256_GCM,data:SEZ8dTLG25fb+gTC9ZXmN652t4RclB7geXiic+LHjsKhgSxOJdAQ0ICKGjwlvaZfctmsVwhkEzR/bn6FR3uEr08BQkN9RyXtzEUX3wkzsfzPoRoyOVCWqPwJK28OhNHGy6tVtIBwlD741IvW3wNcE+kQrsRC01wwC0z29muyuh4=,iv:0ytRYjW8T10kgi9kqO+rM6lYofeDBJomJqxnEm5e2CU=,tag:3cl/z1aqi6G1mzhiI2BnKg==,type:str]
+  lastmodified: "2025-10-19T16:39:11Z"
+  mac: ENC[AES256_GCM,data:hZ4xQeNt9Dr1TtNq+x6bGk/RCmo7mNzT8Cw/5JzvRjZopppVglSo8Ku+kGStfbEBNxMtgmGme8Ix/MRN7M0Wp+VebFxR4E4lkBmFg7IWNfqxC4oDSApj7v7I7LQBjG665wpKpUOQW6DNRyoswmUks7rf/bNaYgF7n7vEOnoHDGE=,iv:MnvxAcCyV5iyFcUc7Dqxb67/gkhT6xkvsQ+iB0uiZ2I=,tag:/K+dAfJgVnooB7Kas6kpcg==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.11.0

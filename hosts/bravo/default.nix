@@ -15,13 +15,9 @@ in {
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "impermanence"
     "nginx"
-    "firefly-iii"
     "ntfy-sh"
   ];
 
-  services.firefly-iii.virtualHost = "firefly.${secrets.cloud.domain}";
-
-  services.firefly-iii-data-importer.virtualHost = "firefly-importer.${secrets.cloud.domain}";
 
   services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
 
