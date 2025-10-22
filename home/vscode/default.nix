@@ -65,6 +65,8 @@
         "workbench.startupEditor" = "none";
         "workbench.welcomePage.extraAnnouncements" = false;
         "workbench.welcomePage.walkthroughs.openOnInstall" = false;
+        # AI
+        "chat.agent.enabled" = false;
       };
     };
   };
