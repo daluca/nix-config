@@ -49,6 +49,19 @@
       name = "Public WiFi Login";
       url = "http://nmcheck.gnome.org/";
     }
+  ] ++ lib.optionals (! config.host.work) [
+    {
+      name = "Paperless";
+      url = "https://paperless.${secrets.domain.general}/";
+    }
+    {
+      name = "Home Assistant";
+      url = "https://home-assistant.${secrets.domain.general}/";
+    }
+    {
+      name = "Firefly III";
+      url = "https://firefly.${secrets.domain.general}/";
+    }
   ] ++ lib.optionals config.host.work [
     {
       name = "Gmail";
