@@ -43,7 +43,19 @@ in {
     netrc-file = config.sops.templates."netrc".path;
   };
 
+  nix.nixPath = [ "nixpkgs=flake:nixpkgs" ] ++ lib.optional config.nix.channel.enable "/nix/var/nix/profiles/per-user/root/channels";
+
+  nix.registry = lib.mapAttrs (_: value: { flake = lib.mkForce value; }) (lib.filterAttrs (n: _: n != "self") inputs) // {
+    nix-config.flake = inputs.self;
+    neovim.flake = inputs.nixvim-config;
+  };
+
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.flake = {
+    setNixPath = false;
+    setFlakeRegistry = false;
+  };
 
   nixpkgs.overlays = with inputs; builtins.attrValues outputs.overlays ++ [
     nur.overlays.default
