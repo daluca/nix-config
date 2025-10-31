@@ -103,16 +103,16 @@ in {
   imports =
     let
       hostExtras = (./. + "/${hostname}.nix");
-    in with inputs; builtins.attrValues outputs.homeManagerModules ++ [
+    in builtins.attrValues outputs.homeManagerModules ++ [
+      ../../.
       outputs.nixosModules.host
-      impermanence.homeManagerModules.impermanence
-      catppuccin.homeModules.catppuccin
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "alacritty"
       "bash"
       "atuin"
       "bitwarden"
       "btop"
+      "catppuccin"
       "development"
       "fonts"
       "ghostty"
@@ -151,25 +151,7 @@ in {
     homeDirectory = "/home/${username}";
   };
 
-  nix = {
-    package = pkgs.nix;
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      substituters = [
-        "https://cache.nixos.org/?priority=40"
-        "https://nix-community.cachix.org/?priority=50"
-      ];
-      trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-      warn-dirty = false;
-    };
-  };
-
   host.work = true;
-
-  home.persistence.home.enable = lib.mkDefault false;
 
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "pre-commit" /* bash */ ''
@@ -227,8 +209,6 @@ in {
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
   ];
-
-  targets.genericLinux.enable = true;
 
   services.ntfyd = {
     token = secrets.ntfy.token;
@@ -605,8 +585,6 @@ in {
       };
     };
   };
-
-  xdg.enable = true;
 
   home.stateVersion = "25.05";
 
