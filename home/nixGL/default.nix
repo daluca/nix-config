@@ -3,14 +3,15 @@
 {
   nixGL = {
     packages = inputs.nixgl.packages;
-    defaultWrapper = lib.mkDefault "mesa";
-    installScripts = lib.mkDefault [ "mesa" ];
+    defaultWrapper = lib.mkDefault "nvidia";
+    installScripts = lib.mkDefault [ "nvidia" ];
   };
 
-  nixpkgs.overlays = [
+  nixpkgs.overlays = with config.lib; [
     (_final: prev: {
-      alacritty = config.lib.nixGL.wrap prev.alacritty;
-      ghostty = config.lib.nixGL.wrap prev.ghostty;
+      alacritty = nixGL.wrap prev.alacritty;
+      ghostty = nixGL.wrap prev.ghostty;
+      neovide = nixGL.wrap prev.neovide;
     })
   ];
 }
