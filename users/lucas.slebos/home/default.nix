@@ -378,10 +378,15 @@ in {
 
   programs.ssh = with secrets; {
     enable = true;
-    matchBlocks = {
+    matchBlocks =
+    let
+      identity = private-key: "${config.home.homeDirectory}/.ssh/${private-key}";
+    in {
       robin-user = {
         host = "*-230 *-231 *-232";
         user = "robin";
+        identityFile = identity "id_rsa_devops";
+        identitiesOnly = true;
         extraOptions = {
           StrictHostKeyChecking = "no";
           UserKnownHostsFile = "/dev/null";
@@ -390,10 +395,17 @@ in {
       aptly-user = {
         host = "aptly-ssh*.${domains.devops}";
         user = "aptly";
+        identityFile = identity "id_ed25519";
+        identitiesOnly = true;
       };
       ansible-user = {
-        host = "k8s-*-nfs";
+        host = "k8s-*";
         user = "ansible";
+      };
+      kubernetes-nodes = {
+        host = "*-controller0* *-devops0* *-worker0*";
+        identityFile = identity "id_rsa_devops";
+        identitiesOnly = true;
       };
       mps-9999-230.hostname = "10.200.230.202";
       mps-9999-231.hostname = "10.200.231.202";
@@ -410,17 +422,41 @@ in {
       k700-9999-230.hostname = "10.200.230.201";
       k700-9999-231.hostname = "10.200.231.201";
       k700-9999-232.hostname = "10.200.232.201";
+      k8s-dev-controller01.hostname = "10.200.68.101";
+      k8s-dev-controller02.hostname = "10.200.68.102";
+      k8s-dev-controller03.hostname = "10.200.68.103";
+      k8s-dev-devops01.hostname = "10.200.68.104";
+      k8s-dev-devops02.hostname = "10.200.68.105";
+      k8s-dev-devops03.hostname = "10.200.68.106";
+      k8s-dev-worker.hostname = "10.200.68.107";
       k8s-dev-nfs.hostname = "10.200.68.126";
+      k8s-stg-controller01.hostname = "10.200.68.64";
+      k8s-stg-controller02.hostname = "10.200.68.65";
+      k8s-stg-controller03.hostname = "10.200.68.66";
+      k8s-stg-devops01.hostname = "10.200.68.64";
+      k8s-stg-devops02.hostname = "10.200.68.65";
+      k8s-stg-devops03.hostname = "10.200.68.66";
+      k8s-stg-worker01.hostname = "10.200.68.70";
       k8s-stg-nfs.hostname = "10.200.68.94";
+      k8s-prod-controller01.hostname = "10.200.68.41";
+      k8s-prod-controller02.hostname = "10.200.68.42";
+      k8s-prod-controller03.hostname = "10.200.68.43";
+      k8s-prod-devops01.hostname = "10.200.68.44";
+      k8s-prod-devops02.hostname = "10.200.68.45";
+      k8s-prod-worker01.hostname = "10.200.68.51";
       k8s-prod-nfs.hostname = "10.200.68.200";
       aptly-hetzner-vm = {
         hostname = secrets.hosts.aptly-hetzner.ipv4-address;
         user = "root";
+        identityFile = identity "id_ed25519";
+        identitiesOnly = true;
       };
       aptly-hetzner-docker = {
         host = "aptly-ssh-docker.prod.${secrets.domains.devops}";
         hostname = secrets.hosts.aptly-hetzner.ipv4-address;
         port = 2222;
+        identityFile = identity "id_ed25519";
+        identitiesOnly = true;
       };
     };
   };
