@@ -10,10 +10,8 @@ in {
     NTFY_TOPIC = "hosts";
     NTFY_TITLE = osConfig.networking.hostName;
     NTFY_QUIET = builtins.toString true;
-    NTFY_LONG_EXCLUDED = lib.concatStringsSep " " [
-      "nvim" "n"
-      "garden" "g"
-      "k9s"
+    NTFY_LONG_ALLOWLIST = lib.concatStringsSep " " [
+      "ansible-playbook"
     ];
   };
 

@@ -7,9 +7,9 @@ function ntfy_push_notification() {
   [[ "${_NTFY_LONG_LAST_START}" == "${_NTFY_LONG_CMD_START}" ]] && return
   export _NTFY_LONG_LAST_START="${_NTFY_LONG_CMD_START}"
   [[ "" == "${_NTFY_LONG_CMD_START}" || " " == "${_NTFY_LONG_CMD:0:1}" ]] && return
-  local NTFY_EXCLUDED=( "ssh" "vim" )
-  NTFY_EXCLUDED+=("${(@s: :)NTFY_LONG_EXCLUDED}")
-  [[ "${NTFY_EXCLUDED[(ie)${_NTFY_LONG_CMD/% *}]}" -le "${#NTFY_EXCLUDED}" ]] && return
+  local NTFY_ALLOWLIST=( "apt" )
+  NTFY_ALLOWLIST+=("${(@s: :)NTFY_LONG_ALLOWLIST}")
+  [[ ! "${NTFY_ALLOWLIST[(ie)${_NTFY_LONG_CMD/% *}]}" -le "${#NTFY_ALLOWLIST}" ]] && return
   local NTFY_CMD_END="$( date +%s )"
   (( TIME_TAKEN = NTFY_CMD_END - _NTFY_LONG_CMD_START ))
   [[ ${NTFY_LONG_SECONDS:-300} -gt "${TIME_TAKEN}" ]] && return
