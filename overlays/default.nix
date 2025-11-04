@@ -3,10 +3,15 @@
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
-  modifications = final: _prev: with inputs; {
-    neovim = nixvim-config.packages.${final.system}.neovim;
+  modifications = final: _prev: with inputs;
+  let
+    inherit (final.stdenv.hostPlatform) system;
+  in {
+    neovim = nixvim-config.packages.${system}.neovim;
 
-    fzf-preview = fzf-preview.packages.${final.system}.fzf-preview;
+    fzf-preview = fzf-preview.packages.${system}.fzf-preview;
+
+    openthread-border-router = openthread-border-router.legacyPackages.${system}.openthread-border-router;
 
     kubectlPlugins = {
       view-secret = final.pkgs.view-secret;
@@ -24,12 +29,18 @@
     )];
   };
 
-  unstable-packages = final: _prev: with inputs; {
+  unstable-packages = final: _prev: with inputs;
+  let
+    inherit (final.stdenv.hostPlatform) system;
+  in {
     unstable = import inputs.nixpkgs-unstable {
-      system = final.system;
+      inherit system;
       config.allowUnfree = true;
       overlays = [(
-        final: prev: {
+        final: prev:
+        let
+          inherit (final.stdenv.hostPlatform) system;
+        in {
           deploy-rs = prev.deploy-rs.overrideAttrs {
             version = "0.1.0-unstable-2025-09-01";
 
@@ -46,7 +57,7 @@
             '';
           };
 
-          colmena = colmena.packages.${final.system}.colmena;
+          colmena = colmena.packages.${system}.colmena;
 
           paperless-ngx = prev.paperless-ngx.overrideAttrs (oldAttrs: {
             passthru = oldAttrs.passthru // {
