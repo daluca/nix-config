@@ -45,6 +45,7 @@ in {
     "systemctl-tui"
     "jujutsu"
     "ntfyd"
+    "planify"
   ];
 
   services.ntfyd = {
