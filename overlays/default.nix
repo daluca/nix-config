@@ -1,4 +1,4 @@
-{ inputs }:
+{ inputs, outputs }:
 
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
@@ -13,9 +13,17 @@
 
     openthread-border-router = openthread-border-router.legacyPackages.${system}.openthread-border-router;
 
-    kubectlPlugins = {
-      view-secret = final.pkgs.view-secret;
-      ingress-nginx = final.pkgs.ingress-nginx;
+    kubectlPlugins = with final.pkgs; {
+      inherit view-secret ingress-nginx;
+    };
+  };
+
+  gnomeExtensions = final: prev:
+  let
+    inherit (final.stdenv.hostPlatform) system;
+  in {
+    gnomeExtensions = with outputs; prev.gnomeExtensions // {
+      in-picture = packages.${system}.in-picture;
     };
   };
 

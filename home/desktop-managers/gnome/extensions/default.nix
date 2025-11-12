@@ -4,6 +4,7 @@
     ./auto-cpufreq-switcher.nix
     ./caffeine.nix
     ./gsconnect
+    ./in-picture.nix
     ./no-overview.nix
     ./tailscale-qs.nix
   ];

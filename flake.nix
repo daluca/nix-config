@@ -96,7 +96,7 @@
       } // inputs.deploy-rs.lib.${system}.deployChecks self.deploy
     );
 
-    overlays = import ./overlays { inherit inputs; };
+    overlays = import ./overlays { inherit inputs outputs; };
 
     packages = forAllSystems (system:
       let
