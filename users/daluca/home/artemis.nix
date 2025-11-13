@@ -46,6 +46,13 @@ in {
     "jujutsu"
     "ntfyd"
     "planify"
+  nix.registry = {
+    neovim.to = {
+      path = "${config.home.homeDirectory}/code/github.com/daluca/nixvim-config";
+      type = "path";
+    };
+  };
+
   ];
 
   services.ntfyd = {
