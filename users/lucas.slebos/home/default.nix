@@ -367,6 +367,11 @@ in {
 
   home.file.".ssh/id_rsa.pub".source = ../keys/id_rsa.pub;
 
+  sops.secrets.id_rsa_devops = {
+    path = ".ssh/id_rsa_devops";
+    mode = "0600";
+  };
+
   systemd.user.tmpfiles.rules = [
     "C ${config.home.homeDirectory}/.ssh/authorized_keys 0600 lucas.slebos lucas.slebos - ${pkgs.writeText "authorized_keys"
       (lib.concatStringsSep "\n" (map (f: builtins.readFile f) [
@@ -457,6 +462,12 @@ in {
         hostname = secrets.hosts.aptly-hetzner.ipv4-address;
         port = 2222;
         identityFile = identity "id_ed25519";
+        identitiesOnly = true;
+      };
+      sd-api = {
+        hostname = secrets.hosts.sd-api.ipv4-address;
+        user = "root";
+        identityFile = identity "id_rsa_devops";
         identitiesOnly = true;
       };
     };
