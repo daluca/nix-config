@@ -130,6 +130,7 @@ in {
       "nixGL"
       "ntfy"
       "ntfyd"
+      "opentofu"
       "qrrs"
       "secrets"
       "slack"
