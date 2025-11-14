@@ -19,6 +19,7 @@ in {
     "GitHub"
     "Steam"
     "ProtonDB"
+    "Docker Hub"
     "wikipedia"
   ];
   engines = {
@@ -222,6 +223,21 @@ in {
         hash = "sha256-oauOp0EASNjMcThfzYJ2TfbaOYHBPL8LOp+9lmp4pmc=";
       };
       definedAliases = [ "@protondb" "@pdb" ];
+    };
+    "Docker Hub" = {
+      urls = [
+        { template = "https://hub.docker.com/search";
+          params = [
+            { name = "q"; value = "{searchTerms}"; }
+          ];
+        }
+      ];
+      icon = pkgs.fetchzip {
+        url = "https://www.docker.com/static/Docker-Logos.zip";
+        hash = "sha256-mvoyTHkO0PN98PznZHZrfz0cZ4eN8k1RZNo4vPppYlc=";
+        stripRoot = false;
+      } + "/docker-logos/PNG/docker-mark-blue.png";
+      definedAliases = [ "@dockerhub" "@dh" ];
     };
     wikipedia.metaData.alias = "@wiki";
     ebay-nl.metaData.hidden = true;
