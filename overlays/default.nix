@@ -33,6 +33,17 @@
         cfn-lint = pythonPrev.cfn-lint.overridePythonAttrs {
           doCheck = false;
         };
+        # NOTE: Remove after https://github.com/NixOS/nixpkgs/issues/460422 has been resolved
+        ansible-compat = pythonPrev.ansible-compat.overridePythonAttrs rec {
+          version = "25.8.1";
+
+          src = prev.fetchFromGitHub {
+            owner = "ansible";
+            repo = "ansible-compat";
+            tag = "v${version}";
+            hash = "sha256-hwfD7B0r8wRo/BUUA00TTQXCkrY8TAUM5BiP4Q4Atd0=";
+          };
+        };
       }
     )];
   };
