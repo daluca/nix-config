@@ -17,7 +17,6 @@
     "adguardhome"
     "paperless"
     "redlib"
-    "home-assistant"
     "firefly-iii"
     "navidrome"
   ];
