@@ -59,6 +59,7 @@ in {
         (dalaran "home-assistant")
         (dalaran "navidrome")
         (dalaran "firefly")
+        (dalaran "firefly-importer")
       ];
       dhcp = {
         enabled = true;

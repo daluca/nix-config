@@ -4,6 +4,8 @@ let
 in {
   services.firefly-iii = {
     enable = true;
+    # NOTE: Remove in NixOS 25.11
+    package = pkgs.unstable.firefly-iii;
     enableNginx = true;
     settings = {
       APP_KEY_FILE = config.sops.secrets."firefly-iii/app.key".path;
@@ -18,14 +20,11 @@ in {
 
   services.firefly-iii-data-importer = {
     enable = true;
+    # NOTE: Remove in 25.11
     package = pkgs.unstable.firefly-iii-data-importer;
     enableNginx = true;
-    settings = rec {
-      VANITY_URL = FIREFLY_III_URL;
-      FIREFLY_III_URL = "https://${firefly-iii.virtualHost}";
-      TRUSTED_PROXIES = "**";
+    settings = {
       APP_ENV = "production";
-      FIREFLY_III_CLIENT_ID = 2;
     };
   };
 }
