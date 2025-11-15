@@ -57,6 +57,7 @@ in {
         (dalaran "redlib")
         (dalaran "adguardhome")
         (dalaran "home-assistant")
+        (dalaran "navidrome")
         (dalaran "firefly")
       ];
       dhcp = {

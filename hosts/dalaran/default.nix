@@ -19,6 +19,7 @@
     "redlib"
     "home-assistant"
     "firefly-iii"
+    "navidrome"
   ];
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
@@ -51,6 +52,11 @@
       locations."/" = {
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.home-assistant.config.http.server_port}";
         proxyWebsockets = true;
+      };
+    };
+    "navidrome.${secrets.domain.general}" = tls // {
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${builtins.toString config.services.navidrome.settings.Port}";
       };
     };
     "${config.services.firefly-iii.virtualHost}" = tls;

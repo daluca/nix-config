@@ -1,0 +1,5 @@
+{
+  services.navidrome = {
+    enable = true;
+  };
+}
