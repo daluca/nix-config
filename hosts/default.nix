@@ -84,15 +84,13 @@ in {
 
   i18n = {
     defaultLocale = "en_NZ.UTF-8";
-    supportedLocales = lib.unique (map (locale: (builtins.replaceStrings ["utf8" "utf-8" "UTF8"] ["UTF-8" "UTF-8" "UTF-8"] locale) + "/UTF-8") (
-    [
-      "C.UTF-8"
-      "en_GB.UTF-8"
-      "en_US.UTF-8"
-      "en_AU.UTF-8"
-      config.i18n.defaultLocale
-    ] ++ (builtins.attrValues (lib.filterAttrs (n: _v: n != "LANGUAGE") config.i18n.extraLocaleSettings))
-    ));
+    extraLocales = map (locale: locale + ".UTF-8/UTF-8") [
+      "C"
+      "en_US"
+      "en_GB"
+      "en_AU"
+      "nl_NL"
+    ];
   };
 
   users.mutableUsers = false;
