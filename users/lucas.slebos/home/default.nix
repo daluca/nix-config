@@ -168,23 +168,6 @@ in {
         ${lib.getExe pkgs.pre-commit} "$@"
       fi
     '')
-    (lib.hiPrio (bitwarden-cli.overrideAttrs (oldAttrs: rec {
-      inherit (oldAttrs) pname;
-      version = "2025.5.0";
-
-      src = pkgs.fetchFromGitHub {
-        owner = "bitwarden";
-        repo = "clients";
-        tag = "cli-v${version}";
-        hash = "sha256-8jVKwqKhTfhur226SER4sb1i4dY+TjJRYmOY8YtO6CY=";
-      };
-
-      npmDeps = pkgs.fetchNpmDeps {
-        inherit src;
-        name = "${pname}-${version}-npm-deps";
-        hash = "sha256-0IoBPRGdtkMeTrT5cqZLHB/WrUCONtsJ6YHh0y4K5Ls=";
-      };
-    })))
     (lib.hiPrio (neovim.extend {
       config = {
         colorschemes.catppuccin.settings.flavor = config.catppuccin.flavor;
