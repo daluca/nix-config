@@ -1,7 +1,6 @@
-{ config, lib, ... }:
-let
-  ntfy-sh = config.services.ntfy-sh;
-in {
+{ lib, ... }:
+
+{
   services.ntfy-sh = {
     enable = true;
     settings = {
@@ -19,20 +18,6 @@ in {
   };
 
   users.users.daluca.extraGroups = [ "ntfy-sh" ];
-
-  services.nginx.virtualHosts =
-  let
-    url = lib.last (builtins.match "^https?://(.*)$" ntfy-sh.settings.base-url);
-  in {
-    ${url} = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://${ntfy-sh.settings.listen-http}";
-        proxyWebsockets = true;
-      };
-    };
-  };
 
   environment.persistence.system.directories = [
     { directory = "/var/lib/ntfy-sh"; mode = "0775"; }

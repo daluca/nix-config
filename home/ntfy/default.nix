@@ -18,7 +18,7 @@ in {
   sops.templates."ntfy-client.yaml" = {
     path = "${config.xdg.configHome}/ntfy/client.yml";
     content = lib.generators.toYAML { } {
-      default-host = "https://ntfy.${secrets.cloud.domain}";
+      default-host = "https://ntfy.${secrets.domain.general}";
       default-token = config.sops.placeholder."ntfy/token";
     };
   };
