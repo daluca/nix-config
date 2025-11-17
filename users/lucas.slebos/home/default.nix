@@ -1,5 +1,7 @@
-{ config, lib, pkgs, hostname, system, inputs, outputs, ... }@args:
+{ config, lib, pkgs, hostname, inputs, outputs, ... }@args:
 let
+  inherit (pkgs.stdenv.hostPlatform) system;
+
   secrets = args.secrets // builtins.fromTOML (builtins.readFile ../secrets.toml);
 
   additionalBookmarks = [

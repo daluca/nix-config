@@ -138,33 +138,33 @@
 
     colmena = import ./hosts/colmena.nix { inherit inputs outputs; };
 
-    nixosConfigurations.artemis = nixosSystem rec {
+    nixosConfigurations.artemis = nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./hosts/artemis
       ];
     };
 
-    nixosConfigurations.stormwind = nixosSystem rec {
+    nixosConfigurations.stormwind = nixosSystem {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./hosts/stormwind
       ];
     };
 
-    nixosConfigurations.ironforge = nixosSystem rec {
+    nixosConfigurations.ironforge = nixosSystem {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./hosts/ironforge
       ];
     };
 
-    nixosConfigurations.darnassus = nixosSystem rec {
+    nixosConfigurations.darnassus = nixosSystem {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./hosts/darnassus
       ];
@@ -172,44 +172,44 @@
 
     nixosConfigurations.dalaran =
     let
-      system = "aarch64-linux";
       lib = nixos-raspberrypi.inputs.nixpkgs.lib.extend (_final: _prev: {
         custom = import ./lib { lib = nixos-raspberrypi.inputs.nixpkgs.lib; };
       } // home-manager.lib );
     in nixos-raspberrypi.lib.nixosSystem {
-      specialArgs = { inherit inputs outputs lib system secrets nixos-raspberrypi; };
+      system = "aarch64-linux";
+      specialArgs = { inherit inputs outputs lib secrets nixos-raspberrypi; };
       modules = [
         ./hosts/dalaran
       ];
     };
 
-    nixosConfigurations.guiltyspark = nixosSystem rec {
+    nixosConfigurations.guiltyspark = nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./hosts/guiltyspark
       ];
     };
 
-    nixosConfigurations.unifi = nixosSystem rec {
+    nixosConfigurations.unifi = nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./hosts/unifi
       ];
     };
 
-    nixosConfigurations.alfa = nixosSystem rec {
+    nixosConfigurations.alfa = nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./hosts/alfa
       ];
     };
 
-    nixosConfigurations.bravo = nixosSystem rec {
+    nixosConfigurations.bravo = nixosSystem {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./hosts/bravo
       ];
@@ -221,7 +221,7 @@
       pkgs = pkgs' system;
     in homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit inputs outputs lib system secrets; hostname = "RRS-A00690"; };
+      extraSpecialArgs = { inherit inputs outputs lib secrets; hostname = "RRS-A00690"; };
       modules = [
         ./users/lucas.slebos/home
       ];
@@ -233,31 +233,31 @@
       pkgs = pkgs' system;
     in homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit inputs outputs lib system secrets; hostname = "RRS-A00746"; };
+      extraSpecialArgs = { inherit inputs outputs lib secrets; hostname = "RRS-A00746"; };
       modules = [
         ./users/lucas.slebos/home
       ];
     };
 
-    images.iso = (nixosSystem rec {
+    images.iso = (nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./images/iso
       ];
     }).config.system.build.isoImage;
 
-    images.raspberry-pi-4 = (nixosSystem rec {
+    images.raspberry-pi-4 = (nixosSystem {
       system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./images/raspberry-pi/4
       ];
     }).config.system.build.sdImage;
 
-    images.digitalocean = (nixosSystem rec {
+    images.digitalocean = (nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib system secrets; };
+      specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./images/digitalocean
       ];
