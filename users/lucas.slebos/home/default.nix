@@ -33,6 +33,7 @@ let
     };
     files.extend-exclude = [
       "**.asc"
+      "**.age"
     ];
   };
   commitlint-rs-config = pkgs.writers.writeYAML "global-commitlint-rs-config.yaml" {
