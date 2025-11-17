@@ -14,6 +14,7 @@
     "impermanence"
     "nginx"
     "ntfy-sh"
+    "atuin"
   ];
 
   services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
@@ -35,6 +36,11 @@
       locations."/" = {
         proxyPass = "http://${config.services.ntfy-sh.settings.listen-http}";
         proxyWebsockets = true;
+      };
+    };
+    "atuin.${secrets.domain.general}" = tls // {
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${builtins.toString config.services.atuin.port}";
       };
     };
   };

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, secrets, ... }:
 
 rec {
   programs.atuin = {
@@ -7,6 +7,9 @@ rec {
     enableBashIntegration = false;
     daemon.enable = true;
     settings = {
+      auto_sync = true;
+      sync_frequency = "5m";
+      sync_address = "https://atuin.${secrets.domain.general}";
       dialect = "uk";
       inline_height = 19;
       update_check = false;
