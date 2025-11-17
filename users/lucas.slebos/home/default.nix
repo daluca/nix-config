@@ -482,6 +482,10 @@ in {
         url = "rrs:dbmanager";
         path = "bitbucket.org/robin-radar-systems/dbmanager";
       };
+      harbor-management = {
+        url = "rrs:harbor-management";
+        path = "bitbucket.org/robin-radar-systems/harbor-management";
+      };
       image-pipeline = {
         url = "rrs:image-pipeline";
         path = "bitbucket.org/robin-radar-systems/image-pipeline";
@@ -562,6 +566,7 @@ in {
         "bitwarden-vault"
         "containers"
         "dbmanager"
+        "harbor-management"
         "image-pipeline"
         "kubernetes-cluster-deployment"
         "kubernetes-deployments"
