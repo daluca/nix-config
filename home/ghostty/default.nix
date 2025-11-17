@@ -1,9 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 {
   programs.ghostty = {
     enable = true;
-    package = pkgs.unstable.ghostty;
     enableZshIntegration = true;
     settings = let
       font = "Monaspace Krypton Var";
