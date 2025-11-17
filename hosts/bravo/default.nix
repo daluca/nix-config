@@ -1,7 +1,6 @@
-{ config, lib, inputs, ... }@args:
-let
-  secrets = config.sops.secrets // args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
-in {
+{ lib, secrets, inputs, ... }:
+
+{
   imports = with inputs; [
     disko.nixosModules.disko
   ] ++ [
@@ -16,7 +15,6 @@ in {
     "nginx"
     "ntfy-sh"
   ];
-
 
   services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
 
