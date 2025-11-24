@@ -6,6 +6,7 @@
     ./ipxe.nix
     ./just.nix
     ./nix-ide.nix
+    ./opentofu.nix
     ./tinymist.nix
     ./typos.nix
     ./vscode-pets.nix
