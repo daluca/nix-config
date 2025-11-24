@@ -1,14 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (pkgs.gnomeExtensions) gsconnect;
-  inherit (config.xdg) configHome;
-  inherit (config.home) homeDirectory;
-  inherit (lib.hm.gvariant) mkTuple mkUint32;
   zenphone-10 = "1585fe42_d731_4e18_a83b_2f420174b038";
-in {
+in with pkgs.gnomeExtensions; {
   home.packages = [ gsconnect ];
 
-  dconf.settings = {
+  dconf.settings = with lib.hm.gvariant; {
     "org/gnome/shell".enabled-extensions = [
       gsconnect.extensionUuid
     ];
@@ -153,10 +149,10 @@ in {
       };
     };
     "org/gnome/shell/extensions/gsconnect/device/${zenphone-10}/plugin/share" = {
-      receive-directory = "${homeDirectory}/Downloads";
+      receive-directory = "${config.home.homeDirectory}/Downloads";
     };
   };
 
   xdg.configFile."gsconnect/certificate.pem".source = ./certificate.pem;
-  sops.secrets."gsconnect/private.pem".path = "${configHome}/gsconnect/private.pem";
+  sops.secrets."gsconnect/private.pem".path = "${config.xdg.configHome}/gsconnect/private.pem";
 }
