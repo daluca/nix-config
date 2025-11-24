@@ -32,6 +32,12 @@ in {
     appendHttpConfig = /* nginx */ ''
       include ${cloudflare-real-ips};
     '';
+    commonHttpConfig = /* nginx */ ''
+      log_format     main '$http_host $remote_addr - $remote_user [$time_local] '
+                          '"$request" $status $body_bytes_sent '
+                          '"$http_referer" "$http_user_agent"';
+      access_log /var/log/nginx/access.log main;
+    '';
   };
 
   networking.firewall.allowedTCPPorts = [
