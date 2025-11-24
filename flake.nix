@@ -19,7 +19,7 @@
     sops-nix.url = "github:mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    disko.url = "github:nix-community/disko/v1.11.0";
+    disko.url = "github:nix-community/disko/v1.12.0";
     disko.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     git-hooks.url = "github:cachix/git-hooks.nix";
