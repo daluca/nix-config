@@ -29,6 +29,10 @@ disko host:
 nixos-install host:
     nixos-install --flake .#{{ host }} --no-root-passwd
 
+[no-exit-message]
+unlock host:
+    sops --decrypt --extract '["disk-encryption-key"]' hosts/{{ host }}/{{ host }}.sops.yaml | ssh root@{{ host }}
+
 ssh-to-age key:
     #! /usr/bin/env -S nix shell nixpkgs#bash nixpkgs#ssh-to-age --command bash
 
