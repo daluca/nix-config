@@ -14,7 +14,6 @@
       enableExtensionUpdateCheck = false;
       extensions = with pkgs.open-vsx; [
         vscodevim.vim
-        github.github-vscode-theme
         pkief.material-icon-theme
         editorconfig.editorconfig
         skellock.just
@@ -55,7 +54,6 @@
         # Terminal
         "terminal.integrated.defaultProfile.linux" = "zsh";
         # Theme
-        "workbench.colorTheme" = "GitHub Dark";
         "workbench.iconTheme" = "material-icon-theme";
         # Trusted
         "security.workspace.trust.enabled" = false;
@@ -70,4 +68,6 @@
       };
     };
   };
+
+  catppuccin.vscode.profiles.default.enable = true;
 }
