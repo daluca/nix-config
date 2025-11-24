@@ -1,4 +1,4 @@
-{ config, lib, secrets, ... }:
+{ config, secrets, ... }:
 let
   allowDomain = domain: "@@||${domain}^";
   blockDomain = domain: "||${domain}^";
