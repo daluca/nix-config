@@ -25,6 +25,7 @@ in {
     enableNginx = true;
     settings = {
       APP_ENV = "production";
+      TRUSTED_PROXIES = "127.0.0.1";
     };
   };
 }

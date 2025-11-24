@@ -73,7 +73,6 @@
   services.firefly-iii-data-importer.virtualHost = "firefly-importer.${secrets.domain.general}";
 
   services.firefly-iii-data-importer.settings = {
-    TRUSTED_PROXIES = "127.0.0.1";
     VANITY_URL = "https://firefly.${secrets.domain.general}";
     FIREFLY_III_URL = "https://firefly.${secrets.domain.general}";
     FIREFLY_III_CLIENT_ID = 2;
