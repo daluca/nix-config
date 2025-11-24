@@ -31,6 +31,10 @@
           url = "github:daluca/nixvim-config";
           path = "github.com/daluca/nixvim-config";
         };
+        proton-ge-overlay = {
+          url = "github:daluca/proton-ge-overlay";
+          path = "github.com/daluca/proton-ge-overlay";
+        };
       };
 
       groups = {
@@ -41,6 +45,7 @@
           "helm-charts"
           "nix-config"
           "nixvim-config"
+          "proton-ge-overlay"
         ];
       };
 
