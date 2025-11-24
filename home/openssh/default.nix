@@ -1,4 +1,4 @@
-{ config, lib, secrets, ... }:
+{ config, lib, ... }:
 
 {
   programs.ssh = {
@@ -8,10 +8,10 @@
     matchBlocks = {
       ${config.home.username} = {
         match = "User ${config.home.username} Host *,!${lib.concatStringsSep ",!" [
-          "192.168.1.1"
-          "192.168.1.2"
-          "192.168.1.3"
-          "192.168.1.4"
+          "192.168.10.1"
+          "192.168.10.2"
+          "192.168.10.3"
+          "192.168.10.4"
         ]}";
         extraOptions = {
           RemoteCommand = "zsh --login";
@@ -19,7 +19,7 @@
         };
       };
       usg = {
-        host = "192.168.1.1";
+        host = "192.168.10.1";
         extraOptions = {
           PubkeyAcceptedKeyTypes = "+ssh-rsa";
         };
