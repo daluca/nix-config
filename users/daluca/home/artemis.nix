@@ -1,4 +1,4 @@
-{ lib, ... }@args:
+{ config, lib, ... }@args:
 let
   secrets = args.secrets // builtins.fromTOML (builtins.readFile ../secrets.toml);
 in {
@@ -46,6 +46,9 @@ in {
     "jujutsu"
     "ntfyd"
     "planify"
+    "gradia"
+  ];
+
   nix.registry = {
     neovim.to = {
       path = "${config.home.homeDirectory}/code/github.com/daluca/nixvim-config";
