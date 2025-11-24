@@ -11,8 +11,6 @@
 
     fzf-preview = fzf-preview.packages.${system}.fzf-preview;
 
-    openthread-border-router = openthread-border-router.legacyPackages.${system}.openthread-border-router;
-
     kubectlPlugins = with final.pkgs; {
       inherit view-secret ingress-nginx;
     };
