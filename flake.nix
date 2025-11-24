@@ -66,7 +66,7 @@
     colmena.inputs.stable.follows = "nixpkgs";
   };
 
-  outputs = {self, nixpkgs, home-manager, git-hooks, nixos-raspberrypi, ...} @ inputs:
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
   let
     inherit (self) outputs;
     inherit (lib) nixosSystem homeManagerConfiguration;
@@ -84,7 +84,7 @@
         proton-ge.overlays.default
       ];
     };
-  in {
+  in with inputs; with outputs; {
     checks = forAllSystems (system:
       let
         pkgs = pkgs' system;
@@ -93,7 +93,7 @@
           src = ./.;
           hooks = import ./.pre-commit-config.nix { inherit lib pkgs; };
         };
-      } // inputs.deploy-rs.lib.${system}.deployChecks self.deploy
+      } // deploy-rs.lib.${system}.deployChecks deploy
     );
 
     overlays = import ./overlays { inherit inputs outputs; };
@@ -109,12 +109,12 @@
 
     homeManagerModules = import ./modules/home-manager;
 
-    deploy = import ./hosts/deploy.nix { deploy-rs = inputs.deploy-rs; nixosConfigurations = self.nixosConfigurations; };
+    deploy = import ./hosts/deploy.nix { inherit deploy-rs nixosConfigurations; };
 
     devShells = forAllSystems (system:
       let
+        inherit (checks.${system}) pre-commit;
         pkgs = pkgs' system;
-        pre-commit = self.checks.${system}.pre-commit;
       in {
         default = pkgs.mkShell {
           name = "nix-config";
@@ -134,7 +134,7 @@
       }
     );
 
-    colmenaHive = inputs.colmena.lib.makeHive self.colmena;
+    colmenaHive = inputs.colmena.lib.makeHive colmena;
 
     colmena = import ./hosts/colmena.nix { inherit inputs outputs; };
 
