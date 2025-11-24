@@ -14,9 +14,6 @@ update-secret-key:
 rotate-secrets:
     fd "sops.yaml$" --exec sops rotate --in-place
 
-build-image type:
-    nix build .#images.{{ type }}
-
 rebuild host=hostname:
     sudo nixos-rebuild switch --flake .#{{ host }}
 

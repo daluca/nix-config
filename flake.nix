@@ -238,29 +238,5 @@
         ./users/lucas.slebos/home
       ];
     };
-
-    images.iso = (nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./images/iso
-      ];
-    }).config.system.build.isoImage;
-
-    images.raspberry-pi-4 = (nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./images/raspberry-pi/4
-      ];
-    }).config.system.build.sdImage;
-
-    images.digitalocean = (nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./images/digitalocean
-      ];
-    }).config.system.build.digitalOceanImage;
   };
 }
