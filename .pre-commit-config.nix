@@ -18,21 +18,21 @@ rec {
     enable = true;
     description = "markdownlint-cli2 hook";
     package = pkgs.markdownlint-cli2;
-    entry = "${markdownlint-cli2.package}/bin/markdownlint-cli2";
+    entry = lib.getExe markdownlint-cli2.package;
     types = [ "markdown" ];
   };
   gitleaks = {
     enable = true;
     description = "gitleaks hook";
     package = pkgs.gitleaks;
-    entry = "${gitleaks.package}/bin/gitleaks protect --verbose --redact --staged";
+    entry = "${lib.getExe gitleaks.package} protect --verbose --redact --staged";
     pass_filenames = false;
   };
   commitlint-rs = {
     enable = false;
     description = "commitlint-rs hook";
     package = pkgs.commitlint-rs;
-    entry = "${commitlint-rs.package}/bin/commitlint --edit";
+    entry = "${lib.getExe commitlint-rs.package} --edit";
     stages = [ "prepare-commit-msg" ];
     pass_filenames = false;
     require_serial = true;
