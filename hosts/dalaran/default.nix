@@ -46,6 +46,10 @@
     FIREFLY_III_CLIENT_ID = 2;
   };
 
+  services.redlib.settings = {
+    REDLIB_FULL_URL = "redlib.${secrets.domain.general}";
+  };
+
   networking.hostName = "dalaran";
 
   hardware.raspberry-pi.config = {
