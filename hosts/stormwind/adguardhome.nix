@@ -59,6 +59,12 @@ in {
         (dalaran "navidrome")
         (dalaran "firefly")
         (dalaran "firefly-importer")
+        (dalaran "request")
+        (dalaran "jellyfin")
+        (dalaran "sonarr")
+        (dalaran "radarr")
+        (dalaran "prowlarr")
+        (dalaran "sabnzbd")
       ];
       dhcp = {
         enabled = true;

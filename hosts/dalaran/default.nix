@@ -11,6 +11,7 @@
     "images/raspberry-pi/5"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
+    "starr"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
     "nginx"
@@ -19,50 +20,17 @@
     "redlib"
     "firefly-iii"
     "navidrome"
+    "jellyfin"
+    "jellyseerr"
+    "sonarr"
+    "radarr"
+    "prowlarr"
+    "sabnzbd"
   ];
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
 
-  services.nginx.virtualHosts =
-  let
-    cert = config.security.acme.certs.${secrets.domain.general};
-    sslCertificate = "${cert.directory}/fullchain.pem";
-    sslCertificateKey = "${cert.directory}/key.pem";
-    sslTrustedCertificate = "${cert.directory}/chain.pem";
-    tls = {
-      inherit sslCertificate sslCertificateKey sslTrustedCertificate;
-      forceSSL = true;
-    };
-  in {
-    "paperless.${secrets.domain.general}" = tls // {
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString config.services.paperless.port}";
-      };
-    };
-    "redlib.${secrets.domain.general}" = tls // {
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString config.services.redlib.port}";
-      };
-      locations."/dns-query" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString config.services.redlib.port}";
-      };
-    };
-    "home-assistant.${secrets.domain.general}" = tls // {
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString config.services.home-assistant.config.http.server_port}";
-        proxyWebsockets = true;
-      };
-    };
-    "navidrome.${secrets.domain.general}" = tls // {
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString config.services.navidrome.settings.Port}";
-      };
-    };
-    "${config.services.firefly-iii.virtualHost}" = tls;
-    "${config.services.firefly-iii-data-importer.virtualHost}" = tls;
-    ${config.services.firefly-iii.virtualHost} = tls;
-    ${config.services.firefly-iii-data-importer.virtualHost} = tls;
-  };
+  services.nginx.virtualHosts = import ./routes.nix { inherit config secrets; };
 
   services.paperless.settings = {
     PAPERLESS_URL = "https://paperless.${secrets.domain.general}";
