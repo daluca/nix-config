@@ -116,6 +116,16 @@ in {
     };
   };
 
+  gtk.enable = true;
+
+  gtk.gtk4.extraConfig = {
+    gtk-application-prefer-dark-theme = 1;
+  };
+
+  gtk.gtk3.extraConfig = {
+    gtk-application-prefer-dark-theme = 1;
+  };
+
   systemd.user.tmpfiles.rules = [
     "L+ /home/${config.home.username}/.config/monitors.xml - - - - ${./monitors.xml}"
   ];
