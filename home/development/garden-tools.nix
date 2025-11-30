@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  programs.garden-rs = {
+  programs.garden-tools = {
     enable = true;
     settings = {
       garden.root = "${config.home.homeDirectory}/code";

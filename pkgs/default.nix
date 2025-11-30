@@ -3,7 +3,7 @@ let
   inherit (pkgs.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
   callPackage = pkgs.lib.callPackageWith ( pkgs // { inherit buildFirefoxXpiAddon; } );
 in {
-  garden-rs = callPackage ./garden-rs { };
+  garden-tools = callPackage ./garden-tools { };
   jsonnet-debugger = callPackage ./jsonnet-debugger { };
   tfctl = callPackage ./tfctl { };
   jellyplex-watched = callPackage ./jellyplex-watched { };

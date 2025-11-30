@@ -3,7 +3,7 @@
 {
   imports = [
     ./direnv.nix
-    ./garden-rs.nix
+    ./garden-tools.nix
     ./just.nix
   ];
 

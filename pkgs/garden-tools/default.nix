@@ -1,11 +1,11 @@
 { lib, fetchFromGitLab, rustPlatform, wayland, libGL, libxkbcommon }:
 
 rustPlatform.buildRustPackage rec {
-  pname = "garden-rs";
+  pname = "garden-tools";
   version = "2.3.0";
 
   src = fetchFromGitLab {
-    owner = "garden-rs";
+    owner = "garden-tools";
     repo = "garden";
     rev = "v${version}";
     hash = "sha256-9BrFcsJ2gUKva17svsjXGfUi/bBPVMG3PmtTYkN4ze8=";

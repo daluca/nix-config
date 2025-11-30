@@ -459,7 +459,7 @@ in {
     };
   };
 
-  programs.garden-rs.settings = {
+  programs.garden-tools.settings = {
     garden.root = "${config.home.homeDirectory}/code";
 
     trees = {

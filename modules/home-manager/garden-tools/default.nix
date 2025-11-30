@@ -1,17 +1,17 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib) mkEnableOption mkPackageOption mkIf;
-  cfg = config.programs.garden-rs;
+  cfg = config.programs.garden-tools;
 in with lib; {
-  options.programs.garden-rs = {
+  options.programs.garden-tools = {
     enable = mkEnableOption "Garden grows and cultivates collections of Git trees";
 
-    package = mkPackageOption pkgs "garden-rs" { };
+    package = mkPackageOption pkgs "garden-tools" { };
 
     settings = lib.mkOption {
       type = types.attrs;
       default = { };
-      description = "garden-rs global config file";
+      description = "garden-tools global config file";
     };
 
     enableBashIntegration = mkEnableOption "Bash Integration" // {
