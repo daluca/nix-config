@@ -1,4 +1,4 @@
-{ config, lib, pkgs, osConfig, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib.hm.gvariant) mkVariant mkTuple mkUint32 mkDouble;
   wellington =
@@ -63,7 +63,7 @@ in {
     ./wallpaper
   ];
 
-  dconf.settings = with lib.hm.gvariant; lib.mkIf osConfig.services.xserver.desktopManager.gnome.enable {
+  dconf.settings = with lib.hm.gvariant; {
     "org/gnome/mutter" = {
       dynamic-workspaces = true;
       experimental-features = [ "scale-monitor-framebuffer" ];
@@ -72,6 +72,9 @@ in {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
+    };
+    "org/gnome/desktop/input-sources" = {
+      sources = [ ( mkTuple ["xkb" "us+dvorak"] ) ( mkTuple ["xkb" "us"] ) ];
     };
     "org/gnome/desktop/peripherals/keyboard" = {
       numlock-state = true;

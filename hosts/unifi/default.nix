@@ -13,5 +13,5 @@
   networking.hostName = "unifi";
   networking.enableIPv6 = false;
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }

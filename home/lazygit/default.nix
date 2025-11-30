@@ -13,7 +13,7 @@ rec {
 
   catppuccin.lazygit.enable = true;
 
-  programs.git.aliases = {
+  programs.git.settings.alias = {
     lazy = "!${programs.lazygit.package}/bin/lazygit";
   };
 }

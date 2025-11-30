@@ -1,10 +1,8 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   services.paperless = {
     enable = true;
-    # NOTE: Replace with stable package in NixOS 25.11
-    package = pkgs.unstable.paperless-ngx;
     passwordFile = config.sops.secrets."paperless/superuser-password".path;
   };
 

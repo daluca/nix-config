@@ -7,8 +7,6 @@
 
   programs.gpg = {
     enable = true;
-    # NOTE: homedir breaks smart-cards
-    # homedir = "${config.xdg.dataHome}/gnupg";
     mutableKeys = false;
     settings = {
       armor = true;

@@ -75,10 +75,7 @@ in {
     dates = [ "daily" ];
   };
 
-  programs.nix-ld = {
-    enable = true;
-    package = pkgs.nix-ld-rs;
-  };
+  programs.nix-ld.enable = true;
 
   time.timeZone = lib.mkDefault "UTC";
 

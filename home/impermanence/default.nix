@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 {
   home.persistence.home = {
@@ -10,5 +10,5 @@
     ];
   };
 
-  programs.zsh.history.path = lib.mkForce "${config.home.persistence.home.persistentStoragePath}/${config.programs.zsh.dotDir}/.zsh_history";
+  programs.zsh.history.path = "/persistent" + "${config.xdg.dataHome}/zsh/zsh_history";
 }

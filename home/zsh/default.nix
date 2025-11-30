@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -7,11 +7,9 @@
 
   programs.zsh = rec {
     enable = true;
-    dotDir = ".config/zsh";
     history = {
       save = 50000;
       size = history.save;
-      path = "${config.home.homeDirectory}/${dotDir}/.zsh_history";
       share = true;
       append = true;
       extended = true;

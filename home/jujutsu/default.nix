@@ -99,10 +99,7 @@
           "--when".commands = [ "diff" "show" ];
           ui = {
             pager = lib.getExe pkgs.delta;
-            # TODO: Breaking change to update in NixOS 25.11
-            # https://github.com/jj-vcs/jj/releases/tag/v0.30.0
-            # diff-formatter = ":git"
-            diff.format = "git";
+            diff-formatter = ":git";
           };
         }
       ];

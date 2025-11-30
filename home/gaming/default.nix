@@ -1,11 +1,8 @@
-{ lib, osConfig, ... }:
-let
-  inherit (lib) mkForce mkIf;
-  inherit (lib.hm.gvariant) mkTuple;
-  inherit (osConfig.services.xserver.desktopManager) gnome;
-in {
+{ lib, ... }:
+
+{
   specialisation.gaming.configuration = {
-    dconf.settings."org/gnome/desktop/input-sources" = mkIf gnome.enable {
+    dconf.settings."org/gnome/desktop/input-sources" = with lib.hm.gvariant; {
       sources = mkForce [ ( mkTuple ["xkb" "us"] ) ( mkTuple ["xkb" "us+dvorak"] ) ];
     };
   };

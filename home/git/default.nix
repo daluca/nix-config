@@ -1,19 +1,14 @@
-{ config, pkgs, secrets, ... }:
+{ config, lib, pkgs, secrets, ... }:
 
 {
   programs.git = {
     enable = true;
-    userName = "Lucas Slebos";
-    userEmail = secrets.user.email;
-    signing = {
-      key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
-      signByDefault = true;
-      signer = "${config.programs.gpg.package}/bin/gpg";
-    };
-    ignores = [
-      "/.vscode/"
-    ];
-    extraConfig = {
+    settings = {
+      user.name = "Lucas Slebos";
+      user.email = secrets.user.email;
+      signing.key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
+      signing.signByDefault = true;
+      signing.signer = lib.getExe config.programs.gpg.package;
       core.compression = 9;
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
@@ -33,6 +28,9 @@
         clean = "${pkgs.git-agecrypt}/bin/git-agecrypt clean -f %f";
       };
     };
+    ignores = [
+      "/.vscode/"
+    ];
   };
 
   programs.zsh.oh-my-zsh.plugins = [
