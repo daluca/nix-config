@@ -1,12 +1,10 @@
 { config, pkgs, ... }:
-let
-  inherit (pkgs.unstable) thunderbird;
-  inherit (config.home) username;
-in {
+
+{
   programs.thunderbird = {
     enable = true;
-    package = thunderbird;
-    profiles.${username} = {
+    package = pkgs.unstable.thunderbird;
+    profiles.default = {
       isDefault = true;
       settings = {
         "mail.serverDefaultStoreContractID" = "@mozilla.org/msgstore/maildirstore;1";
