@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.neovide = {
@@ -29,4 +29,8 @@
       };
     };
   };
+
+  xdg.mimeApps.defaultApplicationPackages = [
+    config.programs.neovide.package
+  ];
 }

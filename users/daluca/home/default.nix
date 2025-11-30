@@ -31,6 +31,8 @@ in {
 
   xdg.enable = true;
 
+  home.preferXdgDirectories = true;
+
   home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;

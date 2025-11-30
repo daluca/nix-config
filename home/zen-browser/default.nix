@@ -25,6 +25,10 @@ in {
     };
   };
 
+  xdg.mimeApps.defaultApplicationPackages = [
+    config.programs.zen-browser.package
+  ];
+
   home.persistence.home.directories = [
     ".zen"
   ];

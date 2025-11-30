@@ -153,6 +153,11 @@ in with pkgs.gnomeExtensions; {
     };
   };
 
+  xdg.mimeApps.defaultApplicationPackages = [
+    gsconnect
+  ];
+
   xdg.configFile."gsconnect/certificate.pem".source = ./certificate.pem;
+
   sops.secrets."gsconnect/private.pem".path = "${config.xdg.configHome}/gsconnect/private.pem";
 }

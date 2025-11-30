@@ -56,6 +56,8 @@ in {
     };
   };
 
+  xdg.mimeApps.enable = true;
+
   services.ntfyd = {
     token = secrets.ntfy.token;
     topics = [

@@ -12,6 +12,10 @@
     };
   };
 
+  xdg.mimeApps.defaultApplicationPackages = [
+    config.programs.thunderbird.package
+  ];
+
   home.persistence.home.directories = [
     ".thunderbird"
   ];
