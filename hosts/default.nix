@@ -94,8 +94,6 @@ in {
 
   environment.persistence.system.enable = lib.mkDefault false;
 
-  services.pulseaudio.enable = true;
-
   environment.systemPackages = with pkgs; [
     vim
   ];

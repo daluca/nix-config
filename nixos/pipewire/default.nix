@@ -1,11 +1,6 @@
 { lib, ... }:
-let
-  inherit (lib) mkForce;
-in {
-  services.pulseaudio.enable = mkForce false;
 
-  security.rtkit.enable = true;
-
+{
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -36,4 +31,8 @@ in {
       };
     };
   };
+
+  security.rtkit.enable = true;
+
+  services.pulseaudio.enable = lib.mkForce false;
 }
