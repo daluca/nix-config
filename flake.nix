@@ -127,9 +127,7 @@
             colmena
           ];
           JUST_COMMAND_COLOR = "blue";
-          shellHook = pre-commit.shellHook + /* bash */ ''
-            PATH="$PWD/bin:$PATH"
-          '';
+          shellHook = pre-commit.shellHook;
         };
       }
     );
