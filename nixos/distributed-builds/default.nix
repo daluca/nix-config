@@ -1,6 +1,5 @@
 {
   imports = [
-    ./alfa.nix
     ./bravo.nix
     ./dalaran.nix
   ];
