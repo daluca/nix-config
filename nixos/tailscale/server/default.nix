@@ -1,6 +1,6 @@
 {
   imports = [
-    ../common.nix
+    ./..
   ];
 
   services.tailscale = {
