@@ -193,6 +193,47 @@ in {
 
   programs.neovide.package = lib.mkForce (config.lib.nixGL.wrap pkgs.unstable.neovide);
 
+  programs.ghostty.systemd.enable = false;
+
+  xdg.desktopEntries = {
+    "com.mitchellh.ghostty" = {
+      name = "Ghostty";
+      type = "Application";
+      genericName = "Terminal";
+      exec = "ghostty --gtk-single-instance=true";
+      icon = "com.mitchellh.ghostty";
+      terminal = false;
+      categories = [
+        "System"
+      ];
+      actions = {
+        new-window = {
+          name = "New Window";
+          exec = "ghostty";
+        };
+      };
+    };
+  };
+
+  systemd.user.services.ghostty = {
+    Unit = {
+      Description = "Ghostty";
+      After = [ "graphical-session.target" "dbus.socket" ];
+      Requires = [ "dbus.socket" ];
+    };
+
+    Service = {
+      Type = "notify-reload";
+      ReloadSignal = "SIGUSR2";
+      BusName = "com.mitchellh.ghostty";
+      ExecStart = "${lib.getExe config.programs.ghostty.package} --gtk-single-instance=true --initial-window=false";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
+
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
   ];
