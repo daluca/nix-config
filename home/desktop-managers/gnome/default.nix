@@ -88,6 +88,9 @@ in {
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
     };
+    "org/gnome/settings-daemon/plugins/housekeeping" = {
+      donation-reminder-enabled = false;
+    };
     "org/gnome/shell" = {
       favorite-apps = (
         if config.programs.zen-browser.enable then
