@@ -344,15 +344,15 @@ in {
         path = robin-radar-systems;
       }
     ];
+    settings = {
+      url."git@bitbucket.org".insteadof = "bitbucket";
+      url."git@bitbucket.org:robin-radar-systems/".insteadof = "rrs:";
+    };
     ignores = [
       "**/.ansible/"
       "/.envrc"
       "/.env"
     ];
-    extraConfig = {
-      url."git@bitbucket.org".insteadof = "bitbucket";
-      url."git@bitbucket.org:robin-radar-systems/".insteadof = "rrs:";
-    };
     hooks = let
       git-hook = hook: pkgs.writeShellScript hook /* bash */ ''
         set -euo pipefail
@@ -411,6 +411,7 @@ in {
 
   programs.ssh = with secrets; {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks =
     let
       identity = private-key: "${config.home.homeDirectory}/.ssh/${private-key}";
@@ -496,6 +497,18 @@ in {
         user = "root";
         identityFile = identity "id_rsa_devops";
         identitiesOnly = true;
+      };
+      "*" = {
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
       };
     };
   };
