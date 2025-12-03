@@ -6,7 +6,7 @@ in {
 
   programs.ssh.matchBlocks = {
     RRS-A00690 = {
-      hostname = "10.200.100.85";
+      match = "User ${config.home.username} Host RRS-A00690,10.200.100.85";
       extraOptions = {
         RemoteCommand = "zsh --login";
         RequestTTY = "yes";
