@@ -23,7 +23,9 @@ in {
         "browser.startup.page" = 1;
         "browser.startup.homepage" = "about:home";
         "browser.newtabpage.enabled" = true;
-     };
+        # Zen Browser
+        "zen.welcome-screen.seen" = true;
+      };
     };
   };
 
