@@ -83,7 +83,7 @@
 
           jj git push --revisions "''${REVSET}" "''${POSITIONAL_ARGS[@]}"
         '';
-        lazy = command (lib.getExe pkgs.lazyjj);
+        ui = command (lib.getExe pkgs.unstable.jjui);
       };
       git = {
         auto-local-bookmark = true;
@@ -106,7 +106,7 @@
     };
   };
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs.unstable; [
     jjui
   ];
 }
