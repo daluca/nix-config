@@ -676,6 +676,15 @@ in {
     "prod.kubeconfig".path = ".kube/prod.kubeconfig";
   };
 
+  home.sessionVariables = {
+    KUBECTX = "development";
+    KUBECONFIG = lib.concatStringsSep ":" (map (p: "${config.home.homeDirectory}/${p}") [
+      config.sops.secrets."dev.kubeconfig".path
+      config.sops.secrets."stg.kubeconfig".path
+      config.sops.secrets."prod.kubeconfig".path
+    ]);
+  };
+
   services.syncthing.settings = {
     folders = {
       "${config.home.homeDirectory}/Documents" = {
