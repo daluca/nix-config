@@ -158,6 +158,7 @@ in {
   host.work = true;
 
   home.packages = with pkgs; [
+    papers
     (pkgs.writeShellScriptBin "pre-commit" /* bash */ ''
       set -eou pipefail
 
@@ -233,6 +234,10 @@ in {
       WantedBy = [ "graphical-session.target" ];
     };
   };
+
+  xdg.mimeApps.defaultApplicationPackages = with pkgs; [
+    papers
+  ];
 
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
