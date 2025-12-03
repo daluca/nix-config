@@ -72,6 +72,4 @@ in {
   programs.zsh.sessionVariables = {
     ZSH_TMUX_DEFAULT_SESSION_NAME = "artemis";
   };
-
-  programs.zsh.history.path = lib.mkForce ("/persistent" + "${config.xdg.configHome}/zsh/zsh_history");
 }
