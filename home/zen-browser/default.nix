@@ -3,8 +3,8 @@ let
   osConfig = (if args ? "osConfig" then args.osConfig else { system.stateVersion = config.home.stateVersion; });
   firefoxModule = module: import (lib.custom.relativeToHomeManagerModules "firefox/${module}.nix");
 in {
-  imports = [
-    inputs.zen-browser.homeModules.default
+  imports = with inputs; [
+    zen-browser.homeModules.default
   ];
 
   programs.zen-browser = {
@@ -14,6 +14,8 @@ in {
     ];
     policies = firefoxModule "policies" // firefoxModule "extensions" { inherit config lib pkgs; };
     profiles.default = {
+      id = 0;
+      isDefault = true;
       search = firefoxModule "search" { inherit config pkgs osConfig secrets; };
       bookmarks = firefoxModule "bookmarks" { inherit config lib secrets; };
       settings = firefoxModule "arkenfox" // {
