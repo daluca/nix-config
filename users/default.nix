@@ -35,6 +35,11 @@
 
   xdg.enable = true;
 
+  xdg.mimeApps.enable = true;
+
+  xdg.configFile."mimeapps.list".force = true;
+  xdg.dataFile."applications/mimeapps.list".force = true;
+
   targets.genericLinux.enable = lib.mkDefault true;
 
   home.shellAliases = {
