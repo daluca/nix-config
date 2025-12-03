@@ -4,6 +4,7 @@
     ./bash.nix
     ./helm.nix
     ./ipxe.nix
+    ./jujutsu.nix
     ./just.nix
     ./nix-ide.nix
     ./opentofu.nix
