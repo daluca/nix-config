@@ -4,6 +4,9 @@ let
 in {
   programs.firefox = {
     enable = true;
+    nativeMessagingHosts = with pkgs; [
+      firefoxpwa
+    ];
     policies = import ./policies.nix // import ./extensions.nix { inherit config lib pkgs; } ;
     profiles.default = {
       id = 0;
@@ -42,6 +45,10 @@ in {
       };
     };
   };
+
+  xdg.mimeApps.defaultApplicationPackages = [
+    config.programs.firefox.package
+  ];
 
   home.persistence.home.directories = [
     ".mozilla"

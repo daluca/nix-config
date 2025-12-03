@@ -117,6 +117,7 @@ in {
       "btop"
       "catppuccin"
       "development"
+      "firefox"
       "fonts"
       "ghostty"
       "git"
