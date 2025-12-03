@@ -19,4 +19,9 @@ in {
       ];
     };
   };
+
+  targets.genericLinux.nixGL = {
+    defaultWrapper = "nvidia";
+    installScripts = [ "nvidia" ];
+  };
 }

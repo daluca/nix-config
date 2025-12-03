@@ -1,10 +1,10 @@
-{ config, lib, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  nixGL = {
-    packages = inputs.nixgl.packages;
-    defaultWrapper = lib.mkDefault "nvidia";
-    installScripts = lib.mkDefault [ "nvidia" ];
+  targets.genericLinux.nixGL = {
+    packages = pkgs.nixgl;
+    defaultWrapper = lib.mkDefault "mesa";
+    installScripts = lib.mkDefault [ "mesa" ];
   };
 
   nixpkgs.overlays = with config.lib; [

@@ -11,6 +11,8 @@
 
     fzf-preview = fzf-preview.packages.${system}.fzf-preview;
 
+    nixgl = nixgl.packages.${system};
+
     kubectlPlugins = with final.pkgs; {
       inherit view-secret ingress-nginx;
     };
