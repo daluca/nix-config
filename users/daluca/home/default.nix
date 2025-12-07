@@ -38,6 +38,10 @@ in {
     ];
   };
 
+  home.shellAliases = {
+    open = "xdg-open";
+  };
+
   home.preferXdgDirectories = true;
 
   home.stateVersion = "25.11";
