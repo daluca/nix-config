@@ -31,6 +31,13 @@ in {
 
   xdg.enable = true;
 
+  xdg.terminal-exec = {
+    enable = true;
+    settings.default = [
+      "com.mitchellh.ghostty.desktop"
+    ];
+  };
+
   home.preferXdgDirectories = true;
 
   home.stateVersion = "25.11";

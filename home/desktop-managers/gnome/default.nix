@@ -132,6 +132,12 @@ in {
     gtk-application-prefer-dark-theme = 1;
   };
 
+  xdg.terminal-exec.settings.GNOME = [
+    "com.mitchellh.ghostty.desktop"
+    "Alacritty.desktop"
+    "org.gnome.Terminal.desktop"
+  ];
+
   systemd.user.tmpfiles.rules = [
     "L+ /home/${config.home.username}/.config/monitors.xml - - - - ${./monitors.xml}"
   ];
