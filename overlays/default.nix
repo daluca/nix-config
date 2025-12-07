@@ -3,7 +3,7 @@
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
-  modifications = final: _prev: with inputs;
+  modifications = final: prev: with inputs;
   let
     inherit (final.stdenv.hostPlatform) system;
   in {
@@ -15,6 +15,27 @@
 
     kubectlPlugins = with final.pkgs; {
       inherit view-secret ingress-nginx;
+    };
+
+    gnomeExtensions = prev.gnomeExtensions // {
+      # NOTE: Upstream tailscale-qs is not being supported anymore
+      # This a work around to use the PR as the source to update to GNOME 49
+      # https://github.com/joaophi/tailscale-gnome-qs/pull/45
+      tailscale-qs = prev.gnomeExtensions.tailscale-qs.overrideAttrs {
+        version = "20";
+
+        src = prev.fetchFromGitHub {
+          owner = "aoiwelle";
+          repo = "tailscale-gnome-qs";
+          rev = "fix-gnome-49";
+          hash = "sha256-QQiuude//zViw6qdquOQ7fLV2F7XO8SGvU2vO1/5R5I=";
+        };
+
+        postInstall = /* bash */ ''
+          mv $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale@joaophi.github.com/* $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/
+          rmdir $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale@joaophi.github.com/
+        '';
+      };
     };
   };
 
