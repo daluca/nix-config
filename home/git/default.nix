@@ -1,4 +1,4 @@
-{ config, lib, pkgs, secrets, ... }:
+{ pkgs, secrets, ... }:
 
 {
   programs.git = {
@@ -6,9 +6,6 @@
     settings = {
       user.name = "Lucas Slebos";
       user.email = secrets.user.email;
-      signing.key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
-      signing.signByDefault = true;
-      signing.signer = lib.getExe config.programs.gpg.package;
       core.compression = 9;
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
@@ -27,6 +24,11 @@
         smudge = "${pkgs.git-agecrypt}/bin/git-agecrypt smudge -f %f";
         clean = "${pkgs.git-agecrypt}/bin/git-agecrypt clean -f %f";
       };
+    };
+    signing = {
+      signByDefault = true;
+      format = "openpgp";
+      key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
     };
     ignores = [
       "/.vscode/"
