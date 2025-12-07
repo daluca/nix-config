@@ -9,8 +9,8 @@
         match = "User ${config.home.username} Host *,!${lib.concatStringsSep ",!" [
           "192.168.10.1"
           "192.168.10.2"
-          "192.168.10.3"
-          "192.168.10.4"
+          "192.168.10.99"
+          "192.168.10.101"
         ]}";
         extraOptions = {
           RemoteCommand = "zsh --login";

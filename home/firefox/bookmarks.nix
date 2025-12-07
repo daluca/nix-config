@@ -62,6 +62,10 @@
       name = "Firefly III";
       url = "https://firefly.${secrets.domain.general}/";
     }
+    {
+      name = "Unifi";
+      url = "https://unifi.${secrets.domain.general}/";
+    }
   ] ++ lib.optionals config.host.work [
     {
       name = "Gmail";
