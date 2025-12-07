@@ -1,17 +1,15 @@
 { config, nixos-raspberrypi, ... }:
 
 {
-  imports = with nixos-raspberrypi.nixosModules.raspberry-pi-5; [
-    base
-    display-vc4
-    bluetooth
+  imports = with nixos-raspberrypi.nixosModules; [
+    raspberry-pi-5.base
+    raspberry-pi-5.display-vc4
+    raspberry-pi-5.bluetooth
   ];
 
-  system.nixos.tags = let
-    cfg = config.boot.loader.raspberryPi;
-  in [
+  system.nixos.tags = [
     "raspberry-pi-5"
-    cfg.bootloader
+    config.boot.loader.raspberryPi.bootloader
     config.boot.kernelPackages.kernel.version
   ];
 }

@@ -7,6 +7,7 @@ let
     stormwind.tags = [ "raspberry-pi" "the-netherlands" ];
     ironforge.tags = [ "raspberry-pi" "new-zealand" ];
     dalaran.tags = [ "raspberry-pi" "the-netherlands" ];
+    homeassistant.tags = [ "raspberry-pi" "the-netherlands" ];
     unifi.tags = [ "digitalocean" "vps" "australia" ];
     guiltyspark.tags = [ "new-zealand" ];
     artemis = {
@@ -19,6 +20,7 @@ in {
     nixpkgs = import nixpkgs { system = "x86_64-linux"; };
     nodeNixpkgs = builtins.mapAttrs (_: value: value.pkgs) outputs.nixosConfigurations // {
       dalaran = import nixos-raspberrypi.inputs.nixpkgs { system = "aarch64-linux"; };
+      homeassistant = import nixos-raspberrypi.inputs.nixpkgs { system = "aarch64-litux"; };
     };
     nodeSpecialArgs = builtins.mapAttrs (_: value: value._module.specialArgs) outputs.nixosConfigurations;
   };
