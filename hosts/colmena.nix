@@ -20,7 +20,7 @@ in {
     nixpkgs = import nixpkgs { system = "x86_64-linux"; };
     nodeNixpkgs = builtins.mapAttrs (_: value: value.pkgs) outputs.nixosConfigurations // {
       dalaran = import nixos-raspberrypi.inputs.nixpkgs { system = "aarch64-linux"; };
-      homeassistant = import nixos-raspberrypi.inputs.nixpkgs { system = "aarch64-litux"; };
+      homeassistant = import nixos-raspberrypi.inputs.nixpkgs { system = "aarch64-linux"; };
     };
     nodeSpecialArgs = builtins.mapAttrs (_: value: value._module.specialArgs) outputs.nixosConfigurations;
   };
