@@ -3,7 +3,6 @@
 {
   services.adguardhome = {
     enable = true;
-    package = pkgs.unstable.adguardhome;
     mutableSettings = false;
     settings = {
       dns = {
@@ -51,9 +50,10 @@
    };
   };
 
-  services.redis.servers.unbound = {
+  services.redis.servers.unbound = with config.services; {
     enable = true;
-    group = config.services.unbound.group;
+    user = unbound.user;
+    group = unbound.group;
   };
 
   networking.firewall = {

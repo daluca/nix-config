@@ -14,7 +14,5 @@
 
   networking.hostName = "homeassistant";
 
-  boot.loader.raspberryPi.bootloader = "kernel";
-
   system.stateVersion = "25.11";
 }

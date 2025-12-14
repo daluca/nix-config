@@ -12,4 +12,6 @@
     config.boot.loader.raspberryPi.bootloader
     config.boot.kernelPackages.kernel.version
   ];
+
+  boot.loader.raspberryPi.bootloader = "kernel";
 }
