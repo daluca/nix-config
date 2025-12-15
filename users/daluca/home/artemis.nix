@@ -13,6 +13,7 @@ in {
     "discord"
     "doctl"
     "element"
+    "feishin"
     "firefox"
     "ghostty"
     "git"
