@@ -1,6 +1,6 @@
 { config, lib, pkgs }:
 
-with pkgs; with pkgs.nur.repos.rycee.firefox-addons; {
+with pkgs.firefoxExtensions; {
   ExtensionUpdate = false;
 
   ExtensionSettings = {

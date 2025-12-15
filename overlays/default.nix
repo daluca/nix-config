@@ -46,7 +46,11 @@
 
     nixgl = nixgl.packages.${system};
 
-    kubectlPlugins = with final.pkgs; {
+    firefoxExtensions = with final; with inputs; nur.legacyPackages.${system}.repos.rycee.firefox-addons // {
+      inherit bypass-paywalls-clean;
+    };
+
+    kubectlPlugins = with final; {
       inherit view-secret ingress-nginx;
     };
 

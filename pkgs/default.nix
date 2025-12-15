@@ -1,7 +1,8 @@
 { pkgs }:
 let
-  inherit (pkgs.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
-  callPackage = pkgs.lib.callPackageWith ( pkgs // { inherit buildFirefoxXpiAddon; } );
+  inherit (pkgs) lib;
+  inherit (pkgs.firefoxExtensions) buildFirefoxXpiAddon;
+  callPackage = lib.callPackageWith ( pkgs // { inherit buildFirefoxXpiAddon; } );
 in {
   garden-tools = callPackage ./garden-tools { };
   jsonnet-debugger = callPackage ./jsonnet-debugger { };
