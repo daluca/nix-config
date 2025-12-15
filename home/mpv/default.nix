@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.mpv = {
     enable = true;
-    package = pkgs.unstable.mpv;
+    package = pkgs.mpv;
     config = {
       ytdl-format = "bestvideo+bestaudio";
     };
@@ -13,4 +13,8 @@
     enable = true;
     package = pkgs.unstable.yt-dlp;
   };
+
+  xdg.mimeApps.defaultApplicationPackages = [
+    config.programs.mpv.package
+  ];
 }
