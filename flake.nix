@@ -228,6 +228,14 @@
       ];
     };
 
+    nixosConfigurations.charlie = nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs outputs lib secrets; };
+      modules = [
+        ./hosts/charlie
+      ];
+    };
+
     homeConfigurations."lucas.slebos@RRS-A00690" =
     let
       system = "x86_64-linux";
