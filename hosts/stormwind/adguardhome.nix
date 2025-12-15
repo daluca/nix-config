@@ -47,6 +47,7 @@ in {
         }
         (externalHost "alfa")
         (externalHost "bravo")
+        (externalHost "charlie")
         (externalHost "unifi")
         {
           domain = secrets.domain.general;
