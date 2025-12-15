@@ -18,6 +18,7 @@ in {
     "git"
     "gnupg"
     "gradia"
+    "helium"
     "heroic"
     "impermanence"
     "jujutsu"

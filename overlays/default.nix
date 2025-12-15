@@ -13,6 +13,8 @@
 
     openthread-border-router = openthread-border-router.legacyPackages.${system}.openthread-border-router;
 
+    helium = nur.legacyPackages.${system}.repos.Ev357.helium;
+
     adguardhome = prev.adguardhome.overrideAttrs (oldAttrs: rec {
       version = "0.107.65";
 
