@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports = with inputs; [
@@ -24,9 +24,6 @@
       mobile_app = { };
     };
     extraComponents = [
-      "matter"
-      "otbr"
-      "thread"
       "isal"
     ];
     extraPackages = python3Packages: with python3Packages; [
@@ -34,25 +31,4 @@
       pychromecast
     ];
   };
-
-  services.matter-server.enable = true;
-
-  services.openthread-border-router = {
-    enable = true;
-    package = pkgs.openthread-border-router;
-    backboneInterface = "end0";
-    radio = {
-      device = "/dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-1_3a9311746212f01186e40514773d9da9-if00-port0";
-      baudRate = 460800;
-      flowControl = true;
-    };
-    web = {
-      enable = true;
-      listenAddress = "::";
-    };
-  };
-
-  networking.firewall.allowedTCPPorts = with config.services; [
-    openthread-border-router.web.listenPort
-  ];
 }

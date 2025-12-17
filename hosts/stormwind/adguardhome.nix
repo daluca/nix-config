@@ -60,7 +60,6 @@ in {
         (dalaran "paperless")
         (dalaran "redlib")
         (dalaran "adguardhome")
-        (dalaran "home-assistant")
         (dalaran "navidrome")
         (dalaran "firefly")
         (dalaran "firefly-importer")
@@ -71,6 +70,8 @@ in {
         (dalaran "prowlarr")
         (dalaran "sabnzbd")
         (homeassistant "home-assistant")
+        (homeassistant "openthread-border-router")
+        (homeassistant "zigbee2mqtt")
       ];
       dhcp = {
         enabled = true;
