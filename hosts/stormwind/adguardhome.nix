@@ -24,6 +24,10 @@ in {
           domain = "${subdomain}.${secrets.domain.general}";
           answer = "192.168.178.11";
         };
+        homeassistant = subdomain: {
+          domain = "${subdomain}.${secrets.domain.general}";
+          answer = "192.168.178.12";
+        };
         externalHost = hostName: {
           domain = "${hostName}.${config.networking.domain}";
           answer = secrets.hosts.${hostName}.ipv4-address;
@@ -66,6 +70,7 @@ in {
         (dalaran "radarr")
         (dalaran "prowlarr")
         (dalaran "sabnzbd")
+        (homeassistant "home-assistant")
       ];
       dhcp = {
         enabled = true;
