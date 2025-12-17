@@ -28,35 +28,23 @@ in {
           domain = "${subdomain}.${secrets.domain.general}";
           answer = "192.168.178.12";
         };
+        internalHost = hostName: answer: {
+          inherit answer;
+          domain = "${hostName}.${config.networking.domain}";
+        };
         externalHost = hostName: {
           domain = "${hostName}.${config.networking.domain}";
           answer = secrets.hosts.${hostName}.ipv4-address;
         };
       in [
-        {
-          domain = "stormwind.${config.networking.domain}";
-          answer = "192.168.178.10";
-        }
-        {
-          domain = "ironforge.${config.networking.domain}";
-          answer = "192.168.10.10";
-        }
-        {
-          domain = "guiltyspark.${config.networking.domain}";
-          answer = "192.168.10.20";
-        }
-        {
-          domain = "darnassus.${config.networking.domain}";
-          answer = "192.168.1.212";
-        }
+        (internalHost "stormwind" "192.168.178.10")
+        (internalHost "ironforge" "192.168.10.10")
+        (internalHost "guiltyspark" "192.168.10.20")
+        (internalHost "darnassus" "192.168.1.212")
         (externalHost "alfa")
         (externalHost "bravo")
         (externalHost "charlie")
         (externalHost "unifi")
-        {
-          domain = secrets.domain.general;
-          answer = "192.168.178.11";
-        }
         (dalaran "paperless")
         (dalaran "redlib")
         (dalaran "adguardhome")
