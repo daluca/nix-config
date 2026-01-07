@@ -20,12 +20,6 @@
     "redlib"
     "firefly-iii"
     "navidrome"
-    "jellyfin"
-    "jellyseerr"
-    "sonarr"
-    "radarr"
-    "prowlarr"
-    "sabnzbd"
   ];
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
