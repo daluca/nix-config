@@ -9,11 +9,6 @@
     };
   };
 
-  programs.yt-dlp = {
-    enable = true;
-    package = pkgs.unstable.yt-dlp;
-  };
-
   xdg.mimeApps.defaultApplicationPackages = [
     config.programs.mpv.package
   ];
