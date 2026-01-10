@@ -35,7 +35,7 @@ in {
     "ntfyd"
     "nushell"
     "planify"
-    "proton-bridge"
+    "protonmail-bridge"
     "qrrs"
     "signal-desktop"
     "steam"
