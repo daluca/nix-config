@@ -106,7 +106,13 @@
     };
   };
 
-  home.packages = with pkgs.unstable; [
-    jjui
-  ];
+  programs.jjui = {
+    enable = true;
+    settings = {
+      preview = {
+        position = "auto";
+        show_at_start = true;
+      };
+    };
+  };
 }
