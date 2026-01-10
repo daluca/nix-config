@@ -37,6 +37,7 @@ in {
     "nushell"
     "planify"
     "protonmail-bridge"
+    "proton-vpn"
     "qrrs"
     "signal-desktop"
     "steam"
