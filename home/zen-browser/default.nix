@@ -26,6 +26,10 @@ in {
     };
   };
 
+  programs.firefox.profiles.default.settings = {
+    "browser.shell.checkDefaultBrowser" = false;
+  };
+
   xdg.mimeApps.defaultApplicationPackages = [
     config.programs.zen-browser.package
   ];
