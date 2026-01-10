@@ -35,6 +35,6 @@ in {
   ];
 
   home.persistence.home.directories = [
-    ".zen"
+    ".config/zen"
   ];
 }
