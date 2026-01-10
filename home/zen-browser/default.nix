@@ -37,4 +37,8 @@ in {
   home.persistence.home.directories = [
     ".config/zen"
   ];
+
+  home.sessionVariables = {
+    BROWSER = lib.mkForce (lib.getExe config.programs.zen-browser.package);
+  };
 }
