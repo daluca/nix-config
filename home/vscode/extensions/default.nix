@@ -9,6 +9,7 @@
     ./nix-ide.nix
     ./opentofu.nix
     ./tinymist.nix
+    ./todo-highlight.nix
     ./typos.nix
     ./vscode-pets.nix
   ];
