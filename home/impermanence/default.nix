@@ -10,4 +10,6 @@
   };
 
   programs.zsh.history.path = lib.mkForce ("/persistent" + "${config.xdg.dataHome}/zsh/history");
+
+  sops.age.keyFile = lib.mkForce ("/persistent" + "${config.xdg.configHome}/sops/age/keys.txt");
 }

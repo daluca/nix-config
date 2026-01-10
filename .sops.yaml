@@ -10,6 +10,7 @@ keys:
       - &darnassus age102lual882fvygyw47twjzl65uey33u2ps8ulcrr8g258vaafwvpqsj6hyy
       - &dalaran age13n7tntegd6zw8ne0n4at2zlxz425xptlwsceu36tg7tw56f8upcssr4u8u
       - &guiltyspark age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm
+      - &shodan age1227fcdly05etp3g8qea8wcamn2ct2at5l86qznuz92gz6fp95e2sjkw7q4
       - &unifi age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2
       - &alpha age1eyaws92hs5r7tv5elrhd8cd7axq0pa7azn5xnnxeuldv2q4l0ycsx7u3jj
       - &alfa age19fzpnfhta58lm5wduycq6j6th3x2r8d0zv9fqejh06zcllp00e8qlvlfzr
@@ -57,6 +58,11 @@ creation_rules:
       - age:
           - *master
           - *guiltyspark
+  - path_regex: shodan\.sops\.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *shodan
   - path_regex: unifi\.sops\.yaml$
     key_groups:
       - age:

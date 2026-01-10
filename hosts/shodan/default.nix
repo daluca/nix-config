@@ -1,0 +1,23 @@
+{ lib, secrets, ... }:
+
+{
+  imports = [
+    ./..
+    ./disko.nix
+  ] ++ map (m: lib.custom.relativeToRoot m) [
+    "images/hetzner/online/intel"
+  ] ++ map (m: lib.custom.relativeToNixosModules m) [
+    "grub"
+    "impermanence/grub"
+    "remote-unlocking"
+    "tailscale/server"
+  ];
+
+  networking.hostName = "shodan";
+
+  systemd.network.networks."10-uplink".networkConfig.Address = secrets.hosts.shodan.ipv6-address;
+
+  host.network.interface = "enp0s31f6";
+
+  system.stateVersion = "25.11";
+}

@@ -10,6 +10,7 @@ let
     dalaran.tags = [ "raspberry-pi" "the-netherlands" ];
     unifi.tags = [ "digitalocean" "vps" "australia" ];
     guiltyspark.tags = [ "new-zealand" ];
+    shodan = [ "hetzner" "vps" "germany" ];
     artemis = {
       allowLocalDeployment = true;
       targetHost = null;

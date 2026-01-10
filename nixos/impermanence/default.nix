@@ -5,6 +5,7 @@
     ./openssh.nix
     ./secrets.nix
     ./tailscale.nix
+    ./overrides.nix
   ];
 
   fileSystems."/persistent".neededForBoot = true;

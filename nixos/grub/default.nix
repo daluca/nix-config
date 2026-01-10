@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -7,14 +9,15 @@
     efiSupport = true;
     useOSProber = false;
     default = "saved";
+    users = {
+      root.hashedPasswordFile = config.sops.secrets."grub/root/hashed-password".path;
+    };
     entries = {
       restart = true;
       shutdown = true;
       bios = true;
     };
-    extraConfig = /* grub */ ''
-      set allow_config_editor=false
-      set superusers=""
-    '';
   };
+
+  sops.secrets."grub/root/hashed-password" = { };
 }
