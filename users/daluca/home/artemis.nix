@@ -32,6 +32,7 @@ in {
     "neovim"
     "nextcloud-client"
     "nh"
+    "nix-utils"
     "ntfyd"
     "nushell"
     "planify"
