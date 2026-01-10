@@ -9,9 +9,6 @@ in {
 
   programs.zen-browser = {
     enable = true;
-    nativeMessagingHosts = with pkgs; [
-      firefoxpwa
-    ];
     policies = firefoxModule "policies" // firefoxModule "extensions" { inherit config lib pkgs; };
     profiles.default = {
       id = 0;
