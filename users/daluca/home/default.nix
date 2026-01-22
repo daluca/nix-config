@@ -1,13 +1,12 @@
-{ lib, osConfig, inputs, outputs, ... }:
+{ lib, osConfig, outputs, ... }:
 let
   inherit (osConfig.networking) hostName;
 in {
   imports =
     let
       hostExtras = (./. + "/${hostName}.nix");
-    in with inputs; builtins.attrValues outputs.homeManagerModules ++ [
+    in builtins.attrValues outputs.homeManagerModules ++ [
       outputs.nixosModules.host
-      impermanence.homeManagerModules.impermanence
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "bash"
       "btop"
@@ -27,7 +26,10 @@ in {
     homeDirectory = "/home/${username}";
   };
 
-  home.persistence.home.enable = lib.mkDefault false;
+  home.persistence.home = {
+    enable = lib.mkDefault false;
+    persistentStoragePath = "/persistent/";
+  };
 
   xdg.enable = true;
 

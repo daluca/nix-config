@@ -9,8 +9,6 @@
     ./tailscale.nix
   ];
 
-  programs.fuse.userAllowOther = lib.mkIf config.home-manager.users.daluca.home.persistence.home.allowOther true;
-
   fileSystems."/persistent".neededForBoot = true;
 
   environment.persistence.system.enable = true;

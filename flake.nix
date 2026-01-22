@@ -12,6 +12,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     impermanence.url = "github:nix-community/impermanence";
+    impermanence.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    impermanence.inputs.home-manager.follows = "home-manager";
 
     nur.url = "github:nix-community/nur";
     nur.inputs.nixpkgs.follows = "nixpkgs-unstable";

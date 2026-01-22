@@ -3,8 +3,7 @@
 {
   home.persistence.home = {
     enable = true;
-    persistentStoragePath = "/persistent/home/${config.home.username}";
-    allowOther = true;
+    persistentStoragePath = "/persistent/";
     directories = [
       ".local/share/keyrings"
     ];
