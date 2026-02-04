@@ -9,9 +9,9 @@
 
   system.nixos.tags = [
     "raspberry-pi-5"
-    config.boot.loader.raspberryPi.bootloader
+    config.boot.loader.raspberry-pi.bootloader
     config.boot.kernelPackages.kernel.version
   ];
 
-  boot.loader.raspberryPi.bootloader = "kernel";
+  boot.loader.raspberry-pi.bootloader = "kernel";
 }
