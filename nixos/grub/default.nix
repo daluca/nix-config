@@ -12,5 +12,9 @@
       shutdown = true;
       bios = true;
     };
+    extraConfig = /* grub */ ''
+      set allow_config_editor=false
+      set superusers=""
+    '';
   };
 }
