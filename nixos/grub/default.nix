@@ -7,20 +7,10 @@
     efiSupport = true;
     useOSProber = false;
     default = "saved";
-    extraEntries = /* grub */ ''
-      menuentry "System restart" {
-              echo "System rebooting..."
-              reboot
-      }
-
-      menuentry "System shutdown" {
-              echo "System shutting down..."
-              halt
-      }
-
-      menuentry "UEFI Firmware Settings" {
-              fwsetup
-      }
-    '';
+    entries = {
+      restart = true;
+      shutdown = true;
+      bios = true;
+    };
   };
 }
