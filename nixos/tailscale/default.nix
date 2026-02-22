@@ -17,5 +17,7 @@
     owner = config.home-manager.users.daluca.home.username;
   };
 
-  networking.firewall.trustedInterfaces = [ "tailscaled0" ];
+  networking.firewall.trustedInterfaces = [
+    "tailscale0"
+  ];
 }
