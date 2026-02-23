@@ -1,4 +1,4 @@
-{ config, secrets, ... }:
+{ config, lib, pkgs, secrets, ... }:
 
 {
   services.tailscale = {
@@ -20,4 +20,19 @@
   networking.firewall.trustedInterfaces = [
     "tailscale0"
   ];
+
+  systemd.services.tailscaled.serviceConfig.Environment = [
+    "TS_DEBUG_FIREWALL_MODE=nftables"
+  ];
+
+  services.networkd-dispatcher.enable = true;
+
+  services.networkd-dispatcher = {
+    rules."50-tailscale-optimizations" = {
+      onState = [ "routable" ];
+      script = /* bash */ ''
+        ${lib.getExe pkgs.ethtool} --features ${config.host.network.interface} rx-udp-gro-forwarding on rx-gro-list off
+      '';
+    };
+  };
 }

@@ -1,11 +1,10 @@
-{ ... }:
-
 {
   imports = [
     ./rules
   ];
 
-  networking.firewall = {
-    enable = true;
+  networking = {
+    firewall.enable = true;
+    nftables.enable = true;
   };
 }
