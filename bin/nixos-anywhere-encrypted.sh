@@ -3,11 +3,12 @@
 set -euo pipefail
 
 function usage() {
-  echo "Usage: ${0##*/} -h -i -c -p --kexec-aarch64 --build-on-remote --debug [SSH_CONNECTION]"
-  echo ""
+  echo "Usage: ${0##*/} -h -c -i -r -p --kexec-aarch64 --build-on-remote --debug [SSH_CONNECTION]"
+  echo
   echo "Options:"
   echo "  -c  --nixos-configuration     NixOS configuration to deploy"
   echo "  -i  --impermanence            Toggle impermanence paths"
+  echo "  -r  --remote-unlock           Include ssh keys for initrd"
   echo "  -p  --phases                  Comma separated list of nixos-anywhere phases"
   echo "                                  Default: kexec,disko,install,reboot"
   echo "      --kexec-aarch64           Use aarch64-linux kexec image"
@@ -20,6 +21,7 @@ function main() {
   POSITIONAL_ARGS=()
 
   IMPERMANENCE=""
+  REMOTE_UNLOCK=false
   AARCH64=false
   NIXOS_ANYWHERE_PHASES="kexec,disko,install,reboot"
   DEBUG=false
@@ -32,6 +34,10 @@ function main() {
     case "$1" in
       --impermanence|-i)
         IMPERMANENCE="/persistent/system"
+        shift
+        ;;
+      --remote-unlock|-r)
+        REMOTE_UNLOCK=true
         shift
         ;;
       --nixos-configuration|-c)
@@ -108,6 +114,14 @@ function main() {
     "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_ed25519_key" \
     "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_rsa_key" \
     "${temp}/${IMPERMANENCE%/*}/home/daluca/.config/sops/age/keys.txt"
+
+  if [[ "${REMOTE_UNLOCK}" ]]; then
+    sops -d --extract '["initrd_id_rsa"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_rsa_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
+    sops -d --extract '["initrd_id_ed25519"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_ed25519_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
+    chmod 0400 \
+      "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_ed25519_key" \
+      "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_rsa_key"
+  fi
 
   # Install NixOS to the host system with our secrets
   nixos-anywhere \
