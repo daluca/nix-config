@@ -11,6 +11,10 @@
           url = "github:daluca/cloud";
           path = "github.com/daluca/cloud";
         };
+        cloud-config = {
+          url = "github:daluca/cloud-config";
+          path = "github.com/daluca/cloud-config";
+        };
         cv = {
           url = "github:daluca/cv";
           path = "github.com/daluca/cv";
@@ -40,6 +44,7 @@
       groups = {
         personal = [
           "cloud"
+          "cloud-config"
           "cv"
           "first-bevy-game"
           "helm-charts"
