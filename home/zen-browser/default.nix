@@ -26,6 +26,8 @@ in {
     };
   };
 
+  programs.zen-browser.suppressXdgMigrationWarning = true;
+
   programs.firefox.profiles.default.settings = {
     "browser.shell.checkDefaultBrowser" = false;
   };
