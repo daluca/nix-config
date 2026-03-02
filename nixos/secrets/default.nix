@@ -8,8 +8,12 @@
   sops = let
     inherit (config.networking) hostName;
   in {
+    useSystemdActivation = true;
     defaultSopsFile = lib.custom.relativeToHosts "${hostName}/${hostName}.sops.yaml";
     age.keyFile = "/var/lib/sops-nix/keys.txt";
-    useSystemdActivation = true;
   };
+
+  environment.persistence.system.files = [
+    "/var/lib/sops-nix/keys.txt"
+  ];
 }
