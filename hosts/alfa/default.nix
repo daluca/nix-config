@@ -1,10 +1,8 @@
-{ lib, inputs, ... }@args:
+{ lib, ... }@args:
 let
-  secrets = args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
+  secrets = args.secrets // fromTOML (builtins.readFile ./secrets.toml);
 in {
-  imports = with inputs; [
-    disko.nixosModules.disko
-  ] ++ [
+  imports = [
     ./..
     ./disko.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
@@ -12,10 +10,11 @@ in {
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "impermanence"
+    "impermanence/grub"
+    "remote-unlocking/dhcp"
+    "tailscale/server"
     "atticd"
     "nginx"
-    "tailscale/server"
   ];
 
   services.nginx.virtualHosts = {
@@ -32,30 +31,6 @@ in {
   };
 
   networking.hostName = "alfa";
-
-  host.network.interface = "enp1s0";
-
-  boot = {
-    kernelParams = [ "ip=dhcp" ];
-    initrd = {
-      availableKernelModules = [ "virtio-pci" ];
-      network = {
-        enable = true;
-        ssh = {
-          enable = true;
-          port = 22;
-          authorizedKeyFiles = [
-            (lib.custom.relativeToUsers "daluca/keys/id_ed25519.pub")
-          ];
-          hostKeys = [
-            "/persistent/system/etc/ssh/ssh_host_ed25519_key"
-            "/persistent/system/etc/ssh/ssh_host_rsa_key"
-          ];
-          shell = "/bin/cryptsetup-askpass";
-        };
-      };
-    };
-  };
 
   system.stateVersion = "25.11";
 }

@@ -1,9 +1,7 @@
-{ config, lib, secrets, inputs, ... }:
+{ config, lib, secrets, ... }:
 
 {
-  imports = with inputs; [
-    disko.nixosModules.disko
-  ] ++ [
+  imports = [
     ./..
     ./disko.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
@@ -11,7 +9,8 @@
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "impermanence"
+    "impermanence/grub"
+    "remote-unlocking/dhcp"
     "nginx"
     "ntfy-sh"
     "atuin"
@@ -40,34 +39,12 @@
     };
     "atuin.${secrets.domain.general}" = tls // {
       locations."/" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString config.services.atuin.port}";
+        proxyPass = "http://127.0.0.1:${toString config.services.atuin.port}";
       };
     };
   };
 
   networking.hostName = "bravo";
-
-  boot = {
-    kernelParams = [ "ip=dhcp" ];
-    initrd = {
-      availableKernelModules = [ "virtio-pci" ];
-      network = {
-        enable = true;
-        ssh = {
-          enable = true;
-          port = 22;
-          authorizedKeyFiles = [
-            (lib.custom.relativeToUsers "daluca/keys/id_ed25519.pub")
-          ];
-          hostKeys = [
-            "/persistent/system/etc/ssh/ssh_host_ed25519_key"
-            "/persistent/system/etc/ssh/ssh_host_rsa_key"
-          ];
-          shell = "/bin/cryptsetup-askpass";
-        };
-      };
-    };
-  };
 
   system.stateVersion = "25.11";
 }
