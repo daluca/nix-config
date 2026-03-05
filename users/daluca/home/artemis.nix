@@ -1,6 +1,6 @@
 { config, lib, ... }@args:
 let
-  secrets = args.secrets // builtins.fromTOML (builtins.readFile ../secrets.toml);
+  secrets = args.secrets // fromTOML (builtins.readFile ../secrets.toml);
 in {
   imports = map (m: lib.custom.relativeToHomeManagerModules m) [
     "accounts"
@@ -13,6 +13,7 @@ in {
     "discord"
     "doctl"
     "element"
+    "faugus-launcher"
     "feishin"
     "firefox"
     "ghostty"
@@ -22,6 +23,7 @@ in {
     "helium"
     "heroic"
     "impermanence"
+    "itch"
     "jujutsu"
     "kubernetes"
     "lazygit"
