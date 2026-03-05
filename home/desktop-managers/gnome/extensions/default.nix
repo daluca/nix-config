@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 {
   imports = [
     ./app-indicator.nix
@@ -6,11 +8,12 @@
     ./gsconnect
     ./in-picture.nix
     ./no-overview.nix
+    ./paperwm.nix
     ./tailscale-qs.nix
   ];
 
   dconf.settings."org/gnome/shell" = {
     disable-user-extensions = false;
-    disabled-extensions = [ ];
+    disabled-extensions = lib.mkDefault [ ];
   };
 }
