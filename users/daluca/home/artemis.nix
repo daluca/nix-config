@@ -29,6 +29,7 @@ in {
     "kubernetes"
     "lazygit"
     "libreoffice"
+    "logseq"
     "modern-unix"
     "mpv"
     "neovide"
