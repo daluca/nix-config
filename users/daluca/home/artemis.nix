@@ -5,6 +5,7 @@ in {
   imports = map (m: lib.custom.relativeToHomeManagerModules m) [
     "accounts"
     "alacritty"
+    "anki"
     "atuin"
     "bitwarden"
     "btop"
