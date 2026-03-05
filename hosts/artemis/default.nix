@@ -50,7 +50,7 @@
   host.network.interface = "wlp0s20f3";
 
   networking.localCommands = /* bash */ ''
-    ip rule add to 192.168.178.0/24 priority 2500 lookup main || true
+    ip rule add to 10.1.0.0/16 priority 2500 lookup main || true
   '';
 
   boot.initrd.postResumeCommands = lib.mkForce (lib.mkAfter /* bash */ ''

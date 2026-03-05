@@ -12,14 +12,14 @@
       dhcp.enabled = lib.mkForce false;
       dns = {
         bind_hosts = lib.mkForce [
-          "10.0.1.11"
+          "10.1.1.11"
           "127.0.0.1"
         ];
       };
       filtering.rewrites = [
         {
           domain = "dalaran.${config.networking.domain}";
-          answer = "10.0.1.11";
+          answer = "10.1.1.11";
         }
       ];
     };

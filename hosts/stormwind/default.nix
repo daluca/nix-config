@@ -20,13 +20,13 @@
     interfaces.end0 = {
       ipv4.addresses = [
         {
-          address = "192.168.178.10";
+          address = "10.1.1.10";
           prefixLength = 24;
         }
       ];
     };
     defaultGateway = {
-      address = "192.168.178.1";
+      address = "10.1.1.1";
       interface = "end0";
     };
   };
@@ -37,11 +37,11 @@
   };
 
   networking.localCommands = /* bash */ ''
-    ip rule add to 192.168.178.0/24 priority 2500 lookup main || true
+    ip rule add to 10.1.0.0/16 priority 2500 lookup main || true
   '';
 
   services.tailscale.extraUpFlags = [
-    "--advertise-routes=192.168.178.0/24"
+    "--advertise-routes=10.1.0.0/16"
     "--hostname=the-netherlands"
   ];
 

@@ -6,9 +6,9 @@
     openFirewall = true;
     settings = {
       dns = {
-        bind_hosts = [ "10.0.1.10" ];
+        bind_hosts = [ "10.1.1.10" ];
         upstream_dns = [
-          "[//1.0.10.in-addr.arpa/${config.networking.domain}/]10.0.1.1"
+          "[//in-addr.arpa/${config.networking.domain}/]10.1.1.1"
           "[/${secrets.parents.domain}/]192.168.10.10"
         ];
         fallback_dns = [
@@ -21,7 +21,7 @@
       let
         dalaran = subdomain: {
           domain = "${subdomain}.${secrets.domain.general}";
-          answer = "10.0.1.11";
+          answer = "10.1.1.11";
         };
         shodan = subdomain: {
           domain = "${subdomain}.${secrets.domain.general}";
@@ -36,7 +36,7 @@
           answer = secrets.hosts.${hostName}.ipv4-address;
         };
       in [
-        (internalHost "stormwind" "10.0.1.10")
+        (internalHost "stormwind" "10.1.1.10")
         (internalHost "ironforge" "192.168.10.10")
         (internalHost "guiltyspark" "192.168.10.20")
         (internalHost "darnassus" "192.168.1.212")

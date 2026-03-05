@@ -29,14 +29,14 @@ in with config.services; {
 
   "home-assistant.${secrets.domain.general}" = tls // {
     locations."/" = {
-      proxyPass = "http://10.0.1.12:8123";
+      proxyPass = "http://10.1.1.12:8123";
       proxyWebsockets = true;
     };
   };
 
   "zigbee2mqtt.${secrets.domain.general}" = tls // {
     locations."/" = {
-      proxyPass = "http://10.0.1.12:8099";
+      proxyPass = "http://10.1.1.12:8099";
       proxyWebsockets = true;
     };
   };
