@@ -66,8 +66,6 @@
     colmena.url = "github:zhaofengli/colmena";
     colmena.inputs.nixpkgs.follows = "nixpkgs-unstable";
     colmena.inputs.stable.follows = "nixpkgs";
-
-    openthread-border-router.url = "github:mrene/nixpkgs/openthread-border-router";
   };
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:

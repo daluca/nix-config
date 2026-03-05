@@ -801,22 +801,6 @@
         "type": "github"
       }
     },
-    "openthread-border-router": {
-      "locked": {
-        "lastModified": 1766776257,
-        "narHash": "sha256-MG9DnzBn6TdAztaMPVhW9sjYj2bi9Jcux0F0fJ6LeO4=",
-        "owner": "mrene",
-        "repo": "nixpkgs",
-        "rev": "0c4c97066d555b7d27a0a56ee400130ec51f02ee",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mrene",
-        "ref": "openthread-border-router",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "proton-ge": {
       "inputs": {
         "git-hooks": "git-hooks_3",
@@ -886,7 +870,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim-config": "nixvim-config",
         "nur": "nur",
-        "openthread-border-router": "openthread-border-router",
         "proton-ge": "proton-ge",
         "raspberry-pi-nix": "raspberry-pi-nix",
         "sops-nix": "sops-nix",
