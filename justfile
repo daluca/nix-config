@@ -31,7 +31,7 @@ nixos-install host:
 
 [no-exit-message]
 unlock host:
-    sops --decrypt --extract '["disk-encryption-key"]' hosts/{{ host }}/{{ host }}.sops.yaml | ssh root@{{ host }}
+    sops --decrypt --extract '["disk-encryption-key"]' hosts/{{ host }}/{{ host }}.sops.yaml | ssh root@{{ host }} -p 22022
 
 ssh-to-age key:
     #! /usr/bin/env -S nix shell nixpkgs#bash nixpkgs#ssh-to-age --command bash
