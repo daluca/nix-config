@@ -27,10 +27,6 @@
           domain = "${subdomain}.${secrets.domain.general}";
           answer = "10.1.1.11";
         };
-        shodan = subdomain: {
-          domain = "${subdomain}.${secrets.domain.general}";
-          answer = "100.64.0.19";
-        };
         internalHost = hostName: answer: {
           inherit answer;
           domain = "${hostName}.${config.networking.domain}";
@@ -55,15 +51,8 @@
         (dalaran "navidrome")
         (dalaran "firefly")
         (dalaran "firefly-importer")
-        (dalaran "request")
-        (dalaran "jellyfin")
-        (dalaran "sonarr")
-        (dalaran "radarr")
-        (dalaran "prowlarr")
-        (dalaran "sabnzbd")
         (dalaran "home-assistant")
         (dalaran "zigbee2mqtt")
-        (shodan "sonarr")
         (dalaran "unifi")
       ];
       dhcp = {
