@@ -7,7 +7,7 @@
 
   boot.initrd.postResumeCommands = let
     root = config.fileSystems."/";
-  in lib.mkIf (root.fsType == "btrfs") (lib.mkAfter /* bash */ ''
+  in lib.mkIf (root.fsType == "btrfs") (lib.mkForce (lib.mkAfter /* bash */ ''
     mkdir /btrfs_tmp
     mount -t btrfs ${root.device} /btrfs_tmp/
 
@@ -31,5 +31,5 @@
 
     btrfs subvolume create /btrfs_tmp/@rootfs
     umount /btrfs_tmp
-  '');
+  ''));
 }
