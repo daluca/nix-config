@@ -14,12 +14,6 @@
     plugins = with pkgs.tmuxPlugins; [
       yank
       {
-        plugin = better-mouse-mode;
-        extraConfig = /* tmux */ ''
-          set -g @scroll-speed-num-lines-per-scroll "1"
-        '';
-      }
-      {
         plugin = tmux-sessionx;
         extraConfig = /* tmux */ ''
           set -g @sessionx-bind "C-o"
@@ -52,14 +46,13 @@
     terminal = "screen-256color";
   };
 
-  programs.zsh = {
-    sessionVariables = {
-      ZSH_TMUX_CONFIG = "${config.xdg.configHome}/tmux/tmux.conf";
-    };
-    oh-my-zsh.plugins = [
-      "tmux"
-    ];
+  programs.zsh.sessionVariables = {
+    ZSH_TMUX_CONFIG = "${config.xdg.configHome}/tmux/tmux.conf";
   };
+
+  programs.zsh.oh-my-zsh.plugins = [
+    "tmux"
+  ];
 
   catppuccin.tmux = {
     enable = true;
