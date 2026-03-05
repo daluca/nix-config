@@ -42,7 +42,6 @@ in {
     "signal-desktop"
     "steam"
     "systemctl-tui"
-    "terraform"
     "thunderbird"
     "tools"
     "uutils"
