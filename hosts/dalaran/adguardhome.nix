@@ -7,19 +7,19 @@
 
   services.adguardhome = {
     port = lib.mkForce 3000;
-    openFirewall = lib.mkForce false;
+    openFirewall = lib.mkForce true;
     settings = {
       dhcp.enabled = lib.mkForce false;
       dns = {
         bind_hosts = lib.mkForce [
-          "192.168.178.11"
+          "10.0.1.11"
           "127.0.0.1"
         ];
       };
       filtering.rewrites = [
         {
           domain = "dalaran.${config.networking.domain}";
-          answer = "192.168.178.11";
+          answer = "10.0.1.11";
         }
       ];
     };

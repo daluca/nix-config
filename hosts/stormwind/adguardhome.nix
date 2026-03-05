@@ -1,15 +1,14 @@
 { config, secrets, ... }:
-let
-  hours = 60 * 60;
-in {
+
+{
   services.adguardhome = {
     port = 80;
     openFirewall = true;
     settings = {
       dns = {
-        bind_hosts = [ "192.168.178.10" ];
+        bind_hosts = [ "10.0.1.10" ];
         upstream_dns = [
-          "[//178.168.192.in-addr.arpa/${config.networking.domain}/]192.168.178.1"
+          "[//1.0.10.in-addr.arpa/${config.networking.domain}/]10.0.1.1"
           "[/${secrets.parents.domain}/]192.168.10.10"
         ];
         fallback_dns = [
@@ -22,11 +21,11 @@ in {
       let
         dalaran = subdomain: {
           domain = "${subdomain}.${secrets.domain.general}";
-          answer = "192.168.178.11";
+          answer = "10.0.1.11";
         };
-        homeassistant = subdomain: {
+        shodan = subdomain: {
           domain = "${subdomain}.${secrets.domain.general}";
-          answer = "192.168.178.12";
+          answer = "100.64.0.19";
         };
         internalHost = hostName: answer: {
           inherit answer;
@@ -37,7 +36,7 @@ in {
           answer = secrets.hosts.${hostName}.ipv4-address;
         };
       in [
-        (internalHost "stormwind" "192.168.178.10")
+        (internalHost "stormwind" "10.0.1.10")
         (internalHost "ironforge" "192.168.10.10")
         (internalHost "guiltyspark" "192.168.10.20")
         (internalHost "darnassus" "192.168.1.212")
@@ -45,6 +44,7 @@ in {
         (externalHost "bravo")
         (externalHost "charlie")
         (externalHost "unifi")
+        (externalHost "shodan")
         (dalaran "paperless")
         (dalaran "redlib")
         (dalaran "adguardhome")
@@ -57,28 +57,12 @@ in {
         (dalaran "radarr")
         (dalaran "prowlarr")
         (dalaran "sabnzbd")
-        (homeassistant "home-assistant")
-        (homeassistant "openthread-border-router")
-        (homeassistant "zigbee2mqtt")
+        (dalaran "home-assistant")
+        (dalaran "zigbee2mqtt")
+        (shodan "sonarr")
       ];
       dhcp = {
-        enabled = true;
-        interface_name = "end0";
-        local_domain_name = config.networking.domain;
-        dhcpv4 = {
-          gateway_ip = "192.168.178.1";
-          subnet_mask = "255.255.255.0";
-          range_start = "192.168.178.100";
-          range_end = "192.168.178.200";
-          lease_duration = 24 * hours;
-          options = [
-            "6 ips 192.168.178.10,192.168.178.11"
-            # TODO: Remove when issue has been fixed
-            # https://github.com/AdguardTeam/AdGuardHome/issues/6749
-            # Work around: Manually supply option
-            "15 text ${config.networking.domain}"
-          ];
-        };
+        enabled = false;
       };
     };
   };
