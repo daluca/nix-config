@@ -22,6 +22,11 @@ in {
         "browser.uiCustomization.state" = import ./layout.nix;
         "browser.tabs.groups.enabled" = true;
         "browser.sessionstore.resume_from_crash" = true;
+        # AI
+        "browser.ml.enable" = false;
+        "browser.ml.chat.enabled" = false;
+        "browser.ml.smartAssist.enabled" = false;
+        "extensions.ml.enabled" = false;
         # Privacy
         "privacy.donottrackheader.enabled" = true;
         "privacy.globalprivacycontrol.enabled" = true;
