@@ -14,4 +14,6 @@
   documentation.nixos.enable = false;
 
   systemd.enableEmergencyMode = false;
+
+  boot.loader.grub.entries.bios = lib.mkForce false;
 }
