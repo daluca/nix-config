@@ -1,9 +1,9 @@
 {
   imports = [
-    ../.
+    ./..
   ];
 
-  boot.initrd.kernelModules = [
+  boot.kernelParams = [
     "ip=dhcp"
   ];
 }
