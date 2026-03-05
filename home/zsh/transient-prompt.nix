@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   programs.zsh.initContent = lib.mkAfter /* zsh */ /* bash */ ''
@@ -6,7 +6,7 @@
     add-zle-hook-widget line-finish transient-prompt
 
     function transient-prompt() {
-      PROMPT="$( starship module character )" RPROMPT="$( starship module cmd_duration )" zle .reset-prompt
+      PROMPT="$( ${lib.getExe config.programs.starship.package} module character )" RPROMPT="$( ${lib.getExe config.programs.starship.package} module cmd_duration )" zle .reset-prompt
     }
   '';
 }
