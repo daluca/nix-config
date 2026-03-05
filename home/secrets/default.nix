@@ -14,7 +14,7 @@ in {
     ];
   };
 
-  home.persistence.home.directories = [
-    ".config/sops/age"
+  home.persistence.home.files = [
+    ".config/sops/age/keys.txt"
   ];
 }
