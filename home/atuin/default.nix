@@ -30,7 +30,7 @@ rec {
         setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
 
         selected=$(
-          eval ${lib.getExe programs.atuin.package} search --cmd-only --reverse | ${lib.getExe config.programs.fzf.package} --tmux center,60%,border-native
+          eval ${lib.getExe programs.atuin.package} search --cmd-only --reverse | ${lib.getExe config.programs.fzf.package}
         )
         local ret=$?
         if [ -n "$selected" ]; then

@@ -4,20 +4,21 @@
   programs.fzf = {
     enable = true;
     enableBashIntegration = false;
-    defaultCommand = "${config.programs.fd.package}/bin/fd --type file";
+    defaultCommand = "${lib.getExe config.programs.fd.package} --type file";
     defaultOptions = [
+      "--style full"
       "--tmux center,60%,border-native"
     ];
-    fileWidgetCommand = "${config.programs.fd.package}/bin/fd --type file";
+    fileWidgetCommand = "${lib.getExe config.programs.fd.package} --type file";
     fileWidgetOptions = [
       "--preview '${lib.getExe pkgs.fzf-preview} {}'"
+      "--bind 'focus:transform-header:${lib.getExe pkgs.file} --brief {}'"
       "--tmux center,80%,border-native"
-      "--select-1"
       "--exit-0"
     ];
-    changeDirWidgetCommand = "${config.programs.fd.package}/bin/fd --type directory";
+    changeDirWidgetCommand = "${lib.getExe config.programs.fd.package} --type directory";
     changeDirWidgetOptions = [
-      "--preview '${pkgs.tree}/bin/tree -C {}'"
+      "--preview '${lib.getExe pkgs.tree} -C {}'"
       "--tmux center,80%,border-native"
       "--select-1"
       "--exit-0"
