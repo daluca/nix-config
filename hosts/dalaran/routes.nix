@@ -11,22 +11,35 @@ let
 in with config.services; {
   "paperless.${secrets.domain.general}" = tls // {
     locations."/" = {
-      proxyPass = "http://127.0.0.1:${builtins.toString paperless.port}";
+      proxyPass = "http://127.0.0.1:${toString paperless.port}";
     };
   };
 
   "redlib.${secrets.domain.general}" = tls // {
     locations."/" = {
-      proxyPass = "http://127.0.0.1:${builtins.toString redlib.port}";
+      proxyPass = "http://127.0.0.1:${toString redlib.port}";
     };
   };
 
   "navidrome.${secrets.domain.general}" = tls // {
     locations."/" = {
-      proxyPass = "http://127.0.0.1:${builtins.toString navidrome.settings.Port}";
+      proxyPass = "http://127.0.0.1:${toString navidrome.settings.Port}";
     };
   };
 
+  "home-assistant.${secrets.domain.general}" = tls // {
+    locations."/" = {
+      proxyPass = "http://10.0.1.12:8123";
+      proxyWebsockets = true;
+    };
+  };
+
+  "zigbee2mqtt.${secrets.domain.general}" = tls // {
+    locations."/" = {
+      proxyPass = "http://10.0.1.12:8099";
+      proxyWebsockets = true;
+    };
+  };
 
   ${firefly-iii.virtualHost} = tls;
 
