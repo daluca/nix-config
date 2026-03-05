@@ -73,7 +73,7 @@
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
   let
     inherit (self) outputs;
-    inherit (lib) nixosSystem homeManagerConfiguration;
+    inherit (lib) nixosSystem;
     lib = nixpkgs.lib.extend (_final: _prev: { custom = import ./lib { inherit lib; }; } // home-manager.lib);
     secrets = fromTOML (builtins.readFile ./secrets/secrets.toml);
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -230,30 +230,6 @@
       specialArgs = { inherit inputs outputs lib secrets; };
       modules = [
         ./hosts/charlie
-      ];
-    };
-
-    homeConfigurations."lucas.slebos@RRS-A00690" =
-    let
-      system = "x86_64-linux";
-      pkgs = pkgs' system;
-    in homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = { inherit inputs outputs lib secrets; hostname = "RRS-A00690"; };
-      modules = [
-        ./users/lucas.slebos/home
-      ];
-    };
-
-    homeConfigurations."lucas.slebos@RRS-A00746" =
-    let
-      system = "x86_64-linux";
-      pkgs = pkgs' system;
-    in homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = { inherit inputs outputs lib secrets; hostname = "RRS-A00746"; };
-      modules = [
-        ./users/lucas.slebos/home
       ];
     };
   };
