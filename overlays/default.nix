@@ -15,6 +15,13 @@
 
     helium = nur.legacyPackages.${system}.repos.Ev357.helium;
 
+    # TODO: Remove in 26.05 or when build failure is fixed
+    # https://github.com/NixOS/nixpkgs/issues/481611
+    # Work around: Add flag suggested in thread
+    navidrome = prev.navidrome.overrideAttrs {
+      CGO_CFLAGS_ALLOW = ".*--define-prefix.*";
+    };
+
     adguardhome = prev.adguardhome.overrideAttrs (oldAttrs: rec {
       version = "0.107.65";
 
