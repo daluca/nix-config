@@ -60,6 +60,7 @@
         (dalaran "home-assistant")
         (dalaran "zigbee2mqtt")
         (shodan "sonarr")
+        (dalaran "unifi")
       ];
       dhcp = {
         enabled = false;

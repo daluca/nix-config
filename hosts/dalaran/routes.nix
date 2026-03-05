@@ -41,6 +41,26 @@ in with config.services; {
     };
   };
 
+  "unifi.${secrets.domain.general}" = tls // {
+    locations."/" = {
+      proxyPass = "https://10.1.1.1:443";
+    };
+    locations."/api/ws/" = {
+      proxyPass = "https://10.1.1.1:443";
+      proxyWebsockets = true;
+      extraConfig = /* nginx */ ''
+        proxy_ssl_verify off;
+      '';
+    };
+    locations."/proxy/network/ws/" = {
+      proxyPass = "https://10.1.1.1:443";
+      proxyWebsockets = true;
+      extraConfig = /* nginx */ ''
+        proxy_ssl_verify off;
+      '';
+    };
+  };
+
   ${firefly-iii.virtualHost} = tls;
 
   ${firefly-iii-data-importer.virtualHost} = tls;
