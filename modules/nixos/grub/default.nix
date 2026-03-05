@@ -25,6 +25,7 @@ in with lib; {
           };
         };
       };
+      default = { };
     };
   };
 
