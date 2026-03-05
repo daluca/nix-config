@@ -10,13 +10,17 @@ in {
       dns = {
         bind_hosts = [ "192.168.10.10" ];
         upstream_dns = [
-          "[//168.192.in-addr.arpa/${config.networking.domain}/]192.168.10.254"
+          "[//in-addr.arpa/${config.networking.domain}/]192.168.10.254"
+          "[//ip6.arpa/${config.networking.domain}/]192.168.10.254"
         ];
         fallback_dns = [
           "9.9.9.9"
           "149.112.112.112"
         ];
         hostsfile_enabled = false;
+        local_ptr_upstreams = [
+          "192.168.10.254"
+        ];
       };
       filtering.rewrites = [
         {

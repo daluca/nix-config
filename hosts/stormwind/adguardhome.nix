@@ -9,6 +9,7 @@
         bind_hosts = [ "10.1.1.10" ];
         upstream_dns = [
           "[//in-addr.arpa/${config.networking.domain}/]10.1.1.1"
+          "[//ip6.arpa/${config.networking.domain}/]10.1.1.1"
           "[/${secrets.parents.domain}/]192.168.10.10"
         ];
         fallback_dns = [
@@ -16,6 +17,9 @@
           "149.112.112.112"
         ];
         hostsfile_enabled = false;
+        local_ptr_upstreams = [
+          "10.1.1.1"
+        ];
       };
       filtering.rewrites =
       let
