@@ -18,11 +18,13 @@ with lib; {
       type = types.submodule {
         options = {
           interface = lib.mkOption {
-            type = types.str;
+            type = types.nullOr types.str;
+            default = null;
             description = "What is the primary network interface";
           };
         };
       };
+      default = { };
     };
   };
 }

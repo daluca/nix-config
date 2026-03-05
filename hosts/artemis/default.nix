@@ -47,6 +47,8 @@
 
   host.battery = true;
 
+  host.network.interface = "wlp0s20f3";
+
   networking.localCommands = /* bash */ ''
     ip rule add to 192.168.178.0/24 priority 2500 lookup main || true
   '';

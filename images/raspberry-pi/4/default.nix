@@ -10,4 +10,6 @@
   boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
 
   raspberry-pi-nix.libcamera-overlay.enable = false;
+
+  host.network.interface = "end0";
 }

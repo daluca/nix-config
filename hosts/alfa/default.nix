@@ -33,6 +33,8 @@ in {
 
   networking.hostName = "alfa";
 
+  host.network.interface = "enp1s0";
+
   boot = {
     kernelParams = [ "ip=dhcp" ];
     initrd = {

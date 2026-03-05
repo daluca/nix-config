@@ -28,11 +28,18 @@
   services.networkd-dispatcher.enable = true;
 
   services.networkd-dispatcher = {
-    rules."50-tailscale-optimizations" = {
+    rules."50-tailscale-optimisations" = {
       onState = [ "routable" ];
       script = /* bash */ ''
         ${lib.getExe pkgs.ethtool} --features ${config.host.network.interface} rx-udp-gro-forwarding on rx-gro-list off
       '';
     };
   };
+
+  assertions = [
+    {
+      assertion = config.host.network.interface != null;
+      message = "host.network.interface must be set for tailscale optimisations";
+    }
+  ];
 }

@@ -1,6 +1,6 @@
 { config, lib, inputs, ... }@args:
 let
-  secrets = args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
+  secrets = args.secrets // fromTOML (builtins.readFile ./secrets.toml);
 in {
   imports = with inputs; [
     nixos-hardware.nixosModules.common-cpu-intel
@@ -33,6 +33,8 @@ in {
     hostName = "guiltyspark";
     hostId = "5c9bd4a2";
   };
+
+  host.network.interface = "eno1";
 
   services.tailscale.extraUpFlags = [
     "--advertise-routes=192.168.10.0/24"
