@@ -27,14 +27,23 @@
         # Editor
         "editor.rulers" = [ 80 ];
         "editor.renderWhitespace" = "trailing";
-        "editor.fontLigatures" = true;
         "editor.fontFamily" = lib.concatStringsSep ", " [
           "Monaspace Argon Var"
-          "FiraCode Nerd Font"
-          "Menlo"
-          "Monaco"
-          "'Courier New'"
-          "monospace"
+          "Symbols Nerd Font"
+        ];
+        "editor.fontLigatures" = lib.concatStringsSep ", " [
+          "'calt'"
+          "'ss01'"
+          "'ss02'"
+          "'ss03'"
+          "'ss04'"
+          "'ss05'"
+          "'ss06'"
+          "'ss07'"
+          "'ss08'"
+          "'ss09'"
+          "'ss10'"
+          "'liga'"
         ];
         # Files
         "files.trimTrailingWhitespace" = true;

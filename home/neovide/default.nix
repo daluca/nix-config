@@ -6,12 +6,9 @@
     package = pkgs.unstable.neovide;
     settings = {
       font = let
-        font = "Monaspace Argon Var";
+        font = "Monaspace Krypton Var";
       in {
         normal = [font];
-        bold = [font];
-        italic = [font];
-        bold_italic = [font];
         size = 12;
         features.${font} = [
           "+calt"
@@ -24,13 +21,14 @@
           "+ss07"
           "+ss08"
           "+ss09"
+          "+ss10"
           "+liga"
         ];
       };
     };
   };
 
-  xdg.mimeApps.defaultApplicationPackages = [
-    config.programs.neovide.package
+  xdg.mimeApps.defaultApplicationPackages = with config; [
+    programs.neovide.package
   ];
 }
