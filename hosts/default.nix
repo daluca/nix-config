@@ -12,6 +12,7 @@ in {
     "openssh"
     "secrets"
     "networking"
+    "sudo"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "root"
     "daluca"
