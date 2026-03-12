@@ -31,11 +31,6 @@
     };
   };
 
-  networking.firewall = rec {
-    allowedTCPPorts = [ 67 ];
-    allowedUDPPorts = allowedTCPPorts;
-  };
-
   networking.localCommands = /* bash */ ''
     ip rule add to 10.1.0.0/16 priority 2500 lookup main || true
   '';
