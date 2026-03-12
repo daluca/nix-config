@@ -2,7 +2,8 @@
 
 {
   fonts.packages = with pkgs; [
-    nerd-fonts.symbols-only
     monaspace
+    nerd-fonts.monaspace
+    nerd-fonts.symbols-only
   ];
 }

@@ -1,19 +1,14 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.alacritty = {
     enable = true;
     package = pkgs.unstable.alacritty;
     settings = {
-      terminal.shell = "${config.programs.zsh.package}/bin/zsh";
-      font = let
-        font = "MesloLGS Nerd Font";
-      in {
+      terminal.shell = lib.getExe config.programs.zsh.package;
+      font = {
+        normal.family = "MonaspiceKr Nerd Font";
         size = 11.0;
-	      normal.family = font;
-	      bold.family = font;
-	      italic.family = font;
-	      bold_italic.family = font;
       };
     };
   };
