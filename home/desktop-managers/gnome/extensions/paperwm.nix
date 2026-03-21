@@ -9,6 +9,7 @@ with pkgs.gnomeExtensions; {
     ];
     "org/gnome/shell/extensions/paperwm" = {
       show-window-position-bar = false;
+      show-workspace-indicator = false;
       selection-border-radius-bottom = 12;
       window-gap = 10;
       horizontal-margin = 5;
