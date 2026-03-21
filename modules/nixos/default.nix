@@ -4,4 +4,5 @@
   host = import ./host;
   attic-watch-store = import ./attic-watch-store;
   grub = import ./grub;
+  configarr = import ./configarr;
 }

@@ -1,4 +1,4 @@
-{ config, secrets, ... }:
+{ config, lib, secrets, ... }:
 
 {
   services.adguardhome = {
@@ -10,7 +10,14 @@
         upstream_dns = [
           "[//in-addr.arpa/ip6.arpa/${config.networking.domain}/]10.1.1.1"
           "[/${secrets.parents.domain}/]192.168.10.10"
-          "[/jellyfin.${secrets.parents.domain}/]#"
+          "[/${lib.concatStringsSep "/" [
+            "jellyfin.${secrets.parents.domain}"
+            "request.${secrets.parents.domain}"
+            "requests.${secrets.parents.domain}"
+            "jellyfin.${secrets.domain.general}"
+            "request.${secrets.domain.general}"
+            "requests.${secrets.domain.general}"
+          ]}/]#"
         ];
         fallback_dns = [
           "9.9.9.9"
@@ -26,6 +33,10 @@
         dalaran = subdomain: {
           domain = "${subdomain}.${secrets.domain.general}";
           answer = "10.1.1.11";
+        };
+        shodan = subdomain: {
+          domain = "${subdomain}.${secrets.domain.general}";
+          answer = secrets.hosts.shodan.tailscale-address;
         };
         internalHost = hostName: answer: {
           inherit answer;
@@ -55,6 +66,11 @@
         (dalaran "home-assistant")
         (dalaran "zigbee2mqtt")
         (dalaran "unifi")
+        (shodan "sonarr")
+        (shodan "radarr")
+        (shodan "prowlarr")
+        (shodan "sabnzbd")
+        (shodan "qbittorrent")
       ];
     };
   };

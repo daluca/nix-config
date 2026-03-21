@@ -14,4 +14,5 @@ in {
   terraform = callPackage ./terraform { };
   tunarr = callPackage ./tunarr { };
   ntfyd = callPackage ./ntfyd { };
+  configarr = callPackage ./configarr { };
 }

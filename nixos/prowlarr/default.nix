@@ -1,6 +1,9 @@
 {
   services.prowlarr = {
     enable = true;
-    openFirewall = true;
   };
+
+  environment.persistence.system.directories = [
+    { directory = "/var/lib/private/prowlarr"; mode = "0700"; defaultPerms.mode = "0700"; }
+  ];
 }

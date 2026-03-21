@@ -1,7 +1,13 @@
+{ config, ... }:
+
 {
   services.sonarr = {
     enable = true;
-    openFirewall = true;
+    user = "starr";
     group = "starr";
   };
+
+  environment.persistence.system.directories = [
+    config.services.sonarr.dataDir
+  ];
 }

@@ -1,4 +1,4 @@
-{ lib, secrets, ... }:
+{ config, lib, secrets, ... }:
 
 {
   imports = [
@@ -6,12 +6,29 @@
     ./disko.nix
   ] ++ map (m: lib.custom.relativeToRoot m) [
     "images/hetzner/online/intel"
+  ] ++ map (m: lib.custom.relativeToUsers m) [
+    "starr"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "grub"
     "impermanence/grub"
     "remote-unlocking"
     "tailscale/server"
+    "nginx"
+    "jellyfin"
+    "jellyseerr"
+    "sonarr"
+    "radarr"
+    "prowlarr"
+    "configarr"
+    "sabnzbd"
+    "qbittorrent"
   ];
+
+  hardware.graphics.enable = true;
+
+  security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
+
+  services.nginx.virtualHosts = import ./routes.nix { inherit config secrets; };
 
   networking.hostName = "shodan";
 
