@@ -14,7 +14,7 @@ in {
       id = 0;
       isDefault = true;
       search = firefoxModule "search" { inherit config pkgs osConfig secrets; };
-      bookmarks = firefoxModule "bookmarks" { inherit config lib secrets; };
+      bookmarks = firefoxModule "bookmarks" { inherit secrets; };
       settings = firefoxModule "arkenfox" // {
         # Browser
         "browser.startup.page" = 1;

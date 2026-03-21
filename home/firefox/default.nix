@@ -9,7 +9,7 @@ in {
       id = 0;
       isDefault = true;
       search = import ./search.nix { inherit config pkgs osConfig secrets; };
-      bookmarks = import ./bookmarks.nix { inherit config lib secrets; };
+      bookmarks = import ./bookmarks.nix { inherit secrets; };
       settings = import ./arkenfox.nix // {
         # Browser
         "browser.startup.page" = 1;
