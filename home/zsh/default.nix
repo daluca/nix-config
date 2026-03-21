@@ -41,7 +41,7 @@
       ];
       extraConfig = /* zsh */ /* bash */ ''
         zstyle ':omz:update' mode disabled
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview '${lib.getExe config.programs.eza.package} -1 --color=always $realpath'
         zstyle ':fzf-tab:complete:cd:*' popup-min-size 100 20
         zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
       '';
