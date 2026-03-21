@@ -3,4 +3,4 @@
 /result
 /nix-config.txt
 ssh_*_key
-*.pem
+cache-priv-key.pem
