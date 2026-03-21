@@ -19,7 +19,7 @@
   '';
 
   services.tailscale.extraUpFlags = [
-    "--advertise-routes=192.168.1.192/26"
+    "--advertise-routes=192.168.1.0/24"
     "--hostname=united-kingdom"
   ];
 
