@@ -3,11 +3,12 @@ let
   inherit (config) sops;
   inherit (secrets.email) proton hotmail gmail;
   realName = "Lucas Slebos";
+  OAuth2 = 10;
   thunderbird = {
     enable = true;
     settings = id: {
-      "mail.smtpserver.smtp_${id}.authMethod" = /* OAuth2 */ 10;
-      "mail.server.server_${id}.authMethod" = /* OAuth2 */ 10;
+      "mail.smtpserver.smtp_${id}.authMethod" = OAuth2;
+      "mail.server.server_${id}.authMethod" = OAuth2;
     };
   };
 in {
