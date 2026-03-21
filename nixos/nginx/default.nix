@@ -41,7 +41,7 @@ in {
     defaults = {
       email = "letsencrypt@${secrets.email.alias.primary}";
       group = "nginx";
-      dnsResolver = "1.1.1.1:53";
+      dnsResolver = "1.1.1.1";
       dnsProvider = "cloudflare";
       credentialFiles = {
         CLOUDFLARE_DNS_API_TOKEN_FILE = config.sops.secrets."cloudflare/api-token".path;
