@@ -15,7 +15,6 @@ keys:
       - &alfa age19fzpnfhta58lm5wduycq6j6th3x2r8d0zv9fqejh06zcllp00e8qlvlfzr
       - &bravo age182zncdt5xn9m2yjrxf0mfa5l26y0fhddzcfwvyg49t02dsmzeucsupagxs
       - &charlie age1tvw6h8psq3fz06us4ykyg0ufvh5rxv2mazlug2d32ay82lqetucszlmehu
-      - &delta age1n432saep3ffntnsu09cucnpujwsf7xmt4a8ma4lyvu727vg5vclq9r74w6
 
 creation_rules:
   - path_regex: daluca\.sops\.yaml$
@@ -84,11 +83,6 @@ creation_rules:
           - *master
           - *charlie
 
-  - path_regex: delta\.sops\.yaml$
-    key_groups:
-      - age:
-          - *master
-          - *delta
 stores:
   yaml:
     indent: 2

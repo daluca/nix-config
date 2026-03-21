@@ -4,7 +4,6 @@ let
     alfa.tags = [ "hetzner" "vps" "germany" ];
     bravo.tags = [ "hetzner" "vps" "germany" ];
     charlie.tags = [ "hetzner" "vps" "germany" ];
-    delta.tags = [ "hetzner" "vps" "germany" ];
     darnassus.tags = [ "raspberry-pi" "united-kingdom" ];
     stormwind.tags = [ "raspberry-pi" "the-netherlands" ];
     ironforge.tags = [ "raspberry-pi" "new-zealand" ];

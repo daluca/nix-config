@@ -230,13 +230,5 @@
         ./hosts/charlie
       ];
     };
-
-    nixosConfigurations.delta = nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/delta
-      ];
-    };
   };
 }
