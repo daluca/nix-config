@@ -56,9 +56,6 @@
         (dalaran "zigbee2mqtt")
         (dalaran "unifi")
       ];
-      dhcp = {
-        enabled = false;
-      };
     };
   };
 }
