@@ -45,7 +45,6 @@ with pkgs.firefoxExtensions; {
       install_url = "file://${consent-o-matic}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${consent-o-matic.addonId}.xpi";
       installation_mode = "force_installed";
     };
-  } // lib.optionalAttrs (! config.host.work) {
     ${bypass-paywalls-clean.addonId} = {
       install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${bypass-paywalls-clean.addonId}.xpi";
       installation_mode = "force_installed";
@@ -84,7 +83,7 @@ with pkgs.firefoxExtensions; {
       hide-youtube-short
     ];
     userFilters = let
-      youtube-rows = builtins.toString 5;
+      youtube-rows = toString 5;
     in lib.concatStringsSep "\n" [
       "youtube.com##ytd-rich-grid-row, #contents.ytd-rich-grid-row:style(display:contents !important;)"
       "youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-items-per-row: ${youtube-rows} !important;)"

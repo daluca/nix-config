@@ -8,12 +8,6 @@ with lib; {
       description = "Whether the host has a battery or not";
     };
 
-    work = lib.mkOption {
-      type = types.bool;
-      default = false;
-      description = "Whether the host is for work";
-    };
-
     network = lib.mkOption {
       type = types.submodule {
         options = {
