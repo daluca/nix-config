@@ -14,22 +14,7 @@
 
   services.getty.autologinUser = "daluca";
 
-  networking = {
-    hostName = "stormwind";
-    useDHCP = false;
-    interfaces.end0 = {
-      ipv4.addresses = [
-        {
-          address = "10.1.1.10";
-          prefixLength = 24;
-        }
-      ];
-    };
-    defaultGateway = {
-      address = "10.1.1.1";
-      interface = "end0";
-    };
-  };
+
 
   networking.localCommands = /* bash */ ''
     ip rule add to 10.1.0.0/16 priority 2500 lookup main || true
@@ -39,6 +24,8 @@
     "--advertise-routes=10.1.0.0/16"
     "--hostname=the-netherlands"
   ];
+
+  networking.hostName = "stormwind";
 
   hardware.raspberry-pi.config.pi4 = {
     dt-overlays.rpi-poe = {
