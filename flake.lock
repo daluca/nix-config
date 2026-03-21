@@ -809,11 +809,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771669912,
-        "narHash": "sha256-2Q7elGHqgvCSx+azvEAzFQ7H4OAmenFC5BCYqiNCbxQ=",
+        "lastModified": 1775245839,
+        "narHash": "sha256-TSX/n2jTbpMRjKXH/ndFqhwBDHjVpFEhcdo7QpWyzMc=",
         "owner": "daluca",
         "repo": "proton-ge-overlay",
-        "rev": "1525bb3bc8750048e3185dd71973bc51d47e1fff",
+        "rev": "59dd4655e6cf79773a9f393b930b8c6dc5f47c09",
         "type": "github"
       },
       "original": {
