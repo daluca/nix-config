@@ -11,7 +11,6 @@
     "images/raspberry-pi/5"
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
-    "starr"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
     "nginx"
