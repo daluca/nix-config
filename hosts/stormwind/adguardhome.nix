@@ -8,9 +8,9 @@
       dns = {
         bind_hosts = [ "10.1.1.10" ];
         upstream_dns = [
-          "[//in-addr.arpa/${config.networking.domain}/]10.1.1.1"
-          "[//ip6.arpa/${config.networking.domain}/]10.1.1.1"
+          "[//in-addr.arpa/ip6.arpa/${config.networking.domain}/]10.1.1.1"
           "[/${secrets.parents.domain}/]192.168.10.10"
+          "[/jellyfin.${secrets.parents.domain}/]#"
         ];
         fallback_dns = [
           "9.9.9.9"
