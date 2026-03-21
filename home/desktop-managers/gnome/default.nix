@@ -79,6 +79,9 @@ in {
     "org/gnome/desktop/peripherals/keyboard" = {
       numlock-state = true;
     };
+    "org/gnome/desktop/peripherals/mouse" = {
+      mkDouble = "-0.29059829059829057";
+    };
     "org/gnome/desktop/input-sources" = {
       xkb-options = [
         "lv3:switch"
