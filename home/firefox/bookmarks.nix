@@ -58,6 +58,10 @@
       url = "https://home-assistant.${secrets.domain.general}/";
     }
     {
+      name = "Zigbee2MQTT";
+      url = "https://zigbee2mqtt.${secrets.domain.general}/";
+    }
+    {
       name = "Firefly III";
       url = "https://firefly.${secrets.domain.general}/";
     }
