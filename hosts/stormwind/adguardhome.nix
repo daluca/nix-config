@@ -61,6 +61,7 @@
         (dalaran "redlib")
         (dalaran "adguardhome")
         (dalaran "navidrome")
+        (dalaran "share")
         (dalaran "firefly")
         (dalaran "firefly-importer")
         (dalaran "home-assistant")

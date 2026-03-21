@@ -69,5 +69,9 @@
       name = "Unifi";
       url = "https://unifi.${secrets.domain.general}/";
     }
+    {
+      name = "Local Content Share";
+      url = "https://share.${secrets.domain.general}/";
+    }
   ];
 }

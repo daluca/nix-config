@@ -27,6 +27,20 @@ in with config.services; {
     };
   };
 
+  "share.${secrets.domain.general}" = tls // {
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:${toString local-content-share.port}";
+      extraConfig = /* nginx */ ''
+        client_max_body_size 5G;
+        proxy_request_buffering off;
+        proxy_buffering off;
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+        proxy_connect_timeout 3600s;
+      '';
+    };
+  };
+
   "home-assistant.${secrets.domain.general}" = tls // {
     locations."/" = {
       proxyPass = "http://10.1.1.12:8123";

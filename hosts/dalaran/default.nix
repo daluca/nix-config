@@ -19,6 +19,7 @@
     "redlib"
     "firefly-iii"
     "navidrome"
+    "local-content-share"
   ];
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
