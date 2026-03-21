@@ -17,6 +17,14 @@ in {
     "nginx"
   ];
 
+  networking.localCommands = /* bash */ ''
+    ip rule add to 10.2.1.0/24 priority 2500 lookup main || true
+  '';
+
+  services.tailscale.extraUpFlags = [
+    "--advertise-routes=10.2.1.0/24"
+  ];
+
   services.nginx.virtualHosts = {
     "attic.${secrets.domain.general}" = {
       forceSSL = true;
