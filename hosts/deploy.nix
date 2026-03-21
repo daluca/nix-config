@@ -12,5 +12,6 @@
     alfa = import ./alfa/deploy.nix { inherit deploy-rs nixosConfigurations; };
     bravo = import ./bravo/deploy.nix { inherit deploy-rs nixosConfigurations; };
     charlie = import ./charlie/deploy.nix { inherit deploy-rs nixosConfigurations; };
+    delta = import ./delta/deploy.nix { inherit deploy-rs nixosConfigurations; };
   };
 }
