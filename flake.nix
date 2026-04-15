@@ -66,6 +66,9 @@
     colmena.url = "github:zhaofengli/colmena";
     colmena.inputs.nixpkgs.follows = "nixpkgs-unstable";
     colmena.inputs.stable.follows = "nixpkgs";
+
+    rustfs.url = "github:rustfs/rustfs-flake";
+    rustfs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
