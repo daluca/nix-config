@@ -25,7 +25,7 @@
   services.gnome.gnome-browser-connector.enable = true;
 
   systemd.tmpfiles.rules = [
-    "L+ /run/gdm/.config/monitors.xml - - - - ${../../../home/desktop-managers/gnome/monitors.xml}"
+    "L+ /run/gdm/.config/monitors.xml - - - - ${../../../home/desktop-environments/gnome/monitors.xml}"
   ];
 
   services.xserver.xkb.options = lib.mkForce "";

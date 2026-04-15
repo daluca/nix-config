@@ -10,7 +10,7 @@
   ] ++ [
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "auto-cpufreq"
-    "desktop-managers/gnome"
+    "desktop-environments/gnome"
     "swap"
     "ssd"
     "pipewire"

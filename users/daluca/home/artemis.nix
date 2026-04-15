@@ -9,7 +9,7 @@ in {
     "atuin"
     "bitwarden"
     "btop"
-    "desktop-managers/gnome"
+    "desktop-environments/gnome"
     "development"
     "discord"
     "doctl"
