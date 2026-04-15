@@ -12,7 +12,7 @@ in {
   ingress-nginx = callPackage ./kubectl-ingress-nginx { };
   bypass-paywalls-clean = callPackage ./bypass-paywalls-clean { };
   terraform = callPackage ./terraform { };
-  tunarr = callPackage ./tunarr { };
+  tunarr-bin = callPackage ./tunarr-bin { };
   ntfyd = callPackage ./ntfyd { };
   configarr = callPackage ./configarr { };
 }

@@ -73,7 +73,7 @@ in with lib; {
   options.services.tunarr = {
     enable = lib.mkEnableOption "Tunarr";
 
-    package = lib.mkPackageOption pkgs "tunarr" { };
+    package = lib.mkPackageOption pkgs "tunarr-bin" { };
 
     port = lib.mkOption {
       type = types.port;
