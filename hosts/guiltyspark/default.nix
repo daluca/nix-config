@@ -19,7 +19,6 @@ in {
     "radarr"
     "prowlarr"
     "sabnzbd"
-    "qbittorrent"
     "jellyseerr"
     "jellyplex-watched"
     "tunarr"

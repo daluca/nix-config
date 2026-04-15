@@ -4,7 +4,7 @@ let
 in {
   programs.firefox = {
     enable = true;
-    policies = import ./policies.nix // import ./extensions.nix { inherit config lib pkgs; } ;
+    policies = import ./policies.nix // import ./extensions.nix { inherit lib pkgs; } ;
     profiles.default = {
       id = 0;
       isDefault = true;

@@ -9,7 +9,7 @@ in {
 
   programs.zen-browser = {
     enable = true;
-    policies = firefoxModule "policies" // firefoxModule "extensions" { inherit config lib pkgs; };
+    policies = firefoxModule "policies" // firefoxModule "extensions" { inherit lib pkgs; };
     profiles.default = {
       id = 0;
       isDefault = true;
