@@ -5,8 +5,12 @@ in {
   imports =
     let
       hostExtras = (./. + "/${hostName}.nix");
-    in builtins.attrValues outputs.homeManagerModules ++ [
+    in with outputs.homeManagerModules; [
       outputs.nixosModules.host
+    ] ++ [
+      garden-tools
+      kanata
+      ntfyd
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "bash"
       "btop"

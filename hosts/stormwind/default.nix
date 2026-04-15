@@ -1,11 +1,11 @@
-{ lib, ... }:
+{ lib, outputs, ... }:
 
 {
-  imports = [
+  imports = with outputs.nixosModules; [
     ./..
     ./adguardhome.nix
-  ] ++ map (m: lib.custom.relativeToRoot m) [
-    "images/raspberry-pi/4"
+
+    raspberry-pi-4
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
     "tailscale/server"
@@ -13,8 +13,6 @@
   ];
 
   services.getty.autologinUser = "daluca";
-
-
 
   networking.localCommands = /* bash */ ''
     ip rule add to 10.1.0.0/16 priority 2500 lookup main || true

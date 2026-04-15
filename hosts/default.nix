@@ -2,11 +2,18 @@
 let
   GiB = 1024 * 1024 * 1024;
 in {
-  imports = with inputs; (
+  imports = with inputs; with outputs.nixosModules; (
     builtins.filter (f: baseNameOf f == "cache.nix") (lib.filesystem.listFilesRecursive (lib.custom.relativeToHosts "."))
   ) ++ [
     impermanence.nixosModules.impermanence
-  ] ++ builtins.attrValues outputs.nixosModules ++ map (m: lib.custom.relativeToNixosModules m) [
+  ] ++ [
+    jellyplex-watched
+    tunarr
+    host
+    attic-watch-store
+    grub
+    configarr
+  ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "dvorak"
     "home-manager"
     "openssh"

@@ -1,8 +1,8 @@
-{ lib, ... }:
+{ lib, outputs, ... }:
 
 {
-  imports = [
-    ./..
+  imports = with outputs.nixosModules; [
+    hetzner
   ];
 
   boot.growPartition = lib.mkImageMediaOverride false;

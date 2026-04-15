@@ -3,11 +3,11 @@ let
   secrets = args.secrets // fromTOML (builtins.readFile ./secrets.toml);
 in {
   imports = with inputs; [
-    nixos-hardware.nixosModules.common-cpu-intel
-    disko.nixosModules.disko
-  ] ++ [
     ./..
     ./disko.nix
+
+    nixos-hardware.nixosModules.common-cpu-intel
+    disko.nixosModules.disko
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "grub"
     "openssh/server"

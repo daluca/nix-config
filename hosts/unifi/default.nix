@@ -1,10 +1,10 @@
-{ config, lib, secrets, ... }:
+{ config, lib, secrets, outputs, ... }:
 
 {
-  imports = [
+  imports = with outputs.nixosModules; [
     ./..
-  ] ++ map (m: lib.custom.relativeToRoot m) [
-    "images/digitalocean"
+
+    digitalocean
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
     "unifi-controller"

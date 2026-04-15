@@ -1,14 +1,14 @@
-{ config, lib, secrets, inputs, ... }:
+{ config, lib, secrets, inputs, outputs, ... }:
 
 {
-  imports = with inputs; [
-    disko.nixosModules.disko
-  ] ++ [
+  imports = with inputs; with outputs.nixosModules; [
     ./..
     ./disko.nix
     ./adguardhome.nix
-  ] ++ map (m: lib.custom.relativeToRoot m) [
-    "images/raspberry-pi/5"
+
+    raspberry-pi-5
+
+    disko.nixosModules.disko
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [

@@ -1,11 +1,11 @@
-{ config, lib, secrets, ... }:
+{ config, lib, secrets, outputs, ... }:
 
 {
-  imports = [
+  imports = with outputs.nixosModules; [
     ./..
     ./disko.nix
-  ] ++ map (m: lib.custom.relativeToRoot m) [
-    "images/hetzner/online/intel"
+
+    hetzner-online-intel
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "starr"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [

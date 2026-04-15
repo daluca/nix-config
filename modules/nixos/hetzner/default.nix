@@ -1,8 +1,8 @@
 { config, lib, inputs, ... }:
 
 {
-  imports = [
-    inputs.srvos.nixosModules.server
+  imports = with inputs; [
+    srvos.nixosModules.server
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
   ] ++ map (m: lib.custom.relativeToUsers m) [

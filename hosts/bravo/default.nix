@@ -1,11 +1,11 @@
-{ config, lib, secrets, ... }:
+{ config, lib, secrets, outputs, ... }:
 
 {
-  imports = [
+  imports = with outputs.nixosModules; [
     ./..
     ./disko.nix
-  ] ++ map (m: lib.custom.relativeToRoot m) [
-    "images/hetzner/cloud/arm"
+
+    hetzner-cloud-arm
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [

@@ -1,11 +1,11 @@
-{ lib, ... }:
+{ lib, outputs, ... }:
 
 {
-  imports = [
+  imports = with outputs.nixosModules; [
     ./..
     ./adguardhome.nix
-  ] ++ map (m: lib.custom.relativeToRoot m) [
-    "images/raspberry-pi/4"
+
+    raspberry-pi-4
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "openssh/server"
     "tailscale/server"

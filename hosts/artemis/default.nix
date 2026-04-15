@@ -2,11 +2,12 @@
 
 {
   imports = with inputs; [
+    ./..
+    ./hardware-configuration.nix
+
     nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
     nixos-hardware.nixosModules.common-cpu-intel
   ] ++ [
-    ./..
-    ./hardware-configuration.nix
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "auto-cpufreq"
     "desktop-managers/gnome"

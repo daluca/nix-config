@@ -1,8 +1,8 @@
-{ config, lib, ... }:
+{ config, lib, outputs, ... }:
 
 {
-  imports = [
-    ./..
+  imports = with outputs.nixosModules; [
+    hetzner
   ];
 
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;

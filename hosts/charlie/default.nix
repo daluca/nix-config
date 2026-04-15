@@ -1,11 +1,11 @@
-{ lib, ... }:
+{ lib, outputs, ... }:
 
 {
-  imports = [
+  imports = with outputs.nixosModules; [
     ./..
     ./disko.nix
-  ] ++ map (m: lib.custom.relativeToRoot m) [
-    "images/hetzner/cloud/x86"
+
+    hetzner-cloud-x86
   ] ++ map (m: lib.custom.relativeToUsers m) [
     "remotebuild"
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
