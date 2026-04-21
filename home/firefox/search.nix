@@ -20,6 +20,7 @@ in {
     "Steam"
     "ProtonDB"
     "Docker Hub"
+    "Kagi Translate"
     "wikipedia"
   ];
   engines = {
@@ -85,7 +86,8 @@ in {
         { template = "https://search.nixos.org/packages";
           params = [
             { name = "channel"; value = osConfig.system.stateVersion; }
-            { name = "type"; value = "packages"; }
+            { name = "include_nixos_options"; value = "1"; }
+            { name = "include_modular_service_options"; value = "0"; }
             { name = "query"; value = "{searchTerms}"; }
           ];
         }
@@ -98,7 +100,8 @@ in {
         { template = "https://search.nixos.org/options";
           params = [
             { name = "channel"; value = osConfig.system.stateVersion; }
-            { name = "type"; value = "packages"; }
+            { name = "include_nixos_options"; value = toString 1; }
+            { name = "include_modular_service_options"; value = toString 0; }
             { name = "query"; value = "{searchTerms}"; }
           ];
         }
@@ -246,5 +249,7 @@ in {
     qwant.metaData.hidden = true;
     bing.metaData.hidden = true;
     ddg.metaData.hidden = true;
+    perplexity.hidden = true;
+    "7esoorv3@alefvanoon.anonaddy.medefault".hidden = true;
   };
 }
