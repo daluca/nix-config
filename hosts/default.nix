@@ -25,6 +25,10 @@ in {
     "daluca"
   ];
 
+  boot.extraModprobeConfig = ''
+    install algif_aead /bin/false
+  '';
+
   sops.secrets."ssh_host_ed25519_key" = { };
 
   sops.secrets."ssh_host_rsa_key" = { };
