@@ -66,6 +66,7 @@
         (dalaran "adguardhome")
         (dalaran "navidrome")
         (dalaran "share")
+        (dalaran "gatus")
         (dalaran "firefly")
         (dalaran "firefly-importer")
         (dalaran "home-assistant")

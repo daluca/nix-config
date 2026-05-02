@@ -73,5 +73,9 @@
       name = "Local Content Share";
       url = "https://share.${secrets.domain.general}/";
     }
+    {
+      name = "Gatus";
+      url = "https://gatus.${secrets.domain.general}/";
+    }
   ];
 }

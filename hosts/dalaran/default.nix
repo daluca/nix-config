@@ -20,6 +20,7 @@
     "firefly-iii"
     "navidrome"
     "local-content-share"
+    "gatus"
   ];
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";

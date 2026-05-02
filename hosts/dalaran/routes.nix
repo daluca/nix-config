@@ -41,6 +41,12 @@ in with config.services; {
     };
   };
 
+  "gatus.${secrets.domain.general}" = tls // {
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:${toString gatus.settings.web.port}";
+    };
+  };
+
   "home-assistant.${secrets.domain.general}" = tls // {
     locations."/" = {
       proxyPass = "http://10.1.1.12:8123";
