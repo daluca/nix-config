@@ -7,7 +7,6 @@
 
     nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
     nixos-hardware.nixosModules.common-cpu-intel
-  ] ++ [
   ] ++ map (m: lib.custom.relativeToNixosModules m) [
     "auto-cpufreq"
     "desktop-environments/gnome"
@@ -66,7 +65,7 @@
     delete_subvolume_recursively() {
       IFS=$'\n'
       for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-          delete_subvolume_recursively "/btrfs_tmp/$i"
+        delete_subvolume_recursively "/btrfs_tmp/$i"
       done
       btrfs subvolume delete "$1"
     }
