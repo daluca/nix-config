@@ -24,6 +24,9 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    sessionVariables = {
+      HISTFILE = history.path;
+    };
     plugins = [
       {
         name = "nix-shell";

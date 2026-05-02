@@ -12,6 +12,7 @@ in {
       kanata
       ntfyd
     ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
+      "atuin"
       "bash"
       "btop"
       "catppuccin"

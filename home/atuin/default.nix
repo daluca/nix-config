@@ -1,21 +1,28 @@
 { config, lib, pkgs, secrets, ... }:
 
-rec {
+{
   programs.atuin = {
     enable = true;
+    # TODO: Remove in 26.05
     package = pkgs.unstable.atuin;
     enableBashIntegration = false;
     daemon.enable = true;
     settings = {
       auto_sync = true;
       sync_frequency = "5m";
-      sync_address = "https://atuin.${secrets.domain.general}";
+      sync_address = "https://atuin.${secrets.domain.general}/";
       dialect = "uk";
       inline_height = 19;
       update_check = false;
       keymap_mode = "vim-insert";
+      search_mode = "daemon-fuzzy";
+      filter_mode = "host";
+      key_path = config.sops.secrets."atuin/key".path;
+      logs.dir = "~/.local/share/atuin/logs/";
     };
   };
+
+  sops.secrets."atuin/key" = { };
 
   catppuccin.atuin.enable = true;
 
@@ -30,7 +37,7 @@ rec {
         setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
 
         selected=$(
-          eval ${lib.getExe programs.atuin.package} search --cmd-only --reverse | ${lib.getExe config.programs.fzf.package}
+          eval ${lib.getExe config.programs.atuin.package} search --cmd-only --reverse | ${lib.getExe config.programs.fzf.package}
         )
         local ret=$?
         if [ -n "$selected" ]; then

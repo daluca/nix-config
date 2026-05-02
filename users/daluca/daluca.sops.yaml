@@ -9,6 +9,8 @@ protonmail-bridge:
   password: ENC[AES256_GCM,data:kgslgbMxjTBM7GxkPZFJWD5rW687wQ==,iv:o+tUMtNyAhlUUxLCPCn8UxVo+XjlbAGKb9Ex4ECjodw=,tag:mCJBsq8hbBC+scgwcT/bFQ==,type:str]
 github:
   access-token: ENC[AES256_GCM,data:pM1tB+DX6jdcYrGS3X3xBT/17tcA9DwSwv3oc8/tex9l+h3QU1asKXOUOvaH/Fs0ZgOlLPjPfNJj+jS7TsDaGAidFiwjfiSEt7TkbAXxXrr0revTWjRu1+xz++Hx,iv:8xOyidGgLajyKnKpPVVhiMnAcrgCJ1Dt9Z6eNPfv2Ew=,tag:QlPWqcDfwIkY+KIbdUA/LA==,type:str]
+atuin:
+  key: ENC[AES256_GCM,data:Y/ZH9o5nCurYFTOY//RSshLT9uPfvaprfy+7kQknMMBGI5KpmMO5W27JHmogn6tD1oUi8wxRMOLKW83XbCSjjFEaqEqHVrNV26aaDA==,iv:6OMiKIn32EKSzfWDO2HMHVa/S/YteJxXftM/w/oQqFM=,tag:6qWnSkrBZv2YwStJw7NwSQ==,type:str]
 sops:
   age:
     - recipient: age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
@@ -29,7 +31,7 @@ sops:
         amRydy9KK1pqZXdIWDRxZXZHZkFldFkKS5c/MBTeXfpOxedjpxuMZI5yoZscN6gE
         2efdqVrgOqrp4EYP5qNnL6wzk1L4xsvQI0lvPULZ0TH8c9ZpzVOUnA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-05-02T13:36:41Z"
-  mac: ENC[AES256_GCM,data:Pg7GKdAyBFx+kdcQYHS8nO2VAKtwH+XxWlNdoU+FGKD3HGnSOC5/Hhfz1Qwmj9RXnModk8vQhHrgeDRoQWmwHPa/yMqBGGr09Qp+zYQwWkPsTz/xUmc7bil2S65IDyqGVKHHT9g4cNtedR+5Iiabd5EviReCgdQyrn6pog60tQM=,iv:aTSBUkmxGTqyX4cHaD8aiQb81yKGkQ0RDhYLkjLr1n4=,tag:YszaHhLMIEdEJEbCi9DkHA==,type:str]
+  lastmodified: "2026-05-04T19:26:59Z"
+  mac: ENC[AES256_GCM,data:8M+IgSYYYZoSdybtw/UEX+th0M4NxOiAj2WaIplx480iZKx3FntmYWjoycySuKKuBQtwybw7/dUPX2pquYu2bLnEdzlQcvaK0ncp+OORgLrlawxHlr9TjZsg7vvTEKMeA/SUE9oH1TvWCgawIR8dceZr/uoeflGLWvcDR1Ucyzw=,iv:EvrJDyOgfgCUjOoE7qUbVnUW/c6JXhlGoelx/OXWHLQ=,tag:zmlnd93AB1lGO40vYN7fDA==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.12.2
