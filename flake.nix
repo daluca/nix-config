@@ -114,7 +114,7 @@
 
     homeManagerModules = import ./modules/home-manager;
 
-    deploy = import ./hosts/deploy.nix { inherit deploy-rs nixosConfigurations; };
+    deploy = import ./hosts/deploy.nix { inherit deploy-rs nixosConfigurations secrets; };
 
     devShells = forAllSystems (system:
       let
@@ -139,7 +139,7 @@
 
     colmenaHive = inputs.colmena.lib.makeHive colmena;
 
-    colmena = import ./hosts/colmena.nix { inherit inputs outputs; };
+    colmena = import ./hosts/colmena.nix { inherit inputs outputs secrets; };
 
     nixosConfigurations.artemis = nixosSystem {
       system = "x86_64-linux";

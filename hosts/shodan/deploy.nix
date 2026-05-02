@@ -1,7 +1,7 @@
-{ deploy-rs, nixosConfigurations }:
+{ deploy-rs, nixosConfigurations, secrets }:
 
 {
-  hostname = "shodan";
+  hostname = secrets.hosts.shodan.tailscale-address;
   sshUser = "root";
   profiles.system = {
     user = "root";

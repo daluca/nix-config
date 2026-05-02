@@ -1,4 +1,4 @@
-{ inputs, outputs }:
+{ inputs, outputs, secrets }:
 let
   deployments = {
     alfa.tags = [ "hetzner" "vps" "germany" ];
@@ -10,7 +10,10 @@ let
     dalaran.tags = [ "raspberry-pi" "the-netherlands" ];
     unifi.tags = [ "digitalocean" "vps" "australia" ];
     guiltyspark.tags = [ "new-zealand" ];
-    shodan.tags = [ "hetzner" "vps" "germany" ];
+    shodan = {
+      tags = [ "hetzner" "vps" "germany" ];
+      targetHost = secrets.hosts.shodan.tailscale-address;
+    };
     artemis = {
       allowLocalDeployment = true;
       targetHost = null;
