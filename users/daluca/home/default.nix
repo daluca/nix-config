@@ -1,4 +1,4 @@
-{ lib, osConfig, outputs, ... }:
+{ config, lib, osConfig, outputs, ... }:
 let
   inherit (osConfig.networking) hostName;
 in {
@@ -34,6 +34,16 @@ in {
     enable = lib.mkDefault false;
     persistentStoragePath = "/persistent/";
   };
+
+  nix.extraOptions = ''
+    !include ${config.sops.templates."github-access-token.conf".path}
+  '';
+
+  sops.templates."github-access-token.conf".content = ''
+    access-tokens = github.com=${config.sops.placeholder."github/access-token"}
+  '';
+
+  sops.secrets. "github/access-token" = { };
 
   xdg.enable = true;
 

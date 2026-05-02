@@ -7,6 +7,8 @@ gmail:
     password: ENC[AES256_GCM,data:lNNzqQ+sFUdDFLOa92LNow==,iv:r6reZJttr7WJ2rX5BfgLzhdgqc9qrhdI3DwXiT/HzKE=,tag:MHvMr3HamSiHzwS57ljkig==,type:str]
 protonmail-bridge:
   password: ENC[AES256_GCM,data:kgslgbMxjTBM7GxkPZFJWD5rW687wQ==,iv:o+tUMtNyAhlUUxLCPCn8UxVo+XjlbAGKb9Ex4ECjodw=,tag:mCJBsq8hbBC+scgwcT/bFQ==,type:str]
+github:
+  access-token: ENC[AES256_GCM,data:pM1tB+DX6jdcYrGS3X3xBT/17tcA9DwSwv3oc8/tex9l+h3QU1asKXOUOvaH/Fs0ZgOlLPjPfNJj+jS7TsDaGAidFiwjfiSEt7TkbAXxXrr0revTWjRu1+xz++Hx,iv:8xOyidGgLajyKnKpPVVhiMnAcrgCJ1Dt9Z6eNPfv2Ew=,tag:QlPWqcDfwIkY+KIbdUA/LA==,type:str]
 sops:
   age:
     - recipient: age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
@@ -27,7 +29,7 @@ sops:
         amRydy9KK1pqZXdIWDRxZXZHZkFldFkKS5c/MBTeXfpOxedjpxuMZI5yoZscN6gE
         2efdqVrgOqrp4EYP5qNnL6wzk1L4xsvQI0lvPULZ0TH8c9ZpzVOUnA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-03-05T18:54:29Z"
-  mac: ENC[AES256_GCM,data:EwhdQ7IwxoNCP8r3JRLV0/qcnPpzoFLbByL7P1/w/Osx+/vizEsi6aBRt02WrevNe3Ruj87lLPRWya+TL2wBMqP87HMqHdgkd5MSCqkES2XC9c6isDE9DVhuv7X0xm2Kp29iUdU94qS8Wud/M7l300aVhl7Fb8Yh4xo4mfC3lLU=,iv:xHA4wr0/o1f1QxPBwKIV3zIf41kmdTcxMcVlgGHFI1Y=,tag:E5SU9FqmSwafC13n6Si+dA==,type:str]
+  lastmodified: "2026-05-02T13:36:41Z"
+  mac: ENC[AES256_GCM,data:Pg7GKdAyBFx+kdcQYHS8nO2VAKtwH+XxWlNdoU+FGKD3HGnSOC5/Hhfz1Qwmj9RXnModk8vQhHrgeDRoQWmwHPa/yMqBGGr09Qp+zYQwWkPsTz/xUmc7bil2S65IDyqGVKHHT9g4cNtedR+5Iiabd5EviReCgdQyrn6pog60tQM=,iv:aTSBUkmxGTqyX4cHaD8aiQb81yKGkQ0RDhYLkjLr1n4=,tag:YszaHhLMIEdEJEbCi9DkHA==,type:str]
   unencrypted_suffix: _unencrypted
-  version: 3.12.1
+  version: 3.12.2

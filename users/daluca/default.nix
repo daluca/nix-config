@@ -1,7 +1,7 @@
 { config, ... }@args:
 let
   inherit (config.home-manager.users.daluca.home) username;
-  secrets = config.sops.secrets // args.secrets // builtins.fromTOML (builtins.readFile ./secrets.toml);
+  secrets = config.sops.secrets // args.secrets // fromTOML (builtins.readFile ./secrets.toml);
 in {
   users.users.daluca = {
     isNormalUser = true;
