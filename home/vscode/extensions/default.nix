@@ -8,6 +8,7 @@
     ./just.nix
     ./nix-ide.nix
     ./opentofu.nix
+    ./tera.nix
     ./tinymist.nix
     ./todo-highlight.nix
     ./typos.nix
