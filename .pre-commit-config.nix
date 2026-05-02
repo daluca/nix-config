@@ -54,5 +54,8 @@ rec {
     '';
     entry = lib.getExe toml-sort.package;
     types = [ "toml" ];
+    excludes = [
+      "Cargo.lock"
+    ];
   };
 }
