@@ -40,7 +40,7 @@ in with config.services; {
 
   "requests.${secrets.domain.general}" = tls // {
     locations."/".return = ''
-      301 $scheme://request.${secrets.parents.domain}$request_uri
+      301 $scheme://request.${secrets.domain.general}$request_uri
     '';
   };
 
