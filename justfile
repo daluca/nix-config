@@ -4,49 +4,43 @@ hostname := `hostname`
 default:
     @just --list
 
-[positional-arguments]
-update *args='':
-    nix flake update "$@"
-
-update-secret-key:
-    fd "sops.yaml$" --exec sops updatekeys --yes
-
-rotate-secrets:
-    fd "sops.yaml$" --exec sops rotate --in-place
-
-rebuild host=hostname:
-    sudo nixos-rebuild switch --flake .#{{ host }}
-
-deploy host: check
-    deploy .#{{ host }} --skip-checks
-
+[group("flake")]
 check:
     nix flake check --all-systems
 
-disko host:
-    disko --mode destroy,format,mount --flake .#{{ host }}
+[group("checks")]
+pre-commit:
+    pre-commit run --all-files
 
-nixos-install host:
-    nixos-install --flake .#{{ host }} --no-root-passwd
+[group("flake")]
+update:
+    nix flake update
+
+[group("secrets")]
+rotate:
+    fd "sops.yaml$" --exec sops rotate --in-place
+
+[group("secrets")]
+update-keys:
+    fd "sops.yaml$" --exec sops updatekeys --yes
+
+[group("local")]
+switch:
+    nh os switch
+
+[group("local")]
+boot:
+    nh os boot
+
+[group("hosts")]
+deploy host:
+    deploy --skip-checks .#{{ host }}
+
+[group("hosts")]
+push:
+    colmena apply push --on @raspberry-pi,@hetzner,guiltyspark
 
 [no-exit-message]
+[group("hosts")]
 unlock host:
     sops --decrypt --extract '["disk-encryption-key"]' hosts/{{ host }}/{{ host }}.sops.yaml | ssh root@{{ host }} -p 22022
-
-ssh-to-age key:
-    #! /usr/bin/env -S nix shell nixpkgs#bash nixpkgs#ssh-to-age --command bash
-
-    set -euo pipefail
-
-    PUBLIC_AGE_KEY="$( ssh-to-age -i {{ key }}.pub )"
-
-    cat <<- EOF > nix-config.txt
-    # created: $(date --iso-8601=seconds)
-    # public key: ${PUBLIC_AGE_KEY}
-    $( ssh-to-age -private-key -i {{ key }} )
-    EOF
-
-    chmod 0600 nix-config.txt
-
-    echo "age key generated from {{ key }}"
-    echo "public key: ${PUBLIC_AGE_KEY}"
