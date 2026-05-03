@@ -75,6 +75,7 @@
         # Windows
         "workbench.secondarySideBar.defaultVisibility" = "hidden";
         # AI
+        "chat.disableAIFeatures" = true;
         "chat.agent.enabled" = false;
       };
     };
