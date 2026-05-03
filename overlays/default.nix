@@ -15,6 +15,8 @@
 
     helium = nur.legacyPackages.${system}.repos.Ev357.helium;
 
+    wedding-page = wedding-page.packages.${system}.website;
+
     itch = let
       itch-setup = prev.fetchzip {
         url = "https://broth.itch.zone/itch-setup/linux-amd64/1.26.0/itch-setup.zip";

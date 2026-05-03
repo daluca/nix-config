@@ -875,6 +875,7 @@
         "rustfs": "rustfs",
         "sops-nix": "sops-nix",
         "srvos": "srvos",
+        "wedding-page": "wedding-page",
         "zen-browser": "zen-browser"
       }
     },
@@ -1133,6 +1134,26 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "wedding-page": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778755022,
+        "narHash": "sha256-5dm9vTBDElBqletMPDXwNfr18pIokNPhLqI4t5korE4=",
+        "ref": "refs/heads/main",
+        "rev": "b764d5581745adad41c165d786284405e6e5fe86",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@codeberg.org/daluca/wedding-page"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@codeberg.org/daluca/wedding-page"
       }
     },
     "zen-browser": {

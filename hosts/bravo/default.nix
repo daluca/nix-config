@@ -1,4 +1,4 @@
-{ config, lib, secrets, outputs, ... }:
+{ config, lib, pkgs, secrets, outputs, ... }:
 
 {
   imports = with outputs.nixosModules; [
@@ -40,6 +40,11 @@
     "atuin.${secrets.domain.general}" = tls // {
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString config.services.atuin.port}";
+      };
+    };
+    ${secrets.domain.wedding} = tls // {
+      locations."/" = {
+        root = "${pkgs.wedding-page}/share/html";
       };
     };
   };
