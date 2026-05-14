@@ -55,6 +55,11 @@ push:
 unlock host:
     sops --decrypt --extract '["disk-encryption-key"]' hosts/{{ host }}/{{ host }}.sops.yaml | ssh root@{{ host }} -p 22022
 
+# format repository
+[group("repo")]
+fmt:
+    nix fmt
+
 # add age identity file
 [group("repo")]
 add-identity file:

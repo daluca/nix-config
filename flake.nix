@@ -72,6 +72,9 @@
 
     wedding-page.url = "git+ssh://git@codeberg.org/daluca/wedding-page";
     wedding-page.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    treefmt.url = "github:numtide/treefmt-nix";
+    treefmt.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
@@ -102,6 +105,13 @@
           hooks = import ./.pre-commit-config.nix { inherit lib pkgs; };
         };
       } // deploy-rs.lib.${system}.deployChecks deploy
+        // (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.check self
+    );
+
+    formatter = forAllSystems (system:
+      let
+        pkgs = pkgs' system;
+      in (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper
     );
 
     overlays = import ./overlays { inherit inputs; };
