@@ -26,6 +26,9 @@
   };
 
   home.persistence.home.directories = [
-    ".gnupg"
+    {
+      directory = ".gnupg";
+      mode = "0700";
+    }
   ];
 }
