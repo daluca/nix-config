@@ -11,6 +11,8 @@ cloudflare:
 rustfs:
   access-key: ENC[AES256_GCM,data:KzR4PkQ7R5SubKmwy/5AVuq8oBk=,iv:xXqg9O4KSHP7sQocgnSutLWVLd7TjkHvwF0XQqJQJok=,tag:P6u/VY2Ubny8VrADGmA6jQ==,type:str]
   secret-key: ENC[AES256_GCM,data:eafchJYu9zjWRqGCzMUQEnJd172ks2zZNpC1oloOOPTz4uqniIQJJUuIjYINAAn4/odFvD4+R/s+Si1sv3kgTw==,iv:oZXTWq3jKUO+Sp37lTatDjJvH4M/HUZQTdLOEzVacBU=,tag:nxhfhvuH2nsguqU1oCPjMg==,type:str]
+pocket-id:
+  encryption-key: ENC[AES256_GCM,data:EiovP1Pxok2ABhDu/NSQD/ypcGGTn0TwbR7q1/XU/j3yOr96QcGo26L1TKQ=,iv:oUqAtWhXDRBot7W/HDhvurgnc06Sal6UK+rJoRbf04E=,tag:ieK4IP4mx9BIwbizWb02Lg==,type:str]
 sops:
   age:
     - recipient: age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
@@ -31,7 +33,7 @@ sops:
         bVQ3WVdLcXgzaWtqVDZiTWc2Uk90NmcK8qiMHURG8M/COFuScS2voAiav/qYrtzu
         YdEHC4XNyqZxEZXsRbXpQLzRTgTjY2k/smNNR5PLRewuCLOTdg/BNg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-04-21T18:10:10Z"
-  mac: ENC[AES256_GCM,data:UkB+fcP87Fuq9Zz8ckLOkNxfjgcZ7QHUKNo8JKZqTjMgvd78ONb4J2D+JkMzeJlcy7r04ItW3ma6q5A0ZmaMvmg2h1BTrU0bLr7heJwBombhiH3ZefT3U97aNmdLiUXjkcb9HIVhImfcovrlcRpSdYOOL4liEi/Of8AJOQMzW8s=,iv:u14xPZoZ01C7uuV39hkGSiUq1rnEl4mf/8bveidIKzY=,tag:wf4fy28xSRDqrJzUL8obKQ==,type:str]
+  lastmodified: "2026-05-14T15:02:00Z"
+  mac: ENC[AES256_GCM,data:3iEcSMLfpByc4MMtaP9sO5X26wu6umIy3Y0muH0n3L/J0cStDR8zYPma6dIO3d57ryeDeyYJ+KoHvOWs6Wq9r8ZwAf1OpmYIxbs5hx+Bv3TeNNiTIV+95612MpyqGsLkIaqEX8JluHhLl8dhWx68rwaxIVR/1t0/xHZ5j9tl8u4=,iv:aRQ03BaUqE6qczFjWpQEaqUroNhfF/tCgG9xjeWUzMg=,tag:OujC4dK2PNvQqX6h71VWjw==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.12.2

@@ -13,7 +13,13 @@
     "remote-unlocking/dhcp"
     "nginx"
     "rustfs"
+    "pocket-id"
   ];
+
+  services.pocket-id.settings = {
+    APP_URL = "https://id.${secrets.domain.general}";
+    TRUSTED_PLATFORM = "CF-Connecting-IP";
+  };
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
 
@@ -42,7 +48,7 @@
       inherit sslCertificate sslCertificateKey sslTrustedCertificate;
       forceSSL = true;
     };
-  in {
+  in with config.services; {
     "rustfs.${secrets.domain.general}" = tls // {
       locations."/" = {
         proxyPass = "http://rustfs-console";
@@ -56,6 +62,16 @@
         proxy_buffering off;
         proxy_request_buffering off;
       '';
+    };
+    "id.${secrets.domain.general}" = tls // {
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString pocket-id.settings.PORT}";
+        extraConfig = /* nginx */ ''
+          proxy_busy_buffers_size   512k;
+          proxy_buffers   4 512k;
+          proxy_buffer_size   256k;
+        '';
+      };
     };
   };
 
