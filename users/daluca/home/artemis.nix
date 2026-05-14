@@ -69,6 +69,7 @@ in {
     token = secrets.ntfy.token;
     topics = [
       "hosts"
+      "gatus"
     ];
   };
 
