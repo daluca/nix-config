@@ -90,21 +90,30 @@
       # NOTE: Upstream tailscale-qs is not being supported anymore
       # This a work around to use the PR as the source to update to GNOME 49
       # https://github.com/joaophi/tailscale-gnome-qs/pull/45
-      tailscale-qs = prev.gnomeExtensions.tailscale-qs.overrideAttrs {
-        version = "20";
+      tailscale-qs = prev.gnomeExtensions.tailscale-qs.overrideAttrs (oldAttrs: rec {
+        version = "6";
 
         src = prev.fetchFromGitHub {
-          owner = "aoiwelle";
+          owner = "tailscale-qs";
           repo = "tailscale-gnome-qs";
-          rev = "fix-gnome-49";
-          hash = "sha256-QQiuude//zViw6qdquOQ7fLV2F7XO8SGvU2vO1/5R5I=";
+          rev = "v${version}";
+          hash = "sha256-C/+epuP5fFxOlOKypOK9lTJ3I+PKIcMchqgQim+zRc8=";
         };
 
-        postInstall = /* bash */ ''
-          mv $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale@joaophi.github.com/* $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/
-          rmdir $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale@joaophi.github.com/
+        preInstall = /* bash */ ''
+          mkdir -p $out/share/gnome-shell/extensions/tailscale-gnome-qs@tailscale-qs.github.io/
         '';
-      };
+
+        postInstall = /* bash */ ''
+          mv $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale-gnome-qs@tailscale-qs.github.io/* $out/share/gnome-shell/extensions/tailscale-gnome-qs@tailscale-qs.github.io/
+
+          rm --recursive $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/
+        '';
+
+        passthru = oldAttrs.passthru // {
+          extensionUuid = "tailscale-gnome-qs@tailscale-qs.github.io";
+        };
+      });
     };
   };
 
