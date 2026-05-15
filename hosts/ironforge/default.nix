@@ -1,16 +1,19 @@
 { lib, outputs, ... }:
 
 {
-  imports = with outputs.nixosModules; [
-    ./..
-    ./adguardhome.nix
+  imports =
+    with outputs.nixosModules;
+    [
+      ./..
+      ./adguardhome.nix
 
-    raspberry-pi-4
-  ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "openssh/server"
-    "tailscale/server"
-    "adguardhome"
-  ];
+      raspberry-pi-4
+    ]
+    ++ map (m: lib.custom.relativeToNixosModules m) [
+      "openssh/server"
+      "tailscale/server"
+      "adguardhome"
+    ];
 
   services.getty.autologinUser = "daluca";
 
@@ -29,9 +32,18 @@
     dt-overlays.gpio-fan = {
       enable = true;
       params = {
-        gpiopin = { enable = true; value = 14; };
-        temp = { enable = true; value = 80 * 1000; };
-        hyst = { enable = true; value = 10 * 1000; };
+        gpiopin = {
+          enable = true;
+          value = 14;
+        };
+        temp = {
+          enable = true;
+          value = 80 * 1000;
+        };
+        hyst = {
+          enable = true;
+          value = 10 * 1000;
+        };
       };
     };
   };

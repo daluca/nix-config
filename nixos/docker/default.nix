@@ -4,7 +4,7 @@
   virtualisation.docker = {
     enable = true;
     autoPrune.enable = true;
-    storageDriver = lib.mkIf ( config.fileSystems."/".fsType == "btrfs" ) "btrfs";
+    storageDriver = lib.mkIf (config.fileSystems."/".fsType == "btrfs") "btrfs";
     daemon.settings = {
       userland-proxy = false;
       experimental = true;
@@ -14,7 +14,10 @@
   };
 
   environment.persistence.system.directories = [
-    { directory = "/var/lib/docker"; mode = "0710"; }
+    {
+      directory = "/var/lib/docker";
+      mode = "0710";
+    }
   ];
 
   users.users.daluca.extraGroups = [ "docker" ];

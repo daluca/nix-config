@@ -1,6 +1,6 @@
 builtins.toJSON {
   placements = {
-    widget-overflow-fixed-list = [];
+    widget-overflow-fixed-list = [ ];
     unified-extensions-area = [
       "ublock0_raymondhill_net-browser-action" # uBlock Origin
       "addon_simplelogin-browser-action" # SimpleLogin
@@ -33,7 +33,7 @@ builtins.toJSON {
     toolbar-menubar = [
       "menubar-items"
     ];
-    TabsToolbar = [];
+    TabsToolbar = [ ];
     vertical-tabs = [
       "tabbrowser-tabs"
     ];

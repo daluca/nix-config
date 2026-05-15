@@ -38,29 +38,31 @@
                 content = {
                   type = "btrfs";
                   extraArgs = [ "--force" ];
-                  subvolumes = let
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  in {
-                    "@rootfs" = {
-                      inherit mountOptions;
-                      mountpoint = "/";
+                  subvolumes =
+                    let
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    in
+                    {
+                      "@rootfs" = {
+                        inherit mountOptions;
+                        mountpoint = "/";
+                      };
+                      "@nix" = {
+                        inherit mountOptions;
+                        mountpoint = "/nix";
+                      };
+                      "@persistent" = {
+                        inherit mountOptions;
+                        mountpoint = "/persistent";
+                      };
+                      "@swap" = {
+                        mountpoint = "/var/lib/swap";
+                        swap.swapfile.size = "64G";
+                      };
                     };
-                    "@nix" = {
-                      inherit mountOptions;
-                      mountpoint = "/nix";
-                    };
-                    "@persistent" = {
-                      inherit mountOptions;
-                      mountpoint = "/persistent";
-                    };
-                    "@swap" = {
-                      mountpoint = "/var/lib/swap";
-                      swap.swapfile.size = "64G";
-                    };
-                  };
                 };
               };
             };

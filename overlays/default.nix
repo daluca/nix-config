@@ -3,178 +3,199 @@
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
-  modifications = final: prev: with inputs;
-  let
-    inherit (final.stdenv.hostPlatform) system;
-  in {
-    neovim = nixvim-config.packages.${system}.neovim;
+  modifications =
+    final: prev:
+    with inputs;
+    let
+      inherit (final.stdenv.hostPlatform) system;
+    in
+    {
+      neovim = nixvim-config.packages.${system}.neovim;
 
-    fzf-preview = fzf-preview.packages.${system}.fzf-preview;
+      fzf-preview = fzf-preview.packages.${system}.fzf-preview;
 
-    rustfs = rustfs.packages.${system}.default;
+      rustfs = rustfs.packages.${system}.default;
 
-    helium = nur.legacyPackages.${system}.repos.Ev357.helium;
+      helium = nur.legacyPackages.${system}.repos.Ev357.helium;
 
-    wedding-page = wedding-page.packages.${system}.website;
+      wedding-page = wedding-page.packages.${system}.website;
 
-    itch = let
-      itch-setup = prev.fetchzip {
-        url = "https://broth.itch.zone/itch-setup/linux-amd64/1.26.0/itch-setup.zip";
-        stripRoot = false;
-        hash = "sha256-5MP6X33Jfu97o5R1n6Og64Bv4ZMxVM0A8lXeQug+bNA=";
-      };
-    in prev.itch.overrideAttrs (oldAttrs: {
-      postFixup = oldAttrs.postFixup + /* bash */ ''
-        makeWrapper ${prev.steam-run}/bin/steam-run $out/bin/itch \
-          --add-flags ${prev.electron}/bin/electron \
-          --add-flags $out/share/itch/resources/app \
-          --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}" \
-          --set BROTH_USE_LOCAL butler,itch-setup \
-          --prefix PATH : ${prev.butler}/bin/:${itch-setup}:${prev.lib.getOutput "steamcompattool" final.proton-ge-bin}/files/bin
-      '';
-    });
+      itch =
+        let
+          itch-setup = prev.fetchzip {
+            url = "https://broth.itch.zone/itch-setup/linux-amd64/1.26.0/itch-setup.zip";
+            stripRoot = false;
+            hash = "sha256-5MP6X33Jfu97o5R1n6Og64Bv4ZMxVM0A8lXeQug+bNA=";
+          };
+        in
+        prev.itch.overrideAttrs (oldAttrs: {
+          postFixup = oldAttrs.postFixup + /* bash */ ''
+            makeWrapper ${prev.steam-run}/bin/steam-run $out/bin/itch \
+              --add-flags ${prev.electron}/bin/electron \
+              --add-flags $out/share/itch/resources/app \
+              --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}" \
+              --set BROTH_USE_LOCAL butler,itch-setup \
+              --prefix PATH : ${prev.butler}/bin/:${itch-setup}:${prev.lib.getOutput "steamcompattool" final.proton-ge-bin}/files/bin
+          '';
+        });
 
-    adguardhome = prev.adguardhome.overrideAttrs (oldAttrs: rec {
-      version = "0.107.65";
+      adguardhome = prev.adguardhome.overrideAttrs (oldAttrs: rec {
+        version = "0.107.65";
 
-      src = oldAttrs.src.override {
-        tag = "v${version}";
-        hash = "sha256-OOW77CJRR5vi5jHFOCyF/OyCXaQdTgEc8xZKPcF9vQE=";
-      };
-
-      vendorHash = "sha256-spBMVSZhiM0R5tf8dhZD+N4ucFZ9Wno9Y+BhZMdzQRM=";
-
-      dashboard = prev.buildNpmPackage {
-        inherit src version;
-        pname = "adguardhome-dashboard";
-        postPatch = ''
-          cd client
-        '';
-        npmDepsHash = "sha256-s7TJvGyk05HkAOgjYmozvIQ3l2zYUhWrGRJrWdp9ZJQ=";
-        npmBuildScript = "build-prod";
-        postBuild = ''
-          mkdir -p $out/build/
-          cp -r ../build/static/ $out/build/
-        '';
-      };
-
-      passthru = oldAttrs.passthru // {
-        schema_version = 30;
-      };
-    });
-
-    nixgl = nixgl.packages.${system};
-
-    firefoxExtensions = with final; with inputs; nur.legacyPackages.${system}.repos.rycee.firefox-addons // {
-      inherit bypass-paywalls-clean;
-    };
-
-    kubectlPlugins = with final; {
-      inherit view-secret ingress-nginx;
-    };
-
-    ankiAddons = with prev.anki-utils; prev.ankiAddons // {
-      more-overview-stats = buildAnkiAddon {
-        pname = "more-overview-stats";
-        version = "unstable-2025-02-17";
-        src = prev.fetchFromGitHub {
-          owner = "patrick-mahnkopf";
-          repo = "anki_more_overview_stats";
-          rev = "239dccd68e2cc9e845b78947f6426b47a05582ea";
-          hash = "sha256-I5FjE7h2CaHzUuPFSK8DA91CJB+ngBs8ZF1UJo9gdNM=";
-        };
-      };
-    };
-
-    gnomeExtensions = prev.gnomeExtensions // {
-      # NOTE: Upstream tailscale-qs is not being supported anymore
-      # This a work around to use the PR as the source to update to GNOME 49
-      # https://github.com/joaophi/tailscale-gnome-qs/pull/45
-      tailscale-qs = prev.gnomeExtensions.tailscale-qs.overrideAttrs (oldAttrs: rec {
-        version = "6";
-
-        src = prev.fetchFromGitHub {
-          owner = "tailscale-qs";
-          repo = "tailscale-gnome-qs";
-          rev = "v${version}";
-          hash = "sha256-C/+epuP5fFxOlOKypOK9lTJ3I+PKIcMchqgQim+zRc8=";
+        src = oldAttrs.src.override {
+          tag = "v${version}";
+          hash = "sha256-OOW77CJRR5vi5jHFOCyF/OyCXaQdTgEc8xZKPcF9vQE=";
         };
 
-        preInstall = /* bash */ ''
-          mkdir -p $out/share/gnome-shell/extensions/tailscale-gnome-qs@tailscale-qs.github.io/
-        '';
+        vendorHash = "sha256-spBMVSZhiM0R5tf8dhZD+N4ucFZ9Wno9Y+BhZMdzQRM=";
 
-        postInstall = /* bash */ ''
-          mv $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale-gnome-qs@tailscale-qs.github.io/* $out/share/gnome-shell/extensions/tailscale-gnome-qs@tailscale-qs.github.io/
-
-          rm --recursive $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/
-        '';
+        dashboard = prev.buildNpmPackage {
+          inherit src version;
+          pname = "adguardhome-dashboard";
+          postPatch = ''
+            cd client
+          '';
+          npmDepsHash = "sha256-s7TJvGyk05HkAOgjYmozvIQ3l2zYUhWrGRJrWdp9ZJQ=";
+          npmBuildScript = "build-prod";
+          postBuild = ''
+            mkdir -p $out/build/
+            cp -r ../build/static/ $out/build/
+          '';
+        };
 
         passthru = oldAttrs.passthru // {
-          extensionUuid = "tailscale-gnome-qs@tailscale-qs.github.io";
+          schema_version = 30;
         };
       });
-    };
-  };
 
-  unstable-packages = final: _prev: with inputs;
-  let
-    inherit (final.stdenv.hostPlatform) system;
-  in {
-    unstable = import inputs.nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = [(
-        final: prev:
-        let
-          inherit (final.stdenv.hostPlatform) system;
-        in {
-          deploy-rs = prev.deploy-rs.overrideAttrs {
-            version = "0.1.0-unstable-2025-09-01";
+      nixgl = nixgl.packages.${system};
 
+      firefoxExtensions =
+        with final;
+        with inputs;
+        nur.legacyPackages.${system}.repos.rycee.firefox-addons
+        // {
+          inherit bypass-paywalls-clean;
+        };
+
+      kubectlPlugins = with final; {
+        inherit view-secret ingress-nginx;
+      };
+
+      ankiAddons =
+        with prev.anki-utils;
+        prev.ankiAddons
+        // {
+          more-overview-stats = buildAnkiAddon {
+            pname = "more-overview-stats";
+            version = "unstable-2025-02-17";
             src = prev.fetchFromGitHub {
-              owner = "serokell";
-              repo = "deploy-rs";
-              rev = "125ae9e3ecf62fb2c0fd4f2d894eb971f1ecaed2";
-              hash = "sha256-N9gBKUmjwRKPxAafXEk1EGadfk2qDZPBQp4vXWPHINQ=";
+              owner = "patrick-mahnkopf";
+              repo = "anki_more_overview_stats";
+              rev = "239dccd68e2cc9e845b78947f6426b47a05582ea";
+              hash = "sha256-I5FjE7h2CaHzUuPFSK8DA91CJB+ngBs8ZF1UJo9gdNM=";
             };
+          };
+        };
 
-            postPatch = /* bash */ ''
-              substituteInPlace src/cli.rs \
-                --replace 'version = "1.0"' 'version = "0.1.0"'
-            '';
+      gnomeExtensions = prev.gnomeExtensions // {
+        # NOTE: Upstream tailscale-qs is not being supported anymore
+        # This a work around to use the PR as the source to update to GNOME 49
+        # https://github.com/joaophi/tailscale-gnome-qs/pull/45
+        tailscale-qs = prev.gnomeExtensions.tailscale-qs.overrideAttrs (oldAttrs: rec {
+          version = "6";
+
+          src = prev.fetchFromGitHub {
+            owner = "tailscale-qs";
+            repo = "tailscale-gnome-qs";
+            rev = "v${version}";
+            hash = "sha256-C/+epuP5fFxOlOKypOK9lTJ3I+PKIcMchqgQim+zRc8=";
           };
 
-          colmena = colmena.packages.${system}.colmena;
+          preInstall = /* bash */ ''
+            mkdir -p $out/share/gnome-shell/extensions/tailscale-gnome-qs@tailscale-qs.github.io/
+          '';
 
-          redlib = prev.redlib.overrideAttrs (oldAttrs: rec {
-            version = "0.36.0-unstable-24-04-2026";
+          postInstall = /* bash */ ''
+            mv $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale-gnome-qs@tailscale-qs.github.io/* $out/share/gnome-shell/extensions/tailscale-gnome-qs@tailscale-qs.github.io/
 
-            src = oldAttrs.src.override {
-              rev = "a4d36e954cf1bd64f209cd8868c5a29edc81b374";
-              hash = "sha256-siyD6A12UALQIV7BMd7zu1TaojleTEYtpxPszuhx1/Y=";
-            };
+            rm --recursive $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/
+          '';
 
-            cargoDeps = final.rustPlatform.fetchCargoVendor {
-              inherit src;
-              hash = "sha256-eO3c7rlFna3DuO31etJ6S4c7NmcvgvIWZ1KVkNIuUqQ=";
-            };
-
-            nativeBuildInputs = with prev.pkgs; oldAttrs.nativeBuildInputs ++ [
-              cmake
-              go
-              perl
-              git
-              rustPlatform.bindgenHook
-            ];
-
-            checkFlags = oldAttrs.checkFlags ++ [
-              "--skip=oauth::tests::test_generic_web_backend"
-              "--skip=oauth::tests::test_mobile_spoof_backend"
-            ];
-          });
-        }
-      )];
+          passthru = oldAttrs.passthru // {
+            extensionUuid = "tailscale-gnome-qs@tailscale-qs.github.io";
+          };
+        });
+      };
     };
-  };
+
+  unstable-packages =
+    final: _prev:
+    with inputs;
+    let
+      inherit (final.stdenv.hostPlatform) system;
+    in
+    {
+      unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          (
+            final: prev:
+            let
+              inherit (final.stdenv.hostPlatform) system;
+            in
+            {
+              deploy-rs = prev.deploy-rs.overrideAttrs {
+                version = "0.1.0-unstable-2025-09-01";
+
+                src = prev.fetchFromGitHub {
+                  owner = "serokell";
+                  repo = "deploy-rs";
+                  rev = "125ae9e3ecf62fb2c0fd4f2d894eb971f1ecaed2";
+                  hash = "sha256-N9gBKUmjwRKPxAafXEk1EGadfk2qDZPBQp4vXWPHINQ=";
+                };
+
+                postPatch = /* bash */ ''
+                  substituteInPlace src/cli.rs \
+                    --replace 'version = "1.0"' 'version = "0.1.0"'
+                '';
+              };
+
+              colmena = colmena.packages.${system}.colmena;
+
+              redlib = prev.redlib.overrideAttrs (oldAttrs: rec {
+                version = "0.36.0-unstable-24-04-2026";
+
+                src = oldAttrs.src.override {
+                  rev = "a4d36e954cf1bd64f209cd8868c5a29edc81b374";
+                  hash = "sha256-siyD6A12UALQIV7BMd7zu1TaojleTEYtpxPszuhx1/Y=";
+                };
+
+                cargoDeps = final.rustPlatform.fetchCargoVendor {
+                  inherit src;
+                  hash = "sha256-eO3c7rlFna3DuO31etJ6S4c7NmcvgvIWZ1KVkNIuUqQ=";
+                };
+
+                nativeBuildInputs =
+                  with prev.pkgs;
+                  oldAttrs.nativeBuildInputs
+                  ++ [
+                    cmake
+                    go
+                    perl
+                    git
+                    rustPlatform.bindgenHook
+                  ];
+
+                checkFlags = oldAttrs.checkFlags ++ [
+                  "--skip=oauth::tests::test_generic_web_backend"
+                  "--skip=oauth::tests::test_mobile_spoof_backend"
+                ];
+              });
+            }
+          )
+        ];
+      };
+    };
 }

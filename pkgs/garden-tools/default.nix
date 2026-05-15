@@ -1,4 +1,11 @@
-{ lib, fetchFromGitLab, rustPlatform, wayland, libGL, libxkbcommon }:
+{
+  lib,
+  fetchFromGitLab,
+  rustPlatform,
+  wayland,
+  libGL,
+  libxkbcommon,
+}:
 
 rustPlatform.buildRustPackage rec {
   pname = "garden-tools";
@@ -21,11 +28,13 @@ rustPlatform.buildRustPackage rec {
 
   postFixup = /* bash */ ''
     patchelf $out/bin/garden-gui \
-      --add-rpath ${lib.makeLibraryPath [
-        wayland
-        libGL
-        libxkbcommon
-      ]}
+      --add-rpath ${
+        lib.makeLibraryPath [
+          wayland
+          libGL
+          libxkbcommon
+        ]
+      }
   '';
 
   doCheck = false;

@@ -54,9 +54,11 @@ stdenvNoCC.mkDerivation (finalAttrs: rec {
 
     makeWrapper ${lib.getExe nodejs} $out/bin/${pname} \
       --add-flags "$out/share/bundle.cjs" \
-      --prefix PATH : ${lib.makeBinPath [
-        gitMinimal
-      ]}
+      --prefix PATH : ${
+        lib.makeBinPath [
+          gitMinimal
+        ]
+      }
 
     runHook postInstall
   '';

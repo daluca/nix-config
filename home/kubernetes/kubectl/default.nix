@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   inherit (pkgs) kubectl kubectx;
-in {
+in
+{
   imports = [
     ./plugins.nix
   ];

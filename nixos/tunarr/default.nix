@@ -1,6 +1,7 @@
 let
   days = 24;
-in {
+in
+{
   services.tunarr = {
     enable = true;
     port = 8108;

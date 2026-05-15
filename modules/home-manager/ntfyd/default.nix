@@ -1,7 +1,13 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.ntfyd;
-in {
+in
+{
   options.services.ntfyd = with lib; {
     enable = lib.mkEnableOption "ntfy.sh background notifications daemon";
 
@@ -36,7 +42,10 @@ in {
       };
 
       Service = {
-        ExecStart = "${lib.getExe cfg.package} --server ${cfg.server} " + lib.optionalString (cfg.token != "") "--token ${cfg.token} " + "${builtins.concatStringsSep " " cfg.topics}";
+        ExecStart =
+          "${lib.getExe cfg.package} --server ${cfg.server} "
+          + lib.optionalString (cfg.token != "") "--token ${cfg.token} "
+          + "${builtins.concatStringsSep " " cfg.topics}";
         Restart = "always";
       };
 

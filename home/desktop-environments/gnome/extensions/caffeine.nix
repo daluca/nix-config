@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
-with pkgs.gnomeExtensions; {
+with pkgs.gnomeExtensions;
+{
   home.packages = [ caffeine ];
 
   dconf.settings."org/gnome/shell".enabled-extensions = [

@@ -8,7 +8,9 @@ let
     inherit sslCertificate sslCertificateKey sslTrustedCertificate;
     forceSSL = true;
   };
-in with config.services; {
+in
+with config.services;
+{
   "paperless.${secrets.domain.general}" = tls // {
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString paperless.port}";

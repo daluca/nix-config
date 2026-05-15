@@ -1,29 +1,45 @@
-{ config, lib, pkgs, secrets, inputs, outputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  secrets,
+  inputs,
+  outputs,
+  ...
+}:
 let
   GiB = 1024 * 1024 * 1024;
-in {
-  imports = with inputs; with outputs.nixosModules; (
-    builtins.filter (f: baseNameOf f == "cache.nix") (lib.filesystem.listFilesRecursive (lib.custom.relativeToHosts "."))
-  ) ++ [
-    impermanence.nixosModules.impermanence
-  ] ++ [
-    jellyplex-watched
-    tunarr
-    host
-    attic-watch-store
-    grub
-    configarr
-  ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "dvorak"
-    "home-manager"
-    "openssh"
-    "secrets"
-    "networking"
-    "sudo"
-  ] ++ map (m: lib.custom.relativeToUsers m) [
-    "root"
-    "daluca"
-  ];
+in
+{
+  imports =
+    with inputs;
+    with outputs.nixosModules;
+    (builtins.filter (f: baseNameOf f == "cache.nix") (
+      lib.filesystem.listFilesRecursive (lib.custom.relativeToHosts ".")
+    ))
+    ++ [
+      impermanence.nixosModules.impermanence
+    ]
+    ++ [
+      jellyplex-watched
+      tunarr
+      host
+      attic-watch-store
+      grub
+      configarr
+    ]
+    ++ map (m: lib.custom.relativeToNixosModules m) [
+      "dvorak"
+      "home-manager"
+      "openssh"
+      "secrets"
+      "networking"
+      "sudo"
+    ]
+    ++ map (m: lib.custom.relativeToUsers m) [
+      "root"
+      "daluca"
+    ];
 
   boot.extraModprobeConfig = ''
     install algif_aead /bin/false
@@ -41,7 +57,10 @@ in {
   sops.secrets."attic/api-token" = { };
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     substituters = [
       "https://nix-community.cachix.org?priority=50"
       "https://attic.${secrets.domain.general}/production?priority=60"
@@ -55,12 +74,17 @@ in {
     netrc-file = config.sops.templates."netrc".path;
   };
 
-  nix.nixPath = [ "nixpkgs=flake:nixpkgs" ] ++ lib.optional config.nix.channel.enable "/nix/var/nix/profiles/per-user/root/channels";
+  nix.nixPath = [
+    "nixpkgs=flake:nixpkgs"
+  ]
+  ++ lib.optional config.nix.channel.enable "/nix/var/nix/profiles/per-user/root/channels";
 
-  nix.registry = lib.mapAttrs (_: value: { flake = lib.mkForce value; }) (lib.filterAttrs (n: _: n != "self") inputs) // {
-    nix-config.flake = inputs.self;
-    neovim.flake = inputs.nixvim-config;
-  };
+  nix.registry =
+    lib.mapAttrs (_: value: { flake = lib.mkForce value; }) (lib.filterAttrs (n: _: n != "self") inputs)
+    // {
+      nix-config.flake = inputs.self;
+      neovim.flake = inputs.nixvim-config;
+    };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -69,11 +93,14 @@ in {
     setFlakeRegistry = false;
   };
 
-  nixpkgs.overlays = with inputs; builtins.attrValues outputs.overlays ++ [
-    nur.overlays.default
-    nix-vscode-extensions.overlays.default
-    proton-ge.overlays.default
-  ];
+  nixpkgs.overlays =
+    with inputs;
+    builtins.attrValues outputs.overlays
+    ++ [
+      nur.overlays.default
+      nix-vscode-extensions.overlays.default
+      proton-ge.overlays.default
+    ];
 
   nix.gc = {
     automatic = true;

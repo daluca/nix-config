@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.kanata;
 
@@ -9,7 +14,8 @@ let
       ${lib.getExe cfg.package} --cfg "$target" --check --debug
     '';
   };
-in {
+in
+{
   options.services.kanata = with lib; {
     enable = lib.mkEnableOption "Kanata, Improve keyboard comfort and usability with advanced customization";
 
@@ -24,7 +30,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable  {
+  config = lib.mkIf cfg.enable {
     systemd.user.services.kanata = {
       Unit = {
         Description = "Kanata keyboard remapper";

@@ -6,12 +6,14 @@
     enableDefaultConfig = false;
     matchBlocks = {
       ${config.home.username} = {
-        match = "User ${config.home.username} Host *,!${lib.concatStringsSep ",!" [
-          "192.168.10.1"
-          "192.168.10.2"
-          "192.168.10.99"
-          "192.168.10.101"
-        ]}";
+        match = "User ${config.home.username} Host *,!${
+          lib.concatStringsSep ",!" [
+            "192.168.10.1"
+            "192.168.10.2"
+            "192.168.10.99"
+            "192.168.10.101"
+          ]
+        }";
         extraOptions = {
           RemoteCommand = "zsh --login";
           RequestTTY = "yes";
@@ -43,7 +45,8 @@
     path = ".ssh/id_ed25519";
   };
 
-  home.file.".ssh/id_ed25519.pub".source = lib.custom.relativeToUsers "${config.home.username}/keys/id_ed25519.pub";
+  home.file.".ssh/id_ed25519.pub".source =
+    lib.custom.relativeToUsers "${config.home.username}/keys/id_ed25519.pub";
 
   home.persistence.home.directories = [
     ".ssh"

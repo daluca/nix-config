@@ -1,6 +1,7 @@
 { lib, pkgs, ... }:
 
-with pkgs.gnomeExtensions; {
+with pkgs.gnomeExtensions;
+{
   home.packages = [ paperwm ];
 
   dconf.settings = with lib.hm.gvariant; {

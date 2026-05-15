@@ -1,4 +1,9 @@
-{ secrets, inputs, outputs, ... }:
+{
+  secrets,
+  inputs,
+  outputs,
+  ...
+}:
 
 {
   imports = with inputs; [

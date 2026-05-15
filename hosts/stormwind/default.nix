@@ -1,16 +1,19 @@
 { lib, outputs, ... }:
 
 {
-  imports = with outputs.nixosModules; [
-    ./..
-    ./adguardhome.nix
+  imports =
+    with outputs.nixosModules;
+    [
+      ./..
+      ./adguardhome.nix
 
-    raspberry-pi-4
-  ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "openssh/server"
-    "tailscale/server"
-    "adguardhome"
-  ];
+      raspberry-pi-4
+    ]
+    ++ map (m: lib.custom.relativeToNixosModules m) [
+      "openssh/server"
+      "tailscale/server"
+      "adguardhome"
+    ];
 
   services.getty.autologinUser = "daluca";
 
@@ -29,10 +32,22 @@
     dt-overlays.rpi-poe = {
       enable = true;
       params = {
-        poe_fan_temp0 = { enable = true; value = 65 * 1000; };
-        poe_fan_temp1 = { enable = true; value = 70 * 1000; };
-        poe_fan_temp2 = { enable = true; value = 75 * 1000; };
-        poe_fan_temp3 = { enable = true; value = 80 * 1000; };
+        poe_fan_temp0 = {
+          enable = true;
+          value = 65 * 1000;
+        };
+        poe_fan_temp1 = {
+          enable = true;
+          value = 70 * 1000;
+        };
+        poe_fan_temp2 = {
+          enable = true;
+          value = 75 * 1000;
+        };
+        poe_fan_temp3 = {
+          enable = true;
+          value = 80 * 1000;
+        };
       };
     };
   };

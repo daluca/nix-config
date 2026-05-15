@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   inherit (pkgs.unstable) fluxcd;
-in {
+in
+{
   home.packages = [ fluxcd ];
 
   programs.zsh.oh-my-zsh.plugins = [

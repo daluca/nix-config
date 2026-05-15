@@ -16,7 +16,6 @@
     "heroic/tools/proton/GE-Proton7-55".source = lib.getOutput "steamcompattool" GE-Proton7-55;
   };
 
-
   home.persistence.home.directories = [
     ".config/heroic"
     ".local/share/Heroic"

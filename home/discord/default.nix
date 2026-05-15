@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   inherit (pkgs) discord;
-in {
+in
+{
   home.packages = [
     discord
   ];

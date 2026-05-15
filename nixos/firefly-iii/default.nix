@@ -1,7 +1,8 @@
 { config, ... }:
 let
   firefly-iii = config.services.firefly-iii;
-in {
+in
+{
   services.firefly-iii = {
     enable = true;
     enableNginx = true;

@@ -1,6 +1,7 @@
 { lib, pkgs, ... }:
 
-with pkgs.gnomeExtensions; {
+with pkgs.gnomeExtensions;
+{
   home.packages = [ in-picture ];
 
   dconf.settings = with lib.hm.gvariant; {
@@ -16,8 +17,14 @@ with pkgs.gnomeExtensions; {
       use-relative = true;
       diagonal-relative = 30;
       identifiers = [
-        [ "Picture-in-Picture" "firefox.desktop" ]
-        [ "Picture-in-Picture" "zen-beta.desktop" ]
+        [
+          "Picture-in-Picture"
+          "firefox.desktop"
+        ]
+        [
+          "Picture-in-Picture"
+          "zen-beta.desktop"
+        ]
       ];
     };
   };

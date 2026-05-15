@@ -1,7 +1,8 @@
 { lib, pkgs, ... }:
 let
   inherit (pkgs.unstable) vscodium;
-in {
+in
+{
   imports = [
     ../vscode
   ];

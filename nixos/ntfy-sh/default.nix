@@ -20,6 +20,9 @@
   users.users.daluca.extraGroups = [ "ntfy-sh" ];
 
   environment.persistence.system.directories = [
-    { directory = "/var/lib/ntfy-sh"; mode = "0775"; }
+    {
+      directory = "/var/lib/ntfy-sh";
+      mode = "0775";
+    }
   ];
 }

@@ -2,7 +2,8 @@
 let
   inherit (config.home-manager.users.daluca.home) username;
   secrets = config.sops.secrets // args.secrets // fromTOML (builtins.readFile ./secrets.toml);
-in {
+in
+{
   users.users.daluca = {
     isNormalUser = true;
     description = "Lucas Slebos";

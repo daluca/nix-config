@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 let
   inherit (pkgs.unstable) cachix;
-in {
+in
+{
   services.cachix-watch-store = {
     enable = true;
     package = cachix;

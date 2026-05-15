@@ -42,25 +42,27 @@
                 extraArgs = [
                   "-f"
                 ];
-                subvolumes = let
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                in {
-                  "@rootfs" = {
-                    inherit mountOptions;
-                    mountpoint = "/";
+                subvolumes =
+                  let
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  in
+                  {
+                    "@rootfs" = {
+                      inherit mountOptions;
+                      mountpoint = "/";
+                    };
+                    "@nix" = {
+                      inherit mountOptions;
+                      mountpoint = "/nix";
+                    };
+                    "@storage" = {
+                      inherit mountOptions;
+                      mountpoint = "/storage";
+                    };
                   };
-                  "@nix" = {
-                    inherit mountOptions;
-                    mountpoint = "/nix";
-                  };
-                  "@storage" = {
-                    inherit mountOptions;
-                    mountpoint = "/storage";
-                  };
-                };
               };
             };
             swap = {

@@ -11,7 +11,8 @@ let
       "mail.server.server_${id}.authMethod" = OAuth2;
     };
   };
-in {
+in
+{
   accounts.email.accounts = {
     ${proton.primary} = rec {
       inherit realName;

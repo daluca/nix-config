@@ -1,7 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.attic-watch-store;
-in with lib; {
+in
+with lib;
+{
   options.services.attic-watch-store = {
     enable = lib.mkEnableOption "attic-watch-store";
 

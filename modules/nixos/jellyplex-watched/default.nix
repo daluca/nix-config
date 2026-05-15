@@ -1,7 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.jellyplex-watched;
-in with lib; {
+in
+with lib;
+{
   options.services.jellyplex-watched = {
     enable = lib.mkEnableOption "JellyPlex-Watched";
 
@@ -64,7 +71,7 @@ in with lib; {
       };
       default = {
         urls = [ "http://127.0.0.1:32400" ];
-        tokens = [];
+        tokens = [ ];
       };
     };
 
@@ -86,7 +93,7 @@ in with lib; {
       };
       default = {
         urls = [ "http://127.0.0.1:8096" ];
-        tokens = [];
+        tokens = [ ];
       };
     };
 
@@ -108,7 +115,7 @@ in with lib; {
       };
       default = {
         urls = [ "http://127.0.0.1:8097" ];
-        tokens = [];
+        tokens = [ ];
       };
     };
   };
@@ -123,19 +130,21 @@ in with lib; {
       serviceConfig = {
         Type = "exec";
         ExecStart = "${cfg.package}/bin/jellyplex-watched";
-        EnvironmentFile=pkgs.writeText "jellyplex-watched-env" (lib.generators.toKeyValue {} {
-          DRYRUN = cfg.dryrun;
-          DEBUG_LEVEL = cfg.log-level;
-          SLEEP_DURATION = cfg.interval;
-          USER_MAPPING = builtins.toJSON cfg.mappings.users;
-          LIBRARY_MAPPING = builtins.toJSON cfg.mappings.libraries;
-          PLEX_BASEURL = lib.concatStringsSep ", " cfg.plex.urls;
-          PLEX_TOKEN = lib.concatStringsSep ", " cfg.plex.tokens;
-          JELLYFIN_BASEURL = lib.concatStringsSep ", " cfg.jellyfin.urls;
-          JELLYFIN_TOKEN = lib.concatStringsSep ", " cfg.jellyfin.tokens;
-          EMBY_BASEURL = lib.concatStringsSep ", " cfg.emby.urls;
-          EMBY_TOKEN = lib.concatStringsSep ", " cfg.emby.tokens;
-        });
+        EnvironmentFile = pkgs.writeText "jellyplex-watched-env" (
+          lib.generators.toKeyValue { } {
+            DRYRUN = cfg.dryrun;
+            DEBUG_LEVEL = cfg.log-level;
+            SLEEP_DURATION = cfg.interval;
+            USER_MAPPING = builtins.toJSON cfg.mappings.users;
+            LIBRARY_MAPPING = builtins.toJSON cfg.mappings.libraries;
+            PLEX_BASEURL = lib.concatStringsSep ", " cfg.plex.urls;
+            PLEX_TOKEN = lib.concatStringsSep ", " cfg.plex.tokens;
+            JELLYFIN_BASEURL = lib.concatStringsSep ", " cfg.jellyfin.urls;
+            JELLYFIN_TOKEN = lib.concatStringsSep ", " cfg.jellyfin.tokens;
+            EMBY_BASEURL = lib.concatStringsSep ", " cfg.emby.urls;
+            EMBY_TOKEN = lib.concatStringsSep ", " cfg.emby.tokens;
+          }
+        );
       };
     };
   };

@@ -3,7 +3,10 @@
 {
   programs.ssh.knownHosts = rec {
     charlie = {
-      extraHostNames = [ "charlie.${config.networking.domain}" secrets.hosts.charlie.ipv4-address ];
+      extraHostNames = [
+        "charlie.${config.networking.domain}"
+        secrets.hosts.charlie.ipv4-address
+      ];
       publicKeyFile = ./keys/ssh_host_ed25519_key.pub;
     };
     "charlie/rsa" = {
@@ -12,7 +15,10 @@
     };
     charlie-initrd = {
       hostNames = [ "[charlie]:22022" ] ++ charlie-initrd.extraHostNames;
-      extraHostNames = [ "[charlie.${config.networking.domain}]:22022" "[${secrets.hosts.charlie.ipv4-address}]:22022" ];
+      extraHostNames = [
+        "[charlie.${config.networking.domain}]:22022"
+        "[${secrets.hosts.charlie.ipv4-address}]:22022"
+      ];
       publicKeyFile = ./keys/ssh_initrd_ed25519_key.pub;
     };
     "charlie-initrd/rsa" = {

@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   inherit (pkgs) gnome-boxes;
-in {
+in
+{
   virtualisation.libvirtd = {
     enable = true;
   };

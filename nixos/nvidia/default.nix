@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (config.boot) kernelPackages;
   inherit (lib) mkForce;
   inherit (pkgs.unstable) linuxPackages_latest;
-in {
+in
+{
   boot.kernelPackages = linuxPackages_latest;
 
   specialisation.gaming.configuration = {

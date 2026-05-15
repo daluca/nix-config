@@ -1,4 +1,8 @@
-{ deploy-rs, nixosConfigurations, secrets }:
+{
+  deploy-rs,
+  nixosConfigurations,
+  secrets,
+}:
 
 {
   nodes = {

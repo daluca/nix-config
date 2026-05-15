@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   services.atticd = {
@@ -17,6 +22,9 @@
   ];
 
   environment.persistence.system.directories = [
-    { directory = "/var/lib/private/atticd"; mode = "0700"; }
+    {
+      directory = "/var/lib/private/atticd";
+      mode = "0700";
+    }
   ];
 }

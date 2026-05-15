@@ -1,7 +1,8 @@
 { lib, ... }:
 let
   inherit (lib) concatStringsSep;
-in {
+in
+{
   programs.starship = {
     enable = true;
     enableBashIntegration = false;

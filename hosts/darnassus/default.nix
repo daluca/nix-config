@@ -1,14 +1,17 @@
 { lib, outputs, ... }:
 
 {
-  imports = with outputs.nixosModules; [
-    ./..
+  imports =
+    with outputs.nixosModules;
+    [
+      ./..
 
-    raspberry-pi-4
-  ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "openssh/server"
-    "tailscale/server"
-  ];
+      raspberry-pi-4
+    ]
+    ++ map (m: lib.custom.relativeToNixosModules m) [
+      "openssh/server"
+      "tailscale/server"
+    ];
 
   services.getty.autologinUser = "daluca";
 
@@ -27,9 +30,18 @@
     dt-overlays.gpio-fan = {
       enable = true;
       params = {
-        gpiopin = { enable = true; value = 14; };
-        temp = { enable = true; value = 80 * 1000; };
-        hyst = { enable = true; value = 10 * 1000; };
+        gpiopin = {
+          enable = true;
+          value = 14;
+        };
+        temp = {
+          enable = true;
+          value = 80 * 1000;
+        };
+        hyst = {
+          enable = true;
+          value = 10 * 1000;
+        };
       };
     };
   };

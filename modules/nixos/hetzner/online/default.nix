@@ -1,4 +1,9 @@
-{ config, lib, outputs, ... }:
+{
+  config,
+  lib,
+  outputs,
+  ...
+}:
 
 {
   imports = with outputs.nixosModules; [

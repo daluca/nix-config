@@ -1,4 +1,10 @@
-{ config, lib, pkgs, secrets, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  secrets,
+  ...
+}:
 
 {
   programs.atuin = {
@@ -26,34 +32,35 @@
 
   catppuccin.atuin.enable = true;
 
-  programs.zsh.initContent = /* zsh */ /* bash */ ''
-    atuin-setup() {
-      bindkey '^[r' atuin-search
+  programs.zsh.initContent = # zsh
+    /* bash */ ''
+      atuin-setup() {
+        bindkey '^[r' atuin-search
 
-      export ATUIN_NOBIND="true"
+        export ATUIN_NOBIND="true"
 
-      fzf-atuin-history-widget() {
-        local selected
-        setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
+        fzf-atuin-history-widget() {
+          local selected
+          setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
 
-        selected=$(
-          eval ${lib.getExe config.programs.atuin.package} search --cmd-only --reverse | ${lib.getExe config.programs.fzf.package}
-        )
-        local ret=$?
-        if [ -n "$selected" ]; then
-          LBUFFER+="''${selected}"
-        fi
-        zle reset-prompt
-        return $ret
+          selected=$(
+            eval ${lib.getExe config.programs.atuin.package} search --cmd-only --reverse | ${lib.getExe config.programs.fzf.package}
+          )
+          local ret=$?
+          if [ -n "$selected" ]; then
+            LBUFFER+="''${selected}"
+          fi
+          zle reset-prompt
+          return $ret
+        }
+
+        zle -N fzf-atuin-history-widget
+        bindkey '^R' fzf-atuin-history-widget
+        bindkey '^[OA' atuin-up-search
       }
 
-      zle -N fzf-atuin-history-widget
-      bindkey '^R' fzf-atuin-history-widget
-      bindkey '^[OA' atuin-up-search
-    }
-
-    atuin-setup
-  '';
+      atuin-setup
+    '';
 
   programs.ghostty.settings = {
     keybind = [

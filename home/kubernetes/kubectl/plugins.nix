@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   inherit (pkgs.kubectlPlugins) view-secret ingress-nginx;
-in {
+in
+{
   home.packages = [
     view-secret
     ingress-nginx

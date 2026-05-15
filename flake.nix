@@ -77,174 +77,287 @@
     treefmt.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
-  let
-    inherit (self) outputs;
-    inherit (lib) nixosSystem;
-    lib = nixpkgs.lib.extend (_final: _prev: { custom = import ./lib { inherit lib; }; } // home-manager.lib);
-    secrets = fromTOML (builtins.readFile ./secrets/secrets.toml);
-    supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
-    forAllSystems = lib.genAttrs supportedSystems;
-    pkgs' = system: import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = with inputs; builtins.attrValues self.overlays ++ [
-        nur.overlays.default
-        nix-vscode-extensions.overlays.default
-        nixgl.overlays.default
-        proton-ge.overlays.default
-      ];
-    };
-  in with inputs; with outputs; {
-    checks = forAllSystems (system:
-      let
-        pkgs = pkgs' system;
-      in {
-        pre-commit = git-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = import ./.pre-commit-config.nix { inherit lib pkgs; };
-        };
-      } // deploy-rs.lib.${system}.deployChecks deploy
-        // (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.check self
-    );
-
-    formatter = forAllSystems (system:
-      let
-        pkgs = pkgs' system;
-      in (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper
-    );
-
-    overlays = import ./overlays { inherit inputs; };
-
-    packages = forAllSystems (system:
-      let
-        pkgs = pkgs' system;
-      in
-        import ./pkgs { inherit pkgs; }
-    );
-
-    nixosModules = import ./modules/nixos;
-
-    homeManagerModules = import ./modules/home-manager;
-
-    deploy = import ./hosts/deploy.nix { inherit deploy-rs nixosConfigurations secrets; };
-
-    devShells = forAllSystems (system:
-      let
-        inherit (checks.${system}) pre-commit;
-        pkgs = pkgs' system;
-      in {
-        default = pkgs.mkShell {
-          name = "nix-config";
-          packages = with pkgs.unstable; pre-commit.enabledPackages ++ [
-            sops
-            git-agecrypt
-            just
-            fd
-            deploy-rs
-            colmena
-          ];
-          JUST_COMMAND_COLOR = "blue";
-          shellHook = pre-commit.shellHook;
-        };
-      }
-    );
-
-    colmenaHive = inputs.colmena.lib.makeHive colmena;
-
-    colmena = import ./hosts/colmena.nix { inherit inputs outputs secrets; };
-
-    nixosConfigurations.artemis = nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/artemis
-      ];
-    };
-
-    nixosConfigurations.stormwind = nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/stormwind
-      ];
-    };
-
-    nixosConfigurations.ironforge = nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/ironforge
-      ];
-    };
-
-    nixosConfigurations.darnassus = nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/darnassus
-      ];
-    };
-
-    nixosConfigurations.dalaran =
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
-      lib = nixos-raspberrypi.inputs.nixpkgs.lib.extend (_final: _prev: {
-        custom = import ./lib { lib = nixos-raspberrypi.inputs.nixpkgs.lib; };
-      } // home-manager.lib );
-    in nixos-raspberrypi.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib secrets nixos-raspberrypi; };
-      modules = [
-        ./hosts/dalaran
+      inherit (self) outputs;
+      inherit (lib) nixosSystem;
+      lib = nixpkgs.lib.extend (
+        _final: _prev: { custom = import ./lib { inherit lib; }; } // home-manager.lib
+      );
+      secrets = fromTOML (builtins.readFile ./secrets/secrets.toml);
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
       ];
-    };
+      forAllSystems = lib.genAttrs supportedSystems;
+      pkgs' =
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays =
+            with inputs;
+            builtins.attrValues self.overlays
+            ++ [
+              nur.overlays.default
+              nix-vscode-extensions.overlays.default
+              nixgl.overlays.default
+              proton-ge.overlays.default
+            ];
+        };
+    in
+    with inputs;
+    with outputs;
+    {
+      checks = forAllSystems (
+        system:
+        let
+          pkgs = pkgs' system;
+        in
+        {
+          pre-commit = git-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = import ./.pre-commit-config.nix { inherit lib pkgs; };
+          };
+        }
+        // deploy-rs.lib.${system}.deployChecks deploy
+        // (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.check self
+      );
 
-    nixosConfigurations.guiltyspark = nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/guiltyspark
-      ];
-    };
+      formatter = forAllSystems (
+        system:
+        let
+          pkgs = pkgs' system;
+        in
+        (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper
+      );
 
-    nixosConfigurations.shodan = nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/shodan
-      ];
-    };
+      overlays = import ./overlays { inherit inputs; };
 
-    nixosConfigurations.unifi = nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/unifi
-      ];
-    };
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = pkgs' system;
+        in
+        import ./pkgs { inherit pkgs; }
+      );
 
-    nixosConfigurations.alfa = nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/alfa
-      ];
-    };
+      nixosModules = import ./modules/nixos;
 
-    nixosConfigurations.bravo = nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/bravo
-      ];
-    };
+      homeManagerModules = import ./modules/home-manager;
 
-    nixosConfigurations.charlie = nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs outputs lib secrets; };
-      modules = [
-        ./hosts/charlie
-      ];
+      deploy = import ./hosts/deploy.nix { inherit deploy-rs nixosConfigurations secrets; };
+
+      devShells = forAllSystems (
+        system:
+        let
+          inherit (checks.${system}) pre-commit;
+          pkgs = pkgs' system;
+        in
+        {
+          default = pkgs.mkShell {
+            name = "nix-config";
+            packages =
+              with pkgs.unstable;
+              pre-commit.enabledPackages
+              ++ [
+                sops
+                git-agecrypt
+                just
+                fd
+                deploy-rs
+                colmena
+              ];
+            JUST_COMMAND_COLOR = "blue";
+            shellHook = pre-commit.shellHook;
+          };
+        }
+      );
+
+      colmenaHive = inputs.colmena.lib.makeHive colmena;
+
+      colmena = import ./hosts/colmena.nix { inherit inputs outputs secrets; };
+
+      nixosConfigurations.artemis = nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/artemis
+        ];
+      };
+
+      nixosConfigurations.stormwind = nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/stormwind
+        ];
+      };
+
+      nixosConfigurations.ironforge = nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/ironforge
+        ];
+      };
+
+      nixosConfigurations.darnassus = nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/darnassus
+        ];
+      };
+
+      nixosConfigurations.dalaran =
+        let
+          lib = nixos-raspberrypi.inputs.nixpkgs.lib.extend (
+            _final: _prev:
+            {
+              custom = import ./lib { lib = nixos-raspberrypi.inputs.nixpkgs.lib; };
+            }
+            // home-manager.lib
+          );
+        in
+        nixos-raspberrypi.lib.nixosSystem {
+          system = "aarch64-linux";
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              lib
+              secrets
+              nixos-raspberrypi
+              ;
+          };
+          modules = [
+            ./hosts/dalaran
+          ];
+        };
+
+      nixosConfigurations.guiltyspark = nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/guiltyspark
+        ];
+      };
+
+      nixosConfigurations.shodan = nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/shodan
+        ];
+      };
+
+      nixosConfigurations.unifi = nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/unifi
+        ];
+      };
+
+      nixosConfigurations.alfa = nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/alfa
+        ];
+      };
+
+      nixosConfigurations.bravo = nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/bravo
+        ];
+      };
+
+      nixosConfigurations.charlie = nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            lib
+            secrets
+            ;
+        };
+        modules = [
+          ./hosts/charlie
+        ];
+      };
     };
-  };
 }

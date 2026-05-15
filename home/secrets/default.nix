@@ -1,7 +1,13 @@
-{ config, lib, inputs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 let
   inherit (config.home) username;
-in {
+in
+{
   imports = with inputs; [
     sops-nix.homeManagerModules.sops
   ];

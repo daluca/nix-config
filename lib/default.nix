@@ -1,7 +1,8 @@
 { lib }:
 let
   inherit (lib.path) append;
-in {
+in
+{
   relativeToRoot = append ../.;
   relativeToUsers = append ../users;
   relativeToHosts = append ../hosts;

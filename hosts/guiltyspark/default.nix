@@ -1,32 +1,42 @@
-{ config, lib, inputs, ... }@args:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}@args:
 let
   secrets = args.secrets // fromTOML (builtins.readFile ./secrets.toml);
-in {
-  imports = with inputs; [
-    ./..
-    ./disko.nix
+in
+{
+  imports =
+    with inputs;
+    [
+      ./..
+      ./disko.nix
 
-    nixos-hardware.nixosModules.common-cpu-intel
-    disko.nixosModules.disko
-  ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "grub"
-    "openssh/server"
-    "tailscale/server"
-    "cockpit"
-    "jellyfin"
-    "plex"
-    "sonarr"
-    "radarr"
-    "prowlarr"
-    "sabnzbd"
-    "jellyseerr"
-    "jellyplex-watched"
-    "tunarr"
-    "nginx"
-  ] ++ map (m: lib.custom.relativeToUsers m) [
-    "remotebuild"
-    "starr"
-  ];
+      nixos-hardware.nixosModules.common-cpu-intel
+      disko.nixosModules.disko
+    ]
+    ++ map (m: lib.custom.relativeToNixosModules m) [
+      "grub"
+      "openssh/server"
+      "tailscale/server"
+      "cockpit"
+      "jellyfin"
+      "plex"
+      "sonarr"
+      "radarr"
+      "prowlarr"
+      "sabnzbd"
+      "jellyseerr"
+      "jellyplex-watched"
+      "tunarr"
+      "nginx"
+    ]
+    ++ map (m: lib.custom.relativeToUsers m) [
+      "remotebuild"
+      "starr"
+    ];
 
   networking = {
     hostName = "guiltyspark";

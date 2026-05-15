@@ -1,7 +1,8 @@
 { lib, pkgs, ... }:
 let
   inherit (pkgs.unstable) zoxide;
-in {
+in
+{
   programs.zoxide = {
     enable = true;
     package = zoxide;

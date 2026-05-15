@@ -2,13 +2,16 @@
 
 {
   programs.vscode.profiles.default = {
-    extensions = with pkgs.open-vsx; [
-      redhat.ansible
-      samuelcolvin.jinjahtml
-    ] ++ [
-      redhat.vscode-yaml
-      ms-python.python
-    ];
+    extensions =
+      with pkgs.open-vsx;
+      [
+        redhat.ansible
+        samuelcolvin.jinjahtml
+      ]
+      ++ [
+        redhat.vscode-yaml
+        ms-python.python
+      ];
     userSettings = {
       "redhat.telemetry.enabled" = false;
       "ansible.python.interpreterPath" = "${pkgs.python3}/bin/python3";

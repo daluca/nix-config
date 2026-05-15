@@ -1,27 +1,39 @@
-{ config, lib, secrets, inputs, outputs, ... }:
+{
+  config,
+  lib,
+  secrets,
+  inputs,
+  outputs,
+  ...
+}:
 
 {
-  imports = with inputs; with outputs.nixosModules; [
-    ./..
-    ./disko.nix
-    ./adguardhome.nix
+  imports =
+    with inputs;
+    with outputs.nixosModules;
+    [
+      ./..
+      ./disko.nix
+      ./adguardhome.nix
 
-    raspberry-pi-5
+      raspberry-pi-5
 
-    disko.nixosModules.disko
-  ] ++ map (m: lib.custom.relativeToUsers m) [
-    "remotebuild"
-  ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "openssh/server"
-    "nginx"
-    "adguardhome"
-    "paperless"
-    "redlib"
-    "firefly-iii"
-    "navidrome"
-    "local-content-share"
-    "gatus"
-  ];
+      disko.nixosModules.disko
+    ]
+    ++ map (m: lib.custom.relativeToUsers m) [
+      "remotebuild"
+    ]
+    ++ map (m: lib.custom.relativeToNixosModules m) [
+      "openssh/server"
+      "nginx"
+      "adguardhome"
+      "paperless"
+      "redlib"
+      "firefly-iii"
+      "navidrome"
+      "local-content-share"
+      "gatus"
+    ];
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
 

@@ -12,7 +12,17 @@
   ];
 
   environment.persistence.system.directories = with config.services; [
-    { directory = jellyfin.dataDir; user = jellyfin.user; group = jellyfin.group; mode = "0600"; }
-    { directory = jellyfin.cacheDir; user = jellyfin.user; group = jellyfin.group; mode = "0600"; }
+    {
+      directory = jellyfin.dataDir;
+      user = jellyfin.user;
+      group = jellyfin.group;
+      mode = "0600";
+    }
+    {
+      directory = jellyfin.cacheDir;
+      user = jellyfin.user;
+      group = jellyfin.group;
+      mode = "0600";
+    }
   ];
 }

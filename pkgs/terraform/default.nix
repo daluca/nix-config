@@ -1,4 +1,10 @@
-{ lib, buildGoModule, fetchFromGitHub, coreutils, installShellFiles }:
+{
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
+  coreutils,
+  installShellFiles,
+}:
 
 buildGoModule rec {
   pname = "terraform";
@@ -13,7 +19,10 @@ buildGoModule rec {
 
   vendorHash = "sha256-lQgWNMBf+ioNxzAV7tnTQSIS840XdI9fg9duuwoK+U4=";
 
-  ldflags = [ "-s" "-w" ];
+  ldflags = [
+    "-s"
+    "-w"
+  ];
 
   postConfigure = ''
     # speakeasy hardcodes /bin/stty https://github.com/bgentry/speakeasy/issues/22

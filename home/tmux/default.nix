@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.tmux = {
@@ -21,29 +26,33 @@
         '';
       }
     ];
-    extraConfig = with pkgs.tmuxPlugins; /* tmux */ ''
-      # Keybindings
-      bind C-r source-file ${config.xdg.configHome}/tmux/tmux.conf \; display-message "Config reloaded..."
-      bind C-j display-popup -d "#{pane_current_path}" -w 90% -h 90% -E "${lib.getExe config.programs.jjui.package}"
-      bind C-t display-popup -d "#{pane_current_path}" -w 60% -h 60% -E "${lib.getExe config.programs.zsh.package}"
-      bind a send-prefix
-      # Settings
-      set -g status-position top
-      # Status bar
-      set -g status-right-length 100
-      set -g status-left-length 100
-      set -g status-left ""
-      set -g status-right "#{E:@catppuccin_status_application}"
-      set -agF status-right "#{E:@catppuccin_status_cpu}"
-      set -ag status-right "#{E:@catppuccin_status_session}"
-      set -ag status-right "#{E:@catppuccin_status_uptime}"
-    '' + lib.optionalString config.host.battery /* tmux */ ''
-      set -agF status-right "#{E:@catppuccin_status_battery}"
-    '' + /* tmux */ ''
-      # Plugins
-      run-shell ${cpu}/share/tmux-plugins/cpu/cpu.tmux
-      run-shell ${battery}/share/tmux-plugins/battery/battery.tmux
-    '';
+    extraConfig =
+      with pkgs.tmuxPlugins;
+      /* tmux */ ''
+        # Keybindings
+        bind C-r source-file ${config.xdg.configHome}/tmux/tmux.conf \; display-message "Config reloaded..."
+        bind C-j display-popup -d "#{pane_current_path}" -w 90% -h 90% -E "${lib.getExe config.programs.jjui.package}"
+        bind C-t display-popup -d "#{pane_current_path}" -w 60% -h 60% -E "${lib.getExe config.programs.zsh.package}"
+        bind a send-prefix
+        # Settings
+        set -g status-position top
+        # Status bar
+        set -g status-right-length 100
+        set -g status-left-length 100
+        set -g status-left ""
+        set -g status-right "#{E:@catppuccin_status_application}"
+        set -agF status-right "#{E:@catppuccin_status_cpu}"
+        set -ag status-right "#{E:@catppuccin_status_session}"
+        set -ag status-right "#{E:@catppuccin_status_uptime}"
+      ''
+      + lib.optionalString config.host.battery /* tmux */ ''
+        set -agF status-right "#{E:@catppuccin_status_battery}"
+      ''
+      + /* tmux */ ''
+        # Plugins
+        run-shell ${cpu}/share/tmux-plugins/cpu/cpu.tmux
+        run-shell ${battery}/share/tmux-plugins/battery/battery.tmux
+      '';
     shell = lib.getExe config.programs.zsh.package;
     terminal = "screen-256color";
   };

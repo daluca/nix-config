@@ -1,14 +1,30 @@
-{ config, lib, pkgs, secrets, ... }@args:
+{
+  config,
+  lib,
+  pkgs,
+  secrets,
+  ...
+}@args:
 let
-  osConfig = (if args ? "osConfig" then args.osConfig else { system.stateVersion = config.home.stateVersion; });
-in {
+  osConfig = (
+    if args ? "osConfig" then args.osConfig else { system.stateVersion = config.home.stateVersion; }
+  );
+in
+{
   programs.firefox = {
     enable = true;
-    policies = import ./policies.nix // import ./extensions.nix { inherit lib pkgs; } ;
+    policies = import ./policies.nix // import ./extensions.nix { inherit lib pkgs; };
     profiles.default = {
       id = 0;
       isDefault = true;
-      search = import ./search.nix { inherit config pkgs osConfig secrets; };
+      search = import ./search.nix {
+        inherit
+          config
+          pkgs
+          osConfig
+          secrets
+          ;
+      };
       bookmarks = import ./bookmarks.nix { inherit secrets; };
       settings = import ./arkenfox.nix // {
         # Browser

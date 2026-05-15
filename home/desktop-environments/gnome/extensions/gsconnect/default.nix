@@ -1,7 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   zenphone-10 = "1585fe42_d731_4e18_a83b_2f420174b038";
-in with pkgs.gnomeExtensions; {
+in
+with pkgs.gnomeExtensions;
+{
   home.packages = [ gsconnect ];
 
   dconf.settings = with lib.hm.gvariant; {

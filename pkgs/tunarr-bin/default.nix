@@ -1,4 +1,11 @@
-{ stdenv, lib, fetchurl, libva-utils, which, makeWrapper }:
+{
+  stdenv,
+  lib,
+  fetchurl,
+  libva-utils,
+  which,
+  makeWrapper,
+}:
 
 stdenv.mkDerivation rec {
   pname = "tunarr-bin";

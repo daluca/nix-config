@@ -1,7 +1,8 @@
 { config, lib, ... }@args:
 let
   secrets = args.secrets // fromTOML (builtins.readFile ../secrets.toml);
-in {
+in
+{
   imports = map (m: lib.custom.relativeToHomeManagerModules m) [
     "accounts"
     "alacritty"
@@ -75,7 +76,8 @@ in {
 
   sops.age.keyFile = lib.mkOverride 10 ("/persistent" + "${config.xdg.configHome}/sops/age/keys.txt");
 
-  sops.secrets."gsconnect/private.pem".sopsFile = lib.custom.relativeToHosts "artemis/artemis.sops.yaml";
+  sops.secrets."gsconnect/private.pem".sopsFile =
+    lib.custom.relativeToHosts "artemis/artemis.sops.yaml";
 
   programs.zsh.sessionVariables = {
     ZSH_TMUX_DEFAULT_SESSION_NAME = "artemis";

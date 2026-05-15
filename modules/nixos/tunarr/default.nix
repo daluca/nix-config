@@ -1,8 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.tunarr;
 
-  settings = pkgs.writeText "tunarr-settings.json" (builtins.toJSON ( lib.recursiveUpdate defaultSettings cfg.settings ));
+  settings = pkgs.writeText "tunarr-settings.json" (
+    builtins.toJSON (lib.recursiveUpdate defaultSettings cfg.settings)
+  );
 
   defaultSettings = {
     version = 1;
@@ -54,7 +61,7 @@ let
     };
     system = {
       backup = {
-        configurations = [];
+        configurations = [ ];
       };
       logging = {
         logLevel = "info";
@@ -69,7 +76,9 @@ let
       };
     };
   };
-in with lib; {
+in
+with lib;
+{
   options.services.tunarr = {
     enable = lib.mkEnableOption "Tunarr";
 
@@ -103,19 +112,21 @@ in with lib; {
 
       serviceConfig = {
         Type = "simple";
-        ExecStartPre = let
-          preStartScript = pkgs.writeScript "tunarr-pre-start" /* bash */ ''
-            #!${pkgs.bash}/bin/bash
+        ExecStartPre =
+          let
+            preStartScript = pkgs.writeScript "tunarr-pre-start" /* bash */ ''
+              #!${pkgs.bash}/bin/bash
 
-            # Create data directory if it doesn't exist
-            if ! test -d ${cfg.dataDir}; then
-              echo "Creating initial Tunarr data directory in: ${cfg.dataDir}"
-              mkdir -pv ${cfg.dataDir}
-            fi
+              # Create data directory if it doesn't exist
+              if ! test -d ${cfg.dataDir}; then
+                echo "Creating initial Tunarr data directory in: ${cfg.dataDir}"
+                mkdir -pv ${cfg.dataDir}
+              fi
 
-            cp ${settings} ${cfg.dataDir}/settings.json
-          '';
-        in "!${preStartScript}";
+              cp ${settings} ${cfg.dataDir}/settings.json
+            '';
+          in
+          "!${preStartScript}";
         ExecStart = "${lib.getExe cfg.package} server --database ${cfg.dataDir} --port ${builtins.toString cfg.port}";
       };
     };

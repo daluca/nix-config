@@ -1,4 +1,9 @@
-{ config, lib, secrets, ... }:
+{
+  config,
+  lib,
+  secrets,
+  ...
+}:
 
 {
   services.gatus = {
@@ -33,7 +38,7 @@
             "[RESPONSE_TIME] < 1000"
             "[BODY] == OK"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "Firefly III Data Importer";
@@ -45,7 +50,7 @@
             "[RESPONSE_TIME] < 1000"
             "[BODY] == OK"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "Home Assistant";
@@ -56,7 +61,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "Zigbee2MQTT";
@@ -67,7 +72,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "Navidrome";
@@ -79,7 +84,7 @@
             "[RESPONSE_TIME] < 1000"
             "[BODY] == ."
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           enabled = false;
@@ -127,7 +132,7 @@
             "[RESPONSE_TIME] < 1000"
             "[BODY] == Healthy"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "Seerr";
@@ -138,7 +143,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "redlib";
@@ -149,7 +154,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy";  }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "ntfy.sh";
@@ -161,7 +166,7 @@
             "[RESPONSE_TIME] < 1000"
             "[BODY].healthy == true"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           enabled = false;
@@ -175,7 +180,7 @@
             "[BODY].status == ok"
             "[BODY].mode == ready"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "attic";
@@ -186,7 +191,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "atuin";
@@ -197,7 +202,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           enabled = false;
@@ -211,7 +216,7 @@
             "[BODY].status == ok"
             "[BODY].ready == true"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           enabled = false;
@@ -223,7 +228,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           enabled = false;
@@ -235,7 +240,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "Jellyfin";
@@ -247,7 +252,7 @@
             "[RESPONSE_TIME] < 2000"
             "[BODY] == Healthy"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "Seerr";
@@ -258,7 +263,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 2000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "AdGuard Home";
@@ -269,7 +274,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "AdGuard Home";
@@ -280,7 +285,7 @@
             "[STATUS] == 200"
             "[RESPONSE_TIME] < 1000"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
         {
           name = "Wedding page";
@@ -292,7 +297,7 @@
             "[RESPONSE_TIME] < 1000"
             "[BODY] == OK"
           ];
-          alerts = [{ type = "ntfy"; }];
+          alerts = [ { type = "ntfy"; } ];
         }
       ];
     };

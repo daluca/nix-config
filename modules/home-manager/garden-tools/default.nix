@@ -1,8 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkPackageOption mkIf;
   cfg = config.programs.garden-tools;
-in with lib; {
+in
+with lib;
+{
   options.programs.garden-tools = {
     enable = mkEnableOption "Garden grows and cultivates collections of Git trees";
 

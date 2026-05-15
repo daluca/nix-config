@@ -1,28 +1,38 @@
-{ config, lib, secrets, outputs, ... }:
+{
+  config,
+  lib,
+  secrets,
+  outputs,
+  ...
+}:
 
 {
-  imports = with outputs.nixosModules; [
-    ./..
-    ./disko.nix
+  imports =
+    with outputs.nixosModules;
+    [
+      ./..
+      ./disko.nix
 
-    hetzner-online-intel
-  ] ++ map (m: lib.custom.relativeToUsers m) [
-    "starr"
-  ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "grub"
-    "impermanence/grub"
-    "remote-unlocking"
-    "tailscale/server"
-    "nginx"
-    "jellyfin"
-    "jellyseerr"
-    "sonarr"
-    "radarr"
-    "prowlarr"
-    "configarr"
-    "sabnzbd"
-    "qbittorrent"
-  ];
+      hetzner-online-intel
+    ]
+    ++ map (m: lib.custom.relativeToUsers m) [
+      "starr"
+    ]
+    ++ map (m: lib.custom.relativeToNixosModules m) [
+      "grub"
+      "impermanence/grub"
+      "remote-unlocking"
+      "tailscale/server"
+      "nginx"
+      "jellyfin"
+      "jellyseerr"
+      "sonarr"
+      "radarr"
+      "prowlarr"
+      "configarr"
+      "sabnzbd"
+      "qbittorrent"
+    ];
 
   hardware.graphics.enable = true;
 

@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   inherit (pkgs) nushell;
-in {
+in
+{
   programs.nushell = {
     enable = true;
     package = nushell;

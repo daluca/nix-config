@@ -1,7 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.configarr;
-in with lib; {
+in
+with lib;
+{
   options.services.configarr = {
     enable = lib.mkEnableOption "configarr";
 

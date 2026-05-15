@@ -8,6 +8,10 @@
   ];
 
   environment.persistence.system.directories = [
-    { directory = "/var/lib/private/jellyseerr"; mode = "0700"; defaultPerms.mode = "0700"; }
+    {
+      directory = "/var/lib/private/jellyseerr";
+      mode = "0700";
+      defaultPerms.mode = "0700";
+    }
   ];
 }

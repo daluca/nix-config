@@ -1,13 +1,18 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  home.packages = with pkgs; [(
-    neovim.extend {
+  home.packages = with pkgs; [
+    (neovim.extend {
       config = {
         colorschemes.catppuccin.settings.flavor = config.catppuccin.flavor;
       };
-    }
-  )];
+    })
+  ];
 
   home.sessionVariables = {
     EDITOR = lib.mkForce "nvim";

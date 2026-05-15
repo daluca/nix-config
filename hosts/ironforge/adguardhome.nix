@@ -2,7 +2,8 @@
 let
   allowDomain = domain: "@@||${domain}^";
   blockDomain = domain: "||${domain}^";
-in {
+in
+{
   services.adguardhome = {
     port = 80;
     openFirewall = true;
@@ -36,11 +37,13 @@ in {
           answer = "192.168.10.20";
         }
       ];
-      user_rules = map (d: allowDomain d) [
-        "opinionstage.com"
-      ] ++ map (d: blockDomain d) [
-        "ota.onecloud.harman.com"
-      ];
+      user_rules =
+        map (d: allowDomain d) [
+          "opinionstage.com"
+        ]
+        ++ map (d: blockDomain d) [
+          "ota.onecloud.harman.com"
+        ];
     };
   };
 }

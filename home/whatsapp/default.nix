@@ -5,7 +5,7 @@
     wasistlos
   ];
 
-  xdg.configFile."wasistlos/settings.conf".text = lib.generators.toINI {} {
+  xdg.configFile."wasistlos/settings.conf".text = lib.generators.toINI { } {
     general = {
       notification-sounds = true;
       close-to-tray = true;

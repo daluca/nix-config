@@ -2,8 +2,9 @@
 let
   inherit (pkgs) lib;
   inherit (pkgs.firefoxExtensions) buildFirefoxXpiAddon;
-  callPackage = lib.callPackageWith ( pkgs // { inherit buildFirefoxXpiAddon; } );
-in {
+  callPackage = lib.callPackageWith (pkgs // { inherit buildFirefoxXpiAddon; });
+in
+{
   garden-tools = callPackage ./garden-tools { };
   jsonnet-debugger = callPackage ./jsonnet-debugger { };
   tfctl = callPackage ./tfctl { };

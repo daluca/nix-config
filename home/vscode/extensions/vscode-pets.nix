@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   inherit (pkgs.open-vsx.tonybaloney) vscode-pets;
-in {
+in
+{
   programs.vscode.profiles.default = {
     extensions = [
       vscode-pets

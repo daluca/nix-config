@@ -1,6 +1,7 @@
 { lib, pkgs }:
 
-with pkgs.firefoxExtensions; {
+with pkgs.firefoxExtensions;
+{
   ExtensionUpdate = false;
 
   ExtensionSettings = {
@@ -56,39 +57,42 @@ with pkgs.firefoxExtensions; {
   };
 
   "3rdparty".Extensions.${ublock-origin.addonId}.adminSettings =
-  let
-    hide-youtube-short = "https://github.com/gijsdev/ublock-hide-yt-shorts/raw/refs/tags/v1.10.0/list.txt";
-  in {
-    userSettings = {
-      importedLists = [
+    let
+      hide-youtube-short = "https://github.com/gijsdev/ublock-hide-yt-shorts/raw/refs/tags/v1.10.0/list.txt";
+    in
+    {
+      userSettings = {
+        importedLists = [
+          hide-youtube-short
+        ];
+        externalLists = hide-youtube-short;
+      };
+      selectedFilterLists = [
+        "user-filters"
+        "ublock-filters"
+        "ublock-badware"
+        "ublock-privacy"
+        "ublock-quick-fixes"
+        "ublock-unbreak"
+        "easylist"
+        "easyprivacy"
+        "urlhaus-1"
+        "plowe-0"
+        "easylist-chat"
+        "easylist-newsletters"
+        "easylist-notifications"
+        "easylist-annoyances"
         hide-youtube-short
       ];
-      externalLists = hide-youtube-short;
+      userFilters =
+        let
+          youtube-rows = toString 5;
+        in
+        lib.concatStringsSep "\n" [
+          "youtube.com##ytd-rich-grid-row, #contents.ytd-rich-grid-row:style(display:contents !important;)"
+          "youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-items-per-row: ${youtube-rows} !important;)"
+          "youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-posts-per-row: ${youtube-rows} !important;)"
+          "youtube.com##ytd-browse[page-subtype=\"home\"] ytd-rich-section-renderer"
+        ];
     };
-    selectedFilterLists = [
-      "user-filters"
-      "ublock-filters"
-      "ublock-badware"
-      "ublock-privacy"
-      "ublock-quick-fixes"
-      "ublock-unbreak"
-      "easylist"
-      "easyprivacy"
-      "urlhaus-1"
-      "plowe-0"
-      "easylist-chat"
-      "easylist-newsletters"
-      "easylist-notifications"
-      "easylist-annoyances"
-      hide-youtube-short
-    ];
-    userFilters = let
-      youtube-rows = toString 5;
-    in lib.concatStringsSep "\n" [
-      "youtube.com##ytd-rich-grid-row, #contents.ytd-rich-grid-row:style(display:contents !important;)"
-      "youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-items-per-row: ${youtube-rows} !important;)"
-      "youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-posts-per-row: ${youtube-rows} !important;)"
-      "youtube.com##ytd-browse[page-subtype=\"home\"] ytd-rich-section-renderer"
-    ];
-  };
 }

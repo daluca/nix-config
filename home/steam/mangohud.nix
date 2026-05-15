@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   inherit (pkgs) mangohud;
-in {
+in
+{
   home.packages = [
     mangohud
   ];

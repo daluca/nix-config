@@ -1,4 +1,9 @@
-{ lib, gnused, python312, fetchFromGitHub }:
+{
+  lib,
+  gnused,
+  python312,
+  fetchFromGitHub,
+}:
 
 python312.pkgs.buildPythonApplication rec {
   pname = "jellyplex-watched";

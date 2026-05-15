@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   services.adguardhome = {
@@ -36,18 +41,20 @@
       server = {
         interface = [ "127.0.0.1@5353" ];
         verbosity = 2;
-        module-config = "\"${lib.concatStringsSep " " [
-          "validator"
-          "cachedb"
-          "iterator"
-        ]}\"";
+        module-config = "\"${
+          lib.concatStringsSep " " [
+            "validator"
+            "cachedb"
+            "iterator"
+          ]
+        }\"";
       };
       remote-control.control-enable = true;
       cachedb = {
         backend = "redis";
         redis-server-path = config.services.redis.servers.unbound.unixSocket;
       };
-   };
+    };
   };
 
   services.redis.servers.unbound = with config.services; {

@@ -1,12 +1,21 @@
-{ lib, pkgs, inputs, outputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  outputs,
+  ...
+}:
 
 {
-  imports = with inputs; with outputs.nixosModules; [
-    raspberry-pi
+  imports =
+    with inputs;
+    with outputs.nixosModules;
+    [
+      raspberry-pi
 
-    raspberry-pi-nix.nixosModules.sd-image
-    raspberry-pi-nix.nixosModules.raspberry-pi
-  ];
+      raspberry-pi-nix.nixosModules.sd-image
+      raspberry-pi-nix.nixosModules.raspberry-pi
+    ];
 
   host.network.interface = "end0";
 

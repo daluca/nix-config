@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   inherit (pkgs.unstable) k9s;
-in {
+in
+{
   programs.k9s = {
     enable = true;
     package = k9s;

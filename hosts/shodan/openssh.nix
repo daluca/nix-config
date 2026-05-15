@@ -16,7 +16,10 @@
     };
     shodan-initrd = {
       hostNames = [ "[shodan]:22022" ] ++ shodan-initrd.extraHostNames;
-      extraHostNames = [ "[shodan.${config.networking.domain}]:22022" "[${secrets.hosts.shodan.ipv4-address}]:22022" ];
+      extraHostNames = [
+        "[shodan.${config.networking.domain}]:22022"
+        "[${secrets.hosts.shodan.ipv4-address}]:22022"
+      ];
       publicKeyFile = ./keys/ssh_initrd_ed25519_key.pub;
     };
     "shodan-initrd/rsa" = {

@@ -1,35 +1,38 @@
 { lib, inputs, ... }:
 
 {
-  imports = with inputs; [
-    ./..
-    ./hardware-configuration.nix
+  imports =
+    with inputs;
+    [
+      ./..
+      ./hardware-configuration.nix
 
-    nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-    nixos-hardware.nixosModules.common-cpu-intel
-  ] ++ map (m: lib.custom.relativeToNixosModules m) [
-    "auto-cpufreq"
-    "desktop-environments/gnome"
-    "swap"
-    "ssd"
-    "pipewire"
-    "impermanence"
-    "fonts"
-    "firewall"
-    "thinkfan"
-    "grub"
-    "fwupd"
-    "steam"
-    "docker"
-    "smart-cards"
-    "tailscale"
-    "kanata"
-    "battery"
-    "distributed-builds"
-    "scanners"
-    "attic-watch-store"
-    "localsend"
-  ];
+      nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+      nixos-hardware.nixosModules.common-cpu-intel
+    ]
+    ++ map (m: lib.custom.relativeToNixosModules m) [
+      "auto-cpufreq"
+      "desktop-environments/gnome"
+      "swap"
+      "ssd"
+      "pipewire"
+      "impermanence"
+      "fonts"
+      "firewall"
+      "thinkfan"
+      "grub"
+      "fwupd"
+      "steam"
+      "docker"
+      "smart-cards"
+      "tailscale"
+      "kanata"
+      "battery"
+      "distributed-builds"
+      "scanners"
+      "attic-watch-store"
+      "localsend"
+    ];
 
   networking.hostName = "artemis";
 
@@ -53,30 +56,32 @@
     ip rule add to 10.1.0.0/16 priority 2500 lookup main || true
   '';
 
-  boot.initrd.postResumeCommands = lib.mkForce (lib.mkAfter /* bash */ ''
-    mkdir /btrfs_tmp
-    mount /dev/root_vg/root /btrfs_tmp
-    if [[ -e /btrfs_tmp/root ]]; then
-      mkdir -p /btrfs_tmp/old_roots
-      timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
-      mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
-    fi
+  boot.initrd.postResumeCommands = lib.mkForce (
+    lib.mkAfter /* bash */ ''
+      mkdir /btrfs_tmp
+      mount /dev/root_vg/root /btrfs_tmp
+      if [[ -e /btrfs_tmp/root ]]; then
+        mkdir -p /btrfs_tmp/old_roots
+        timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+        mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+      fi
 
-    delete_subvolume_recursively() {
-      IFS=$'\n'
-      for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-        delete_subvolume_recursively "/btrfs_tmp/$i"
+      delete_subvolume_recursively() {
+        IFS=$'\n'
+        for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+          delete_subvolume_recursively "/btrfs_tmp/$i"
+        done
+        btrfs subvolume delete "$1"
+      }
+
+      for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
+        delete_subvolume_recursively "$i"
       done
-      btrfs subvolume delete "$1"
-    }
 
-    for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
-      delete_subvolume_recursively "$i"
-    done
-
-    btrfs subvolume create /btrfs_tmp/root
-    umount /btrfs_tmp
-  '');
+      btrfs subvolume create /btrfs_tmp/root
+      umount /btrfs_tmp
+    ''
+  );
 
   boot.loader.grub.useOSProber = lib.mkForce true;
 

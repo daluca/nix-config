@@ -47,6 +47,10 @@
   ];
 
   environment.persistence.system.directories = with config.services; [
-    { directory = qbittorrent.profileDir; user = qbittorrent.user; group = qbittorrent.group; }
+    {
+      directory = qbittorrent.profileDir;
+      user = qbittorrent.user;
+      group = qbittorrent.group;
+    }
   ];
 }

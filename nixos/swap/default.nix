@@ -1,7 +1,8 @@
 { lib, ... }:
 let
   GiB = 1024;
-in {
+in
+{
   swapDevices = lib.mkForce [
     {
       device = "/var/lib/swap/swapfile";

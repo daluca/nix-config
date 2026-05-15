@@ -1,17 +1,28 @@
-{ config, lib, osConfig, outputs, ... }:
+{
+  config,
+  lib,
+  osConfig,
+  outputs,
+  ...
+}:
 let
   inherit (osConfig.networking) hostName;
-in {
+in
+{
   imports =
     let
       hostExtras = (./. + "/${hostName}.nix");
-    in with outputs.homeManagerModules; [
+    in
+    with outputs.homeManagerModules;
+    [
       outputs.nixosModules.host
-    ] ++ [
+    ]
+    ++ [
       garden-tools
       kanata
       ntfyd
-    ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
+    ]
+    ++ map (m: lib.custom.relativeToHomeManagerModules m) [
       "atuin"
       "bash"
       "btop"
@@ -24,7 +35,8 @@ in {
       "tools"
       "vim"
       "zsh"
-    ] ++ lib.optional (builtins.pathExists hostExtras) hostExtras;
+    ]
+    ++ lib.optional (builtins.pathExists hostExtras) hostExtras;
 
   home = rec {
     username = "daluca";
@@ -44,7 +56,7 @@ in {
     access-tokens = github.com=${config.sops.placeholder."github/access-token"}
   '';
 
-  sops.secrets. "github/access-token" = { };
+  sops.secrets."github/access-token" = { };
 
   xdg.enable = true;
 

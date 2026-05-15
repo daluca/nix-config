@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -42,19 +47,23 @@
       plugins = [
         "sudo"
       ];
-      extraConfig = /* zsh */ /* bash */ ''
-        zstyle ':omz:update' mode disabled
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview '${lib.getExe config.programs.eza.package} -1 --color=always $realpath'
-        zstyle ':fzf-tab:complete:cd:*' popup-min-size 100 20
-        zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-      '';
+      extraConfig = # zsh
+        /* bash */ ''
+          zstyle ':omz:update' mode disabled
+          zstyle ':fzf-tab:complete:cd:*' fzf-preview '${lib.getExe config.programs.eza.package} -1 --color=always $realpath'
+          zstyle ':fzf-tab:complete:cd:*' popup-min-size 100 20
+          zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+        '';
     };
-    profileExtra = /* zsh */ /* bash */ ''
-      export DISABLE_TMUX_AUTOSTART=true
-    '';
-    initContent = lib.mkBefore /* zsh */ /* bash */ ''
-      [[ -n "''${DISABLE_TMUX_AUTOSTART}" ]] || export ZSH_TMUX_AUTOSTART=true
-    '';
+    profileExtra = # zsh
+      /* bash */ ''
+        export DISABLE_TMUX_AUTOSTART=true
+      '';
+    initContent =
+      lib.mkBefore # zsh
+        /* bash */ ''
+          [[ -n "''${DISABLE_TMUX_AUTOSTART}" ]] || export ZSH_TMUX_AUTOSTART=true
+        '';
   };
 
   catppuccin.zsh-syntax-highlighting.enable = true;

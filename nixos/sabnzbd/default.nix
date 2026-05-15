@@ -21,6 +21,10 @@
   ];
 
   environment.persistence.system.directories = with config.services; [
-    { directory = "/var/lib/sabnzbd"; user = sabnzbd.user; group = sabnzbd.group; }
+    {
+      directory = "/var/lib/sabnzbd";
+      user = sabnzbd.user;
+      group = sabnzbd.group;
+    }
   ];
 }

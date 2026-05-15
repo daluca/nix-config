@@ -1,7 +1,15 @@
-{ config, lib, pkgs, secrets, hostname, ... }@args:
+{
+  config,
+  lib,
+  pkgs,
+  secrets,
+  hostname,
+  ...
+}@args:
 let
   osConfig = (if args ? "osConfig" then args.osConfig else { networking.hostName = hostname; });
-in {
+in
+{
   home.packages = with pkgs; [
     ntfy-sh
   ];

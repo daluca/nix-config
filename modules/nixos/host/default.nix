@@ -1,6 +1,7 @@
 { lib, ... }:
 
-with lib; {
+with lib;
+{
   options.host = {
     battery = lib.mkOption {
       type = types.bool;

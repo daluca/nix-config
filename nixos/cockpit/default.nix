@@ -1,7 +1,13 @@
-{ config, lib, secrets, ... }:
+{
+  config,
+  lib,
+  secrets,
+  ...
+}:
 let
   cert = config.security.acme.certs.${secrets.parents.domain};
-in {
+in
+{
   services.cockpit = {
     enable = true;
     openFirewall = true;
@@ -9,11 +15,13 @@ in {
       WebService = {
         AllowUnencrypted = true;
         ProtocolHeader = "X-Forwarded-Proto";
-        Origins = lib.mkForce (lib.concatStringsSep " " [
-          "http://127.0.0.1:${builtins.toString config.services.cockpit.port}"
-          "http://guiltyspark:${builtins.toString config.services.cockpit.port}"
-          "https://cockpit.${secrets.parents.domain}"
-        ]);
+        Origins = lib.mkForce (
+          lib.concatStringsSep " " [
+            "http://127.0.0.1:${builtins.toString config.services.cockpit.port}"
+            "http://guiltyspark:${builtins.toString config.services.cockpit.port}"
+            "https://cockpit.${secrets.parents.domain}"
+          ]
+        );
       };
     };
   };
