@@ -37,7 +37,6 @@ in
     "lazygit"
     "lazyssh"
     "libreoffice"
-    "logseq"
     "modern-unix"
     "mpv"
     "neovide"
