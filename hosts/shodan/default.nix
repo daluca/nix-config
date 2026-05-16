@@ -34,6 +34,8 @@
       "qbittorrent"
     ];
 
+  boot.loader.grub.default = lib.mkForce "0";
+
   hardware.graphics.enable = true;
 
   security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
