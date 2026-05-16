@@ -120,7 +120,9 @@
           };
         }
         // deploy-rs.lib.${system}.deployChecks deploy
-        // (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.check self
+        // {
+          treefmt = (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.check self;
+        }
       );
 
       formatter = forAllSystems (
