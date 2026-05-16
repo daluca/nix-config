@@ -36,6 +36,7 @@
       "scanners"
       "attic-watch-store"
       "localsend"
+      "keychron"
     ];
 
   networking.hostName = "artemis";
