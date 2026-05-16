@@ -1,6 +1,7 @@
 {
   services.seerr = {
     enable = true;
+    configDir = "/var/lib/seerr/config";
   };
 
   systemd.tmpfiles.rules = [
