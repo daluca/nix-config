@@ -61,6 +61,12 @@
           proxyPass = "http://${miniflux.config.LISTEN_ADDR}/";
         };
       };
+      "nextflux.${secrets.domain.general}" = tls // {
+        locations."/" = {
+          root = "${pkgs.nextflux}/share/html";
+          tryFiles = "$uri $uri/ index.html =403";
+        };
+      };
       ${secrets.domain.wedding} = tls // {
         locations."/" = {
           root = "${pkgs.wedding-page}/share/html";
