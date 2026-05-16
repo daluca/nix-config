@@ -68,8 +68,6 @@
         };
       });
 
-      nixgl = nixgl.packages.${system};
-
       firefoxExtensions =
         with final;
         with inputs;

@@ -44,9 +44,6 @@
     nixvim-config.url = "github:daluca/nixvim-config";
     nixvim-config.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    nixgl.url = "github:nix-community/nixgl";
-    nixgl.inputs.nixpkgs.follows = "nixpkgs";
-
     fzf-preview.url = "github:niksingh710/fzf-preview";
     fzf-preview.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -107,7 +104,6 @@
             ++ [
               nur.overlays.default
               nix-vscode-extensions.overlays.default
-              nixgl.overlays.default
               proton-ge.overlays.default
             ];
         };
