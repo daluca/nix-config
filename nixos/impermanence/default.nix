@@ -28,6 +28,8 @@ in
       "/etc/nixos"
       "/var/log"
       "/var/lib/nixos"
+      "/var/lib/systemd/coredump"
+      "/var/lib/systemd/timers"
     ];
     files = [
       "/etc/machine-id"
