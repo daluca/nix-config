@@ -1,5 +1,3 @@
-hostname := `hostname`
-
 [private]
 default:
     @just --list
@@ -50,14 +48,16 @@ push:
     colmena apply push --on @raspberry-pi,@hetzner,guiltyspark
 
 # remote unlock a host
-[no-exit-message]
 [group("hosts")]
+[no-exit-message]
 unlock host:
     sops --decrypt --extract '["disk-encryption-key"]' hosts/{{ host }}/{{ host }}.sops.yaml | ssh root@{{ host }} -p 22022
 
+alias fmt := format
+
 # format repository
 [group("repo")]
-fmt:
+format:
     nix fmt
 
 # add age identity file
