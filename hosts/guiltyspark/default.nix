@@ -28,7 +28,7 @@ in
       "radarr"
       "prowlarr"
       "sabnzbd"
-      "jellyseerr"
+      "seerr"
       "jellyplex-watched"
       "tunarr"
       "nginx"

@@ -25,7 +25,7 @@
       "tailscale/server"
       "nginx"
       "jellyfin"
-      "jellyseerr"
+      "seerr"
       "sonarr"
       "radarr"
       "prowlarr"
