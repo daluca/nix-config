@@ -287,18 +287,6 @@
           ];
           alerts = [ { type = "ntfy"; } ];
         }
-        {
-          name = "Wedding page";
-          url = "https://${secrets.domain.wedding}/health/";
-          group = "bravo";
-          interval = "60s";
-          conditions = [
-            "[STATUS] == 200"
-            "[RESPONSE_TIME] < 1000"
-            "[BODY] == OK"
-          ];
-          alerts = [ { type = "ntfy"; } ];
-        }
       ];
     };
   };

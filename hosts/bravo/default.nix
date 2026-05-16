@@ -67,11 +67,6 @@
           tryFiles = "$uri $uri/ index.html =403";
         };
       };
-      ${secrets.domain.wedding} = tls // {
-        locations."/" = {
-          root = "${pkgs.wedding-page}/share/html";
-        };
-      };
     };
 
   networking.hostName = "bravo";

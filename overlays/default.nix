@@ -18,8 +18,6 @@
 
       helium = nur.legacyPackages.${system}.repos.Ev357.helium;
 
-      wedding-page = wedding-page.packages.${system}.website;
-
       lazyssh = prev.lazyssh.overrideAttrs {
         version = "0.3.0+595f730";
 

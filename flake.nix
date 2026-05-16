@@ -67,9 +67,6 @@
     rustfs.url = "github:rustfs/rustfs-flake";
     rustfs.inputs.nixpkgs.follows = "nixpkgs";
 
-    wedding-page.url = "git+ssh://git@codeberg.org/daluca/wedding-page";
-    wedding-page.inputs.nixpkgs.follows = "nixpkgs-unstable";
-
     treefmt.url = "github:numtide/treefmt-nix";
     treefmt.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
