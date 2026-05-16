@@ -30,6 +30,7 @@ in
     "helium"
     "heroic"
     "impermanence"
+    "intiface-central"
     "itch"
     "jujutsu"
     "kubernetes"
