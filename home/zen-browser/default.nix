@@ -39,6 +39,7 @@ in
         "browser.newtabpage.enabled" = true;
         # Zen Browser
         "zen.welcome-screen.seen" = true;
+        "zen.force-container-workspace" = true;
       };
     };
   };
