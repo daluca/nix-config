@@ -15,7 +15,7 @@
 
   programs.zsh.initContent = # zsh
     /* bash */ ''
-      if [[ -x "$( command -v garden )" ]]; then
+      if [[ -x "$( command -v just )" ]]; then
         eval "$(${pkgs.unstable.just}/bin/just --completions zsh)"
       fi
     '';
