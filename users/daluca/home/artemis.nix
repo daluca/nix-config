@@ -29,6 +29,7 @@ in
     "jujutsu"
     "kubernetes"
     "lazygit"
+    "lazyssh"
     "libreoffice"
     "logseq"
     "modern-unix"
