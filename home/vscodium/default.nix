@@ -1,7 +1,5 @@
 { lib, pkgs, ... }:
-let
-  inherit (pkgs.unstable) vscodium;
-in
+
 {
   imports = [
     ../vscode
@@ -9,7 +7,7 @@ in
 
   programs.vscode = {
     enable = true;
-    package = lib.mkForce vscodium;
+    package = lib.mkForce pkgs.unstable.vscodium;
   };
 
   home.shellAliases = {
