@@ -25,6 +25,7 @@
       "nginx"
       "ntfy-sh"
       "atuin"
+      "miniflux"
     ];
 
   services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
@@ -42,16 +43,22 @@
         forceSSL = true;
       };
     in
+    with config.services;
     {
       "ntfy.${secrets.domain.general}" = tls // {
         locations."/" = {
-          proxyPass = "http://${config.services.ntfy-sh.settings.listen-http}";
+          proxyPass = "http://${ntfy-sh.settings.listen-http}/";
           proxyWebsockets = true;
         };
       };
       "atuin.${secrets.domain.general}" = tls // {
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.atuin.port}";
+          proxyPass = "http://127.0.0.1:${toString atuin.port}/";
+        };
+      };
+      "miniflux.${secrets.domain.general}" = tls // {
+        locations."/" = {
+          proxyPass = "http://${miniflux.config.LISTEN_ADDR}/";
         };
       };
       ${secrets.domain.wedding} = tls // {
