@@ -12,8 +12,8 @@
         stop_threshold = 80;
       };
       charger = {
-        governor = "performance";
-        turbo = "auto";
+        governor = "powersave";
+        turbo = "never";
       };
     };
   };
