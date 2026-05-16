@@ -121,6 +121,28 @@ let
       ]))
     ])
   );
+  delft = (
+    mkVariant (mkTuple [
+      (mkUint32 2)
+      (mkVariant (mkTuple [
+        "Delft"
+        "EHRD"
+        true
+        [
+          (mkTuple [
+            (mkDouble "0.9066985464110543")
+            (mkDouble "0.077667151713747662")
+          ])
+        ]
+        [
+          (mkTuple [
+            (mkDouble "0.90774574396225083")
+            (mkDouble "0.076096355386952766")
+          ])
+        ]
+      ]))
+    ])
+  );
 in
 {
   imports = [
@@ -181,6 +203,7 @@ in
     };
     "org/gnome/Weather" = {
       locations = [
+        delft
         the-hague
         wellington
         auckland
@@ -190,6 +213,7 @@ in
     };
     "org/gnome/shell/weather" = {
       locations = [
+        delft
         the-hague
         wellington
         auckland
@@ -202,7 +226,7 @@ in
         [
           (mkDictionaryEntry [
             "location"
-            the-hague
+            delft
           ])
         ]
         [
@@ -221,7 +245,7 @@ in
     };
     "org/gnome/shell/world-clocks" = {
       locations = [
-        the-hague
+        delft
         auckland
         london
       ];
