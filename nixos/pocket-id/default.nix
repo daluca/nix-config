@@ -37,6 +37,10 @@
       SMTP_TLS = "starttls";
       EMAIL_VERIFICATION_ENABLED = true;
       EMAIL_API_KEY_EXPIRATION_ENABLED = true;
+      GEOLITE_DB_PATH = builtins.fetchurl {
+        url = "https://github.com/P3TERX/GeoLite.mmdb/releases/download/2026.05.16/GeoLite2-City.mmdb";
+        sha256 = "sha256:1vig57x7966l1y3lqls294dincms528f3sznlk1yqb06p6harw06";
+      };
     };
   };
 
