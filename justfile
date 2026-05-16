@@ -51,7 +51,7 @@ push:
 [group("hosts")]
 [no-exit-message]
 unlock host:
-    sops --decrypt --extract '["disk-encryption-key"]' hosts/{{ host }}/{{ host }}.sops.yaml | ssh root@{{ host }} -p 22022
+    sops --decrypt --extract '["disk-encryption-key"]' hosts/{{ host }}/{{ host }}.sops.yaml | ssh root@{{ host }} -p 22022 -o RequestTTY=force
 
 alias fmt := format
 

@@ -111,8 +111,8 @@
           '';
           ui = command (lib.getExe pkgs.unstable.jjui);
         };
+      remote.origin.auto-track-bookmarks = "*";
       git = {
-        auto-local-bookmark = true;
         sign-on-push = true;
         executable-path = lib.getExe config.programs.git.package;
       };
@@ -144,4 +144,8 @@
       };
     };
   };
+
+  home.persistence.home.directories = [
+    ".config/jj/repos"
+  ];
 }

@@ -2,13 +2,14 @@
   description = "Personal NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     impermanence.url = "github:nix-community/impermanence";
@@ -38,11 +39,10 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    catppuccin.url = "github:catppuccin/nix/v25.11";
+    catppuccin.url = "github:catppuccin/nix/v26.05";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixvim-config.url = "github:daluca/nixvim-config";
-    nixvim-config.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     fzf-preview.url = "github:niksingh710/fzf-preview";
     fzf-preview.inputs.nixpkgs.follows = "nixpkgs";

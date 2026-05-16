@@ -50,35 +50,6 @@
           '';
         });
 
-      adguardhome = prev.adguardhome.overrideAttrs (oldAttrs: rec {
-        version = "0.107.65";
-
-        src = oldAttrs.src.override {
-          tag = "v${version}";
-          hash = "sha256-OOW77CJRR5vi5jHFOCyF/OyCXaQdTgEc8xZKPcF9vQE=";
-        };
-
-        vendorHash = "sha256-spBMVSZhiM0R5tf8dhZD+N4ucFZ9Wno9Y+BhZMdzQRM=";
-
-        dashboard = prev.buildNpmPackage {
-          inherit src version;
-          pname = "adguardhome-dashboard";
-          postPatch = ''
-            cd client
-          '';
-          npmDepsHash = "sha256-s7TJvGyk05HkAOgjYmozvIQ3l2zYUhWrGRJrWdp9ZJQ=";
-          npmBuildScript = "build-prod";
-          postBuild = ''
-            mkdir -p $out/build/
-            cp -r ../build/static/ $out/build/
-          '';
-        };
-
-        passthru = oldAttrs.passthru // {
-          schema_version = 30;
-        };
-      });
-
       firefoxExtensions =
         with final;
         with inputs;
@@ -106,36 +77,6 @@
             };
           };
         };
-
-      gnomeExtensions = prev.gnomeExtensions // {
-        # NOTE: Upstream tailscale-qs is not being supported anymore
-        # This a work around to use the PR as the source to update to GNOME 49
-        # https://github.com/joaophi/tailscale-gnome-qs/pull/45
-        tailscale-qs = prev.gnomeExtensions.tailscale-qs.overrideAttrs (oldAttrs: rec {
-          version = "6";
-
-          src = prev.fetchFromGitHub {
-            owner = "tailscale-qs";
-            repo = "tailscale-gnome-qs";
-            rev = "v${version}";
-            hash = "sha256-C/+epuP5fFxOlOKypOK9lTJ3I+PKIcMchqgQim+zRc8=";
-          };
-
-          preInstall = /* bash */ ''
-            mkdir -p $out/share/gnome-shell/extensions/tailscale-gnome-qs@tailscale-qs.github.io/
-          '';
-
-          postInstall = /* bash */ ''
-            mv $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale-gnome-qs@tailscale-qs.github.io/* $out/share/gnome-shell/extensions/tailscale-gnome-qs@tailscale-qs.github.io/
-
-            rm --recursive $out/share/gnome-shell/extensions/tailscale@joaophi.github.com/
-          '';
-
-          passthru = oldAttrs.passthru // {
-            extensionUuid = "tailscale-gnome-qs@tailscale-qs.github.io";
-          };
-        });
-      };
     };
 
   unstable-packages =

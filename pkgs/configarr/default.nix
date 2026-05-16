@@ -4,10 +4,14 @@
   fetchFromGitHub,
   nodejs,
   pnpm_10,
+  pnpmConfigHook,
+  fetchPnpmDeps,
   makeBinaryWrapper,
   gitMinimal,
 }:
-
+let
+  pnpm = pnpm_10;
+in
 stdenvNoCC.mkDerivation (finalAttrs: rec {
   pname = "configarr";
   version = "1.25.0";
@@ -19,16 +23,21 @@ stdenvNoCC.mkDerivation (finalAttrs: rec {
     hash = "sha256-KATV7B4X8M45s/BoPCQDt4GlPwLenYm0H2OpYnskwm0=";
   };
 
+  __structuredDeps = true;
+  strictDeps = true;
+
   nativeBuildInputs = [
     nodejs
-    pnpm_10.configHook
+    pnpm
+    pnpmConfigHook
     makeBinaryWrapper
   ];
 
-  pnpmDeps = pnpm_10.fetchDeps {
+  pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
-    fetcherVersion = 3;
-    hash = "sha256-aBrKIw6QPL/piSw/hTMwo/Dt6FwtUbF8bKg64hDeczk=";
+    inherit pnpm;
+    fetcherVersion = 4;
+    hash = "sha256-nc2cvYMInOXWtqA/lIqGJwi6xIwAYnZabWh8F+VVhLo=";
   };
 
   buildPhase = ''

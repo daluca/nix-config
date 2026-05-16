@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   secrets,
   ...
 }:
@@ -9,8 +8,6 @@
 {
   programs.atuin = {
     enable = true;
-    # TODO: Remove in 26.05
-    package = pkgs.unstable.atuin;
     enableBashIntegration = false;
     daemon.enable = true;
     settings = {

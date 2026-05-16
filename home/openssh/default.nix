@@ -1,41 +1,42 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  secrets,
+  ...
+}:
 
 {
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
-      ${config.home.username} = {
-        match = "User ${config.home.username} Host *,!${
-          lib.concatStringsSep ",!" [
-            "192.168.10.1"
-            "192.168.10.2"
-            "192.168.10.99"
-            "192.168.10.101"
-          ]
-        }";
-        extraOptions = {
+    settings = {
+      "Match User ${config.home.username} Host *,!${
+        lib.concatStringsSep ",!" [
+          "192.168.10.1"
+          "192.168.10.2"
+          "192.168.10.99"
+          "192.168.10.101"
+        ]
+      }" =
+        {
           RemoteCommand = "zsh --login";
           RequestTTY = "yes";
         };
-      };
       usg = {
-        host = "192.168.10.1";
-        extraOptions = {
-          PubkeyAcceptedKeyTypes = "+ssh-rsa";
-        };
+        HostName = "192.168.10.1";
+        PubkeyAcceptedKeyTypes = "+ssh-rsa";
       };
       "*" = {
-        forwardAgent = false;
-        addKeysToAgent = "no";
-        compression = false;
-        serverAliveInterval = 0;
-        serverAliveCountMax = 3;
-        hashKnownHosts = false;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        controlMaster = "no";
-        controlPath = "~/.ssh/master-%r@%n:%p";
-        controlPersist = "no";
+        ForwardAgent = false;
+        AddKeysToAgent = "no";
+        Compression = false;
+        ServerAliveInterval = 0;
+        ServerAliveCountMax = 3;
+        HashKnownHosts = false;
+        UserKnownHostsFile = "~/.ssh/known_hosts";
+        ControlMaster = "no";
+        ControlPath = "~/.ssh/master-%r@%n:%p";
+        ControlPersist = "no";
       };
     };
   };

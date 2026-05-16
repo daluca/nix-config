@@ -1,24 +1,12 @@
 {
   config,
-  pkgs,
   secrets,
-  inputs,
   ...
 }:
 
 {
-  disabledModules = [
-    "services/security/pocket-id.nix"
-  ];
-
-  imports = [
-    (inputs.nixpkgs-unstable + "/nixos/modules/services/security/pocket-id.nix")
-  ];
-
   services.pocket-id = {
     enable = true;
-    # TODO: Remove in 26.05
-    package = pkgs.unstable.pocket-id;
     settings = {
       HOST = "127.0.0.1";
       PORT = 1411;

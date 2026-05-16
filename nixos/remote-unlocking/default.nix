@@ -15,11 +15,12 @@
             "/etc/ssh/ssh_initrd_ed25519_key"
             "/etc/ssh/ssh_initrd_rsa_key"
           ];
-          shell = "/bin/cryptsetup-askpass";
         };
       };
     };
   };
+
+  boot.initrd.systemd.users.root.shell = "/bin/systemd-tty-ask-password-agent";
 
   environment.etc."ssh/ssh_initrd_ed25519_key" = {
     source = config.sops.secrets."ssh_initrd_ed25519_key".path;

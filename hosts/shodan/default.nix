@@ -46,5 +46,5 @@
 
   host.network.interface = "enp0s31f6";
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }
