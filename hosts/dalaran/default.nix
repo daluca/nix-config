@@ -50,7 +50,7 @@
   services.firefly-iii-data-importer.settings = {
     VANITY_URL = "https://firefly.${secrets.domain.general}";
     FIREFLY_III_URL = "https://firefly.${secrets.domain.general}";
-    FIREFLY_III_CLIENT_ID = 2;
+    FIREFLY_III_CLIENT_ID = "019f5ca9-1f9a-71a5-a0a1-9733ffb75a50";
   };
 
   services.redlib.settings = {
