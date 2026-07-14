@@ -8,8 +8,10 @@
 {
   imports = map (m: lib.custom.relativeToHomeManagerModules m) [
     "desktop-environments/gnome"
+    "development"
     "faugus-launcher"
     "ghostty"
+    "git"
     "impermanence"
     "steam"
     "zen-browser"
