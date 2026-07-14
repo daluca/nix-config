@@ -54,6 +54,11 @@ let
       allowLocalDeployment = true;
       targetHost = null;
     };
+    benedick = {
+      tags = [
+        "the-netherlands"
+      ];
+    };
   };
 in
 {

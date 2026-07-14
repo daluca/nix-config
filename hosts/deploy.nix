@@ -6,6 +6,7 @@
 
 {
   nodes = {
+    benedick = import ./benedick/deploy.nix { inherit deploy-rs nixosConfigurations; };
     stormwind = import ./stormwind/deploy.nix { inherit deploy-rs nixosConfigurations; };
     ironforge = import ./ironforge/deploy.nix { inherit deploy-rs nixosConfigurations; };
     darnassus = import ./darnassus/deploy.nix { inherit deploy-rs nixosConfigurations; };

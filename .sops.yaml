@@ -4,6 +4,7 @@ keys:
       - &daluca age1t7uj9cz0dwrm555qred7n49t5c2shtuuwwsc6ryd3fewunx7x32s7rlkt0
   - hosts:
       - &artemis age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt
+      - &benedick age1977tm0z7ld3fxfqt6m2d6ysex0h9uz3ygs7lg5hmpnaqe2p4sa7q29tumv
       - &stormwind age173lrwtphyuvfjhkjvw4xe5fy4lt2x97qcjr2eqjt46eq6q664egqfsp4v3
       - &ironforge age16g33d2sppsukw7tekmh2d3ppf22sscwfmm0anppcrdtj9h5p7eqqrw9zg0
       - &darnassus age102lual882fvygyw47twjzl65uey33u2ps8ulcrr8g258vaafwvpqsj6hyy
@@ -21,16 +22,23 @@ creation_rules:
       - age:
           - *master
           - *daluca
+  - path_regex: artemis\.sops\.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *daluca
+          - *artemis
+  - path_regex: benedick\.sops\.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *daluca
+          - *benedick
   - path_regex: stormwind\.sops\.yaml$
     key_groups:
       - age:
           - *master
           - *stormwind
-  - path_regex: artemis\.sops\.yaml$
-    key_groups:
-      - age:
-          - *master
-          - *artemis
   - path_regex: ironforge\.sops\.yaml$
     key_groups:
       - age:

@@ -2,9 +2,11 @@
   config,
   lib,
   pkgs,
+  osConfig,
   ...
 }:
 let
+  inherit (osConfig.networking) hostName;
   zenphone-10 = "1585fe42_d731_4e18_a83b_2f420174b038";
 in
 with pkgs.gnomeExtensions;
@@ -164,7 +166,7 @@ with pkgs.gnomeExtensions;
     gsconnect
   ];
 
-  xdg.configFile."gsconnect/certificate.pem".source = ./certificate.pem;
+  xdg.configFile."gsconnect/certificate.pem".source = lib.custom.relativeToHosts "${hostName}/certificate.pem";
 
   sops.secrets."gsconnect/private.pem".path = "${config.xdg.configHome}/gsconnect/private.pem";
 }
