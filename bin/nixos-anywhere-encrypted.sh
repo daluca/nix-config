@@ -20,15 +20,15 @@ function usage() {
 function main() {
   POSITIONAL_ARGS=()
 
-  IMPERMANENCE=""
+  IMPERMANENCE=
   REMOTE_UNLOCK=false
   AARCH64=false
   NIXOS_ANYWHERE_PHASES="kexec,disko,install,reboot"
   DEBUG=false
-  KEXEC=""
+  KEXEC=
   BUILD_ON_REMOTE=false
-  BUILD_TARGET=""
-  DEBUG_NIXOS_ANYWHERE=""
+  BUILD_TARGET=
+  DEBUG_NIXOS_ANYWHERE=
 
   while [[ "$#" -ge 1 ]]; do
     case "$1" in
@@ -115,7 +115,7 @@ function main() {
     "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_rsa_key" \
     "${temp}/${IMPERMANENCE%/*}/home/daluca/.config/sops/age/keys.txt"
 
-  if [[ "${REMOTE_UNLOCK}" ]]; then
+  if [[ "${REMOTE_UNLOCK}" == "true" ]]; then
     sops -d --extract '["initrd_id_rsa"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_rsa_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
     sops -d --extract '["initrd_id_ed25519"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_ed25519_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
     chmod 0400 \
