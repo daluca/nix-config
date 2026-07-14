@@ -4,7 +4,7 @@
   programs.garden-tools = {
     enable = true;
     settings = {
-      garden.root = "${config.home.homeDirectory}/code";
+      garden.root = "${config.home.homeDirectory}/Projects";
 
       trees = {
         cloud = {
