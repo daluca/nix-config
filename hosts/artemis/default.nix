@@ -37,6 +37,7 @@
       "attic-watch-store"
       "localsend"
       "keychron"
+      "plymouth"
     ];
 
   networking.hostName = "artemis";
@@ -64,6 +65,11 @@
   networking.localCommands = /* bash */ ''
     ip rule add to 10.1.0.0/16 priority 2500 lookup main || true
   '';
+
+  boot.initrd.luks.devices.cryptroot.crypttabExtraOpts = [
+    "tpm2-device=auto"
+    "token-timeout=5s"
+  ];
 
   boot.initrd.systemd.services.impermanence.script = lib.mkForce /* bash */ ''
     mkdir /btrfs_tmp

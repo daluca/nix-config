@@ -19,6 +19,7 @@ in
     ))
     ++ [
       impermanence.nixosModules.impermanence
+      catppuccin.nixosModules.catppuccin
     ]
     ++ [
       jellyplex-watched

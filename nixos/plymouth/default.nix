@@ -4,4 +4,6 @@
   boot.kernelParams = [
     "quiet"
   ];
+
+  catppuccin.plymouth.enable = true;
 }
