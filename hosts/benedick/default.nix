@@ -16,8 +16,6 @@
       nixos-hardware.nixosModules.common-gpu-amd
       nixos-hardware.nixosModules.common-pc
       nixos-hardware.nixosModules.common-pc-ssd
-      (nixos-hardware + "/common/wifi/mediatek/mt7925")
-      (nixos-hardware + "/common/wifi/mediatek/mt7925/iwd.nix")
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "desktop-environments/gnome"
@@ -38,12 +36,9 @@
 
   time.timeZone = "Europe/Amsterdam";
 
-
-  networking.wireless.iwd.settings = {
-    DriverQuirks.PowerSaveDisable = "mt7925e";
-  };
-
   environment.etc."xdg/monitors.xml".source = lib.mkForce ./monitors.xml;
+
+  hardware.enableAllFirmware = true;
 
   boot.initrd.luks.devices.cryptroot.crypttabExtraOpts = [
     "tpm2-device=auto"
