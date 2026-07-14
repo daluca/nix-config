@@ -30,9 +30,9 @@
       GE-Proton10-32
       GE-Proton10-31
       GE-Proton10-30
-      GE-Proton9-27
-      GE-Proton8-32
-      GE-Proton7-55
+      GE-Proton9
+      GE-Proton8
+      GE-Proton7
     ];
   };
 
