@@ -4,6 +4,10 @@
   programs.steam = {
     enable = true;
     package = pkgs.steam.override {
+      extraProfile = ''
+        export SDL_JOYSTICK_HIDAPI_XBOX=0
+      '';
+
       extraLibraries =
         _pkg: with pkgs; [
           # Work-around for wayland
