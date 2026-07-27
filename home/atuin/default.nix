@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   secrets,
   ...
 }:
@@ -15,49 +14,19 @@
       sync_frequency = "5m";
       sync_address = "https://atuin.${secrets.domain.general}/";
       dialect = "uk";
-      inline_height = 19;
       update_check = false;
       keymap_mode = "vim-insert";
       search_mode = "daemon-fuzzy";
       filter_mode = "host";
       key_path = config.sops.secrets."atuin/key".path;
       logs.dir = "~/.local/share/atuin/logs/";
+      tmux.enabled = true;
     };
   };
 
   sops.secrets."atuin/key" = { };
 
   catppuccin.atuin.enable = true;
-
-  programs.zsh.initContent = # zsh
-    /* bash */ ''
-      atuin-setup() {
-        bindkey '^[r' atuin-search
-
-        export ATUIN_NOBIND="true"
-
-        fzf-atuin-history-widget() {
-          local selected
-          setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases
-
-          selected=$(
-            eval ${lib.getExe config.programs.atuin.package} search --cmd-only --reverse | ${lib.getExe config.programs.fzf.package}
-          )
-          local ret=$?
-          if [ -n "$selected" ]; then
-            LBUFFER+="''${selected}"
-          fi
-          zle reset-prompt
-          return $ret
-        }
-
-        zle -N fzf-atuin-history-widget
-        bindkey '^R' fzf-atuin-history-widget
-        bindkey '^[OA' atuin-up-search
-      }
-
-      atuin-setup
-    '';
 
   programs.ghostty.settings = {
     keybind = [
