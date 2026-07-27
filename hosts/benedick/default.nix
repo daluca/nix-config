@@ -42,7 +42,7 @@
 
   environment.etc."xdg/monitors.xml".source = lib.mkForce ./monitors.xml;
 
-  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
 
   boot.initrd.luks.devices.cryptroot.crypttabExtraOpts = [
     "tpm2-device=auto"
