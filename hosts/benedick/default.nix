@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   inputs,
   ...
@@ -51,8 +50,6 @@
   ];
 
   boot.initrd.systemd.emergencyAccess = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.initrd.systemd.services.impermanence.script = lib.mkForce /* bash */ ''
     mkdir /btrfs_tmp
