@@ -8,6 +8,7 @@
 {
   imports =
     with inputs;
+    with self.nixosModules;
     [
       ./..
       ./disko.nix
@@ -16,6 +17,9 @@
       nixos-hardware.nixosModules.common-gpu-amd
       nixos-hardware.nixosModules.common-pc
       nixos-hardware.nixosModules.common-pc-ssd
+
+      keychron
+      logitech
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "desktop-environments/gnome"
@@ -24,8 +28,6 @@
       "fwupd"
       "impermanence"
       "kanata"
-      "keychron"
-      "logitech"
       "openssh/server"
       "plymouth"
       "steam"

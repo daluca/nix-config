@@ -69,6 +69,10 @@
 
     treefmt.url = "github:numtide/treefmt-nix";
     treefmt.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    import-tree.url = "github:denful/import-tree";
   };
 
   outputs =
@@ -107,6 +111,7 @@
     in
     with inputs;
     with outputs;
+    lib.recursiveUpdate
     {
       checks = forAllSystems (
         system:
@@ -369,5 +374,8 @@
           ./hosts/charlie
         ];
       };
-    };
+    }
+    (
+      inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules/dendritic)
+    );
 }

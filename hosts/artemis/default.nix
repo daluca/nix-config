@@ -7,12 +7,15 @@
 {
   imports =
     with inputs;
+    with self.nixosModules;
     [
       ./..
       ./hardware-configuration.nix
 
       nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
       nixos-hardware.nixosModules.common-cpu-intel
+
+      keychron
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "auto-cpufreq"
@@ -36,7 +39,6 @@
       "scanners"
       "attic-watch-store"
       "localsend"
-      "keychron"
       "plymouth"
     ];
 
