@@ -21,6 +21,8 @@
 
   raspberry-pi-nix.board = "bcm2711";
 
+  boot.initrd.systemd.tpm2.enable = false;
+
   boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
 
   hardware.raspberry-pi.config.all = {
