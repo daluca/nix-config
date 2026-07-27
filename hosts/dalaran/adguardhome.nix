@@ -9,7 +9,6 @@
     port = lib.mkForce 3000;
     openFirewall = lib.mkForce true;
     settings = {
-      dhcp.enabled = lib.mkForce false;
       dns = {
         bind_hosts = lib.mkForce [
           "10.1.1.11"
