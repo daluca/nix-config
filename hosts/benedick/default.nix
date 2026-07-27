@@ -21,6 +21,7 @@
       keychron
       logitech
       plymouth
+      systemd-boot
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "desktop-environments/gnome"
@@ -31,7 +32,6 @@
       "kanata"
       "openssh/server"
       "steam"
-      "systemd-boot"
     ];
 
   networking.hostName = "benedick";
