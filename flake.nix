@@ -65,9 +65,6 @@
     colmena.inputs.nixpkgs.follows = "nixpkgs-unstable";
     colmena.inputs.stable.follows = "nixpkgs";
 
-    rustfs.url = "github:rustfs/rustfs-flake";
-    rustfs.inputs.nixpkgs.follows = "nixpkgs";
-
     treefmt.url = "github:numtide/treefmt-nix";
     treefmt.inputs.nixpkgs.follows = "nixpkgs-unstable";
 

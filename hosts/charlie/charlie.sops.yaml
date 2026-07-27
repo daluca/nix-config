@@ -8,9 +8,6 @@ attic:
   api-token: ENC[AES256_GCM,data:kgdJDmD4WJAq6jEeXE22TpR3f2PjU1RusH53BWIbsibFpnam0dRRNuIyQYDYpF98wB1hK8+Ghe0c5waNmPhzDvuLEUTonVQ559XYNWRvkUnp+BAFTBRaHNs5MXsZhaFZnktDvfEKiIhFNz9ZKCHIxswhZKqK7azxDM3z5D8F1AYkz8628vp88UvXaBrwYfp/8vuiJqkU7LAly9/YUq2eseILSl8mXccbSpYNMY1PoSSNCjtrekX4vgZbo7aRPHt0lrOIC76mR6bSzXToeAthZR4ynIrPqM+sVZh02am0sfUQnKdmrWOPLxhVC4y2ER11bKltf7R5d271NHChiQsumoV2TvFkyky04Z/XmJDiATyO/rf0v31jbxvlrYMtaxsVArtDPpOBnZV/oV7n8JAFT8G76objwDMyV0KNibdVlDH1qHZxIqz4X1yW3irUuz5CzDNAnzAKYaLLlEh2hEFsNpNmKrhNrBpJw8xhyA88VFWyl4hCWRCF6h8W52qbox8msLlY+QYjkYNiUL62hDpo57ehAR7DCcJgeDWgHR+vsXbf7E/UuCIl28pZxMUMz7fzxamS8PLpT/uY49PRoFUsA38mN/wezN3HghAcJjHZVevBfrX+fUDfHEIkvf5d33WkRNH8VwFtlOhdiqHHa7RkFKOgyPg7xkyou0aSYojxHwyFgxNkbXbASHIKI+0nnVBKGDR+bjoxCySzItEjizRO8oqWeF/TZGiVsQOTGggW5U+a+xXeRS/YGnJr9BFrL/1Xulti56Mjz59LmgwXZPWlfRd3dfXyxX8Yntg5azG/35bpqbI+ynqn9oiA6vhLvjr2seffMNx12xGa4bmJxeavBeKVI7ubFlwOcYrF8RvU9zaQlwFYrJXj3A3dvPr8ZOYDy32p7xJivuXOBhf1nxg5WThN+8iq9Nv73WkE5+TCheCy6tQog9/ENugWkeXdvRTB0F62rsdy75mwytWbTGLh3HdY2YHYdAMMSNFOtW3TLiFcqhKoc7Z4MjPtSX2I23A2j/6dxaoPSBn9egK9Ct44j/6pn1ORYsuBIVb728q7qLNP3CtiNQx7a0OUHlOf/NhOUpivBwh2kRKJMkI6keEDoPO5RKgYOsFvcDtxNJ1P7lWds0lCN8Chxv5oQXk/uAL3nQ==,iv:GmuLQh/2bKkAtBOyOWd/VjPw3bV55wdUFwBklYie0b0=,tag:0W2hXuA21zHEYbHpKy/vOw==,type:str]
 cloudflare:
   api-token: ENC[AES256_GCM,data:UTZfkKVZfGnzuFd6Nr2ttjRxSyXitslw7Q8x7jmVHVgDSvtL7VYp+2QXxpDUkibPGPmmQec=,iv:sCpAx3C0TNt6hmS6y+9IZnjKPxqQwvYl0zsCqqYy2+w=,tag:uRx8u88Wdy/j5NibKImRFQ==,type:str]
-rustfs:
-  access-key: ENC[AES256_GCM,data:KzR4PkQ7R5SubKmwy/5AVuq8oBk=,iv:xXqg9O4KSHP7sQocgnSutLWVLd7TjkHvwF0XQqJQJok=,tag:P6u/VY2Ubny8VrADGmA6jQ==,type:str]
-  secret-key: ENC[AES256_GCM,data:eafchJYu9zjWRqGCzMUQEnJd172ks2zZNpC1oloOOPTz4uqniIQJJUuIjYINAAn4/odFvD4+R/s+Si1sv3kgTw==,iv:oZXTWq3jKUO+Sp37lTatDjJvH4M/HUZQTdLOEzVacBU=,tag:nxhfhvuH2nsguqU1oCPjMg==,type:str]
 pocket-id:
   encryption-key: ENC[AES256_GCM,data:EiovP1Pxok2ABhDu/NSQD/ypcGGTn0TwbR7q1/XU/j3yOr96QcGo26L1TKQ=,iv:oUqAtWhXDRBot7W/HDhvurgnc06Sal6UK+rJoRbf04E=,tag:ieK4IP4mx9BIwbizWb02Lg==,type:str]
   smtp-password: ENC[AES256_GCM,data:ou5KomQv7h4pNxEMv7Eiag==,iv:6lrIZTlcwoj8pBZLI1mhn0gO1L3JmFEwPEBYyaqzejw=,tag:RDOYdMbSCw7QmMNl6+RUgQ==,type:str]
@@ -34,7 +31,7 @@ sops:
         YdEHC4XNyqZxEZXsRbXpQLzRTgTjY2k/smNNR5PLRewuCLOTdg/BNg==
         -----END AGE ENCRYPTED FILE-----
       recipient: age1tvw6h8psq3fz06us4ykyg0ufvh5rxv2mazlug2d32ay82lqetucszlmehu
-  lastmodified: "2026-05-17T10:17:33Z"
-  mac: ENC[AES256_GCM,data:7IshDalIuNlzwxmhPO8zrMXp6XBA08iPetGb5qFmjVr91GNj8MNC2eqY6A+CpS1dW+VLommsDpNheZmrWAa8tl0vlILKVD7NHfwsSn+VfUvWvA/eZGUrvdp0RX/BWwqGJ9T9EwngFDXQRTlb2Epqf1fZmRynuYlBr4q9gQ6ulDk=,iv:082YQUHhXm/4/yr5MjONRo2GsIt8sKBzRgZl4zVhzEg=,tag:KdcvMolIAn4/zZsHXXiIig==,type:str]
+  lastmodified: "2026-07-27T20:45:34Z"
+  mac: ENC[AES256_GCM,data:FjoMlw8KExcpfYQge2rXBKJ5Bmgd3bupczq2973CWjCd0TPncewqct2Os03TchPojowzgCjawlGIreeP01x+faKQ1kif1OHHd9yPBp2tCodt09VIFE0QMAfpxjdqj3VYNAUPXFFaG10XJw9dAiTXWADOTwkn9RevTzpPVm2oy94=,iv:+UTUVjiev1yaVSnnr/7gmOelM33C27+qOFtGWYhXK10=,tag:ks3W3z7csonKahxseXRSgA==,type:str]
   unencrypted_suffix: _unencrypted
-  version: 3.13.0
+  version: 3.13.2

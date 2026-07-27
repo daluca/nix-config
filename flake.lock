@@ -835,7 +835,6 @@
         "nur": "nur",
         "proton-ge": "proton-ge",
         "raspberry-pi-nix": "raspberry-pi-nix",
-        "rustfs": "rustfs",
         "sops-nix": "sops-nix",
         "srvos": "srvos",
         "treefmt": "treefmt",
@@ -958,26 +957,6 @@
         "owner": "raspberrypi",
         "ref": "v1.5.2",
         "repo": "rpicam-apps",
-        "type": "github"
-      }
-    },
-    "rustfs": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1784259886,
-        "narHash": "sha256-QQe9meZPec+LzeQ5S3Yfzqg8w9ve+pz7ALXd+c4RAm0=",
-        "owner": "rustfs",
-        "repo": "rustfs-flake",
-        "rev": "8214ac628c4ad96e42d53f47e23dcca4c8bc49b2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rustfs",
-        "repo": "rustfs-flake",
         "type": "github"
       }
     },

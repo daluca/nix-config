@@ -14,8 +14,6 @@
 
       fzf-preview = fzf-preview.packages.${system}.fzf-preview;
 
-      rustfs = rustfs.packages.${system}.default;
-
       helium = nur.legacyPackages.${system}.repos.Ev357.helium;
 
       lazyssh = prev.lazyssh.overrideAttrs {

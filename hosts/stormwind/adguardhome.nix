@@ -53,10 +53,6 @@
             domain = "${hostName}.${config.networking.domain}";
             answer = secrets.hosts.${hostName}.ipv4-address;
           };
-          charlie = subdomain: {
-            domain = "${subdomain}.${secrets.domain.general}";
-            answer = "10.2.1.3";
-          };
         in
         [
           (internalHost "stormwind" "10.1.1.10")
@@ -85,7 +81,6 @@
           (shodan "prowlarr")
           (shodan "sabnzbd")
           (shodan "qbittorrent")
-          (charlie "rustfs")
         ];
     };
   };

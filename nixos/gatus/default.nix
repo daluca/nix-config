@@ -206,20 +206,6 @@
         }
         {
           enabled = false;
-          name = "RustFS";
-          url = "https://rustfs.${secrets.domain.general}/health";
-          group = "charlie";
-          interval = "60s";
-          conditions = [
-            "[STATUS] == 200"
-            "[RESPONSE_TIME] < 1000"
-            "[BODY].status == ok"
-            "[BODY].ready == true"
-          ];
-          alerts = [ { type = "ntfy"; } ];
-        }
-        {
-          enabled = false;
           name = "SABnzbd";
           url = "https://SABnzbd.${secrets.domain.general}/";
           group = "shodan";
