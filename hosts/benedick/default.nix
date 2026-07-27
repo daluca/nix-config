@@ -54,6 +54,8 @@
     ];
   };
 
+  zramSwap.enable = true;
+
   hardware.enableRedistributableFirmware = true;
 
   boot.initrd.luks.devices.cryptroot.crypttabExtraOpts = [
