@@ -13,7 +13,10 @@
     "ghostty"
     "git"
     "impermanence"
+    "jujutsu"
+    "neovim"
     "steam"
+    "vscodium"
     "zen-browser"
   ];
 
