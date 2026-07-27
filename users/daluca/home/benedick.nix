@@ -10,6 +10,7 @@
   imports =
     with inputs.self.homeManagerModules;
     [
+      libreoffice
       ultrawide-wallpaper
       nix-utils
     ]
