@@ -2,13 +2,16 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }@args:
 let
   secrets = args.secrets // fromTOML (builtins.readFile ../secrets.toml);
 in
 {
-  imports = map (m: lib.custom.relativeToHomeManagerModules m) [
+  imports = with inputs.self.homeManagerModules; [
+    nix-utils
+  ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
     "accounts"
     "alacritty"
     "anki"
@@ -42,8 +45,6 @@ in
     "neovide"
     "neovim"
     "nextcloud-client"
-    "nh"
-    "nix-utils"
     "ntfyd"
     "nushell"
     "planify"

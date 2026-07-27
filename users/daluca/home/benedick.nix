@@ -2,11 +2,14 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
 {
-  imports = map (m: lib.custom.relativeToHomeManagerModules m) [
+  imports = with inputs.self.homeManagerModules; [
+    nix-utils
+  ] ++ map (m: lib.custom.relativeToHomeManagerModules m) [
     "desktop-environments/gnome"
     "development"
     "faugus-launcher"
