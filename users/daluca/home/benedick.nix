@@ -10,6 +10,7 @@
   imports =
     with inputs.self.homeManagerModules;
     [
+      ultrawide-wallpaper
       nix-utils
     ]
     ++ map (m: lib.custom.relativeToHomeManagerModules m) [
