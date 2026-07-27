@@ -44,6 +44,7 @@
   environment.etc."xdg/monitors.xml".source = lib.mkForce ./monitors.xml;
 
   nix.settings = {
+    warn-dirty = false;
     substituters = [
       "https://nixos-raspberrypi.cachix.org?priority=100"
     ];
