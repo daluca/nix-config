@@ -26,6 +26,7 @@
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "desktop-environments/gnome"
+      "distributed-builds"
       "firewall"
       "fonts"
       "fwupd"

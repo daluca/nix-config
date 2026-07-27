@@ -8,6 +8,7 @@
     group = config.users.groups.remotebuild.name;
     openssh.authorizedKeys.keyFiles = map (m: lib.custom.relativeToHosts m) [
       "artemis/keys/ssh_host_ed25519_key.pub"
+      "benedick/keys/ssh_host_ed25519_key.pub"
     ];
   };
 
