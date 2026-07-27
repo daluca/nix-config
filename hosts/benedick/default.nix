@@ -32,6 +32,7 @@
       "impermanence"
       "kanata"
       "openssh/server"
+      "smart-cards"
       "steam"
     ];
 

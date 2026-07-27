@@ -15,6 +15,7 @@
     "faugus-launcher"
     "ghostty"
     "git"
+    "gnupg"
     "impermanence"
     "jujutsu"
     "neovim"
