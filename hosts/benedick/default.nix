@@ -20,6 +20,7 @@
 
       keychron
       logitech
+      plymouth
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "desktop-environments/gnome"
@@ -29,7 +30,6 @@
       "impermanence"
       "kanata"
       "openssh/server"
-      "plymouth"
       "steam"
       "systemd-boot"
     ];

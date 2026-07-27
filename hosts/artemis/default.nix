@@ -16,6 +16,7 @@
       nixos-hardware.nixosModules.common-cpu-intel
 
       keychron
+      plymouth
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "auto-cpufreq"
@@ -39,7 +40,6 @@
       "scanners"
       "attic-watch-store"
       "localsend"
-      "plymouth"
     ];
 
   networking.hostName = "artemis";
