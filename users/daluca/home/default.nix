@@ -16,8 +16,8 @@ in
     with outputs.homeManagerModules;
     [
       outputs.nixosModules.host
-    ]
-    ++ [
+
+      catppuccin
       garden-tools
       kanata
       ntfyd
@@ -26,7 +26,6 @@ in
       "atuin"
       "bash"
       "btop"
-      "catppuccin"
       "ntfy"
       "openssh"
       "secrets"

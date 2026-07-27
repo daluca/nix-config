@@ -8,4 +8,12 @@
 
     catppuccin.flavor = "mocha";
   };
+
+  flake.homeManagerModules.catppuccin = {
+    imports = with inputs; [
+      catppuccin.homeModules.catppuccin
+    ];
+
+    catppuccin.flavor = "mocha";
+  };
 }
