@@ -78,5 +78,7 @@
     umount /btrfs_tmp
   '';
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   system.stateVersion = "26.05";
 }
