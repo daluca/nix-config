@@ -20,6 +20,7 @@
 
       keychron
       logitech
+      pipewire
       plymouth
       systemd-boot
     ]

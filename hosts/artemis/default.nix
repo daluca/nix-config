@@ -16,6 +16,7 @@
       nixos-hardware.nixosModules.common-cpu-intel
 
       keychron
+      pipewire
       plymouth
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
@@ -23,7 +24,6 @@
       "desktop-environments/gnome"
       "swap"
       "ssd"
-      "pipewire"
       "impermanence"
       "fonts"
       "firewall"
