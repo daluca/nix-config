@@ -43,6 +43,7 @@
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixvim-config.url = "github:daluca/nixvim-config";
+    nixvim-config.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     fzf-preview.url = "github:niksingh710/fzf-preview";
     fzf-preview.inputs.nixpkgs.follows = "nixpkgs";
