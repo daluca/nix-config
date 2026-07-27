@@ -26,6 +26,8 @@ in
       attic-watch-store
       grub
       configarr
+
+      sudo
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "dvorak"
@@ -33,7 +35,6 @@ in
       "openssh"
       "secrets"
       "networking"
-      "sudo"
     ]
     ++ map (m: lib.custom.relativeToUsers m) [
       "root"

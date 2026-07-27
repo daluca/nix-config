@@ -9,7 +9,6 @@ let
 in
 {
   imports = [
-    ./sudo.nix
     ./bluetooth.nix
     ./openssh.nix
     ./secrets.nix
