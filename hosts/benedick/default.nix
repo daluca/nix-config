@@ -23,6 +23,7 @@
       pipewire
       plymouth
       systemd-boot
+      yubikey
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "desktop-environments/gnome"
@@ -56,7 +57,7 @@
   hardware.enableRedistributableFirmware = true;
 
   boot.initrd.luks.devices.cryptroot.crypttabExtraOpts = [
-    "tpm2-device=auto"
+    "fido2-device=auto"
     "token-timeout=5s"
   ];
 
