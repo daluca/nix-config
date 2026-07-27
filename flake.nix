@@ -109,8 +109,7 @@
     in
     with inputs;
     with outputs;
-    lib.recursiveUpdate
-    {
+    lib.recursiveUpdate {
       checks = forAllSystems (
         system:
         let
@@ -372,8 +371,5 @@
           ./hosts/charlie
         ];
       };
-    }
-    (
-      inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules/dendritic)
-    );
+    } (inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules/dendritic));
 }

@@ -166,7 +166,8 @@ with pkgs.gnomeExtensions;
     gsconnect
   ];
 
-  xdg.configFile."gsconnect/certificate.pem".source = lib.custom.relativeToHosts "${hostName}/certificate.pem";
+  xdg.configFile."gsconnect/certificate.pem".source =
+    lib.custom.relativeToHosts "${hostName}/certificate.pem";
 
   sops.secrets."gsconnect/private.pem".path = "${config.xdg.configHome}/gsconnect/private.pem";
 }
