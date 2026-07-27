@@ -20,6 +20,7 @@
 
       keychron
       logitech
+      nix-monitored
       pipewire
       plymouth
       systemd-boot

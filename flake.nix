@@ -71,6 +71,9 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     import-tree.url = "github:denful/import-tree";
+
+    nix-monitored.url = "github:ners/nix-monitored";
+    nix-monitored.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs =
