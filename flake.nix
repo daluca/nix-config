@@ -74,6 +74,9 @@
 
     nix-monitored.url = "github:ners/nix-monitored";
     nix-monitored.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    hister.url = "github:asciimoo/hister";
+    hister.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs =

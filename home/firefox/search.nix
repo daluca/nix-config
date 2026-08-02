@@ -11,9 +11,10 @@ let
 in
 {
   force = true;
-  default = "Kagi";
-  privateDefault = "Kagi";
+  default = "Hister";
+  privateDefault = "Hister";
   order = [
+    "Hister"
     "Kagi"
     "Brave"
     "Nix Packages"
@@ -32,6 +33,27 @@ in
     "wikipedia"
   ];
   engines = {
+    "Hister" = {
+      urls = [
+        {
+          template = "https://hister.daluca.nz/";
+          params = [
+            {
+              name = "q";
+              value = "{searchTerms}";
+            }
+          ];
+        }
+      ];
+      icon = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/asciimoo/hister/refs/heads/master/webui/ext/assets/logo.png";
+        hash = "sha256-IbSU/VtlY++bmrzPbDS8esh+3HTvYb56FhgK2WxGgHY=";
+      };
+      definedAliases = [
+        "@hister"
+        "@h"
+      ];
+    };
     "Kagi" = {
       urls = [
         {

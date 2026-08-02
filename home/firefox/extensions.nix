@@ -54,6 +54,10 @@ with pkgs.firefoxExtensions;
       install_url = "file://${libredirect}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${libredirect.addonId}.xpi";
       installation_mode = "force_installed";
     };
+    ${hister.addonId} = {
+      install_url = "file://${hister}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${hister.addonId}.xpi";
+      installation_mode = "force_installed";
+    };
   };
 
   "3rdparty".Extensions.${ublock-origin.addonId}.adminSettings =

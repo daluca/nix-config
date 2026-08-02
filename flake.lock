@@ -240,6 +240,27 @@
     "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": [
+          "hister",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782949081,
+        "narHash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_4": {
+      "inputs": {
+        "nixpkgs-lib": [
           "nixvim-config",
           "nixvim",
           "nixpkgs"
@@ -259,7 +280,7 @@
         "type": "github"
       }
     },
-    "flake-parts_4": {
+    "flake-parts_5": {
       "inputs": {
         "nixpkgs-lib": [
           "nur",
@@ -382,6 +403,27 @@
       "original": {
         "owner": "cachix",
         "repo": "git-hooks.nix",
+        "type": "github"
+      }
+    },
+    "hister": {
+      "inputs": {
+        "flake-parts": "flake-parts_3",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785857405,
+        "narHash": "sha256-v0M768XvOHk3EyuJKfWMgk2fdZrrMXWj3ExKLkt3cWM=",
+        "owner": "asciimoo",
+        "repo": "hister",
+        "rev": "e6b2677fc38b7c2b8a35a66d932180180e9253b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "asciimoo",
+        "repo": "hister",
         "type": "github"
       }
     },
@@ -722,7 +764,7 @@
     },
     "nixvim": {
       "inputs": {
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_4",
         "nixpkgs": "nixpkgs_3",
         "systems": "systems_4"
       },
@@ -764,7 +806,7 @@
     },
     "nur": {
       "inputs": {
-        "flake-parts": "flake-parts_4",
+        "flake-parts": "flake-parts_5",
         "nixpkgs": [
           "nixpkgs-unstable"
         ]
@@ -842,6 +884,7 @@
         "flake-parts": "flake-parts",
         "fzf-preview": "fzf-preview",
         "git-hooks": "git-hooks",
+        "hister": "hister",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "import-tree": "import-tree",

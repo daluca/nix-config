@@ -90,6 +90,7 @@
         nur.legacyPackages.${system}.repos.rycee.firefox-addons
         // {
           inherit bypass-paywalls-clean;
+          hister = hister-extension;
         };
 
       kubectlPlugins = with final; {

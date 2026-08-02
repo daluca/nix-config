@@ -23,7 +23,14 @@
       "remote-unlocking/dhcp"
       "nginx"
       "pocket-id"
+      "hister"
     ];
+
+  services.hister.settings = {
+    server = {
+      base_url = "https://hister.${secrets.domain.general}";
+    };
+  };
 
   services.pocket-id.settings = {
     APP_URL = "https://id.${secrets.domain.general}";
@@ -54,6 +61,22 @@
             proxy_buffer_size   256k;
           '';
         };
+      };
+      "hister.${secrets.domain.general}" = tls // {
+        http2 = true;
+        http3 = true;
+        quic = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString hister.port}";
+          proxyWebsockets = true;
+          extraConfig = /* nginx */ ''
+            gzip off;
+            proxy_read_timeout 86400;
+          '';
+        };
+        extraConfig = /* nginx */ ''
+          add_header Alt-Svc 'h3=":443"; ma=86400; persist=1';
+        '';
       };
     };
 

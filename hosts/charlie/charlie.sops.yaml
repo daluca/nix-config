@@ -11,6 +11,8 @@ cloudflare:
 pocket-id:
   encryption-key: ENC[AES256_GCM,data:EiovP1Pxok2ABhDu/NSQD/ypcGGTn0TwbR7q1/XU/j3yOr96QcGo26L1TKQ=,iv:oUqAtWhXDRBot7W/HDhvurgnc06Sal6UK+rJoRbf04E=,tag:ieK4IP4mx9BIwbizWb02Lg==,type:str]
   smtp-password: ENC[AES256_GCM,data:ou5KomQv7h4pNxEMv7Eiag==,iv:6lrIZTlcwoj8pBZLI1mhn0gO1L3JmFEwPEBYyaqzejw=,tag:RDOYdMbSCw7QmMNl6+RUgQ==,type:str]
+hister:
+  access-token: ENC[AES256_GCM,data:JkWVPkXvTtjBCj6IEt8p9TLeGhHtrbGRd6BLPwkgAo3ZKR/YuXIhCwL2XKwhayjmmeciATpfqJmhFZHdjJ/Z3A==,iv:ItKawl6mqZZTXVHoyN/5YNKFnCrJ+VYS7WxTRmYLtJU=,tag:TDdoOJwZYdtGbw9wkyAZpA==,type:str]
 sops:
   age:
     - enc: |
@@ -31,7 +33,7 @@ sops:
         YdEHC4XNyqZxEZXsRbXpQLzRTgTjY2k/smNNR5PLRewuCLOTdg/BNg==
         -----END AGE ENCRYPTED FILE-----
       recipient: age1tvw6h8psq3fz06us4ykyg0ufvh5rxv2mazlug2d32ay82lqetucszlmehu
-  lastmodified: "2026-07-27T20:45:34Z"
-  mac: ENC[AES256_GCM,data:FjoMlw8KExcpfYQge2rXBKJ5Bmgd3bupczq2973CWjCd0TPncewqct2Os03TchPojowzgCjawlGIreeP01x+faKQ1kif1OHHd9yPBp2tCodt09VIFE0QMAfpxjdqj3VYNAUPXFFaG10XJw9dAiTXWADOTwkn9RevTzpPVm2oy94=,iv:+UTUVjiev1yaVSnnr/7gmOelM33C27+qOFtGWYhXK10=,tag:ks3W3z7csonKahxseXRSgA==,type:str]
+  lastmodified: "2026-08-04T18:02:05Z"
+  mac: ENC[AES256_GCM,data:xoYoWxd+ijKbqpC0bTOwXqMbiQbcXNfP8Q/LCkU2jVXGZrfWPT2nXCG3LqI59DC5TC3lHHFFmTExOiKYp3yICjAX4byzNusAF4tS0XjoUsMAfIPzXkWIoze76WhI+XVrHggv8r+1i7DG3JuBcfrrhd9OWwvH1ugh0vb/a7jhS9Q=,iv:zDWq9fXoqgJLP7H/EV+eRbyKLPzeMglgTUURKTIwHX4=,tag:Dpted6u4pj68XEGSFI5fjQ==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.2

@@ -17,4 +17,5 @@ in
   ntfyd = callPackage ./ntfyd { };
   configarr = callPackage ./configarr { };
   nextflux = callPackage ./nextflux { };
+  hister-extension = callPackage ./hister { };
 }
