@@ -151,9 +151,9 @@
         import ./pkgs { inherit pkgs; }
       );
 
-      nixosModules = import ./modules/nixos;
+      nixosModules = import ./legacyModules/nixos;
 
-      homeManagerModules = import ./modules/home-manager;
+      homeManagerModules = import ./legacyModules/home-manager;
 
       deploy = import ./hosts/deploy.nix { inherit deploy-rs nixosConfigurations secrets; };
 
@@ -377,5 +377,5 @@
           ./hosts/charlie
         ];
       };
-    } (inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules/dendritic));
+    } (inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules));
 }
