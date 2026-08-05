@@ -10,7 +10,7 @@
   imports =
     with outputs.nixosModules;
     [
-      base
+      server
       ./disko.nix
 
       hetzner-online-intel

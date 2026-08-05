@@ -4,7 +4,7 @@
   imports =
     with outputs.nixosModules;
     [
-      base
+      server
 
       raspberry-pi-4
     ]

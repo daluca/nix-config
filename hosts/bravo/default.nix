@@ -11,7 +11,7 @@
   imports =
     with outputs.nixosModules;
     [
-      base
+      server
       ./disko.nix
 
       hetzner-cloud-arm

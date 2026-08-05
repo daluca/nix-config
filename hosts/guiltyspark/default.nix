@@ -13,7 +13,7 @@ in
     with inputs;
     with outputs.nixosModules;
     [
-      base
+      server
       ./disko.nix
 
       nixos-hardware.nixosModules.common-cpu-intel

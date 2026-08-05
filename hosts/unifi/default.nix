@@ -10,7 +10,7 @@
   imports =
     with outputs.nixosModules;
     [
-      base
+      server
 
       digitalocean
     ]
