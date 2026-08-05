@@ -2,20 +2,21 @@
   config,
   lib,
   inputs,
+  outputs,
   ...
 }:
 
 {
   imports =
     with inputs;
+    with outputs.nixosModules;
     [
       srvos.nixosModules.server
+
+      users-root
     ]
     ++ map (m: lib.custom.relativeToNixosModules m) [
       "openssh/server"
-    ]
-    ++ map (m: lib.custom.relativeToUsers m) [
-      "root"
     ];
 
   system.preSwitchChecks.detectHostnameChange = lib.mkForce /* bash */ ''

@@ -32,10 +32,10 @@ in
           home-manager
           dvorak
           networking
+          users-root
           users-daluca
 
           ../nixos/openssh
-          ../users/root
         ];
 
       boot.extraModprobeConfig = ''
