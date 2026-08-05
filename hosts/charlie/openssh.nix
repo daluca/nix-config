@@ -1,5 +1,7 @@
-{ config, secrets, ... }:
-
+{ config, ... }:
+let
+  secrets = fromTOML (builtins.readFile ../../secrets/secrets.toml);
+in
 {
   programs.ssh.knownHosts = rec {
     charlie = {

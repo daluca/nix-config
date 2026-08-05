@@ -1,5 +1,7 @@
-{ pkgs, secrets, ... }:
-
+{ pkgs, ... }:
+let
+  secrets = fromTOML (builtins.readFile ../../secrets/secrets.toml);
+in
 {
   programs.git = {
     enable = true;

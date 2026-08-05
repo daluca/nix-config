@@ -2,11 +2,11 @@
 
 {
   imports = builtins.filter (f: baseNameOf f == "openssh.nix") (
-    lib.filesystem.listFilesRecursive (lib.custom.relativeToHosts ".")
+    lib.filesystem.listFilesRecursive ../../hosts
   );
 
   environment.etc."ssh/ssh_host_ed25519_key.pub".source =
-    lib.custom.relativeToHosts "${config.networking.hostName}/keys/ssh_host_ed25519_key.pub";
+    lib.path.append ../../hosts "${config.networking.hostName}/keys/ssh_host_ed25519_key.pub";
 
   environment.etc."ssh/ssh_host_ed25519_key" =
     lib.mkIf (!config.environment.persistence.system.enable)
@@ -18,7 +18,7 @@
   sops.secrets."ssh_host_ed25519_key".key = "id_ed25519";
 
   environment.etc."ssh/ssh_host_rsa_key.pub".source =
-    lib.custom.relativeToHosts "${config.networking.hostName}/keys/ssh_host_rsa_key.pub";
+    lib.path.append ../../hosts "${config.networking.hostName}/keys/ssh_host_rsa_key.pub";
 
   environment.etc."ssh/ssh_host_rsa_key" = lib.mkIf (!config.environment.persistence.system.enable) {
     source = config.sops.secrets."ssh_host_rsa_key".path;

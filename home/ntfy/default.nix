@@ -2,12 +2,12 @@
   config,
   lib,
   pkgs,
-  secrets,
   hostname,
   ...
 }@args:
 let
   osConfig = (if args ? "osConfig" then args.osConfig else { networking.hostName = hostname; });
+  secrets = fromTOML (builtins.readFile ../../secrets/secrets.toml);
 in
 {
   home.packages = with pkgs; [
@@ -17,7 +17,7 @@ in
   home.sessionVariables = {
     NTFY_TOPIC = "hosts";
     NTFY_TITLE = osConfig.networking.hostName;
-    NTFY_QUIET = builtins.toString true;
+    NTFY_QUIET = toString true;
     NTFY_LONG_ALLOWLIST = lib.concatStringsSep " " [
       "ansible-playbook"
     ];

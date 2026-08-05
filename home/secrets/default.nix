@@ -13,7 +13,7 @@ in
   ];
 
   sops = {
-    defaultSopsFile = lib.custom.relativeToUsers "${username}/${username}.sops.yaml";
+    defaultSopsFile = lib.path.append ../../users "${username}/${username}.sops.yaml";
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     age.sshKeyPaths = [
       "${config.home.homeDirectory}/.ssh/id_ed25519"

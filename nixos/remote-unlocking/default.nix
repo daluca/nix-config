@@ -9,7 +9,7 @@
           enable = true;
           port = 22022;
           authorizedKeyFiles = [
-            (lib.custom.relativeToUsers "daluca/keys/id_ed25519.pub")
+            (lib.path.append ../../users "daluca/keys/id_ed25519.pub")
           ];
           hostKeys = [
             "/etc/ssh/ssh_initrd_ed25519_key"
