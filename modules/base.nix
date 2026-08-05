@@ -28,8 +28,8 @@ in
           configarr
 
           sudo
+          dvorak
 
-          ../nixos/dvorak
           ../nixos/home-manager
           ../nixos/openssh
           ../nixos/secrets
