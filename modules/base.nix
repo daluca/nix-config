@@ -30,10 +30,10 @@ in
           sudo
           sops-nix
           dvorak
+          networking
 
           ../nixos/home-manager
           ../nixos/openssh
-          ../nixos/networking
           ../users/root
           ../users/daluca
         ];
