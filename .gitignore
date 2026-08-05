@@ -4,3 +4,4 @@
 /nix-config.txt
 ssh_*_key
 cache-priv-key.pem
+*.qcow2
