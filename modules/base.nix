@@ -28,11 +28,11 @@ in
           configarr
 
           sudo
+          sops-nix
           dvorak
 
           ../nixos/home-manager
           ../nixos/openssh
-          ../nixos/secrets
           ../nixos/networking
           ../users/root
           ../users/daluca
