@@ -9,7 +9,7 @@
     with inputs;
     with self.nixosModules;
     [
-      ./..
+      base
       ./hardware-configuration.nix
 
       nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen

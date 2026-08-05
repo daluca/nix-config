@@ -6,7 +6,7 @@ in
   imports =
     with outputs.nixosModules;
     [
-      ./..
+      base
       ./disko.nix
 
       hetzner-cloud-x86

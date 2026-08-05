@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  outputs,
   ...
 }@args:
 let
@@ -10,8 +11,9 @@ in
 {
   imports =
     with inputs;
+    with outputs.nixosModules;
     [
-      ./..
+      base
       ./disko.nix
 
       nixos-hardware.nixosModules.common-cpu-intel

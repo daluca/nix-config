@@ -4,7 +4,7 @@
   imports =
     with outputs.nixosModules;
     [
-      ./..
+      base
       ./adguardhome.nix
 
       raspberry-pi-4

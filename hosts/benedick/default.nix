@@ -9,7 +9,7 @@
     with inputs;
     with self.nixosModules;
     [
-      ./..
+      base
       ./disko.nix
 
       nixos-hardware.nixosModules.common-cpu-amd

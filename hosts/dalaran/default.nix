@@ -12,7 +12,7 @@
     with inputs;
     with outputs.nixosModules;
     [
-      ./..
+      base
       ./disko.nix
       ./adguardhome.nix
 
