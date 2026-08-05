@@ -202,21 +202,6 @@
         ];
       };
 
-      nixosConfigurations.benedick = nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/benedick
-        ];
-      };
-
       nixosConfigurations.stormwind = nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
