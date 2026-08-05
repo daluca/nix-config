@@ -29,10 +29,10 @@ in
 
           sudo
           sops-nix
+          home-manager
           dvorak
           networking
 
-          ../nixos/home-manager
           ../nixos/openssh
           ../users/root
           ../users/daluca
