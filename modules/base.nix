@@ -99,6 +99,8 @@ in
           proton-ge.overlays.default
         ];
 
+      nix.channel.enable = false;
+
       nix.gc = {
         automatic = true;
         dates = "weekly";
