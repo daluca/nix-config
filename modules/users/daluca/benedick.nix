@@ -5,7 +5,7 @@
     imports = with self.homeManagerModules; [
       users-daluca
 
-      # ../../../home/ghostty
+      ghostty
       git
     ];
   };
