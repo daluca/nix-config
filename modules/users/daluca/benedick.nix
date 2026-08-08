@@ -14,6 +14,7 @@
       mangohud
       neovim
       zenBrowser
+      vscodium
     ];
 
     programs.custom-firefox.default = "zen-browser";

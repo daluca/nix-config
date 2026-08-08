@@ -13,15 +13,9 @@
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
       extensions = with pkgs.open-vsx; [
-        vscodevim.vim
-        pkief.material-icon-theme
-        editorconfig.editorconfig
-        skellock.just
         tamasfe.even-better-toml
         rust-lang.rust-analyzer
         grafana.vscode-jsonnet
-        tomoki1207.pdf
-        mkhl.direnv
       ];
       userSettings = {
         # Editor
@@ -48,9 +42,6 @@
         # Files
         "files.trimTrailingWhitespace" = true;
         "files.insertFinalNewline" = true;
-        "files.exclude" = {
-          "**/.jj" = true;
-        };
         # Git
         "git.autofetch" = true;
         "git.blame.editorDecoration.enabled" = true;
@@ -62,8 +53,6 @@
         "redhat.telemetry.enabled" = false;
         # Terminal
         "terminal.integrated.defaultProfile.linux" = "zsh";
-        # Theme
-        "workbench.iconTheme" = "material-icon-theme";
         # Trusted
         "security.workspace.trust.enabled" = false;
         "workbench.trustedDomains.promptInTrustedWorkspace" = false;
