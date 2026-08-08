@@ -47,7 +47,6 @@ in
       kanata
       ntfyd
 
-      ../../../home/btop
       ../../../home/openssh
       ../../../home/secrets
       ../../../home/starship
@@ -56,6 +55,7 @@ in
       ../../../home/zsh
       atuin
       bash
+      btop
       ntfy
       vim
     ];
