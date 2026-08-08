@@ -18,7 +18,7 @@ in
         with self.nixosModules;
         (builtins.filter (f: baseNameOf f == "cache.nix") (lib.filesystem.listFilesRecursive ../hosts))
         ++ [
-          impermanence.nixosModules.impermanence
+          inputs.impermanence.nixosModules.impermanence
 
           jellyplex-watched
           tunarr
