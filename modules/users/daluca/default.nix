@@ -56,8 +56,8 @@ in
       ../../../home/starship
       ../../../home/tmux
       ../../../home/tools
-      ../../../home/vim
       ../../../home/zsh
+      vim
     ];
 
     home = rec {
