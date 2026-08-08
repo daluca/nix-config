@@ -10,13 +10,13 @@ in
       hashedPasswordFile = config.sops.secrets."daluca/password".path;
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keyFiles = [
-        ../../../users/daluca/keys/id_ed25519.pub
+        ./keys/id_ed25519.pub
       ];
     };
 
     sops.secrets."daluca/password" = {
       neededForUsers = true;
-      sopsFile = ../../../users/daluca/daluca.sops.yaml;
+      sopsFile = ./daluca.sops.yaml;
       key = "password";
     };
 

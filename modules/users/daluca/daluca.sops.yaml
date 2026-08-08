@@ -13,8 +13,7 @@ atuin:
   key: ENC[AES256_GCM,data:Y/ZH9o5nCurYFTOY//RSshLT9uPfvaprfy+7kQknMMBGI5KpmMO5W27JHmogn6tD1oUi8wxRMOLKW83XbCSjjFEaqEqHVrNV26aaDA==,iv:6OMiKIn32EKSzfWDO2HMHVa/S/YteJxXftM/w/oQqFM=,tag:6qWnSkrBZv2YwStJw7NwSQ==,type:str]
 sops:
   age:
-    - recipient: age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
-      enc: |
+    - enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
         YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkdWI4UytFd1JYSURBYm5X
         dzdoK3V2K3dmQXFJWlducHBrOE8wbmhTc0hVCmJHaXBpVFpjMkkvSXViaXlEajkz
@@ -22,8 +21,8 @@ sops:
         YTgweldMcFRBOWVMY1YrVEVYa2V2MHMK1fjhgAyxBQHpMhVV7UOslOZlMPE1hRA2
         FtrkKt4fmyekZo+Ozjp47qJ/Ax8tIzeaI9M4tk9Rf250ReEt4qXXeQ==
         -----END AGE ENCRYPTED FILE-----
-    - recipient: age1t7uj9cz0dwrm555qred7n49t5c2shtuuwwsc6ryd3fewunx7x32s7rlkt0
-      enc: |
+      recipient: age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt
+    - enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
         YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAyZTVLTHhEQXM1UXNWYm92
         M2cxanZIVUtsMk96eUZEWmJSZVZUa1lIb1dRCnJhMmczZjQrc3Q1QUlVYzFwdk1S
@@ -31,7 +30,8 @@ sops:
         amRydy9KK1pqZXdIWDRxZXZHZkFldFkKS5c/MBTeXfpOxedjpxuMZI5yoZscN6gE
         2efdqVrgOqrp4EYP5qNnL6wzk1L4xsvQI0lvPULZ0TH8c9ZpzVOUnA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-05-04T19:26:59Z"
-  mac: ENC[AES256_GCM,data:8M+IgSYYYZoSdybtw/UEX+th0M4NxOiAj2WaIplx480iZKx3FntmYWjoycySuKKuBQtwybw7/dUPX2pquYu2bLnEdzlQcvaK0ncp+OORgLrlawxHlr9TjZsg7vvTEKMeA/SUE9oH1TvWCgawIR8dceZr/uoeflGLWvcDR1Ucyzw=,iv:EvrJDyOgfgCUjOoE7qUbVnUW/c6JXhlGoelx/OXWHLQ=,tag:zmlnd93AB1lGO40vYN7fDA==,type:str]
+      recipient: age1t7uj9cz0dwrm555qred7n49t5c2shtuuwwsc6ryd3fewunx7x32s7rlkt0
+  lastmodified: "2026-08-08T17:05:30Z"
+  mac: ENC[AES256_GCM,data:+K8tCkHkl5ncBABMDItspFMg4xVQbvWQ/fCmNu4Dg5vMLn8FctJ0zAApBtK7AdaHXPc6pMgNuUqolVy78tdN7VGdv+fLPovmo557YJ0Z2DctQXtLi7nRMVKQQHHUyh85DmqYZ2c6/oKqbzcR8CcgnfcuUyi+6dCWkihU4GmtbgA=,iv:ONOb8d2h+BsQDB6/9vhmNtvacFko7TJU4HRC1aFvar4=,tag:mP5aLBNflbTVo0EjIXL8jw==,type:str]
   unencrypted_suffix: _unencrypted
-  version: 3.12.2
+  version: 3.13.2
