@@ -47,7 +47,6 @@ in
       kanata
       ntfyd
 
-      ../../../home/tools
       ../../../home/zsh
       ssh
       atuin
@@ -56,6 +55,7 @@ in
       ntfy
       sops-nix
       starship
+      tools
       tmux
       vim
     ];

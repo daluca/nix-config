@@ -7,6 +7,7 @@
       with inputs.self.homeManagerModules;
       [
         nh
+        comma
       ];
 
     home.packages = with pkgs; [
