@@ -47,7 +47,6 @@ in
       kanata
       ntfyd
 
-      ../../../home/zsh
       ssh
       atuin
       bash
@@ -58,6 +57,7 @@ in
       tools
       tmux
       vim
+      zsh
     ];
 
     home = rec {
