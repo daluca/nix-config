@@ -3,7 +3,7 @@ let
   secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
 in
 {
-  flake.nixosModules.users-daluca = { config, ... }: {
+  flake.nixosModules.users-daluca = { config, lib, ... }: {
     users.users.daluca = {
       isNormalUser = true;
       description = "Lucas Slebos";
@@ -12,6 +12,17 @@ in
       openssh.authorizedKeys.keyFiles = [
         ./keys/id_ed25519.pub
       ];
+    };
+
+    virtualisation.vmVariant = {
+      users.users.daluca = {
+        initialPassword = "hello";
+        hashedPasswordFile = lib.mkVMOverride null;
+      };
+
+      home-manager.users.daluca = {
+        programs.atuin.settings.key_path = lib.mkVMOverride "${config.home-manager.users.daluca.xdg.configHome}/atuin/key";
+      };
     };
 
     sops.secrets."daluca/password" = {
