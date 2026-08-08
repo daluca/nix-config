@@ -47,7 +47,6 @@ in
       kanata
       ntfyd
 
-      ../../../home/starship
       ../../../home/tmux
       ../../../home/tools
       ../../../home/zsh
@@ -57,6 +56,7 @@ in
       btop
       ntfy
       sops-nix
+      starship
       vim
     ];
 
