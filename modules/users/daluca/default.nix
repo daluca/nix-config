@@ -47,12 +47,12 @@ in
       kanata
       ntfyd
 
-      ../../../home/openssh
       ../../../home/secrets
       ../../../home/starship
       ../../../home/tmux
       ../../../home/tools
       ../../../home/zsh
+      ssh
       atuin
       bash
       btop
