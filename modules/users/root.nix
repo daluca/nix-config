@@ -2,7 +2,7 @@
   flake.nixosModules.users-root = {
     users.users.root = {
       openssh.authorizedKeys.keyFiles = [
-        ../../users/daluca/keys/id_ed25519.pub
+        ./daluca/keys/id_ed25519.pub
       ];
     };
 
