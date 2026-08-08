@@ -34,8 +34,7 @@ in
           networking
           users-root
           users-daluca
-
-          ../nixos/openssh
+          ssh
         ];
 
       boot.extraModprobeConfig = ''
