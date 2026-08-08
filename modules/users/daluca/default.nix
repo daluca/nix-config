@@ -47,7 +47,6 @@ in
       kanata
       ntfyd
 
-      ../../../home/tmux
       ../../../home/tools
       ../../../home/zsh
       ssh
@@ -57,6 +56,7 @@ in
       ntfy
       sops-nix
       starship
+      tmux
       vim
     ];
 
