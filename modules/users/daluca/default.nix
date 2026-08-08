@@ -47,7 +47,6 @@ in
       kanata
       ntfyd
 
-      ../../../home/secrets
       ../../../home/starship
       ../../../home/tmux
       ../../../home/tools
@@ -57,6 +56,7 @@ in
       bash
       btop
       ntfy
+      sops-nix
       vim
     ];
 
