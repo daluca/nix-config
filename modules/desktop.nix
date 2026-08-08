@@ -4,6 +4,7 @@
   flake.nixosModules.desktop = {
     imports = with self.nixosModules; [
       base
+      kanata
     ];
 
     time.timeZone = "Europe/Amsterdam";
