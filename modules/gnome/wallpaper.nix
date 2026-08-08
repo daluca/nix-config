@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.ultrawide-wallpaper =
+  flake.homeManagerModules.gnome-wallpaper =
     { lib, pkgs, ... }:
     let
       wallpaper = {
@@ -23,8 +23,7 @@
       };
     in
     {
-      # NOTE: Remove mkForce once gnome dendiritic module has been created
-      dconf.settings."org/gnome/desktop/background" = lib.mkForce wallpaper;
-      dconf.settings."org/gnome/desktop/screensaver" = lib.mkForce wallpaper;
+      dconf.settings."org/gnome/desktop/background" = wallpaper;
+      dconf.settings."org/gnome/desktop/screensaver" = wallpaper;
     };
 }
