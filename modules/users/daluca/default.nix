@@ -30,12 +30,6 @@ in
     services.openssh.settings.AllowUsers = [
       "daluca"
     ];
-
-    # TODO: Update with daluca home-manager module
-    # home-manager.users.daluca = import ../../users/daluca/home;
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
-      users-daluca
-    ];
   };
 
   flake.homeManagerModules.users-daluca = { config, lib, ... }: {
