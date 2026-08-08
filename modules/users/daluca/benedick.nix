@@ -6,7 +6,7 @@
       users-daluca
 
       # ../../../home/ghostty
-      ../../../home/git
+      git
     ];
   };
 }
