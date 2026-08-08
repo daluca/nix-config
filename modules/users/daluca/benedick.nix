@@ -6,6 +6,7 @@
       users-daluca
 
       development
+      faugusLauncher
       ghostty
       git
       gnupg
