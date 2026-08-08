@@ -10,6 +10,7 @@
       ghostty
       git
       gnupg
+      jujutsu
     ];
   };
 }
