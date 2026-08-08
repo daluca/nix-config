@@ -48,7 +48,6 @@ in
       ntfyd
 
       ../../../home/btop
-      ../../../home/ntfy
       ../../../home/openssh
       ../../../home/secrets
       ../../../home/starship
@@ -57,6 +56,7 @@ in
       ../../../home/zsh
       atuin
       bash
+      ntfy
       vim
     ];
 
