@@ -11,8 +11,10 @@
       git
       gnupg
       jujutsu
+      libreoffice
       mangohud
       neovim
+      nix-utils
       zenBrowser
       vscodium
     ];
