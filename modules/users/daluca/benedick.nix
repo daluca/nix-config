@@ -12,6 +12,7 @@
       gnupg
       jujutsu
       mangohud
+      neovim
     ];
   };
 }

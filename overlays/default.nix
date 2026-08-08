@@ -10,8 +10,6 @@
       inherit (final.stdenv.hostPlatform) system;
     in
     {
-      neovim = nixvim-config.packages.${system}.neovim;
-
       fzf-preview = fzf-preview.packages.${system}.fzf-preview;
 
       helium = nur.legacyPackages.${system}.repos.Ev357.helium;
