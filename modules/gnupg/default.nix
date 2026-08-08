@@ -1,0 +1,30 @@
+{
+  flake.homeManagerModules.gnupg = { pkgs, ... }: {
+    programs.gpg = {
+      enable = true;
+      mutableKeys = false;
+      settings = {
+        armor = true;
+        fixed-list-mode = false;
+        no-greeting = true;
+        throw-keyids = true;
+      };
+      scdaemonSettings = {
+        disable-ccid = true;
+        reader-port = "Yubico Yubi";
+      };
+    };
+
+    services.gpg-agent = {
+      enable = true;
+      pinentry.package = pkgs.pinentry-gnome3;
+    };
+
+    home.persistence.home.directories = [
+      {
+        directory = ".gnupg";
+        mode = "0700";
+      }
+    ];
+  };
+}

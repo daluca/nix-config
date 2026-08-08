@@ -7,6 +7,7 @@
 
       ghostty
       git
+      gnupg
     ];
   };
 }
