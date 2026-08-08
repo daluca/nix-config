@@ -41,6 +41,8 @@ in
       kanata
       ntfyd
 
+      firefoxBase
+
       ssh
       atuin
       bash

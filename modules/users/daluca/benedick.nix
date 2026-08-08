@@ -13,6 +13,9 @@
       jujutsu
       mangohud
       neovim
+      zenBrowser
     ];
+
+    programs.custom-firefox.default = "zen-browser";
   };
 }
