@@ -70,7 +70,14 @@
       code = "codium";
     };
 
-    catppuccin.vscodium.profiles.default.enable = true;
+
+    # NOTE: This is causing pnpm warnings
+    # The issue has been resolved and is waiting to be backported
+    # https://github.com/catppuccin/nix/pull/1016
+    # NOTE: vscodium option does not work
+    # Work around: set vscode option instead
+    # https://github.com/catppuccin/nix/issues/1020
+    catppuccin.vscode.profiles.default.enable = true;
   };
 
   flake.homeManagerModules.vscodiumExtensions = {
