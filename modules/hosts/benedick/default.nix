@@ -40,6 +40,8 @@
         gsconnect
       ];
 
+    sops.defaultSopsFile = ../../hosts/benedick/benedick.sops.yaml;
+
     home-manager.users.daluca.imports = with self.homeManagerModules; [
       users-daluca-benedick
     ];

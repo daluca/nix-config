@@ -97,12 +97,11 @@
     };
 
     sops.secrets."id_ed25519" = {
-      sopsFile = lib.path.append ../../users "${config.home.username}/${config.home.username}.sops.yaml";
+      sopsFile = ../users/daluca/daluca.sops.yaml;
       path = ".ssh/id_ed25519";
     };
 
-    home.file.".ssh/id_ed25519.pub".source =
-      lib.path.append ../../users "${config.home.username}/keys/id_ed25519.pub";
+    home.file.".ssh/id_ed25519.pub".source = ../users/daluca/keys/id_ed25519.pub;
 
     home.persistence.home.directories = [
       ".ssh"

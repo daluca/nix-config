@@ -1,14 +1,15 @@
 { inputs, ... }:
 
 {
-  flake.nixosModules.sops-nix = { config, lib, ... }: {
+  flake.nixosModules.sops-nix = {
     imports = with inputs; [
       sops-nix.nixosModules.sops
     ];
 
     sops = {
       useSystemdActivation = true;
-      defaultSopsFile = lib.path.append ../hosts "${config.networking.hostName}/${config.networking.hostName}.sops.yaml";
+      # TODO: Try re-enable option
+      # defaultSopsFile = lib.path.append ../hosts "${config.networking.hostName}/${config.networking.hostName}.sops.yaml";
       age.keyFile = "/var/lib/sops-nix/keys.txt";
     };
 
@@ -17,14 +18,15 @@
     ];
   };
 
-  flake.homeManagerModules.sops-nix = { config, lib, ... }: {
+  flake.homeManagerModules.sops-nix = { config, ... }: {
     imports = with inputs; [
       sops-nix.homeManagerModules.sops
     ];
 
     sops = {
-      defaultSopsFile = lib.path.append ../users "${config.home.username}/${config.home.username}.sops.yaml";
+      defaultSopsFile = ./users/daluca/daluca.sops.yaml;
       age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+      # TODO: Try and re-enable option
       # age.sshKeyPaths = [
       #   "${config.home.homeDirectory}/.ssh/id_ed25519"
       # ];
