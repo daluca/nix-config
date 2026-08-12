@@ -24,7 +24,12 @@
       autocd = true;
       enableCompletion = true;
       autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
+      syntaxHighlighting = {
+        enable = true;
+        highlighters = [
+          "brackets"
+        ];
+      };
       sessionVariables = {
         HISTFILE = history.path;
       };
