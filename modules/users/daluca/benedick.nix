@@ -17,6 +17,7 @@
       nix-utils
       zenBrowser
       vscodium
+      games
     ];
 
     programs.custom-firefox.default = "zen-browser";
