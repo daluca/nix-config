@@ -24,6 +24,7 @@
       ];
       files = [
         "/etc/machine-id"
+        # TODO: Verify these can be removed
         # "/etc/ssh/ssh_host_ed25519_key"
         # "/etc/ssh/ssh_host_rsa_key"
       ];

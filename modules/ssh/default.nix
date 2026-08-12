@@ -14,17 +14,27 @@
           mode = "0400";
         };
 
-    sops.secrets."ssh_host_ed25519_key".key = "id_ed25519";
+    sops.secrets."ssh_host_ed25519_key" = {
+      key = "id_ed25519";
+      path = "/etc/ssh/ssh_host_ed25519_key";
+      mode = "0400";
+    };
 
     environment.etc."ssh/ssh_host_rsa_key.pub".source =
       lib.path.append ../hosts "${config.networking.hostName}/keys/ssh_host_rsa_key.pub";
 
-    environment.etc."ssh/ssh_host_rsa_key" = lib.mkIf (!config.environment.persistence.system.enable) {
-      source = config.sops.secrets."ssh_host_rsa_key".path;
+    environment.etc."ssh/ssh_host_rsa_key" =
+      lib.mkIf (!config.environment.persistence.system.enable)
+        {
+          source = config.sops.secrets."ssh_host_rsa_key".path;
+          mode = "0400";
+        };
+
+    sops.secrets."ssh_host_rsa_key" = {
+      key = "id_rsa";
+      path = "/etc/ssh/ssh_host_rsa_key";
       mode = "0400";
     };
-
-    sops.secrets."ssh_host_rsa_key".key = "id_rsa";
 
     programs.ssh.knownHosts = {
       "github.com".publicKey =
