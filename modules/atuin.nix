@@ -1,9 +1,10 @@
 let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
 in {
-  flake.homeManagerModules.atuin = { config, ... }: {
+  flake.homeManagerModules.atuin = { config, pkgs, ... }: {
     programs.atuin = {
       enable = true;
+      package = pkgs.unstable.atuin;
       enableBashIntegration = false;
       daemon.enable = true;
       settings = {
@@ -18,6 +19,7 @@ in {
         key_path = config.sops.secrets."atuin/key".path;
         logs.dir = "~/.local/share/atuin/logs/";
         tmux.enabled = true;
+        ui.syntax_highlight = true;
       };
     };
 
