@@ -1,6 +1,26 @@
 let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
 in {
+  flake.nixosModules.atuin = { config, ... }: {
+    services.atuin = {
+      enable = true;
+      openRegistration = false;
+    };
+
+    systemd.tmpfiles.rules = with config.services; [
+      "d ${dirOf postgresql.dataDir} 0750 postgres postgres -"
+    ];
+
+    environment.persistence.system.directories = with config.services; [
+      {
+        directory = postgresql.dataDir;
+        user = "postgres";
+        group = "postgres";
+        mode = "0750";
+      }
+    ];
+  };
+
   flake.homeManagerModules.atuin = { config, pkgs, ... }: {
     programs.atuin = {
       enable = true;
