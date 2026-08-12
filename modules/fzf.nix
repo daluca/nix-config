@@ -1,4 +1,10 @@
+{ inputs, ... }:
+
 {
+  flake.overlays.fzf-preview = final: prev: {
+    fzf-preview = inputs.fzf-preview.packages.${final.stdenv.hostPlatform.system}.fzf-preview;
+  };
+
   flake.homeManagerModules.fzf = { config, lib, pkgs, ... }: {
     programs.fzf = {
       enable = true;
