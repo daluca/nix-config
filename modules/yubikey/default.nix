@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  flake.nixosModules.yubikey = { pkgs, ... }: {
+  flake.nixosModules.yubikey = { pkgs, lib, ... }: {
     imports = with inputs.self.nixosModules; [
       home-manager
       smartCards
@@ -14,6 +14,13 @@
     security.pam.services = {
       login.u2f.enable = true;
       sudo.u2f.enable = true;
+    };
+
+    virtualisation.vmVariant = {
+      security.pam.services = {
+        login.u2f.enable = lib.mkVMOverride false;
+        sudo.u2f.enable = lib.mkVMOverride false;
+      };
     };
 
     security.pam.u2f.settings = {
