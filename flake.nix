@@ -77,6 +77,9 @@
 
     hister.url = "github:asciimoo/hister";
     hister.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    opendeck-nix.url = "github:kitt3120/opendeck-nix";
+    opendeck-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs =

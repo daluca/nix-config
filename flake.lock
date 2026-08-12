@@ -825,6 +825,26 @@
         "type": "github"
       }
     },
+    "opendeck-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785764453,
+        "narHash": "sha256-q2Sjdts8zY+WvpjtnUbnakrgDHzi0DmlDjQMfyu3hWg=",
+        "owner": "kitt3120",
+        "repo": "opendeck-nix",
+        "rev": "32160fa0ae01bf227a691c54a162809b14b8641b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kitt3120",
+        "repo": "opendeck-nix",
+        "type": "github"
+      }
+    },
     "proton-ge": {
       "inputs": {
         "git-hooks": "git-hooks_3",
@@ -897,6 +917,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim-config": "nixvim-config",
         "nur": "nur",
+        "opendeck-nix": "opendeck-nix",
         "proton-ge": "proton-ge",
         "raspberry-pi-nix": "raspberry-pi-nix",
         "sops-nix": "sops-nix",

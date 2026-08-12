@@ -38,6 +38,7 @@
         gnome
         impermanence
         gsconnect
+        opendeck
       ];
 
     sops.defaultSopsFile = ../../hosts/benedick/benedick.sops.yaml;
