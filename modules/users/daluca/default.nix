@@ -65,6 +65,7 @@ in
       tmux
       vim
       zsh
+      modernUnix
     ];
 
     home = rec {
