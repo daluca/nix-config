@@ -18,6 +18,7 @@
       zenBrowser
       vscodium
       games
+      autostart
     ];
 
     programs.custom-firefox.default = "zen-browser";
