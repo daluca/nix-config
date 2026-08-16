@@ -29,12 +29,13 @@
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       extraCompatPackages = with pkgs; [
+        GE-Proton11
+        GE-Proton11-5
+        GE-Proton11-4
+        GE-Proton11-3
+        GE-Proton11-2
         GE-Proton11-1
-        GE-Proton10-34
-        GE-Proton10-33
-        GE-Proton10-32
-        GE-Proton10-31
-        GE-Proton10-30
+        GE-Proton10
         GE-Proton9
         GE-Proton8
         GE-Proton7
@@ -53,13 +54,12 @@
   flake.homeManagerModules.steam = { pkgs, ... }: {
     xdg.dataFile = with pkgs; {
       "Steam/compatibilitytools.d/GE-Proton11".source = lib.getOutput "steamcompattool" GE-Proton11;
+      "Steam/compatibilitytools.d/GE-Proton11-5".source = lib.getOutput "steamcompattool" GE-Proton11-5;
+      "Steam/compatibilitytools.d/GE-Proton11-4".source = lib.getOutput "steamcompattool" GE-Proton11-4;
+      "Steam/compatibilitytools.d/GE-Proton11-3".source = lib.getOutput "steamcompattool" GE-Proton11-3;
+      "Steam/compatibilitytools.d/GE-Proton11-2".source = lib.getOutput "steamcompattool" GE-Proton11-2;
       "Steam/compatibilitytools.d/GE-Proton11-1".source = lib.getOutput "steamcompattool" GE-Proton11-1;
       "Steam/compatibilitytools.d/GE-Proton10".source = lib.getOutput "steamcompattool" GE-Proton10;
-      "Steam/compatibilitytools.d/GE-Proton10-34".source = lib.getOutput "steamcompattool" GE-Proton10-34;
-      "Steam/compatibilitytools.d/GE-Proton10-33".source = lib.getOutput "steamcompattool" GE-Proton10-33;
-      "Steam/compatibilitytools.d/GE-Proton10-32".source = lib.getOutput "steamcompattool" GE-Proton10-32;
-      "Steam/compatibilitytools.d/GE-Proton10-31".source = lib.getOutput "steamcompattool" GE-Proton10-31;
-      "Steam/compatibilitytools.d/GE-Proton10-30".source = lib.getOutput "steamcompattool" GE-Proton10-30;
       "Steam/compatibilitytools.d/GE-Proton9".source = lib.getOutput "steamcompattool" GE-Proton9;
       "Steam/compatibilitytools.d/GE-Proton8".source = lib.getOutput "steamcompattool" GE-Proton8;
       "Steam/compatibilitytools.d/GE-Proton7".source = lib.getOutput "steamcompattool" GE-Proton7;

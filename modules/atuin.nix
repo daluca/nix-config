@@ -24,6 +24,7 @@ in {
   flake.homeManagerModules.atuin = { config, pkgs, ... }: {
     programs.atuin = {
       enable = true;
+      # TODO: Revert to stable in NixOS 26.11
       package = pkgs.unstable.atuin;
       enableBashIntegration = false;
       daemon.enable = true;
