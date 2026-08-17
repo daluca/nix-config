@@ -895,6 +895,7 @@ in
                   "browser.startup.homepage" = "about:home";
                   "browser.newtabpage.enabled" = true;
                   "browser.shell.checkDefaultBrowser" = (cfg.default == "zen-browser");
+                  "browser.ctrlTab.sortByRecentlyUsed" = true;
                   # Zen Browser
                   "zen.welcome-screen.seen" = true;
                   "zen.force-container-workspace" = true;
