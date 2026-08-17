@@ -26,6 +26,7 @@
         vscodium
         games
         autostart
+        helium
       ];
 
       programs.custom-firefox.default = "zen-browser";

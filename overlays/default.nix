@@ -10,8 +10,6 @@
       inherit (final.stdenv.hostPlatform) system;
     in
     {
-      helium = nur.legacyPackages.${system}.repos.Ev357.helium;
-
       lazyssh = prev.lazyssh.overrideAttrs {
         version = "0.3.0+595f730";
 
