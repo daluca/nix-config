@@ -15,5 +15,17 @@
     programs.git.settings.alias = {
       lazy = "!${lib.getExe config.programs.lazygit.package}";
     };
+
+    programs.yazi.plugins = { inherit (pkgs.yaziPlugins) lazygit; };
+
+    programs.yazi.keymap = {
+      mgr.prepend_keymap = [
+        {
+          on = [ "g" "i" ];
+          run = "plugin lazygit";
+          desc = "run lazygit";
+        }
+      ];
+    };
   };
 }
