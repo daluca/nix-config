@@ -98,4 +98,19 @@
       path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations.benedick;
     };
   };
+
+  flake.nixosModules.hosts-benedick-sshKnownHosts = { config, ... }: {
+    programs.ssh.knownHosts = rec {
+      benedick = {
+        extraHostNames = [
+          "benedick.${config.networking.domain}"
+        ];
+        publicKeyFile = ./keys/ssh_host_ed25519_key.pub;
+      };
+      "benedick/rsa" = {
+        hostNames = [ "benedick" ] ++ benedick.extraHostNames;
+        publicKeyFile = ./keys/ssh_host_rsa_key.pub;
+      };
+    };
+  };
 }

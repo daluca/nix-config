@@ -1,8 +1,10 @@
+{ self, ... }:
+
 {
   flake.nixosModules.ssh = { config, lib, ... }: {
-    imports = builtins.filter (f: baseNameOf f == "openssh.nix") (
-      lib.filesystem.listFilesRecursive ../hosts
-    );
+    imports = with self.nixosModules; [
+      hosts-benedick-sshKnownHosts
+    ];
 
     environment.etc."ssh/ssh_host_ed25519_key.pub".source =
       lib.path.append ../hosts "${config.networking.hostName}/keys/ssh_host_ed25519_key.pub";
