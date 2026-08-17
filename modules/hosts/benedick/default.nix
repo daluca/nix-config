@@ -39,6 +39,7 @@
         impermanence
         gsconnect
         opendeck
+        devices-audioTechnicaATHM50xBT2
       ];
 
     sops.defaultSopsFile = ./benedick.sops.yaml;
