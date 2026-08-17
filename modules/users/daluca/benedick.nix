@@ -26,7 +26,11 @@
         vscodium
         games
         autostart
-        helium
+        heliumBrowser
+        yazi
+        lazygit
+        nextcloud
+        heroic
       ];
 
       programs.custom-firefox.default = "zen-browser";
