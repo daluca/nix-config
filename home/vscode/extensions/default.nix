@@ -6,7 +6,6 @@
     ./ipxe.nix
     ./jujutsu.nix
     ./just.nix
-    ./nix-ide.nix
     ./opentofu.nix
     ./tera.nix
     ./tinymist.nix

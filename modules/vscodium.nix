@@ -88,6 +88,7 @@
       vscodiumExtensions-pets
       vscodiumExtensions-typos
       vscodiumExtensions-vim
+      vscodiumExtensions-nixIde
     ];
   };
 
@@ -210,6 +211,25 @@
       ];
       userSettings = {
         "opentofu.languageServer.path" = lib.getExe pkgs.tofu-ls;
+      };
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-nixIde = { lib, pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.open-vsx; [
+        jnoortheen.nix-ide
+      ];
+      userSettings = {
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "${lib.getExe pkgs.nixd}";
+        "nix.hiddenLanguageServerErrors" = [
+          "textDocument/definition"
+          "textDocument/documentSymbol"
+        ];
+        "files.associations" = {
+          "flake.lock" = "json";
+        };
       };
     };
   };
