@@ -70,7 +70,6 @@
       code = "codium";
     };
 
-
     # NOTE: This is causing pnpm warnings
     # The issue has been resolved and is waiting to be backported
     # https://github.com/catppuccin/nix/pull/1016
@@ -104,20 +103,27 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-jujutsu = { config, lib, pkgs, ... }: {
-    programs.vscodium.profiles.default = {
-      extensions = with pkgs.open-vsx; [
-        jjk.jjk
-      ];
-      userSettings = {
-        "git.enabled" = lib.mkForce false;
-        "jjk.jjPath" = lib.getExe config.programs.jujutsu.package;
-        "files.exclude" = {
-          "**/.jj" = true;
+  flake.homeManagerModules.vscodiumExtensions-jujutsu =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      programs.vscodium.profiles.default = {
+        extensions = with pkgs.open-vsx; [
+          jjk.jjk
+        ];
+        userSettings = {
+          "git.enabled" = lib.mkForce false;
+          "jjk.jjPath" = lib.getExe config.programs.jujutsu.package;
+          "files.exclude" = {
+            "**/.jj" = true;
+          };
         };
       };
     };
-  };
 
   flake.homeManagerModules.vscodiumExtensions-just = { pkgs, ... }: {
     programs.vscodium.profiles.default = {

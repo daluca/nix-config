@@ -1,6 +1,7 @@
 let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in {
+in
+{
   flake.nixosModules.atuin = { config, ... }: {
     services.atuin = {
       enable = true;

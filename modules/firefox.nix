@@ -1,7 +1,8 @@
 { inputs, ... }:
 let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in {
+in
+{
   flake.homeManagerModules.firefox = {
     programs.custom-firefox = {
       enable = true;
@@ -9,7 +10,14 @@ in {
     };
   };
 
-  flake.homeManagerModules.firefoxBase = { config, lib, pkgs, osConfig, ... }:
+  flake.homeManagerModules.firefoxBase =
+    {
+      config,
+      lib,
+      pkgs,
+      osConfig,
+      ...
+    }:
     let
       cfg = config.programs.custom-firefox;
 
@@ -432,7 +440,7 @@ in {
                     {
                       name = "search_query";
                       value = "{searchTerms}";
-                      }
+                    }
                   ];
                 }
               ];
@@ -489,7 +497,7 @@ in {
               ];
             };
             "ProtonDB" = {
-                urls = [
+              urls = [
                 {
                   template = "https://www.protondb.com/search";
                   params = [
@@ -673,7 +681,8 @@ in {
           /* 2702 */ "privacy.antitracking.enableWebcompat" = false;
         };
       };
-    in {
+    in
+    {
       imports = with inputs; [
         zen-browser.homeModules.default
       ];
@@ -693,215 +702,219 @@ in {
         };
 
         forks = lib.mkOption {
-          type = lib.types.listOf (lib.types.enum [
-            "firefox"
-            "librewolf"
-            "floorp"
-            "zen-browser"
-          ]);
+          type = lib.types.listOf (
+            lib.types.enum [
+              "firefox"
+              "librewolf"
+              "floorp"
+              "zen-browser"
+            ]
+          );
           default = [ "firefox" ];
           description = "Forks of Firefox to use";
         };
       };
 
-      config = lib.mkIf cfg.enable (lib.mkMerge [
-        (lib.mkIf (builtins.elem "firefox" cfg.forks) {
-          programs.firefox = lib.recursiveUpdate { inherit policies profiles; } {
-            enable = true;
-            profiles.default = {
-              settings = {
-                # Browser
-                "browser.startup.page" = 1;
-                "browser.startup.homepage" = "about:home";
-                "browser.newtabpage.enabled" = true;
-                "browser.contentblocking.category" = "strict";
-                "browser.discovery.enabled" = false;
-                "browser.toolbars.bookmarks.visibility" = "never";
-                "browser.newtabpage.activity-stream.topSitesRows" = 3;
-                "browser.uiCustomization.state" = builtins.toJSON {
-                  placements = {
-                    widget-overflow-fixed-list = [ ];
-                    unified-extensions-area = [
-                      "ublock0_raymondhill_net-browser-action" # uBlock Origin
-                      "addon_simplelogin-browser-action" # SimpleLogin
+      config = lib.mkIf cfg.enable (
+        lib.mkMerge [
+          (lib.mkIf (builtins.elem "firefox" cfg.forks) {
+            programs.firefox = lib.recursiveUpdate { inherit policies profiles; } {
+              enable = true;
+              profiles.default = {
+                settings = {
+                  # Browser
+                  "browser.startup.page" = 1;
+                  "browser.startup.homepage" = "about:home";
+                  "browser.newtabpage.enabled" = true;
+                  "browser.contentblocking.category" = "strict";
+                  "browser.discovery.enabled" = false;
+                  "browser.toolbars.bookmarks.visibility" = "never";
+                  "browser.newtabpage.activity-stream.topSitesRows" = 3;
+                  "browser.uiCustomization.state" = builtins.toJSON {
+                    placements = {
+                      widget-overflow-fixed-list = [ ];
+                      unified-extensions-area = [
+                        "ublock0_raymondhill_net-browser-action" # uBlock Origin
+                        "addon_simplelogin-browser-action" # SimpleLogin
+                        "magnolia_12_34-browser-action" # Bypass Paywalls Clean
+                        "jid1-bofifl9vbdl2zq_jetpack-browser-action" # Decentraleyes
+                        "_74145f27-f039-47ce-a470-a662b129930a_-browser-action" # Clear URLs
+                        "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action" # Stylus
+                        "sponsorblocker_ajay_app-browser-action" # SponsorBlock
+                        "gdpr_cavi_au_dk-browser-action" # Consent-O-Matic
+                      ];
+                      nav-bar = [
+                        "sidebar-button"
+                        "back-button"
+                        "forward-button"
+                        "stop-reload-button"
+                        "vertical-spacer"
+                        "customizableui-special-spring1"
+                        "urlbar-container"
+                        "downloads-button"
+                        "customizableui-special-spring2"
+                        "jordanlinkwarden_gmail_com-browser-action" # Linkwarden
+                        "fxa-toolbar-menu-button"
+                        "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
+                        "unified-extensions-button"
+                        "_testpilot-containers-browser-action" # Firefox Multi-Account Containers
+                        "firefox-view-button"
+                        "new-tab-button"
+                        "alltabs-button"
+                      ];
+                      toolbar-menubar = [
+                        "menubar-items"
+                      ];
+                      TabsToolbar = [ ];
+                      vertical-tabs = [
+                        "tabbrowser-tabs"
+                      ];
+                      PersonalToolbar = [
+                        "personal-bookmarks"
+                      ];
+                    };
+                    seen = [
+                      "jordanlinkwarden_gmail_com-browser-action" # Linkwarden
                       "magnolia_12_34-browser-action" # Bypass Paywalls Clean
+                      "_testpilot-containers-browser-action" # Firefox Multi-Account Containers
                       "jid1-bofifl9vbdl2zq_jetpack-browser-action" # Decentraleyes
+                      "ublock0_raymondhill_net-browser-action" # uBlock Origin
                       "_74145f27-f039-47ce-a470-a662b129930a_-browser-action" # Clear URLs
+                      "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
                       "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action" # Stylus
+                      "addon_simplelogin-browser-action" # SimpleLogin
                       "sponsorblocker_ajay_app-browser-action" # SponsorBlock
+                      "developer-button"
                       "gdpr_cavi_au_dk-browser-action" # Consent-O-Matic
                     ];
-                    nav-bar = [
-                      "sidebar-button"
-                      "back-button"
-                      "forward-button"
-                      "stop-reload-button"
-                      "vertical-spacer"
-                      "customizableui-special-spring1"
-                      "urlbar-container"
-                      "downloads-button"
-                      "customizableui-special-spring2"
-                      "jordanlinkwarden_gmail_com-browser-action" # Linkwarden
-                      "fxa-toolbar-menu-button"
-                      "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
-                      "unified-extensions-button"
-                      "_testpilot-containers-browser-action" # Firefox Multi-Account Containers
-                      "firefox-view-button"
-                      "new-tab-button"
-                      "alltabs-button"
+                    dirtyAreaCache = [
+                      "unified-extensions-area"
+                      "TabsToolbar"
+                      "nav-bar"
+                      "vertical-tabs"
+                      "toolbar-menubar"
+                      "PersonalToolbar"
                     ];
-                    toolbar-menubar = [
-                      "menubar-items"
-                    ];
-                    TabsToolbar = [ ];
-                    vertical-tabs = [
-                      "tabbrowser-tabs"
-                    ];
-                    PersonalToolbar = [
-                      "personal-bookmarks"
-                    ];
+                    currentVersion = 22;
+                    newElementCount = 8;
                   };
-                  seen = [
-                    "jordanlinkwarden_gmail_com-browser-action" # Linkwarden
-                    "magnolia_12_34-browser-action" # Bypass Paywalls Clean
-                    "_testpilot-containers-browser-action" # Firefox Multi-Account Containers
-                    "jid1-bofifl9vbdl2zq_jetpack-browser-action" # Decentraleyes
-                    "ublock0_raymondhill_net-browser-action" # uBlock Origin
-                    "_74145f27-f039-47ce-a470-a662b129930a_-browser-action" # Clear URLs
-                    "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
-                    "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action" # Stylus
-                    "addon_simplelogin-browser-action" # SimpleLogin
-                    "sponsorblocker_ajay_app-browser-action" # SponsorBlock
-                    "developer-button"
-                    "gdpr_cavi_au_dk-browser-action" # Consent-O-Matic
-                  ];
-                  dirtyAreaCache = [
-                    "unified-extensions-area"
-                    "TabsToolbar"
-                    "nav-bar"
-                    "vertical-tabs"
-                    "toolbar-menubar"
-                    "PersonalToolbar"
-                  ];
-                  currentVersion = 22;
-                  newElementCount = 8;
+                  "browser.tabs.groups.enabled" = true;
+                  "browser.sessionstore.resume_from_crash" = true;
+                  "browser.shell.checkDefaultBrowser" = (cfg.default == "firefox");
+                  # AI
+                  "browser.ml.enable" = false;
+                  "browser.ml.chat.enabled" = false;
+                  "browser.ml.smartAssist.enabled" = false;
+                  "extensions.ml.enabled" = false;
+                  # Privacy
+                  "privacy.donottrackheader.enabled" = true;
+                  "privacy.globalprivacycontrol.enabled" = true;
+                  # Search
+                  "browser.search.suggest.enabled.private" = true;
+                  # Security
+                  "dom.security.https_only_mode" = true;
+                  # Sidebar
+                  "sidebar.revamp" = true;
+                  "sidebar.verticalTabs" = true;
+                  "sidebar.main.tools" = "history";
+                  "sidebar.visibility" = "always-show";
+                  # Sign-on
+                  "signon.autofillForms" = false;
+                  "signon.rememberSignons" = false;
+                  # Toolbox
+                  "toolkit.scrollbox.smoothScroll" = false; # Restore scrolling on vertical tab
                 };
-                "browser.tabs.groups.enabled" = true;
-                "browser.sessionstore.resume_from_crash" = true;
-                "browser.shell.checkDefaultBrowser" = (cfg.default == "firefox");
-                # AI
-                "browser.ml.enable" = false;
-                "browser.ml.chat.enabled" = false;
-                "browser.ml.smartAssist.enabled" = false;
-                "extensions.ml.enabled" = false;
-                # Privacy
-                "privacy.donottrackheader.enabled" = true;
-                "privacy.globalprivacycontrol.enabled" = true;
-                # Search
-                "browser.search.suggest.enabled.private" = true;
-                # Security
-                "dom.security.https_only_mode" = true;
-                # Sidebar
-                "sidebar.revamp" = true;
-                "sidebar.verticalTabs" = true;
-                "sidebar.main.tools" = "history";
-                "sidebar.visibility" = "always-show";
-                # Sign-on
-                "signon.autofillForms" = false;
-                "signon.rememberSignons" = false;
-                # Toolbox
-                "toolkit.scrollbox.smoothScroll" = false; # Restore scrolling on vertical tab
               };
             };
-          };
 
-          xdg.mimeApps.defaultApplicationPackages = (cfg.default == "firefox") [
-            config.programs.firefox.package
-          ];
+            xdg.mimeApps.defaultApplicationPackages = (cfg.default == "firefox") [
+              config.programs.firefox.package
+            ];
 
-          home.persistence.home.directories = [
-            ".config/mozilla"
-          ];
+            home.persistence.home.directories = [
+              ".config/mozilla"
+            ];
 
-          home.sessionVariables = {
-            BROWSER = lib.mkIf (cfg.default == "firefox") (lib.getExe config.programs.firefox.package);
-          };
-        })
-        (lib.mkIf (builtins.elem "librewolf" cfg.forks) {
-          programs.librewolf = lib.recursiveUpdate { inherit policies profiles; } {
-            enable = true;
-            profiles.default = {
-              settings = {
-                # Browser
-                "browser.shell.checkDefaultBrowser" = (cfg.default == "librewolf");
+            home.sessionVariables = {
+              BROWSER = lib.mkIf (cfg.default == "firefox") (lib.getExe config.programs.firefox.package);
+            };
+          })
+          (lib.mkIf (builtins.elem "librewolf" cfg.forks) {
+            programs.librewolf = lib.recursiveUpdate { inherit policies profiles; } {
+              enable = true;
+              profiles.default = {
+                settings = {
+                  # Browser
+                  "browser.shell.checkDefaultBrowser" = (cfg.default == "librewolf");
+                };
               };
             };
-          };
 
-          xdg.mimeApps.defaultApplicationPackages = (cfg.default == "librewolf") [
-            config.programs.librewolf.package
-          ];
+            xdg.mimeApps.defaultApplicationPackages = (cfg.default == "librewolf") [
+              config.programs.librewolf.package
+            ];
 
-          home.persistence.home.directories = [
-            ".config/librewolf"
-          ];
+            home.persistence.home.directories = [
+              ".config/librewolf"
+            ];
 
-          home.sessionVariables = {
-            BROWSER = lib.mkIf (cfg.default == "librewolf") (lib.getExe config.programs.librewolf.package);
-          };
-        })
-        (lib.mkIf (builtins.elem "floorp" cfg.forks) {
-          programs.floorp = lib.recursiveUpdate { inherit policies profiles; } {
-            enable = true;
-            profiles.default = {
-              settings = {
-                # Browser
-                "browser.shell.checkDefaultBrowser" = (cfg.default == "floorp");
+            home.sessionVariables = {
+              BROWSER = lib.mkIf (cfg.default == "librewolf") (lib.getExe config.programs.librewolf.package);
+            };
+          })
+          (lib.mkIf (builtins.elem "floorp" cfg.forks) {
+            programs.floorp = lib.recursiveUpdate { inherit policies profiles; } {
+              enable = true;
+              profiles.default = {
+                settings = {
+                  # Browser
+                  "browser.shell.checkDefaultBrowser" = (cfg.default == "floorp");
+                };
               };
             };
-          };
 
-          xdg.mimeApps.defaultApplicationPackages = (cfg.default == "floorp") [
-            config.programs.floorp.package
-          ];
+            xdg.mimeApps.defaultApplicationPackages = (cfg.default == "floorp") [
+              config.programs.floorp.package
+            ];
 
-          home.persistence.home.directories = [
-            ".floorp"
-          ];
+            home.persistence.home.directories = [
+              ".floorp"
+            ];
 
-          home.sessionVariables = {
-            BROWSER = lib.mkIf (cfg.default == "floorp") (lib.getExe config.programs.librewolf.package);
-          };
-        })
-        (lib.mkIf (builtins.elem "zen-browser" cfg.forks) {
-          programs.zen-browser = lib.recursiveUpdate { inherit policies profiles; } {
-            enable = true;
-            profiles.default = {
-              settings = {
-                # Browser
-                "browser.startup.page" = 1;
-                "browser.startup.homepage" = "about:home";
-                "browser.newtabpage.enabled" = true;
-                "browser.shell.checkDefaultBrowser" = (cfg.default == "zen-browser");
-                # Zen Browser
-                "zen.welcome-screen.seen" = true;
-                "zen.force-container-workspace" = true;
+            home.sessionVariables = {
+              BROWSER = lib.mkIf (cfg.default == "floorp") (lib.getExe config.programs.librewolf.package);
+            };
+          })
+          (lib.mkIf (builtins.elem "zen-browser" cfg.forks) {
+            programs.zen-browser = lib.recursiveUpdate { inherit policies profiles; } {
+              enable = true;
+              profiles.default = {
+                settings = {
+                  # Browser
+                  "browser.startup.page" = 1;
+                  "browser.startup.homepage" = "about:home";
+                  "browser.newtabpage.enabled" = true;
+                  "browser.shell.checkDefaultBrowser" = (cfg.default == "zen-browser");
+                  # Zen Browser
+                  "zen.welcome-screen.seen" = true;
+                  "zen.force-container-workspace" = true;
+                };
               };
             };
-          };
 
-          xdg.mimeApps.defaultApplicationPackages = lib.mkIf (cfg.default == "zen-browser") [
-            config.programs.zen-browser.package
-          ];
+            xdg.mimeApps.defaultApplicationPackages = lib.mkIf (cfg.default == "zen-browser") [
+              config.programs.zen-browser.package
+            ];
 
-          home.persistence.home.directories = [
-            ".config/zen"
-          ];
+            home.persistence.home.directories = [
+              ".config/zen"
+            ];
 
-          home.sessionVariables = {
-            BROWSER = lib.mkIf (cfg.default == "zen-browser") (lib.getExe config.programs.zen-browser.package);
-          };
-        })
-      ]);
+            home.sessionVariables = {
+              BROWSER = lib.mkIf (cfg.default == "zen-browser") (lib.getExe config.programs.zen-browser.package);
+            };
+          })
+        ]
+      );
     };
 }

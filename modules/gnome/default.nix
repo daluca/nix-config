@@ -33,7 +33,13 @@
     ];
   };
 
-  flake.homeManagerModules.gnome = { config, lib, pkgs, ... }:
+  flake.homeManagerModules.gnome =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       inherit (lib.hm.gvariant)
         mkVariant
@@ -173,7 +179,8 @@
           ]))
         ])
       );
-    in {
+    in
+    {
       imports = with self.homeManagerModules; [
         gnome-wallpaper
         gnome-extensions
@@ -304,5 +311,5 @@
       home.packages = with pkgs; [
         wl-clipboard
       ];
-  };
+    };
 }

@@ -1,176 +1,184 @@
 { self, ... }:
 let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in {
-  flake.homeManagerModules.jujutsu = { config, lib, pkgs, ... }: {
-    imports = with self.homeManagerModules; [
-      vscodiumExtensions-jujutsu
-    ];
+in
+{
+  flake.homeManagerModules.jujutsu =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      imports = with self.homeManagerModules; [
+        vscodiumExtensions-jujutsu
+      ];
 
-    programs.jujutsu = {
-      enable = true;
-      settings = {
-        user = {
-          name = "Lucas Slebos";
-          email = secrets.user.email;
-        };
-        ui = {
-          default-command = [
-            "log"
-            "-r"
-            "(trunk()..@):: | (trunk()..@)-"
-          ];
-          diff-editor = ":builtin";
-        };
-        signing = {
-          behavior = "drop";
-          key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
-          backend = "gpg";
-          backends.gpg.programs = lib.getExe config.programs.gpg.package;
-        };
-        revset-aliases = {
-          "closest_bookmark(revset)" = "heads(::revset & bookmarks())";
-          "closest_pushable(revset)" =
-            "heads(::revset & mutable() & ~description(exact:\"\") & (~empty() | merges()))";
-        };
-        aliases =
-          let
-            command =
-              exec:
-              [
-                "util"
-                "exec"
-                "--"
-              ]
-              ++ lib.flatten [ exec ];
-            bash =
-              script:
-              command [
-                "${pkgs.runtimeShell}"
-                "-c"
-                script
-                ""
-              ];
-          in
-          {
-            tug = [
-              "bookmark"
-              "move"
-              "--from"
-              "closest_bookmark(@)"
-              "--to"
-              "closest_pushable(@)"
-            ];
-            retrunk = [
-              "rebase"
-              "--revisions"
-              "fork_point(@ | trunk())+::@ | @::"
-              "--destination"
-              "trunk()"
-            ];
-            pull = [
-              "git"
-              "fetch"
-            ];
-            push = bash /* bash */ ''
-              set -euo pipefail
-
-              POSITIONAL_ARGS=()
-              BOOKMARK=""
-
-              while [[ "$#" -gt 0 ]]; do
-                case "$1" in
-                  --bookmark|--revisions|-b|-r)
-                    BOOKMARK="$2"
-                    shift 2
-                    ;;
-                  --help|-h)
-                    jj git push --help
-                    exit 0
-                    ;;
-                  *)
-                    POSITIONAL_ARGS+=("$1")
-                    shift
-                    ;;
-                esac
-              done
-
-              set -- "''${POSITIONAL_ARGS[@]}"
-
-              REVSET="''${BOOKMARK:-@-}"
-
-              CHANGED_FILES="$( jj log --no-graph -r "mutable()::@- & fork_point(trunk())-::''${REVSET}" --name-only --no-pager -T "" | sort -u )"
-              readarray -t CHANGED_FILES <<< "''${CHANGED_FILES}"
-              if [[ -z "''${CHANGED_FILES}" ]]; then
-                echo "No mutable files changed, no checks to run."
-              else
-                pre-commit run --file "''${CHANGED_FILES[@]}"
-              fi
-
-              jj git push --revisions "''${REVSET}" "''${POSITIONAL_ARGS[@]}"
-            '';
-            ui = command (lib.getExe pkgs.unstable.jjui);
+      programs.jujutsu = {
+        enable = true;
+        settings = {
+          user = {
+            name = "Lucas Slebos";
+            email = secrets.user.email;
           };
-        remote.origin.auto-track-bookmarks = "*";
-        git = {
-          sign-on-push = true;
-          executable-path = lib.getExe config.programs.git.package;
-        };
-        "--scope" = [
-          {
-            "--when".commands = [ "status" ];
-            ui.paginate = "never";
-          }
-          {
-            "--when".commands = [
-              "diff"
-              "show"
+          ui = {
+            default-command = [
+              "log"
+              "-r"
+              "(trunk()..@):: | (trunk()..@)-"
             ];
-            ui = {
-              pager = lib.getExe pkgs.delta;
-              diff-formatter = ":git";
-            };
-          }
-        ];
-      };
-    };
+            diff-editor = ":builtin";
+          };
+          signing = {
+            behavior = "drop";
+            key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
+            backend = "gpg";
+            backends.gpg.programs = lib.getExe config.programs.gpg.package;
+          };
+          revset-aliases = {
+            "closest_bookmark(revset)" = "heads(::revset & bookmarks())";
+            "closest_pushable(revset)" =
+              "heads(::revset & mutable() & ~description(exact:\"\") & (~empty() | merges()))";
+          };
+          aliases =
+            let
+              command =
+                exec:
+                [
+                  "util"
+                  "exec"
+                  "--"
+                ]
+                ++ lib.flatten [ exec ];
+              bash =
+                script:
+                command [
+                  "${pkgs.runtimeShell}"
+                  "-c"
+                  script
+                  ""
+                ];
+            in
+            {
+              tug = [
+                "bookmark"
+                "move"
+                "--from"
+                "closest_bookmark(@)"
+                "--to"
+                "closest_pushable(@)"
+              ];
+              retrunk = [
+                "rebase"
+                "--revisions"
+                "fork_point(@ | trunk())+::@ | @::"
+                "--destination"
+                "trunk()"
+              ];
+              pull = [
+                "git"
+                "fetch"
+              ];
+              push = bash /* bash */ ''
+                set -euo pipefail
 
-    programs.jjui = {
-      enable = true;
-      settings = {
-        preview = {
-          position = "auto";
-          show_at_start = true;
+                POSITIONAL_ARGS=()
+                BOOKMARK=""
+
+                while [[ "$#" -gt 0 ]]; do
+                  case "$1" in
+                    --bookmark|--revisions|-b|-r)
+                      BOOKMARK="$2"
+                      shift 2
+                      ;;
+                    --help|-h)
+                      jj git push --help
+                      exit 0
+                      ;;
+                    *)
+                      POSITIONAL_ARGS+=("$1")
+                      shift
+                      ;;
+                  esac
+                done
+
+                set -- "''${POSITIONAL_ARGS[@]}"
+
+                REVSET="''${BOOKMARK:-@-}"
+
+                CHANGED_FILES="$( jj log --no-graph -r "mutable()::@- & fork_point(trunk())-::''${REVSET}" --name-only --no-pager -T "" | sort -u )"
+                readarray -t CHANGED_FILES <<< "''${CHANGED_FILES}"
+                if [[ -z "''${CHANGED_FILES}" ]]; then
+                  echo "No mutable files changed, no checks to run."
+                else
+                  pre-commit run --file "''${CHANGED_FILES[@]}"
+                fi
+
+                jj git push --revisions "''${REVSET}" "''${POSITIONAL_ARGS[@]}"
+              '';
+              ui = command (lib.getExe pkgs.unstable.jjui);
+            };
+          remote.origin.auto-track-bookmarks = "*";
+          git = {
+            sign-on-push = true;
+            executable-path = lib.getExe config.programs.git.package;
+          };
+          "--scope" = [
+            {
+              "--when".commands = [ "status" ];
+              ui.paginate = "never";
+            }
+            {
+              "--when".commands = [
+                "diff"
+                "show"
+              ];
+              ui = {
+                pager = lib.getExe pkgs.delta;
+                diff-formatter = ":git";
+              };
+            }
+          ];
         };
       };
-      configLua = /* lua */ ''
-        function setup(config)
-          config.action("edit file", function()
-            local function first_hunk_new_lineno(git_diff)
-              for line in git_diff:gmatch("[^\n]+") do
-                if line:sub(1, 3) == "@@ " then
-                  local new_start = line:match("%+(%d+)")
-                  if new_start then
-                    return tonumber(new_start)
+
+      programs.jjui = {
+        enable = true;
+        settings = {
+          preview = {
+            position = "auto";
+            show_at_start = true;
+          };
+        };
+        configLua = /* lua */ ''
+          function setup(config)
+            config.action("edit file", function()
+              local function first_hunk_new_lineno(git_diff)
+                for line in git_diff:gmatch("[^\n]+") do
+                  if line:sub(1, 3) == "@@ " then
+                    local new_start = line:match("%+(%d+)")
+                    if new_start then
+                      return tonumber(new_start)
+                    end
                   end
                 end
+                return nil
               end
-              return nil
-            end
 
-            local diff = jj("diff", "--git", "-r", context.change_id(), context.file())
-            local line_number = first_hunk_new_lineno(diff)
-            exec_shell(string.format("nvim +%q %q", line_number, context.file()))
-          end, {
-            scope = "revisions.details",
-            key = "e",
-          })
-        end
-      '';
+              local diff = jj("diff", "--git", "-r", context.change_id(), context.file())
+              local line_number = first_hunk_new_lineno(diff)
+              exec_shell(string.format("nvim +%q %q", line_number, context.file()))
+            end, {
+              scope = "revisions.details",
+              key = "e",
+            })
+          end
+        '';
+      };
+
+      home.persistence.home.directories = [
+        ".config/jj/repos"
+      ];
     };
-
-    home.persistence.home.directories = [
-      ".config/jj/repos"
-    ];
-  };
 }

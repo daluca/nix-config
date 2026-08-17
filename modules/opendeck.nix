@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.overlays.opendeck = final: prev: {
+  flake.overlays.opendeck = _final: prev: {
     opendeck = prev.opendeck.overrideAttrs (oldAttrs: {
       postInstall = oldAttrs.postInstall + ''
         substituteInPlace $out/share/applications/opendeck.desktop \

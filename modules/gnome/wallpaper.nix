@@ -1,6 +1,6 @@
 {
   flake.homeManagerModules.gnome-wallpaper =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     let
       wallpaper = {
         color-shading-type = "solid";

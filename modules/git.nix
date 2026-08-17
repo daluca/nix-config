@@ -1,6 +1,7 @@
 let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in {
+in
+{
   flake.homeManagerModules.git = { pkgs, ... }: {
     programs.git = {
       enable = true;
