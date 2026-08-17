@@ -41,7 +41,7 @@
         opendeck
       ];
 
-    sops.defaultSopsFile = ../../hosts/benedick/benedick.sops.yaml;
+    sops.defaultSopsFile = ./benedick.sops.yaml;
 
     home-manager.users.daluca.imports = with self.homeManagerModules; [
       users-daluca-benedick
