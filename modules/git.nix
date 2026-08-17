@@ -2,7 +2,7 @@ let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
 in
 {
-  flake.homeManagerModules.git = { pkgs, ... }: {
+  flake.homeManagerModules.git = { lib, pkgs, ... }: {
     programs.git = {
       enable = true;
       settings = {
@@ -19,12 +19,12 @@ in
         url."git@github.com".insteadof = "github";
         url."git@gitlab.com".insteadof = "gitlab";
         url."ssh://git@codeberg.org".insteadof = "codeberg";
-        diff."sopsdiffer".textconv = "${pkgs.sops}/bin/sops decrypt";
-        diff."git-agecrypt".textconv = "${pkgs.git-agecrypt}/bin/git-agecrypt textconv";
+        diff."sopsdiffer".textconv = "${lib.getExe pkgs.sops} decrypt";
+        diff."git-agecrypt".textconv = "${lib.getExe pkgs.git-agecrypt} textconv";
         filter."git-agecrypt" = {
           required = true;
-          smudge = "${pkgs.git-agecrypt}/bin/git-agecrypt smudge -f %f";
-          clean = "${pkgs.git-agecrypt}/bin/git-agecrypt clean -f %f";
+          smudge = "${lib.getExe pkgs.git-agecrypt} smudge -f %f";
+          clean = "${lib.getExe pkgs.git-agecrypt} clean -f %f";
         };
       };
       signing = {
@@ -36,6 +36,8 @@ in
         "/.vscode/"
       ];
     };
+
+    programs.yazi.plugins = { inherit (pkgs.yaziPlugins) git; };
 
     programs.zsh.oh-my-zsh.plugins = [
       "git"
