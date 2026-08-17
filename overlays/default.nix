@@ -119,61 +119,53 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          (
-            final: prev:
-            let
-              inherit (final.stdenv.hostPlatform) system;
-            in
-            {
-              deploy-rs = prev.deploy-rs.overrideAttrs {
-                version = "0.1.0-unstable-2025-09-01";
+          (final: prev: {
+            deploy-rs = prev.deploy-rs.overrideAttrs {
+              version = "0.1.0-unstable-2025-09-01";
 
-                src = prev.fetchFromGitHub {
-                  owner = "serokell";
-                  repo = "deploy-rs";
-                  rev = "125ae9e3ecf62fb2c0fd4f2d894eb971f1ecaed2";
-                  hash = "sha256-N9gBKUmjwRKPxAafXEk1EGadfk2qDZPBQp4vXWPHINQ=";
-                };
-
-                postPatch = /* bash */ ''
-                  substituteInPlace src/cli.rs \
-                    --replace 'version = "1.0"' 'version = "0.1.0"'
-                '';
+              src = prev.fetchFromGitHub {
+                owner = "serokell";
+                repo = "deploy-rs";
+                rev = "125ae9e3ecf62fb2c0fd4f2d894eb971f1ecaed2";
+                hash = "sha256-N9gBKUmjwRKPxAafXEk1EGadfk2qDZPBQp4vXWPHINQ=";
               };
 
-              colmena = colmena.packages.${system}.colmena;
+              postPatch = /* bash */ ''
+                substituteInPlace src/cli.rs \
+                  --replace 'version = "1.0"' 'version = "0.1.0"'
+              '';
+            };
 
-              redlib = prev.redlib.overrideAttrs (oldAttrs: rec {
-                version = "0.36.0-unstable-24-04-2026";
+            redlib = prev.redlib.overrideAttrs (oldAttrs: rec {
+              version = "0.36.0-unstable-24-04-2026";
 
-                src = oldAttrs.src.override {
-                  rev = "a4d36e954cf1bd64f209cd8868c5a29edc81b374";
-                  hash = "sha256-siyD6A12UALQIV7BMd7zu1TaojleTEYtpxPszuhx1/Y=";
-                };
+              src = oldAttrs.src.override {
+                rev = "a4d36e954cf1bd64f209cd8868c5a29edc81b374";
+                hash = "sha256-siyD6A12UALQIV7BMd7zu1TaojleTEYtpxPszuhx1/Y=";
+              };
 
-                cargoDeps = final.rustPlatform.fetchCargoVendor {
-                  inherit src;
-                  hash = "sha256-eO3c7rlFna3DuO31etJ6S4c7NmcvgvIWZ1KVkNIuUqQ=";
-                };
+              cargoDeps = final.rustPlatform.fetchCargoVendor {
+                inherit src;
+                hash = "sha256-eO3c7rlFna3DuO31etJ6S4c7NmcvgvIWZ1KVkNIuUqQ=";
+              };
 
-                nativeBuildInputs =
-                  with prev.pkgs;
-                  oldAttrs.nativeBuildInputs
-                  ++ [
-                    cmake
-                    go
-                    perl
-                    git
-                    rustPlatform.bindgenHook
-                  ];
-
-                checkFlags = oldAttrs.checkFlags ++ [
-                  "--skip=oauth::tests::test_generic_web_backend"
-                  "--skip=oauth::tests::test_mobile_spoof_backend"
+              nativeBuildInputs =
+                with prev.pkgs;
+                oldAttrs.nativeBuildInputs
+                ++ [
+                  cmake
+                  go
+                  perl
+                  git
+                  rustPlatform.bindgenHook
                 ];
-              });
-            }
-          )
+
+              checkFlags = oldAttrs.checkFlags ++ [
+                "--skip=oauth::tests::test_generic_web_backend"
+                "--skip=oauth::tests::test_mobile_spoof_backend"
+              ];
+            });
+          })
         ];
       };
     };

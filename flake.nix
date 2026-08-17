@@ -160,32 +160,6 @@
 
       deploy = import ./hosts/deploy.nix { inherit deploy-rs nixosConfigurations secrets; };
 
-      devShells = forAllSystems (
-        system:
-        let
-          inherit (checks.${system}) pre-commit;
-          pkgs = pkgs' system;
-        in
-        {
-          default = pkgs.mkShell {
-            name = "nix-config";
-            packages =
-              with pkgs.unstable;
-              pre-commit.enabledPackages
-              ++ [
-                sops
-                git-agecrypt
-                just
-                fd
-                deploy-rs
-                colmena
-              ];
-            JUST_COMMAND_COLOR = "blue";
-            shellHook = pre-commit.shellHook;
-          };
-        }
-      );
-
       colmenaHive = inputs.colmena.lib.makeHive colmena;
 
       colmena = import ./hosts/colmena.nix { inherit inputs outputs secrets; };
