@@ -177,6 +177,18 @@ in
         '';
       };
 
+      programs.yazi.plugins = { inherit (pkgs.yaziPlugins) jjui; };
+
+      programs.yazi.keymap = {
+        mgr.prepend_keymap = [
+          {
+            on = [ "g" "j" ];
+            run = "plugin jjui";
+            desc = "run jjui";
+          }
+        ];
+      };
+
       home.persistence.home.directories = [
         ".config/jj/repos"
       ];
