@@ -16,8 +16,7 @@ in
       imports =
         with inputs;
         with self.nixosModules;
-        (builtins.filter (f: baseNameOf f == "cache.nix") (lib.filesystem.listFilesRecursive ../hosts))
-        ++ [
+        [
           inputs.impermanence.nixosModules.impermanence
 
           jellyplex-watched
@@ -35,6 +34,7 @@ in
           users-root
           users-daluca
           ssh
+          nixCache
         ];
 
       boot.extraModprobeConfig = ''

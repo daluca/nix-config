@@ -222,32 +222,6 @@
         ];
       };
 
-      nixosConfigurations.dalaran =
-        let
-          lib = nixos-raspberrypi.inputs.nixpkgs.lib.extend (
-            _final: _prev:
-            {
-              custom = import ./lib { lib = nixos-raspberrypi.inputs.nixpkgs.lib; };
-            }
-            // home-manager.lib
-          );
-        in
-        nixos-raspberrypi.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = {
-            inherit
-              inputs
-              outputs
-              lib
-              secrets
-              nixos-raspberrypi
-              ;
-          };
-          modules = [
-            ./hosts/dalaran
-          ];
-        };
-
       nixosConfigurations.guiltyspark = nixosSystem {
         system = "x86_64-linux";
         specialArgs = {

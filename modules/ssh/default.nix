@@ -4,6 +4,7 @@
   flake.nixosModules.ssh = { config, lib, ... }: {
     imports = with self.nixosModules; [
       hosts-benedick-sshKnownHosts
+      hosts-dalaran-sshKnownHosts
     ];
 
     environment.etc."ssh/ssh_host_ed25519_key.pub".source =
