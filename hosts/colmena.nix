@@ -32,10 +32,6 @@ let
       "raspberry-pi"
       "new-zealand"
     ];
-    dalaran.tags = [
-      "raspberry-pi"
-      "the-netherlands"
-    ];
     unifi.tags = [
       "digitalocean"
       "vps"

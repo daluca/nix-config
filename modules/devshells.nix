@@ -1,11 +1,5 @@
-{ inputs, ... }:
-
 {
-  flake.overlays.colmena = final: _prev: {
-    colmena = inputs.colmena.packages.${final.stdenv.hostPlatform.system}.colmena;
-  };
-
-  perSystem = { self', pkgs, ... }: {
+  perSystem = { self', inputs', pkgs, ... }: {
     devShells.default = pkgs.mkShell {
       name = "nix-config";
       packages = with pkgs; [
@@ -13,7 +7,7 @@
         git-agecrypt
         just
         deploy-rs
-        colmena
+        inputs'.colmena.packages.colmena
       ];
       JUST_COMMAND_COLOR = "blue";
       shellHook = self'.checks.pre-commit.shellHook;

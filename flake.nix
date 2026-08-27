@@ -158,10 +158,6 @@
 
       homeManagerModules = import ./legacyModules/home-manager;
 
-      colmenaHive = inputs.colmena.lib.makeHive colmena;
-
-      colmena = import ./hosts/colmena.nix { inherit inputs outputs secrets; };
-
       nixosConfigurations.artemis = nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
