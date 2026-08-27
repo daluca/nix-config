@@ -3,7 +3,7 @@
     programs.mangohud.settingsPerApplication = {
       wine-VRising = {
         preset = 1;
-        position = "top-left";
+        position = "top-right";
         no_display = false;
       };
     };
