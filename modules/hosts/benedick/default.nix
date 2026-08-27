@@ -91,15 +91,6 @@
     system.stateVersion = "26.05";
   };
 
-  flake.deploy.nodes.benedick = {
-    hostName = "benedick";
-    sshUser = "root";
-    profiles.system = {
-      user = "root";
-      path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations.benedick;
-    };
-  };
-
   flake.nixosModules.hosts-benedick-sshKnownHosts = { config, ... }: {
     programs.ssh.knownHosts = rec {
       benedick = {

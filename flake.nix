@@ -158,8 +158,6 @@
 
       homeManagerModules = import ./legacyModules/home-manager;
 
-      deploy = import ./hosts/deploy.nix { inherit deploy-rs nixosConfigurations secrets; };
-
       colmenaHive = inputs.colmena.lib.makeHive colmena;
 
       colmena = import ./hosts/colmena.nix { inherit inputs outputs secrets; };
