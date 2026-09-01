@@ -48,6 +48,10 @@
       users-daluca-benedick
     ];
 
+    colmena.tags = [
+      "the-netherlands"
+    ];
+
     networking.hostName = "benedick";
 
     environment.etc."xdg/monitors.xml".source = ./monitors.xml;

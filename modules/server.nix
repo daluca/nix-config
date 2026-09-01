@@ -8,5 +8,9 @@
     ];
 
     time.timeZone = "UTC";
+
+    colmena.tags = [
+      "server"
+    ];
   };
 }

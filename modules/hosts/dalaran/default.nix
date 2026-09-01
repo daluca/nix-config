@@ -140,6 +140,10 @@ in{
 
     sops.defaultSopsFile = ./dalaran.sops.yaml;
 
+    colmena.tags = [
+      "the-netherlands"
+    ];
+
     networking.hostName = "dalaran";
 
     hardware.raspberry-pi.config = {

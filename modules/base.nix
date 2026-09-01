@@ -35,6 +35,7 @@ in
           users-daluca
           ssh
           nixCache
+          colmena
         ];
 
       boot.extraModprobeConfig = ''

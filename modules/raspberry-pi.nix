@@ -7,9 +7,14 @@
     environment.systemPackages = with pkgs; [
       libraspberrypi
     ];
+
+    colmena.tags = [
+      "rpi"
+      "raspberry-pi"
+    ];
   };
 
-  flake.nixosModules.raspberry-pi-5 = { config, ... }: {
+  flake.nixosModules.raspberry-pi-5 = {
     imports = with inputs; with self.nixosModules; [
       nixos-raspberrypi.nixosModules.raspberry-pi-5.base
       nixos-raspberrypi.nixosModules.raspberry-pi-5.display-vc4
@@ -19,9 +24,11 @@
     ];
 
     system.nixos.tags = [
+      "rpi5"
+    ];
+
+    colmena.tags = [
       "raspberry-pi-5"
-      config.boot.loader.raspberry-pi.bootloader
-      config.boot.kernelPackages.kernel.version
     ];
 
     boot.loader.raspberry-pi.bootloader = "kernel";

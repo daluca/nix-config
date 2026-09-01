@@ -19,6 +19,10 @@
       ];
     };
 
+    colmena.tags = [
+      "desktop"
+    ];
+
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 }
