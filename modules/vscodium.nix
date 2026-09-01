@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 
 {
   flake.homeManagerModules.vscodium = { lib, pkgs, ... }: {
@@ -77,6 +77,33 @@
     # Work around: set vscode option instead
     # https://github.com/catppuccin/nix/issues/1020
     catppuccin.vscode.profiles.default.enable = true;
+
+    # NOTE: Remove once NixOS 26.11 version on catppuccin/nix is released
+    # or the fix has been backported
+    # https://github.com/catppuccin/nix/pull/1016
+    catppuccin.sources = inputs.catppuccin.packages.${pkgs.stdenv.hostPlatform.system}.overrideScope (
+      final: prev: {
+        vscode = prev.vscode.overrideAttrs (oldAttrs: {
+          nativeBuildInputs = [
+            (pkgs.pnpm_10.override { nodejs-slim = pkgs.nodejs-slim_24; })
+            pkgs.nodejs-slim_24
+            pkgs.pnpmConfigHook
+          ];
+
+          pnpmDeps = pkgs.fetchPnpmDeps {
+            inherit (oldAttrs)
+              pname
+              version
+              src
+              pnpmWorkspaces
+              ;
+            pnpm = pkgs.pnpm_10.override { nodejs-slim = pkgs.nodejs-slim_24; };
+            fetcherVersion = 3;
+            hash = "sha256-DE0mHkBlV0RkrEmtIXnzKaiXOK8vgcCx3z7b49zzBhc=";
+          };
+        });
+      }
+    );
   };
 
   flake.homeManagerModules.vscodiumExtensions = {
