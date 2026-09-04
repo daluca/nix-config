@@ -182,7 +182,10 @@ in
       programs.yazi.keymap = {
         mgr.prepend_keymap = [
           {
-            on = [ "g" "j" ];
+            on = [
+              "g"
+              "j"
+            ];
             run = "plugin jjui";
             desc = "run jjui";
           }

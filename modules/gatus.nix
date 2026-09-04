@@ -1,6 +1,7 @@
 let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in {
+in
+{
   flake.nixosModules.gatus = { config, lib, ... }: {
     services.gatus = {
       enable = true;

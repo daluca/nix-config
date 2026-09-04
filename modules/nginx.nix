@@ -1,7 +1,14 @@
 let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in {
-  flake.nixosModules.nginx = { config, lib, pkgs, ... }:
+in
+{
+  flake.nixosModules.nginx =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       cloudflare-ipv4 = lib.splitString "\n" (
         builtins.readFile (
@@ -26,7 +33,8 @@ in {
 
         real_ip_header CF-Connecting-IP;
       '';
-    in {
+    in
+    {
       services.nginx = {
         enable = true;
         recommendedProxySettings = true;

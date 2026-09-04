@@ -82,7 +82,7 @@
     # or the fix has been backported
     # https://github.com/catppuccin/nix/pull/1016
     catppuccin.sources = inputs.catppuccin.packages.${pkgs.stdenv.hostPlatform.system}.overrideScope (
-      final: prev: {
+      _final: prev: {
         vscode = prev.vscode.overrideAttrs (oldAttrs: {
           nativeBuildInputs = [
             (pkgs.pnpm_10.override { nodejs-slim = pkgs.nodejs-slim_24; })

@@ -15,13 +15,16 @@
   };
 
   flake.nixosModules.raspberry-pi-5 = {
-    imports = with inputs; with self.nixosModules; [
-      nixos-raspberrypi.nixosModules.raspberry-pi-5.base
-      nixos-raspberrypi.nixosModules.raspberry-pi-5.display-vc4
-      nixos-raspberrypi.nixosModules.raspberry-pi-5.bluetooth
+    imports =
+      with inputs;
+      with self.nixosModules;
+      [
+        nixos-raspberrypi.nixosModules.raspberry-pi-5.base
+        nixos-raspberrypi.nixosModules.raspberry-pi-5.display-vc4
+        nixos-raspberrypi.nixosModules.raspberry-pi-5.bluetooth
 
-      raspberry-pi
-    ];
+        raspberry-pi
+      ];
 
     system.nixos.tags = [
       "rpi5"
