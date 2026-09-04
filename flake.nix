@@ -28,9 +28,6 @@
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
-    raspberry-pi-nix.inputs.nixpkgs.follows = "nixpkgs";
-
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi";
 
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -170,21 +167,6 @@
         };
         modules = [
           ./hosts/artemis
-        ];
-      };
-
-      nixosConfigurations.stormwind = nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/stormwind
         ];
       };
 

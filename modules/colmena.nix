@@ -1,7 +1,8 @@
 { self, inputs, ... }:
 let
   validHosts = inputs.nixpkgs.lib.filterAttrs (
-    hostname: _: hostname == "dalaran" || hostname == "benedick" || hostname == "charlie"
+    hostname: _:
+    hostname == "dalaran" || hostname == "benedick" || hostname == "charlie" || hostname == "stormwind"
   ) self.nixosConfigurations;
 in
 {

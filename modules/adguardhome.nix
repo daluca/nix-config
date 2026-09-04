@@ -3,6 +3,40 @@ let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
 in
 {
+  flake.overlays.adguardhome = _final: prev: {
+    # NOTE: DNS rewrites do not work in the 26.05 or unstable
+    # The last check version that did not work was v0.107.77
+    # https://github.com/AdguardTeam/AdGuardHome/issues/7602
+    adguardhome = prev.adguardhome.overrideAttrs (oldAttrs: rec {
+      version = "0.107.65";
+
+      src = oldAttrs.src.override {
+        tag = "v${version}";
+        hash = "sha256-OOW77CJRR5vi5jHFOCyF/OyCXaQdTgEc8xZKPcF9vQE=";
+      };
+
+      vendorHash = "sha256-spBMVSZhiM0R5tf8dhZD+N4ucFZ9Wno9Y+BhZMdzQRM=";
+
+      dashboard = prev.buildNpmPackage {
+        inherit src version;
+        pname = "adguardhome-dashboard";
+        postPatch = ''
+          cd client
+        '';
+        npmDepsHash = "sha256-s7TJvGyk05HkAOgjYmozvIQ3l2zYUhWrGRJrWdp9ZJQ=";
+        npmBuildScript = "build-prod";
+        postBuild = ''
+          mkdir -p $out/build/
+          cp -r ../build/static/ $out/build/
+        '';
+      };
+
+      passthru = oldAttrs.passthru // {
+        schema_version = 30;
+      };
+    });
+  };
+
   flake.nixosModules.adguardhome =
     {
       config,

@@ -19,10 +19,6 @@ let
       "raspberry-pi"
       "united-kingdom"
     ];
-    stormwind.tags = [
-      "raspberry-pi"
-      "the-netherlands"
-    ];
     ironforge.tags = [
       "raspberry-pi"
       "new-zealand"

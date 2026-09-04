@@ -14,6 +14,45 @@
     ];
   };
 
+  flake.nixosModules.raspberry-pi-4 = { lib, ... }: {
+    imports =
+      with inputs;
+      with self.nixosModules;
+      [
+        "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+
+        nixos-hardware.nixosModules.raspberry-pi-4
+
+        raspberry-pi
+      ];
+
+    colmena.tags = [
+      "raspberry-pi-4"
+    ];
+
+    system.nixos.tags = [
+      "rpi4"
+    ];
+
+    host.network.interface = "end0";
+
+    boot.supportedFilesystems.zfs = lib.mkForce false;
+
+    hardware.raspberry-pi.firmware.uboot.enable = true;
+
+    boot.initrd.availableKernelModules = {
+      dw-hdmi = lib.mkForce false;
+      dw-mipi-dsi = lib.mkForce false;
+      pcie-rockchip-host = lib.mkForce false;
+      phy-rockchip-pcie = lib.mkForce false;
+      pwm-sun4i = lib.mkForce false;
+      rockchip-rga = lib.mkForce false;
+      rockchipdrm = lib.mkForce false;
+      sun4i-drm = lib.mkForce false;
+      sun8i-mixer = lib.mkForce false;
+    };
+  };
+
   flake.nixosModules.raspberry-pi-5 = {
     imports =
       with inputs;
