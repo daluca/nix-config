@@ -10,8 +10,6 @@
     }:
     {
       imports = with self.homeManagerModules; [
-        users-daluca
-
         development
         faugusLauncher
         ghostty

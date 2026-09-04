@@ -1,0 +1,54 @@
+{ self, ... }:
+
+{
+  flake.nixosModules.remote-unlocking = { config, ... }: {
+    boot = {
+      initrd = {
+        network = {
+          enable = true;
+          ssh = {
+            enable = true;
+            port = 22022;
+            authorizedKeyFiles = [
+              ./users/daluca/keys/id_ed25519.pub
+            ];
+            hostKeys = [
+              "/etc/ssh/ssh_initrd_ed25519_key"
+              "/etc/ssh/ssh_initrd_rsa_key"
+            ];
+          };
+        };
+      };
+    };
+
+    boot.initrd.systemd.users.root.shell = "/bin/systemd-tty-ask-password-agent";
+
+    environment.etc."ssh/ssh_initrd_ed25519_key" = {
+      source = config.sops.secrets."ssh_initrd_ed25519_key".path;
+      mode = "0400";
+    };
+
+    sops.secrets."ssh_initrd_ed25519_key".key = "initrd_id_ed25519";
+
+    environment.etc."ssh/ssh_initrd_ed25519_key.pub" = { };
+
+    environment.etc."ssh/ssh_initrd_rsa_key" = {
+      source = config.sops.secrets."ssh_initrd_rsa_key".path;
+      mode = "0400";
+    };
+
+    sops.secrets."ssh_initrd_rsa_key".key = "initrd_id_rsa";
+
+    environment.etc."ssh/ssh_initrd_rsa_key.pub" = { };
+  };
+
+  flake.nixosModules.remote-unlocking-dhcp = {
+    imports = with self.nixosModules; [
+      remote-unlocking
+    ];
+
+    boot.kernelParams = [
+      "ip=dhcp"
+    ];
+  };
+}

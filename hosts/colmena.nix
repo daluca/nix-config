@@ -15,11 +15,6 @@ let
       "vps"
       "germany"
     ];
-    charlie.tags = [
-      "hetzner"
-      "vps"
-      "germany"
-    ];
     darnassus.tags = [
       "raspberry-pi"
       "united-kingdom"

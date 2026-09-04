@@ -292,20 +292,5 @@
           ./hosts/bravo
         ];
       };
-
-      nixosConfigurations.charlie = nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/charlie
-        ];
-      };
     } (inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules));
 }

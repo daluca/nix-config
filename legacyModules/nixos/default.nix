@@ -7,10 +7,6 @@
   configarr = import ./configarr;
   raspberry-pi-4 = import ./raspberry-pi/4.nix;
   digitalocean = import ./digitalocean.nix;
-  hetzner = import ./hetzner;
   hetzner-online = import ./hetzner/online;
   hetzner-online-intel = import ./hetzner/online/intel.nix;
-  hetzner-cloud = import ./hetzner/cloud;
-  hetzner-cloud-x86 = import ./hetzner/cloud/x86.nix;
-  hetzner-cloud-arm = import ./hetzner/cloud/arm.nix;
 }

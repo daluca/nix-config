@@ -11,6 +11,8 @@
       # TODO: Try re-enable option
       # defaultSopsFile = lib.path.append ../hosts "${config.networking.hostName}/${config.networking.hostName}.sops.yaml";
       age.keyFile = "/var/lib/sops-nix/keys.txt";
+      age.sshKeyPaths = [ ];
+      gnupg.sshKeyPaths = [ ];
     };
 
     environment.persistence.system.files = [
