@@ -2,7 +2,6 @@
   perSystem =
     {
       self',
-      inputs',
       pkgs,
       ...
     }:
@@ -14,7 +13,7 @@
           git-agecrypt
           just
           deploy-rs
-          inputs'.colmena.packages.colmena
+          colmena
         ];
         JUST_COMMAND_COLOR = "blue";
         shellHook = self'.checks.pre-commit.shellHook;
