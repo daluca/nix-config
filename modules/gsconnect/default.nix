@@ -183,11 +183,5 @@
       xdg.mimeApps.defaultApplicationPackages = [
         gsconnect
       ];
-
-      xdg.configFile."gsconnect/certificate.pem".source =
-        lib.path.append ../users/daluca "certificate.pem";
-
-      # TODO: Add back in with each hosts own key
-      # sops.secrets."gsconnect/private.pem".path = "${config.xdg.configHome}/gsconnect/private.pem";
     };
 }

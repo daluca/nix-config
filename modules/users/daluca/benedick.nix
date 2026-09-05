@@ -48,5 +48,7 @@
       sops.age.keyFile = lib.mkOverride 10 ("/persistent" + "${config.xdg.configHome}/sops/age/keys.txt");
 
       sops.secrets."gsconnect/private.pem".sopsFile = ../../hosts/benedick/benedick.sops.yaml;
+
+      xdg.configFile."gsconnect/certificate.pem".source = ./benedick/certificate.pem;
     };
 }
