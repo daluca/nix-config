@@ -32,6 +32,7 @@
         itch
         doctl
         bitwarden
+        discord
       ];
 
       programs.custom-firefox.default = "zen-browser";
