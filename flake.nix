@@ -114,14 +114,6 @@
         };
     in
     lib.recursiveUpdate {
-      formatter = forAllSystems (
-        system:
-        let
-          pkgs = pkgs' system;
-        in
-        (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper
-      );
-
       overlays = import ./overlays { inherit inputs; };
 
       packages = forAllSystems (
