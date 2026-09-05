@@ -113,26 +113,7 @@
             ];
         };
     in
-    with inputs;
-    with outputs;
     lib.recursiveUpdate {
-      checks = forAllSystems (
-        system:
-        let
-          pkgs = pkgs' system;
-        in
-        {
-          pre-commit = git-hooks.lib.${system}.run {
-            src = ./.;
-            hooks = import ./.pre-commit-config.nix { inherit lib pkgs; };
-          };
-        }
-        // deploy-rs.lib.${system}.deployChecks deploy
-        // {
-          treefmt = (inputs.treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.check self;
-        }
-      );
-
       formatter = forAllSystems (
         system:
         let
