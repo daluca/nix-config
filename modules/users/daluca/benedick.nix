@@ -30,6 +30,7 @@
         nextcloud
         heroic
         itch
+        doctl
       ];
 
       programs.custom-firefox.default = "zen-browser";
