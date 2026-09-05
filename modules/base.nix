@@ -12,6 +12,9 @@ in
       pkgs,
       ...
     }:
+    let
+      inherit (pkgs.stdenv.hostPlatform) system;
+    in
     {
       imports =
         with inputs;
@@ -37,6 +40,10 @@ in
           nixCache
           colmena
         ];
+
+      system.nixos.tags = [
+        (lib.removeSuffix "-linux" system)
+      ];
 
       boot.extraModprobeConfig = ''
         install algif_aead /bin/false
