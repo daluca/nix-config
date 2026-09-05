@@ -1,9 +1,13 @@
-{ inputs, ... }:
+{ withSystem, ... }:
 
 {
-  flake.overlays.neovim = final: _prev: {
-    neovim = inputs.nixvim-config.packages.${final.stdenv.hostPlatform.system}.neovim;
-  };
+  flake.overlays.neovim =
+    _final: prev:
+    withSystem prev.stdenv.hostPlatform.system (
+      { inputs', ... }: {
+        neovim = inputs'.nixvim-config.packages.neovim;
+      }
+    );
 
   flake.homeManagerModules.neovim =
     {

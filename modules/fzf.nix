@@ -1,9 +1,13 @@
-{ inputs, ... }:
+{ withSystem, ... }:
 
 {
-  flake.overlays.fzf-preview = final: _prev: {
-    fzf-preview = inputs.fzf-preview.packages.${final.stdenv.hostPlatform.system}.fzf-preview;
-  };
+  flake.overlays.fzf-preview =
+    _final: prev:
+    withSystem prev.stdenv.hostPlatform.system (
+      { inputs', ... }: {
+        fzf-preview = inputs'.fzf-preview.packages.fzf-preview;
+      }
+    );
 
   flake.homeManagerModules.fzf =
     {

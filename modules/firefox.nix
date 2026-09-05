@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ inputs, withSystem, ... }:
 let
   secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
 in
@@ -25,13 +25,15 @@ in
       };
     };
 
-  flake.overlays.firefox-extensions = final: _prev: {
-    firefoxExtensions =
-      inputs.nur.legacyPackages.${final.stdenv.hostPlatform.system}.repos.rycee.firefox-addons
-      // {
-        hister = self.packages.${final.stdenv.hostPlatform.system}.hister-extension;
-      };
-  };
+  flake.overlays.firefox-extensions =
+    _final: prev:
+    withSystem prev.stdenv.hostPlatform.system (
+      { self', inputs', ... }: {
+        firefoxExtensions = inputs'.nur.legacyPackages.repos.rycee.firefox-addons // {
+          hister = self'.packages.hister-extension;
+        };
+      }
+    );
 
   flake.homeManagerModules.firefox = {
     programs.custom-firefox = {

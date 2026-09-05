@@ -1,4 +1,9 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  withSystem,
+  ...
+}:
 let
   validHosts = inputs.nixpkgs.lib.filterAttrs (
     hostname: _:
@@ -11,9 +16,13 @@ let
   ) self.nixosConfigurations;
 in
 {
-  flake.overlays.colmena = final: _prev: {
-    colmena = inputs.colmena.packages.${final.stdenv.hostPlatform.system}.colmena;
-  };
+  flake.overlays.colmena =
+    _final: prev:
+    withSystem prev.stdenv.hostPlatform.system (
+      { inputs', ... }: {
+        colmena = inputs'.colmena.packages.colmena;
+      }
+    );
 
   flake.colmenaHive = inputs.colmena.lib.makeHive (
     {
