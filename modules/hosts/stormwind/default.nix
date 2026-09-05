@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosConfigurations.stormwind = inputs.nixos-raspberrypi.lib.nixosSystem {
+  flake.nixosConfigurations.stormwind = inputs.nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     modules = with self.nixosModules; [
       hosts-stormwind
