@@ -31,6 +31,7 @@
         heroic
         itch
         doctl
+        bitwarden
       ];
 
       programs.custom-firefox.default = "zen-browser";
