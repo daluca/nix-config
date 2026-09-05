@@ -1,11 +1,11 @@
 [config]
-"hosts/alfa/secrets.toml" = [
-  "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
-  "age19fzpnfhta58lm5wduycq6j6th3x2r8d0zv9fqejh06zcllp00e8qlvlfzr",
-]
 "hosts/guiltyspark/secrets.toml" = [
   "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
   "age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm",
+]
+"modules/hosts/alfa/secrets.toml" = [
+  "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
+  "age19fzpnfhta58lm5wduycq6j6th3x2r8d0zv9fqejh06zcllp00e8qlvlfzr",
 ]
 "secrets/secrets.toml" = [
   "age102lual882fvygyw47twjzl65uey33u2ps8ulcrr8g258vaafwvpqsj6hyy",
