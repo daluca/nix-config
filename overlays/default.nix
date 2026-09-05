@@ -4,12 +4,7 @@
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
   modifications =
-    final: prev:
-    with inputs;
-    let
-      inherit (final.stdenv.hostPlatform) system;
-    in
-    {
+    final: prev: with inputs; {
       lazyssh = prev.lazyssh.overrideAttrs {
         version = "0.3.0+595f730";
 
@@ -45,15 +40,6 @@
       intiface-central = prev.intiface-central.overrideAttrs {
         extraWrapProgramArgs = "--set FRB_DART_LOAD_EXTERNAL_LIBRARY_NATIVE_LIB_DIR $out/app/intiface-central/lib";
       };
-
-      firefoxExtensions =
-        with final;
-        with inputs;
-        nur.legacyPackages.${system}.repos.rycee.firefox-addons
-        // {
-          inherit bypass-paywalls-clean;
-          hister = hister-extension;
-        };
 
       kubectlPlugins = with final; {
         inherit view-secret ingress-nginx;

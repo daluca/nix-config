@@ -11,11 +11,9 @@ in
   jellyplex-watched = callPackage ./jellyplex-watched { };
   view-secret = callPackage ./kubectl-view-secret { };
   ingress-nginx = callPackage ./kubectl-ingress-nginx { };
-  bypass-paywalls-clean = callPackage ./bypass-paywalls-clean { };
   terraform = callPackage ./terraform { };
   tunarr-bin = callPackage ./tunarr-bin { };
   ntfyd = callPackage ./ntfyd { };
   configarr = callPackage ./configarr { };
   nextflux = callPackage ./nextflux { };
-  hister-extension = callPackage ./hister { };
 }
