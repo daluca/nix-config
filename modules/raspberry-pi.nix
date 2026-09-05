@@ -38,10 +38,6 @@
 
     boot.supportedFilesystems.zfs = lib.mkForce false;
 
-    fileSystems."/boot/firmware".options = lib.mkForce [
-      "nofail"
-    ];
-
     hardware.raspberry-pi.firmware.enable = true;
 
     hardware.raspberry-pi.firmware.uboot.enable = true;
