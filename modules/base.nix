@@ -25,7 +25,6 @@ in
           jellyplex-watched
           tunarr
           host
-          attic-watch-store
           grub
           configarr
 

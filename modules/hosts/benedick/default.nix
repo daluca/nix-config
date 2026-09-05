@@ -40,6 +40,7 @@
         gsconnect
         opendeck
         devices-audioTechnicaATHM50xBT2
+        attic
       ];
 
     sops.defaultSopsFile = ./benedick.sops.yaml;

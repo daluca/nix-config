@@ -2,7 +2,6 @@
   jellyplex-watched = import ./jellyplex-watched;
   tunarr = import ./tunarr;
   host = import ./host;
-  attic-watch-store = import ./attic-watch-store;
   grub = import ./grub;
   configarr = import ./configarr;
   digitalocean = import ./digitalocean.nix;
