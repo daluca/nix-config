@@ -28,6 +28,10 @@
   };
 
   flake.homeManagerModules.desktop = {
+    imports = with self.homeManagerModules; [
+      uutils
+    ];
+
     xdg.mimeApps.enable = true;
   };
 }
