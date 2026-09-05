@@ -39,7 +39,7 @@
     system.stateVersion = "26.05";
   };
 
-  flake.nixosModules.hosts-dalaran-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.hosts-stormwind-sshKnownHosts = { config, ... }: {
     programs.ssh.knownHosts = rec {
       stormwind = {
         extraHostNames = [

@@ -10,11 +10,6 @@ let
       "vps"
       "germany"
     ];
-    bravo.tags = [
-      "hetzner"
-      "vps"
-      "germany"
-    ];
     darnassus.tags = [
       "raspberry-pi"
       "united-kingdom"

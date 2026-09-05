@@ -259,20 +259,5 @@
           ./hosts/alfa
         ];
       };
-
-      nixosConfigurations.bravo = nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/bravo
-        ];
-      };
     } (inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules));
 }

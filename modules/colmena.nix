@@ -2,7 +2,11 @@
 let
   validHosts = inputs.nixpkgs.lib.filterAttrs (
     hostname: _:
-    hostname == "dalaran" || hostname == "benedick" || hostname == "charlie" || hostname == "stormwind"
+    hostname == "dalaran"
+    || hostname == "benedick"
+    || hostname == "bravo"
+    || hostname == "charlie"
+    || hostname == "stormwind"
   ) self.nixosConfigurations;
 in
 {
