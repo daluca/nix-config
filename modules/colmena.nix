@@ -4,6 +4,7 @@ let
     hostname: _:
     hostname == "dalaran"
     || hostname == "benedick"
+    || hostname == "alfa"
     || hostname == "bravo"
     || hostname == "charlie"
     || hostname == "stormwind"

@@ -4,6 +4,7 @@
   flake.nixosModules.ssh = { config, lib, ... }: {
     imports = with self.nixosModules; [
       hosts-benedick-sshKnownHosts
+      hosts-alfa-sshKnownHosts
       hosts-bravo-sshKnownHosts
       hosts-charlie-sshKnownHosts
       hosts-stormwind-sshKnownHosts

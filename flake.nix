@@ -244,20 +244,5 @@
           ./hosts/unifi
         ];
       };
-
-      nixosConfigurations.alfa = nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/alfa
-        ];
-      };
     } (inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules));
 }

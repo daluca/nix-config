@@ -5,11 +5,6 @@
 }:
 let
   deployments = {
-    alfa.tags = [
-      "hetzner"
-      "vps"
-      "germany"
-    ];
     darnassus.tags = [
       "raspberry-pi"
       "united-kingdom"
