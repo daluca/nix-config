@@ -8,10 +8,11 @@
     ];
   };
 
-  flake.nixosModules.hosts-stormwind = { ... }: {
+  flake.nixosModules.hosts-stormwind = {
     imports = with self.nixosModules; [
       server
       raspberry-pi-4
+      raspberry-pi-4-poe-hat
 
       adguardhome-netherlands
       tailscale-server

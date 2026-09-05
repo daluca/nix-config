@@ -38,6 +38,12 @@
 
     boot.supportedFilesystems.zfs = lib.mkForce false;
 
+    fileSystems."/boot/firmware".options = lib.mkForce [
+      "nofail"
+    ];
+
+    hardware.raspberry-pi.firmware.enable = true;
+
     hardware.raspberry-pi.firmware.uboot.enable = true;
 
     boot.initrd.availableKernelModules = {
@@ -51,6 +57,23 @@
       sun4i-drm = lib.mkForce false;
       sun8i-mixer = lib.mkForce false;
     };
+  };
+
+  flake.nixosModules.raspberry-pi-4-poe-hat = {
+    hardware.raspberry-pi.configtxt.deviceTreeOverlays."board-type=0x11" = [
+      {
+        rpi-poe = {
+          poe_fan_temp0 = 65 * 1000;
+          poe_fan_temp0_hyst = 2000;
+          poe_fan_temp1 = 70 * 1000;
+          poe_fan_temp1_hyst = 2000;
+          poe_fan_temp2 = 75 * 1000;
+          poe_fan_temp2_hyst = 2000;
+          poe_fan_temp3 = 80 * 1000;
+          poe_fan_temp3_hyst = 5000;
+        };
+      }
+    ];
   };
 
   flake.nixosModules.raspberry-pi-5 = {
