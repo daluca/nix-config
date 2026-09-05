@@ -21,5 +21,13 @@
     ];
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+    home-manager.users.daluca.imports = with self.homeManagerModules; [
+      desktop
+    ];
+  };
+
+  flake.homeManagerModules.desktop = {
+    xdg.mimeApps.enable = true;
   };
 }
