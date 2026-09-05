@@ -29,6 +29,7 @@
         lazygit
         nextcloud
         heroic
+        itch
       ];
 
       programs.custom-firefox.default = "zen-browser";
