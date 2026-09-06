@@ -7,6 +7,7 @@
       hosts-alfa-sshKnownHosts
       hosts-bravo-sshKnownHosts
       hosts-charlie-sshKnownHosts
+      hosts-shodan-sshKnownHosts
       hosts-stormwind-sshKnownHosts
       hosts-dalaran-sshKnownHosts
     ];

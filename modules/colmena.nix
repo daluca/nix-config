@@ -12,6 +12,7 @@ let
     || hostname == "alfa"
     || hostname == "bravo"
     || hostname == "charlie"
+    || hostname == "shodan"
     || hostname == "stormwind"
   ) self.nixosConfigurations;
 in
@@ -34,18 +35,18 @@ in
         nodeSpecialArgs = builtins.mapAttrs (_: nixos: nixos._module.specialArgs) validHosts;
       };
     }
-    // builtins.mapAttrs (_: nixos: {
+    // builtins.mapAttrs (hostname: nixos: {
       imports = nixos._module.args.modules;
-      deployment.tags = nixos.config.system.nixos.tags ++ nixos.config.colmena.tags;
+      deployment = {
+        tags = nixos.config.system.nixos.tags ++ nixos.config.deploy.tags;
+        targetHost =
+          if (nixos.config.deploy.ipv4-address != null) then nixos.config.deploy.ipv4-address else hostname;
+        targetUser = "daluca";
+        sshOptions = [
+          "-F"
+          "none"
+        ];
+      };
     }) validHosts
   );
-
-  flake.nixosModules.colmena = { lib, ... }: with lib;
-    {
-      options.colmena.tags = lib.mkOption {
-        type = types.listOf types.str;
-        default = [ ];
-        description = "Extra tags used for colmena deployments.";
-      };
-    };
 }

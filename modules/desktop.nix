@@ -16,7 +16,7 @@
       ];
     };
 
-    colmena.tags = [
+    deploy.tags = [
       "desktop"
     ];
 

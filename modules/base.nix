@@ -22,8 +22,7 @@ in
           jellyplex-watched
           tunarr
           host
-          grub
-          configarr
+          grub-options
 
           sudo
           sops-nix
@@ -34,7 +33,7 @@ in
           users-daluca
           ssh
           nixCache
-          colmena
+          deployment-options
         ];
 
       boot.extraModprobeConfig = ''

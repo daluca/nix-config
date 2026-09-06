@@ -31,9 +31,11 @@ in
 
     environment.etc."ssh/ssh_initrd_rsa_key.pub".source = ./keys/ssh_initrd_rsa_key.pub;
 
-    colmena.tags = [
+    deploy.tags = [
       "germany"
     ];
+
+    deploy.ipv4-address = secrets.hosts.charlie.ipv4-address;
 
     services.hister.settings = {
       server = {

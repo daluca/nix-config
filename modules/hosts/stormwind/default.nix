@@ -20,7 +20,7 @@
 
     sops.defaultSopsFile = ./stormwind.sops.yaml;
 
-    colmena.tags = [
+    deploy.tags = [
       "the-netherlands"
     ];
 

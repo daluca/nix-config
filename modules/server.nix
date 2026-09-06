@@ -9,7 +9,7 @@
 
     time.timeZone = "UTC";
 
-    colmena.tags = [
+    deploy.tags = [
       "server"
     ];
   };

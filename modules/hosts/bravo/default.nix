@@ -32,9 +32,11 @@ in
 
     environment.etc."ssh/ssh_initrd_rsa_key.pub".source = ./keys/ssh_initrd_rsa_key.pub;
 
-    colmena.tags = [
+    deploy.tags = [
       "germany"
     ];
+
+    deploy.ipv4-address = secrets.hosts.bravo.ipv4-address;
 
     services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
 

@@ -188,21 +188,6 @@
         ];
       };
 
-      nixosConfigurations.shodan = nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/shodan
-        ];
-      };
-
       nixosConfigurations.unifi = nixosSystem {
         system = "x86_64-linux";
         specialArgs = {

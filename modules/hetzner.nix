@@ -12,7 +12,7 @@
         server
       ];
 
-    colmena.tags = [
+    deploy.tags = [
       "hetzner"
       "vps"
     ];
@@ -97,6 +97,33 @@
         srvos.nixosModules.hardware-hetzner-cloud-arm
 
         hetzner-cloud
+      ];
+  };
+
+  flake.nixosModules.hetzner-online = { config, lib, ... }: {
+    imports = with self.nixosModules; [
+      hetzner
+    ];
+
+    boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+
+    boot.loader.grub.efiSupport = lib.mkForce false;
+
+    boot.initrd.systemd.network.networks."10-uplink" = config.systemd.network.networks."10-uplink";
+
+    boot.initrd.availableKernelModules = [
+      "e1000e"
+    ];
+  };
+
+  flake.nixosModules.hetzner-online-intel = {
+    imports =
+      with inputs;
+      with self.nixosModules;
+      [
+        srvos.nixosModules.hardware-hetzner-online-intel
+
+        hetzner-online
       ];
   };
 }

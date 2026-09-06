@@ -33,9 +33,11 @@ in
 
     environment.etc."ssh/ssh_initrd_rsa_key.pub".source = ./keys/ssh_initrd_rsa_key.pub;
 
-    colmena.tags = [
+    deploy.tags = [
       "germany"
     ];
+
+    deploy.ipv4-address = secrets.hosts.alfa.ipv4-address;
 
     networking.localCommands = /* bash */ ''
       ip rule add to 10.2.1.0/24 priority 2500 lookup main || true

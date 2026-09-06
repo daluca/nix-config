@@ -49,7 +49,7 @@
       users-daluca-benedick
     ];
 
-    colmena.tags = [
+    deploy.tags = [
       "the-netherlands"
     ];
 

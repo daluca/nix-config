@@ -6,6 +6,7 @@
       hosts-alfa-cache
       hosts-bravo-cache
       hosts-charlie-cache
+      hosts-shodan-cache
       hosts-dalaran-cache
     ];
   };

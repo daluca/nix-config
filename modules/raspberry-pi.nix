@@ -8,7 +8,7 @@
       libraspberrypi
     ];
 
-    colmena.tags = [
+    deploy.tags = [
       "rpi"
       "raspberry-pi"
     ];
@@ -26,7 +26,7 @@
         raspberry-pi
       ];
 
-    colmena.tags = [
+    deploy.tags = [
       "raspberry-pi-4"
     ];
 
@@ -88,7 +88,7 @@
       "rpi5"
     ];
 
-    colmena.tags = [
+    deploy.tags = [
       "raspberry-pi-5"
     ];
 

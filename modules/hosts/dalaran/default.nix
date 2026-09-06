@@ -141,7 +141,7 @@ in
 
     sops.defaultSopsFile = ./dalaran.sops.yaml;
 
-    colmena.tags = [
+    deploy.tags = [
       "the-netherlands"
     ];
 

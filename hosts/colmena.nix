@@ -1,7 +1,6 @@
 {
   inputs,
   outputs,
-  secrets,
 }:
 let
   deployments = {
@@ -19,14 +18,6 @@ let
       "australia"
     ];
     guiltyspark.tags = [ "new-zealand" ];
-    shodan = {
-      tags = [
-        "hetzner"
-        "vps"
-        "germany"
-      ];
-      targetHost = secrets.hosts.shodan.tailscale-address;
-    };
     artemis = {
       allowLocalDeployment = true;
       targetHost = null;

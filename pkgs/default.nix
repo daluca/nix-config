@@ -14,6 +14,5 @@ in
   terraform = callPackage ./terraform { };
   tunarr-bin = callPackage ./tunarr-bin { };
   ntfyd = callPackage ./ntfyd { };
-  configarr = callPackage ./configarr { };
   nextflux = callPackage ./nextflux { };
 }
