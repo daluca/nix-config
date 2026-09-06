@@ -90,6 +90,7 @@ in
         extraHostNames = [
           "bravo.${config.networking.domain}"
           secrets.hosts.bravo.ipv4-address
+          "10.2.1.2"
         ];
         publicKeyFile = ./keys/ssh_host_ed25519_key.pub;
       };
@@ -102,6 +103,7 @@ in
         extraHostNames = [
           "[bravo.${config.networking.domain}]:22022"
           "[${secrets.hosts.bravo.ipv4-address}]:22022"
+          "[10.2.1.2]:22022"
         ];
         publicKeyFile = ./keys/ssh_initrd_ed25519_key.pub;
       };
