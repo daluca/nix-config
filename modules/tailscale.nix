@@ -70,4 +70,29 @@ in
       ];
     };
   };
+
+  flake.nixosModules.tailscale-client = {
+    imports = with self.nixosModules; [
+      tailscale
+    ];
+
+    services.tailscale = {
+      useRoutingFeatures = "client";
+      extraUpFlags = [
+        "--shields-up"
+        # "--exit-node="
+        # "--exit-node-allow-lan-access"
+      ];
+    };
+
+    home-manager.users.daluca.imports = with self.homeManagerModules; [
+      tailscale-client
+    ];
+  };
+
+  flake.homeManagerModules.tailscale-client = {
+    imports = with self.homeManagerModules; [
+      gnome-extensions-tailscaleQs
+    ];
+  };
 }

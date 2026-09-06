@@ -41,6 +41,7 @@
         opendeck
         devices-audioTechnicaATHM50xBT2
         attic
+        tailscale-client
       ];
 
     sops.defaultSopsFile = ./benedick.sops.yaml;
@@ -52,6 +53,12 @@
     deploy.tags = [
       "the-netherlands"
     ];
+
+    host.network.interface = "wlp11s0";
+
+    networking.localCommands = /* bash */ ''
+      ip rule add to 10.1.0.0/16 priority 2500 lookup main || true
+    '';
 
     networking.hostName = "benedick";
 
