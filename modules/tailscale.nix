@@ -21,6 +21,9 @@ in
           "--accept-routes"
           "--reset"
         ];
+        extraDaemonFlags = [
+          "--no-logs-no-support"
+        ];
       };
 
       sops.secrets."tailscale/preauthkey" = {
