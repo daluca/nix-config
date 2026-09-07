@@ -1,11 +1,9 @@
 { pkgs }:
 let
   inherit (pkgs) lib;
-  inherit (pkgs.firefoxExtensions) buildFirefoxXpiAddon;
-  callPackage = lib.callPackageWith (pkgs // { inherit buildFirefoxXpiAddon; });
+  inherit (lib) callPackage;
 in
 {
-  garden-tools = callPackage ./garden-tools { };
   jsonnet-debugger = callPackage ./jsonnet-debugger { };
   tfctl = callPackage ./tfctl { };
   jellyplex-watched = callPackage ./jellyplex-watched { };
