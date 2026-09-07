@@ -2,22 +2,18 @@
   perSystem = { lib, pkgs, ... }: {
     packages.garden-tools = with pkgs; rustPlatform.buildRustPackage rec {
       pname = "garden-tools";
-      version = "2.6.0";
+      version = "2.7.0";
 
       src = fetchFromGitLab {
         owner = "garden-rs";
         repo = "garden";
         rev = "v${version}";
-        hash = "sha256-jOFdYzm7IDP+0C5x//eJR7FNgJt1pzgMbTJl4ZkcL24=";
+        hash = "sha256-yi/rEM0JfcMbOhF9KVZkk/9B4k15dvzzhKBSeMe1PgU=";
       };
 
-      cargoLock.lockFile = ./Cargo.lock;
+      cargoHash = "sha256-dcc26c96493Ji9kfBQmFmGub1iCUzxadof9fvLNF6ts=";
 
       cargoBuildFlags = [ "--workspace" ];
-
-      postPatch = /* bash */ ''
-        ln -s ${./Cargo.lock} Cargo.lock
-      '';
 
       postFixup = /* bash */ ''
         patchelf $out/bin/garden-gui \
