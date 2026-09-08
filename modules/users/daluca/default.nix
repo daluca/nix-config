@@ -52,7 +52,6 @@ in
       self.nixosModules.host
 
       catppuccin
-      garden-tools
       kanata
       ntfyd
 

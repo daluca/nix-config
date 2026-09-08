@@ -1,7 +1,6 @@
 { pkgs }:
 let
-  inherit (pkgs) lib;
-  inherit (lib) callPackage;
+  inherit (pkgs) callPackage;
 in
 {
   jsonnet-debugger = callPackage ./jsonnet-debugger { };

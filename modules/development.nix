@@ -4,7 +4,7 @@
   flake.homeManagerModules.development = { pkgs, ... }: {
     imports = with self.homeManagerModules; [
       direnv
-      gardenTools
+      garden-tools
       just
       opentofu
     ];

@@ -18,7 +18,6 @@ in
       outputs.nixosModules.host
 
       catppuccin
-      garden-tools
       kanata
       ntfyd
     ]
