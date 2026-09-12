@@ -5,9 +5,18 @@
     {
       services.sabnzbd = {
         enable = true;
-        openFirewall = true;
         user = "starr";
         group = "starr";
+        settings = {
+          misc = {
+            host = "127.0.0.1";
+            port = 8080;
+            complete_dir = "/storage/usenet/complete";
+            download_dir = "/storage/usenet/incomplete";
+            local_ranges = "100.64.0.0/24";
+            inet_exposure = 4;
+          };
+        };
       };
 
       systemd.tmpfiles.rules = with config.services; [

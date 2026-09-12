@@ -50,6 +50,9 @@ in
 
     hardware.graphics.enable = true;
 
+    services.sabnzbd.settings.misc.host_whitelist =
+      "sabnzbd.${secrets.domain.general},localhost,127.0.0.1,${secrets.hosts.shodan.tailscale-address}";
+
     security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
 
     services.nginx.virtualHosts =
@@ -122,7 +125,7 @@ in
 
         "sabnzbd.${secrets.domain.general}" = tls // {
           locations."/" = {
-            proxyPass = "http://127.0.0.1:8080";
+            proxyPass = "http://127.0.0.1:${toString sabnzbd.settings.misc.port}";
           };
         };
 
