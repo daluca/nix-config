@@ -87,12 +87,9 @@
       ...
     }@inputs:
     let
-      inherit (self) outputs;
-      inherit (lib) nixosSystem;
       lib = nixpkgs.lib.extend (
         _final: _prev: { custom = import ./lib { inherit lib; }; } // home-manager.lib
       );
-      secrets = fromTOML (builtins.readFile ./secrets/secrets.toml);
       supportedSystems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -127,80 +124,5 @@
       nixosModules = import ./legacyModules/nixos;
 
       homeManagerModules = import ./legacyModules/home-manager;
-
-      nixosConfigurations.artemis = nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/artemis
-        ];
-      };
-
-      nixosConfigurations.ironforge = nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/ironforge
-        ];
-      };
-
-      nixosConfigurations.darnassus = nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/darnassus
-        ];
-      };
-
-      nixosConfigurations.guiltyspark = nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/guiltyspark
-        ];
-      };
-
-      nixosConfigurations.unifi = nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit
-            inputs
-            outputs
-            lib
-            secrets
-            ;
-        };
-        modules = [
-          ./hosts/unifi
-        ];
-      };
     } (inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules));
 }
