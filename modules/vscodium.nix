@@ -46,7 +46,6 @@
           };
           # Telemetry
           "telemetry.telemetryLevel" = "off";
-          "redhat.telemetry.enabled" = false;
           # Terminal
           "terminal.integrated.defaultProfile.linux" = "zsh";
           # Trusted
@@ -116,6 +115,15 @@
       vscodiumExtensions-typos
       vscodiumExtensions-vim
       vscodiumExtensions-nixIde
+      vscodiumExtensions-evenBetterToml
+      vscodiumExtensions-rustAnalyzer
+      vscodiumExtensions-jsonnet
+      vscodiumExtensions-helm
+      vscodiumExtensions-todoHighlight
+      vscodiumExtensions-tinymist
+      vscodiumExtensions-ansible
+      vscodiumExtensions-ipxe
+      vscodiumExtensions-tera
     ];
   };
 
@@ -258,6 +266,107 @@
           "flake.lock" = "json";
         };
       };
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-evenBetterToml = { pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.open-vsx; [
+        tamasfe.even-better-toml
+      ];
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-rustAnalyzer = { pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.open-vsx; [
+        rust-lang.rust-analyzer
+      ];
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-jsonnet = { pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.open-vsx; [
+        grafana.vscode-jsonnet
+      ];
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-helm = { lib, pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.open-vsx; [
+        helm-ls.helm-ls
+        ms-kubernetes-tools.vscode-kubernetes-tools
+        redhat.vscode-yaml
+      ];
+      userSettings = {
+        "helm-ls.path" = lib.getExe pkgs.helm-ls;
+        "redhat.telemetry.enabled" = false;
+      };
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-todoHighlight = { pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.open-vsx; [
+        wayou.vscode-todo-highlight
+      ];
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-tinymist = { lib, pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.open-vsx; [
+        myriad-dreamin.tinymist
+      ];
+      userSettings = {
+        "tinymist.serverPath" = lib.getExe pkgs.unstable.tinymist;
+        "tinymist.exportPdf" = "onType";
+      };
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-ansible = { lib, pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.open-vsx; [
+        redhat.ansible
+        samuelcolvin.jinjahtml
+        redhat.vscode-yaml
+        ms-python.python
+      ];
+      userSettings = {
+        "redhat.telemetry.enabled" = false;
+        "ansible.python.interpreterPath" = lib.getExe pkgs.python3;
+        "ansible.ansible.path" = lib.getExe' pkgs.ansible "ansible";
+        "ansible.validation.lint.path" = lib.getExe pkgs.ansible-lint;
+        "ansible.lightspeed.enabled" = false;
+        "files.associations" = {
+          "**/tasks/*.yaml" = "ansible";
+          "**/tasks/*.yml" = "ansible";
+          ".yamllint" = "yaml";
+          ".ansible-lint" = "yaml";
+        };
+        "[ansible]" = {
+          "editor.rulers" = [ 80 ];
+        };
+      };
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-ipxe = { pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.open-vsx; [
+        kipjr.vscode-language-ipxe
+      ];
+    };
+  };
+
+  flake.homeManagerModules.vscodiumExtensions-tera = { pkgs, ... }: {
+    programs.vscodium.profiles.default = {
+      extensions = with pkgs.vscode-marketplace; [
+        uncenter.better-tera
+      ];
     };
   };
 }
