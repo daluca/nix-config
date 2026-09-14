@@ -21,7 +21,7 @@ in
 
           jellyplex-watched
           tunarr
-          host
+          host-options
           grub-options
 
           sudo

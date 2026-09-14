@@ -49,8 +49,6 @@ in
 
   flake.homeManagerModules.users-daluca = { config, lib, ... }: {
     imports = with self.homeManagerModules; [
-      self.nixosModules.host
-
       firefoxBase
 
       ssh
