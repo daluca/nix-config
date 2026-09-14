@@ -79,50 +79,5 @@
     opendeck-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      lib = nixpkgs.lib.extend (
-        _final: _prev: { custom = import ./lib { inherit lib; }; } // home-manager.lib
-      );
-      supportedSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
-      forAllSystems = lib.genAttrs supportedSystems;
-      pkgs' =
-        system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-          overlays =
-            with inputs;
-            builtins.attrValues self.overlays
-            ++ [
-              nur.overlays.default
-              nix-vscode-extensions.overlays.default
-              proton-ge.overlays.default
-            ];
-        };
-    in
-    lib.recursiveUpdate {
-      overlays = import ./overlays;
-
-      packages = forAllSystems (
-        system:
-        let
-          pkgs = pkgs' system;
-        in
-        import ./pkgs { inherit pkgs; }
-      );
-
-      nixosModules = import ./legacyModules/nixos;
-
-      homeManagerModules = import ./legacyModules/home-manager;
-    } (inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules));
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

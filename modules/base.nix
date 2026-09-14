@@ -19,8 +19,6 @@ in
         [
           inputs.impermanence.nixosModules.impermanence
 
-          jellyplex-watched
-          tunarr
           host-options
           grub-options
 
