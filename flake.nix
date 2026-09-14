@@ -72,7 +72,7 @@
     nix-monitored.url = "github:ners/nix-monitored";
     nix-monitored.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    hister.url = "github:asciimoo/hister";
+    hister.url = "github:asciimoo/hister/v0.19.0";
     hister.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     opendeck-nix.url = "github:kitt3120/opendeck-nix";
