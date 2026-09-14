@@ -33,6 +33,7 @@
         doctl
         bitwarden
         discord
+        signal
       ];
 
       programs.custom-firefox.default = "zen-browser";
