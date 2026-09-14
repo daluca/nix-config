@@ -53,7 +53,6 @@ in
 
       catppuccin
       kanata
-      ntfyd
 
       firefoxBase
 
