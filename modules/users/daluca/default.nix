@@ -51,8 +51,6 @@ in
     imports = with self.homeManagerModules; [
       self.nixosModules.host
 
-      kanata
-
       firefoxBase
 
       ssh
