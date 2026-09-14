@@ -36,6 +36,10 @@ in
           deployment-options
         ];
 
+      deploy.tags = [
+        (lib.removeSuffix "-linux" pkgs.stdenv.hostPlatform.system)
+      ];
+
       boot.extraModprobeConfig = ''
         install algif_aead /bin/false
       '';
