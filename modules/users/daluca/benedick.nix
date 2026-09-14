@@ -34,6 +34,7 @@
         bitwarden
         discord
         signal
+        qrrs
       ];
 
       programs.custom-firefox.default = "zen-browser";
