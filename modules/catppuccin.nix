@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 
 {
   flake.nixosModules.catppuccin = {
@@ -7,6 +7,10 @@
     ];
 
     catppuccin.flavor = "mocha";
+
+    home-manager.users.daluca.imports = with self.homeManagerModules; [
+      catppuccin
+    ];
   };
 
   flake.homeManagerModules.catppuccin = {

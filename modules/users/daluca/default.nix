@@ -51,7 +51,6 @@ in
     imports = with self.homeManagerModules; [
       self.nixosModules.host
 
-      catppuccin
       kanata
 
       firefoxBase

@@ -34,6 +34,7 @@ in
           ssh
           nixCache
           deployment-options
+          catppuccin
         ];
 
       deploy.tags = [
