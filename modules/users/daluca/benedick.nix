@@ -35,6 +35,7 @@
         discord
         signal
         qrrs
+        mpv
       ];
 
       programs.custom-firefox.default = "zen-browser";
