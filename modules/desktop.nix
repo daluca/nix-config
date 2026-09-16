@@ -5,6 +5,7 @@
     imports = with self.nixosModules; [
       base
       kanata
+      localsend
     ];
 
     time.timeZone = "Europe/Amsterdam";
