@@ -9,5 +9,4 @@ in
   ingress-nginx = callPackage ./kubectl-ingress-nginx { };
   terraform = callPackage ./terraform { };
   tunarr-bin = callPackage ./tunarr-bin { };
-  nextflux = callPackage ./nextflux { };
 }
