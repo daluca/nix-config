@@ -7,5 +7,4 @@ in
   jellyplex-watched = callPackage ./jellyplex-watched { };
   view-secret = callPackage ./kubectl-view-secret { };
   ingress-nginx = callPackage ./kubectl-ingress-nginx { };
-  terraform = callPackage ./terraform { };
 }
