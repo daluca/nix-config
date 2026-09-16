@@ -27,6 +27,7 @@ in
       navidrome
       localContentShare
       gatus
+      homebox
     ];
 
     security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
@@ -79,6 +80,13 @@ in
         "gatus.${secrets.domain.general}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString gatus.settings.web.port}";
+          };
+        };
+
+        "homebox.${secrets.domain.general}" = tls // {
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:7745";
+            proxyWebsockets = true;
           };
         };
 

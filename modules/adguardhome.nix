@@ -177,6 +177,7 @@ in
             (dalaran "navidrome")
             (dalaran "share")
             (dalaran "gatus")
+            (dalaran "homebox")
             (dalaran "firefly")
             (dalaran "firefly-importer")
             (dalaran "home-assistant")
