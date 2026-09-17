@@ -63,6 +63,7 @@ in
       vim
       zsh
       modernUnix
+      accounts
     ];
 
     home = rec {
