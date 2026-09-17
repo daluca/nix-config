@@ -82,7 +82,7 @@
     _final: prev:
     withSystem prev.stdenv.hostPlatform.system (
       { self', ... }: {
-        configarr = self'.packages.configarr;
+        inherit (self'.packages) configarr;
       }
     );
 

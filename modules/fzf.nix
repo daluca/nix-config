@@ -5,7 +5,7 @@
     _final: prev:
     withSystem prev.stdenv.hostPlatform.system (
       { inputs', ... }: {
-        fzf-preview = inputs'.fzf-preview.packages.fzf-preview;
+        inherit (inputs'.fzf-preview.packages) fzf-preview;
       }
     );
 

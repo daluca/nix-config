@@ -5,7 +5,7 @@
     _final: prev:
     withSystem prev.stdenv.hostPlatform.system (
       { inputs', ... }: {
-        helium = inputs'.nur.legacyPackages.repos.Ev357.helium;
+        inherit (inputs'.nur.legacyPackages.repos.Ev357) helium;
       }
     );
 

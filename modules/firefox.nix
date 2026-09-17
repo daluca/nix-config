@@ -7,7 +7,7 @@ in
     { inputs', lib, ... }:
     {
       packages = with inputs'.nur.legacyPackages.repos.rycee.firefox-addons; {
-        hister-extension = buildFirefoxXpiAddon rec {
+        hister = buildFirefoxXpiAddon rec {
           pname = "hister-extension";
           version = "0.28.0";
 
@@ -30,7 +30,7 @@ in
     withSystem prev.stdenv.hostPlatform.system (
       { self', inputs', ... }: {
         firefoxExtensions = inputs'.nur.legacyPackages.repos.rycee.firefox-addons // {
-          hister = self'.packages.hister-extension;
+          inherit (self'.packages) hister;
         };
       }
     );

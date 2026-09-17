@@ -21,7 +21,7 @@ in
     _final: prev:
     withSystem prev.stdenv.hostPlatform.system (
       { inputs', ... }: {
-        colmena = inputs'.colmena.packages.colmena;
+        inherit (inputs'.colmena.packages) colmena;
       }
     );
 

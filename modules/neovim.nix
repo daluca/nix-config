@@ -5,7 +5,7 @@
     _final: prev:
     withSystem prev.stdenv.hostPlatform.system (
       { inputs', ... }: {
-        neovim = inputs'.nixvim-config.packages.neovim;
+        inherit (inputs'.nixvim-config.packages) neovim;
       }
     );
 

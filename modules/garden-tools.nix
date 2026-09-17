@@ -45,7 +45,7 @@
     _final: prev:
     withSystem prev.stdenv.hostPlatform.system (
       { self', ... }: {
-        garden-tools = self'.packages.garden-tools;
+        inherit (self'.packages) garden-tools;
       }
     );
 
