@@ -12,6 +12,8 @@
       programs.just.enable = true;
       programs.shellcheck.enable = true;
       programs.toml-sort.enable = true;
+      programs.yamllint.enable = true;
+      programs.yamlfmt.enable = true;
       settings.formatter.toml-sort = {
         excludes = [
           "*/secrets.toml"

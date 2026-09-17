@@ -20,8 +20,6 @@
             end-of-file-fixer.enable = true;
             forbid-new-submodules.enable = true;
             trim-trailing-whitespace.enable = true;
-            yamllint.enable = true;
-            yamlfmt.enable = true;
             typos.enable = true;
             treefmt.enable = true;
             treefmt.package = self'.formatter;
