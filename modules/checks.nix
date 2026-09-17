@@ -72,7 +72,6 @@
             };
           };
         };
-        treefmt = (inputs.treefmt.lib.evalModule pkgs ../treefmt.nix).config.build.check self;
       }
       // inputs.deploy-rs.lib.${system}.deployChecks self.deploy;
     };

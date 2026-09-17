@@ -1,7 +1,15 @@
 { inputs, ... }:
 
 {
-  perSystem = { pkgs, ... }: {
-    formatter = (inputs.treefmt.lib.evalModule pkgs ../treefmt.nix).config.build.wrapper;
+  imports = with inputs; [
+    treefmt.flakeModule
+  ];
+
+  perSystem = {
+    treefmt = {
+      projectRootFile = "flake.nix";
+      programs.nixfmt.enable = true;
+      programs.just.enable = true;
+    };
   };
 }
