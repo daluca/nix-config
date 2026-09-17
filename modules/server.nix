@@ -12,5 +12,7 @@
     deploy.tags = [
       "server"
     ];
+
+    documentation.nixos.enable = false;
   };
 }
