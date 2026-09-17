@@ -37,6 +37,7 @@
         qrrs
         mpv
         feishin
+        nushell
       ];
 
       programs.custom-firefox.default = "zen-browser";
