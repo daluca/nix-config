@@ -39,6 +39,7 @@
         feishin
         nushell
         kubernetes
+        proton-vpn
       ];
 
       programs.custom-firefox.default = "zen-browser";
