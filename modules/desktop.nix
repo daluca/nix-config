@@ -6,6 +6,7 @@
       base
       kanata
       localsend
+      alacritty
     ];
 
     time.timeZone = "Europe/Amsterdam";
