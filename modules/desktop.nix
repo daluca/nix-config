@@ -34,6 +34,7 @@
       alacritty
       gradia
       planify
+      element
     ];
 
     xdg.mimeApps.enable = true;
