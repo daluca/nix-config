@@ -1,4 +1,4 @@
-{ withSystem, ... }:
+{ self, withSystem, ... }:
 
 {
   perSystem = { lib, pkgs, ... }: {
@@ -180,6 +180,23 @@
               "!${preStartScript}";
             ExecStart = "${lib.getExe cfg.package} server --database ${cfg.dataDir} --port ${toString cfg.port}";
           };
+        };
+      };
+    };
+
+  flake.nixosModules.tunarr =
+    let
+      days = 24;
+    in
+    {
+      imports = with self.nixosModules; [
+        tunarr-options
+      ];
+      services.tunarr = {
+        enable = true;
+        port = 8108;
+        settings = {
+          settings.xmltv.programmingHours = 7 * days;
         };
       };
     };
