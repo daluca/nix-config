@@ -33,6 +33,7 @@
       uutils
       alacritty
       gradia
+      planify
     ];
 
     xdg.mimeApps.enable = true;
