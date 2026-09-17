@@ -6,7 +6,6 @@
       base
       kanata
       localsend
-      alacritty
     ];
 
     time.timeZone = "Europe/Amsterdam";
@@ -32,6 +31,7 @@
   flake.homeManagerModules.desktop = {
     imports = with self.homeManagerModules; [
       uutils
+      alacritty
     ];
 
     xdg.mimeApps.enable = true;
