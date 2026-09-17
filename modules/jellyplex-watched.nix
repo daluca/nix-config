@@ -1,4 +1,4 @@
-{ withSystem, ... }:
+{ self, withSystem, ... }:
 
 {
   perSystem = { lib, pkgs, ... }: {
@@ -212,4 +212,12 @@
         };
       };
     };
+
+  flake.nixosModules.jellyplex-watched = {
+    imports = with self.nixosModules; [
+      jellyplex-watched-options
+    ];
+
+    services.jellyplex-watched.enable = true;
+  };
 }
