@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.protonmailBridge = { pkgs, ... }: {
+  flake.homeManagerModules.protonmail-bridge = { pkgs, ... }: {
     services.protonmail-bridge = {
       enable = true;
       extraPackages = with pkgs; [

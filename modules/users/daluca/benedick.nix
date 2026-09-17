@@ -40,6 +40,7 @@
         nushell
         kubernetes
         proton-vpn
+        thunderbird
       ];
 
       programs.custom-firefox.default = "zen-browser";
