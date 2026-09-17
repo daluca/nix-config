@@ -334,6 +334,7 @@
         samuelcolvin.jinjahtml
         redhat.vscode-yaml
         ms-python.python
+        ms-python.vscode-python-envs
       ];
       userSettings = {
         "redhat.telemetry.enabled" = false;
