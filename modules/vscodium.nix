@@ -329,13 +329,16 @@
 
   flake.homeManagerModules.vscodiumExtensions-ansible = { lib, pkgs, ... }: {
     programs.vscodium.profiles.default = {
-      extensions = with pkgs.open-vsx; [
-        redhat.ansible
-        samuelcolvin.jinjahtml
-        redhat.vscode-yaml
-        ms-python.python
-        ms-python.vscode-python-envs
-      ];
+      extensions =
+        with pkgs;
+        with pkgs.open-vsx;
+        [
+          redhat.ansible
+          samuelcolvin.jinjahtml
+          redhat.vscode-yaml
+          vscode-marketplace.ms-python.python
+          vscode-marketplace.ms-python.vscode-python-envs
+        ];
       userSettings = {
         "redhat.telemetry.enabled" = false;
         "ansible.python.interpreterPath" = lib.getExe pkgs.python3;
