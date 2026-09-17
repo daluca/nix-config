@@ -1,8 +1,9 @@
-{ self, inputs, ... }:
+{ inputs, ... }:
 
 {
   perSystem =
     {
+      self',
       system,
       lib,
       pkgs,
@@ -22,6 +23,8 @@
             yamllint.enable = true;
             yamlfmt.enable = true;
             typos.enable = true;
+            treefmt.enable = true;
+            treefmt.package = self'.formatter;
             deadnix = {
               enable = true;
               settings.edit = true;
@@ -53,6 +56,6 @@
           };
         };
       }
-      // inputs.deploy-rs.lib.${system}.deployChecks self.deploy;
+      // inputs.deploy-rs.lib.${system}.deployChecks self'.deploy;
     };
 }
