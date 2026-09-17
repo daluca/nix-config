@@ -1,4 +1,5 @@
-#! /usr/bin/env -S nix shell nixpkgs#bash nixpkgs#ssh-to-age --command bash
+#!/usr/bin/env -S nix shell nixpkgs#bash nixpkgs#ssh-to-age --command bash
+# shellcheck shell=bash
 
 set -euo pipefail
 

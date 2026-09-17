@@ -1,4 +1,5 @@
 #!/usr/bin/env -S nix shell nixpkgs#bash nixpkgs#sops nixos-anywhere --command bash
+# shellcheck shell=bash
 
 set -euo pipefail
 
