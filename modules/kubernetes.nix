@@ -1,4 +1,4 @@
-{ withSystem, ... }:
+{ self, withSystem, ... }:
 
 {
   perSystem = { lib, pkgs, ... }: {
@@ -73,6 +73,19 @@
       }
     );
 
+  flake.homeManagerModules.kubernetes = {
+    imports = with self.homeManagerModules; [
+      kubectl
+      helm
+      k9s
+      fluxcd
+      tfctl
+      velero
+      crowdsec
+      headscale
+    ];
+  };
+
   flake.homeManagerModules.kubectl = { pkgs, ... }: {
     home.packages =
       with pkgs;
@@ -91,5 +104,73 @@
     home.persistence.home.directories = [
       ".kube"
     ];
+  };
+
+  flake.homeManagerModules.k9s = { pkgs, ... }: {
+    programs.k9s = {
+      enable = true;
+      package = pkgs.unstable.k9s;
+      settings = {
+        ui = {
+          enableMouse = false;
+          logoless = true;
+        };
+        skipLatestRevCheck = true;
+      };
+    };
+
+    catppuccin.k9s.enable = true;
+  };
+
+  flake.homeManagerModules.helm = { pkgs, ... }: {
+    home.packages = with pkgs; [
+      kubernetes-helm
+    ];
+
+    programs.zsh.oh-my-zsh.plugins = [
+      "helm"
+    ];
+  };
+
+  flake.homeManagerModules.fluxcd = { pkgs, ... }: {
+    home.packages = with pkgs; [
+      fluxcd
+    ];
+
+    programs.zsh.oh-my-zsh.plugins = [
+      "fluxcd"
+    ];
+  };
+
+  flake.homeManagerModules.velero = { lib, pkgs, ... }: {
+    home.packages = with pkgs; [
+      velero
+    ];
+
+    home.persistence.home.directories = [
+      ".config/velero"
+    ];
+
+    xdg.configFile."velero/config.json".text = builtins.toJSON {
+      namespace = "backups";
+    };
+
+    programs.zsh.initContent = /* zsh */ ''
+      if [[ -x "$( command -v velero )" ]]; then
+        eval "$(${lib.getExe' pkgs.velero "velero"} completion zsh)"
+      fi
+    '';
+  };
+
+  flake.homeManagerModules.crowdsec = {
+    programs.zsh.shellAliases = {
+      cscli = "kubectl --context do-syd1-production-cluster --namespace crowdsec exec -it deployments/crowdsec-lapi -- cscli";
+    };
+  };
+
+  flake.homeManagerModules.headscale = {
+    programs.zsh.shellAliases = {
+      headscale = "kubectl --context do-syd1-production-cluster --namespace vpn exec -it deployments/headscale -c headscale -- headscale --config=/headscale/config/config.yaml";
+    };
   };
 }

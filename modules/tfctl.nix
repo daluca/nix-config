@@ -28,6 +28,7 @@
           description = "A GitOps OpenTofu and Terraform controller for Flux";
           homepage = "https://flux-iac.github.io/tofu-controller";
           license = licenses.asl20;
+          mainProgram = "tfctl";
         };
       };
   };
@@ -39,4 +40,14 @@
         inherit (self'.packages) tfctl;
       }
     );
+
+  flake.homeManagerModules.tfctl = { lib, pkgs, ... }: {
+    home.packages = with pkgs; [
+      tfctl
+    ];
+
+    programs.zsh.initContent = /* zsh */ ''
+      eval "$(${lib.getExe pkgs.tfctl} completion zsh)"; compdef _tfctl tfctl
+    '';
+  };
 }

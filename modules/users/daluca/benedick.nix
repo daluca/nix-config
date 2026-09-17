@@ -38,6 +38,7 @@
         mpv
         feishin
         nushell
+        kubernetes
       ];
 
       programs.custom-firefox.default = "zen-browser";
