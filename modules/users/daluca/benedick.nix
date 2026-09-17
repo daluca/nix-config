@@ -36,6 +36,7 @@
         signal
         qrrs
         mpv
+        feishin
       ];
 
       programs.custom-firefox.default = "zen-browser";
