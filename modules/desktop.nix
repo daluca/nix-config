@@ -32,6 +32,7 @@
     imports = with self.homeManagerModules; [
       uutils
       alacritty
+      gradia
     ];
 
     xdg.mimeApps.enable = true;
