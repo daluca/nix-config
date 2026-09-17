@@ -35,6 +35,7 @@
       gradia
       planify
       element
+      whatsapp
     ];
 
     xdg.mimeApps.enable = true;
