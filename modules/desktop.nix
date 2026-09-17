@@ -36,6 +36,7 @@
       planify
       element
       whatsapp
+      ntfyd
     ];
 
     xdg.mimeApps.enable = true;
