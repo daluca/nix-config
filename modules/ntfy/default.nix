@@ -1,10 +1,8 @@
-{ self, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../../secrets/secrets.toml);
-in
+{ self, withSystem, ... }:
+
 {
   perSystem = { lib, pkgs, ... }: {
-    packages.ntfy =
+    packages.ntfyd =
       with pkgs;
       rustPlatform.buildRustPackage rec {
         pname = "ntfyd";
@@ -28,11 +26,47 @@ in
       };
   };
 
+  flake.overlays.ntfyd =
+    _final: prev:
+    withSystem prev.stdenv.hostPlatform.system (
+      { self', ... }: {
+        inherit (self'.packages) ntfyd;
+      }
+    );
+
+  flake.nixosModules.ntfy = { lib, ... }: {
+    services.ntfy-sh = {
+      enable = true;
+      settings = {
+        listen-http = "127.0.0.1:8080";
+        behind-proxy = true;
+        enable-login = true;
+        auth-default-access = "deny-all";
+      };
+    };
+
+    systemd.services.ntfy-sh.serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      PrivateTmp = lib.mkForce false;
+      UMask = "0002";
+    };
+
+    users.users.daluca.extraGroups = [ "ntfy-sh" ];
+
+    environment.persistence.system.directories = [
+      {
+        directory = "/var/lib/ntfy-sh";
+        mode = "0775";
+      }
+    ];
+  };
+
   flake.homeManagerModules.ntfy =
     {
       config,
       lib,
       pkgs,
+      secrets,
       osConfig,
       ...
     }:
@@ -128,13 +162,18 @@ in
     };
 
   flake.homeManagerModules.ntfyd = { secrets, ... }: {
-    imports = with self; [
+    imports = with self.homeManagerModules; [
       ntfyd-options
     ];
 
     services.ntfyd = {
       enable = true;
       server = "ntfy.${secrets.domain.general}";
+      token = secrets.ntfy.token;
+      topics = [
+        "hosts"
+        "gatus"
+      ];
     };
   };
 }

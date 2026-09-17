@@ -21,7 +21,7 @@ in
       remote-unlocking-dhcp
       impermanence-grub
       nginx
-      ntfy-sh
+      ntfy
       atuin
       miniflux
     ];
