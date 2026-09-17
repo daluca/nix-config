@@ -11,6 +11,12 @@
       programs.nixfmt.enable = true;
       programs.just.enable = true;
       programs.shellcheck.enable = true;
+      programs.toml-sort.enable = true;
+      settings.formatter.toml-sort = {
+        excludes = [
+          "*/secrets.toml"
+        ];
+      };
     };
   };
 }

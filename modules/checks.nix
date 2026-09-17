@@ -50,26 +50,6 @@
               require_serial = true;
               verbose = true;
             };
-            toml-sort = {
-              enable = true;
-              description = "toml-sort hook";
-              package = pkgs.writeShellScriptBin "toml-sort" /* bash */ ''
-                set -euo pipefail
-
-                VALID_FILES=()
-
-                for toml in "$@"; do
-                  [[ "$( ${lib.getExe pkgs.file} "''${toml}" )" =~ ASCII ]] && VALID_FILES+=( "''${toml}" )
-                done
-
-                ${lib.getExe pkgs.toml-sort} --trailing-comma-inline-array --in-place --all "''${VALID_FILES[@]}"
-              '';
-              entry = lib.getExe toml-sort.package;
-              types = [ "toml" ];
-              excludes = [
-                "Cargo.lock"
-              ];
-            };
           };
         };
       }
