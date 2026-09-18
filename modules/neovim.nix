@@ -36,6 +36,7 @@
 
       home.persistence.home.directories = [
         ".local/share/nvim"
+        ".local/state/nvim"
       ];
     };
 
