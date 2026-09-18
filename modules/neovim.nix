@@ -1,4 +1,4 @@
-{ withSystem, ... }:
+{ self, withSystem, ... }:
 
 {
   flake.overlays.neovim =
@@ -17,6 +17,10 @@
       ...
     }:
     {
+      imports = with self.homeManagerModules; [
+        neovide
+      ];
+
       home.packages = with pkgs; [
         (neovim.extend {
           config = {
@@ -68,6 +72,10 @@
             ];
           };
       };
+    };
+
+    home.shellAliases = {
+      nv = "neovide";
     };
 
     xdg.mimeApps.defaultApplicationPackages = with config; [
