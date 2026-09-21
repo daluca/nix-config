@@ -17,7 +17,6 @@ pre-commit:
 # run all linting, formatting and build checks
 [group("checks")]
 check: format pre-commit build
-    @echo "All checks completed"
 
 # update all flake inputs
 [group("flake")]
