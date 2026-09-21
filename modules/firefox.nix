@@ -1,7 +1,5 @@
 { inputs, withSystem, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in
+
 {
   perSystem =
     { inputs', lib, ... }:
@@ -48,6 +46,7 @@ in
       lib,
       pkgs,
       osConfig,
+      secrets,
       ...
     }:
     let

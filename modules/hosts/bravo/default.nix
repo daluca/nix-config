@@ -1,90 +1,100 @@
 { self, inputs, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
-in
+
 {
-  flake.nixosConfigurations.bravo = inputs.nixos-raspberrypi.lib.nixosSystem {
-    system = "aarch64-linux";
-    modules = with self.nixosModules; [
-      hosts-bravo
-    ];
-  };
+  flake.nixosConfigurations.bravo =
+    let
+      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+    in
+    inputs.nixos-raspberrypi.lib.nixosSystem {
+      system = "aarch64-linux";
+      specialArgs = { inherit secrets; };
+      modules = with self.nixosModules; [
+        hosts-bravo
+      ];
+    };
 
-  flake.nixosModules.hosts-bravo = { config, pkgs, ... }: {
-    imports = with self.nixosModules; [
-      hosts-bravo-disko
+  flake.nixosModules.hosts-bravo =
+    {
+      config,
+      pkgs,
+      secrets,
+      ...
+    }:
+    {
+      imports = with self.nixosModules; [
+        hosts-bravo-disko
 
-      hetzner-cloud-arm
+        hetzner-cloud-arm
 
-      users-remotebuild
+        users-remotebuild
 
-      remote-unlocking-dhcp
-      impermanence-grub
-      nginx
-      ntfy
-      atuin
-      miniflux
-    ];
+        remote-unlocking-dhcp
+        impermanence-grub
+        nginx
+        ntfy
+        atuin
+        miniflux
+      ];
 
-    sops.defaultSopsFile = ./bravo.sops.yaml;
+      sops.defaultSopsFile = ./bravo.sops.yaml;
 
-    environment.etc."ssh/ssh_initrd_ed25519_key.pub".source = ./keys/ssh_initrd_ed25519_key.pub;
+      environment.etc."ssh/ssh_initrd_ed25519_key.pub".source = ./keys/ssh_initrd_ed25519_key.pub;
 
-    environment.etc."ssh/ssh_initrd_rsa_key.pub".source = ./keys/ssh_initrd_rsa_key.pub;
+      environment.etc."ssh/ssh_initrd_rsa_key.pub".source = ./keys/ssh_initrd_rsa_key.pub;
 
-    deploy.tags = [
-      "germany"
-    ];
+      deploy.tags = [
+        "germany"
+      ];
 
-    deploy.ipv4-address = secrets.hosts.bravo.ipv4-address;
+      deploy.ipv4-address = secrets.hosts.bravo.ipv4-address;
 
-    services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
+      services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
 
-    security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
+      security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
 
-    services.nginx.virtualHosts =
-      let
-        cert = config.security.acme.certs.${secrets.domain.general};
-        sslCertificate = "${cert.directory}/fullchain.pem";
-        sslCertificateKey = "${cert.directory}/key.pem";
-        sslTrustedCertificate = "${cert.directory}/chain.pem";
-        tls = {
-          inherit sslCertificate sslCertificateKey sslTrustedCertificate;
-          forceSSL = true;
-        };
-      in
-      with config.services;
-      {
-        "ntfy.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://${ntfy-sh.settings.listen-http}/";
-            proxyWebsockets = true;
+      services.nginx.virtualHosts =
+        let
+          cert = config.security.acme.certs.${secrets.domain.general};
+          sslCertificate = "${cert.directory}/fullchain.pem";
+          sslCertificateKey = "${cert.directory}/key.pem";
+          sslTrustedCertificate = "${cert.directory}/chain.pem";
+          tls = {
+            inherit sslCertificate sslCertificateKey sslTrustedCertificate;
+            forceSSL = true;
+          };
+        in
+        with config.services;
+        {
+          "ntfy.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              proxyPass = "http://${ntfy-sh.settings.listen-http}/";
+              proxyWebsockets = true;
+            };
+          };
+          "atuin.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:${toString atuin.port}/";
+            };
+          };
+          "miniflux.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              proxyPass = "http://${miniflux.config.LISTEN_ADDR}/";
+            };
+          };
+          "nextflux.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              root = "${pkgs.nextflux}/share/html";
+              tryFiles = "$uri $uri/ index.html =403";
+            };
           };
         };
-        "atuin.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:${toString atuin.port}/";
-          };
-        };
-        "miniflux.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://${miniflux.config.LISTEN_ADDR}/";
-          };
-        };
-        "nextflux.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            root = "${pkgs.nextflux}/share/html";
-            tryFiles = "$uri $uri/ index.html =403";
-          };
-        };
-      };
 
-    networking.hostName = "bravo";
+      networking.hostName = "bravo";
 
-    system.stateVersion = "26.05";
-  };
+      system.stateVersion = "26.05";
+    };
 
-  flake.nixosModules.hosts-bravo-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.hosts-bravo-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       bravo = {
         extraHostNames = [

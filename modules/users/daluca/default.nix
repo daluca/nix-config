@@ -1,51 +1,56 @@
 { self, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
-in
+
 {
-  flake.nixosModules.users-daluca = { config, lib, ... }: {
-    users.users.daluca = {
-      isNormalUser = true;
-      description = "Lucas Slebos";
-      hashedPasswordFile = config.sops.secrets."daluca/password".path;
-      extraGroups = [ "wheel" ];
-      openssh.authorizedKeys.keyFiles = [
-        ./keys/id_ed25519.pub
+  flake.nixosModules.users-daluca =
+    {
+      config,
+      lib,
+      secrets,
+      ...
+    }:
+    {
+      users.users.daluca = {
+        isNormalUser = true;
+        description = "Lucas Slebos";
+        hashedPasswordFile = config.sops.secrets."daluca/password".path;
+        extraGroups = [ "wheel" ];
+        openssh.authorizedKeys.keyFiles = [
+          ./keys/id_ed25519.pub
+        ];
+      };
+
+      virtualisation.vmVariant = {
+        users.users.daluca = {
+          initialPassword = "hello";
+          hashedPasswordFile = lib.mkVMOverride null;
+        };
+
+        home-manager.users.daluca = {
+          programs.atuin.settings.key_path = lib.mkVMOverride "${config.home-manager.users.daluca.xdg.configHome}/atuin/key";
+        };
+      };
+
+      sops.secrets."daluca/password" = {
+        neededForUsers = true;
+        sopsFile = ./daluca.sops.yaml;
+        key = "password";
+      };
+
+      services.adguardhome.settings.users = [
+        {
+          name = "daluca";
+          password = secrets.adguardhome.password;
+        }
+      ];
+
+      services.openssh.settings.AllowUsers = [
+        "daluca"
+      ];
+
+      home-manager.users.daluca.imports = with self.homeManagerModules; [
+        users-daluca
       ];
     };
-
-    virtualisation.vmVariant = {
-      users.users.daluca = {
-        initialPassword = "hello";
-        hashedPasswordFile = lib.mkVMOverride null;
-      };
-
-      home-manager.users.daluca = {
-        programs.atuin.settings.key_path = lib.mkVMOverride "${config.home-manager.users.daluca.xdg.configHome}/atuin/key";
-      };
-    };
-
-    sops.secrets."daluca/password" = {
-      neededForUsers = true;
-      sopsFile = ./daluca.sops.yaml;
-      key = "password";
-    };
-
-    services.adguardhome.settings.users = [
-      {
-        name = "daluca";
-        password = secrets.adguardhome.password;
-      }
-    ];
-
-    services.openssh.settings.AllowUsers = [
-      "daluca"
-    ];
-
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
-      users-daluca
-    ];
-  };
 
   flake.homeManagerModules.users-daluca = { config, lib, ... }: {
     imports = with self.homeManagerModules; [

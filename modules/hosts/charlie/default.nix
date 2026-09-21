@@ -1,16 +1,19 @@
 { self, inputs, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
-in
-{
-  flake.nixosConfigurations.charlie = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = with self.nixosModules; [
-      hosts-charlie
-    ];
-  };
 
-  flake.nixosModules.hosts-charlie = { config, ... }: {
+{
+  flake.nixosConfigurations.charlie =
+    let
+      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+    in
+    inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit secrets; };
+      modules = with self.nixosModules; [
+        hosts-charlie
+      ];
+    };
+
+  flake.nixosModules.hosts-charlie = { config, secrets, ... }: {
     imports = with self.nixosModules; [
       hosts-charlie-disko
 
@@ -96,7 +99,7 @@ in
     system.stateVersion = "26.05";
   };
 
-  flake.nixosModules.hosts-charlie-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.hosts-charlie-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       charlie = {
         extraHostNames = [

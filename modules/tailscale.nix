@@ -1,13 +1,12 @@
 { self, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in
+
 {
   flake.nixosModules.tailscale =
     {
       config,
       lib,
       pkgs,
+      secrets,
       ...
     }:
     {

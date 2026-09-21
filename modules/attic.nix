@@ -1,7 +1,5 @@
 { self, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in
+
 {
   flake.nixosModules.atticd =
     {
@@ -101,7 +99,7 @@ in
       };
     };
 
-  flake.nixosModules.attic = { config, ... }: {
+  flake.nixosModules.attic = { config, secrets, ... }: {
     imports = with self.nixosModules; [
       attic-watch-store
     ];

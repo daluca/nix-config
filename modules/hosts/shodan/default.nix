@@ -1,151 +1,161 @@
 { self, inputs, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
-in
+
 {
-  flake.nixosConfigurations.shodan = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = with self.nixosModules; [
-      hosts-shodan
-    ];
-  };
+  flake.nixosConfigurations.shodan =
+    let
+      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+    in
+    inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit secrets; };
+      modules = with self.nixosModules; [
+        hosts-shodan
+      ];
+    };
 
-  flake.nixosModules.hosts-shodan = { config, lib, ... }: {
-    imports = with self.nixosModules; [
-      hosts-shodan-disko
+  flake.nixosModules.hosts-shodan =
+    {
+      config,
+      lib,
+      secrets,
+      ...
+    }:
+    {
+      imports = with self.nixosModules; [
+        hosts-shodan-disko
 
-      hetzner-online-intel
+        hetzner-online-intel
 
-      users-starr
+        users-starr
 
-      nginx
-      tailscale-server
-      impermanence-grub
-      remote-unlocking
-      grub
+        nginx
+        tailscale-server
+        impermanence-grub
+        remote-unlocking
+        grub
 
-      jellyfin
-      seerr
-      sonarr
-      radarr
-      prowlarr
-      configarr
-      sabnzbd
-      qbittorrent
-    ];
+        jellyfin
+        seerr
+        sonarr
+        radarr
+        prowlarr
+        configarr
+        sabnzbd
+        qbittorrent
+      ];
 
-    sops.defaultSopsFile = ./shodan.sops.yaml;
+      sops.defaultSopsFile = ./shodan.sops.yaml;
 
-    environment.etc."ssh/ssh_initrd_ed25519_key.pub".source = ./keys/ssh_initrd_ed25519_key.pub;
+      environment.etc."ssh/ssh_initrd_ed25519_key.pub".source = ./keys/ssh_initrd_ed25519_key.pub;
 
-    environment.etc."ssh/ssh_initrd_rsa_key.pub".source = ./keys/ssh_initrd_rsa_key.pub;
+      environment.etc."ssh/ssh_initrd_rsa_key.pub".source = ./keys/ssh_initrd_rsa_key.pub;
 
-    deploy.tags = [
-      "germany"
-    ];
+      deploy.tags = [
+        "germany"
+      ];
 
-    deploy.ipv4-address = secrets.hosts.shodan.tailscale-address;
+      deploy.ipv4-address = secrets.hosts.shodan.tailscale-address;
 
-    boot.loader.grub.default = lib.mkForce "0";
+      boot.loader.grub.default = lib.mkForce "0";
 
-    hardware.graphics.enable = true;
+      hardware.graphics.enable = true;
 
-    services.sabnzbd.settings.misc.host_whitelist =
-      "sabnzbd.${secrets.domain.general},localhost,127.0.0.1,${secrets.hosts.shodan.tailscale-address}";
+      services.sabnzbd.settings.misc.host_whitelist =
+        "sabnzbd.${secrets.domain.general},localhost,127.0.0.1,${secrets.hosts.shodan.tailscale-address}";
 
-    security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
+      security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
 
-    services.nginx.virtualHosts =
-      let
-        cert = config.security.acme.certs.${secrets.domain.general};
-        sslCertificate = "${cert.directory}/fullchain.pem";
-        sslCertificateKey = "${cert.directory}/key.pem";
-        sslTrustedCertificate = "${cert.directory}/chain.pem";
-        tls = {
-          inherit sslCertificate sslCertificateKey sslTrustedCertificate;
-          forceSSL = true;
-        };
-      in
-      with config.services;
-      {
-        "jellyfin.${secrets.domain.general}" = tls // {
-          extraConfig = /* nginx */ ''
-            client_max_body_size 20M;
-            add_header X-Content-Type-Options "nosniff";
-            add_header Permissions-Policy "accelerometer=(), ambient-light-sensor=(), battery=(), bluetooth=(), camera=(), clipboard-read=(), display-capture=(), document-domain=(), encrypted-media=(), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), interest-cohort=(), keyboard-map=(), local-fonts=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), serial=(), sync-xhr=(), usb=(), xr-spatial-tracking=()" always;
-            add_header Content-Security-Policy "default-src https: data: blob: ; img-src 'self' https://* ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.youtube.com blob:; worker-src 'self' blob:; connect-src 'self'; object-src 'none'; frame-ancestors 'self'; font-src 'self'";
-          '';
-          locations =
-            let
-              jellyfin = "http://127.0.0.1:8096";
-            in
-            {
-              "/" = {
-                proxyPass = jellyfin;
-                extraConfig = /* nginx */ ''
-                  proxy_buffering off;
-                '';
+      services.nginx.virtualHosts =
+        let
+          cert = config.security.acme.certs.${secrets.domain.general};
+          sslCertificate = "${cert.directory}/fullchain.pem";
+          sslCertificateKey = "${cert.directory}/key.pem";
+          sslTrustedCertificate = "${cert.directory}/chain.pem";
+          tls = {
+            inherit sslCertificate sslCertificateKey sslTrustedCertificate;
+            forceSSL = true;
+          };
+        in
+        with config.services;
+        {
+          "jellyfin.${secrets.domain.general}" = tls // {
+            extraConfig = /* nginx */ ''
+              client_max_body_size 20M;
+              add_header X-Content-Type-Options "nosniff";
+              add_header Permissions-Policy "accelerometer=(), ambient-light-sensor=(), battery=(), bluetooth=(), camera=(), clipboard-read=(), display-capture=(), document-domain=(), encrypted-media=(), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), interest-cohort=(), keyboard-map=(), local-fonts=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), serial=(), sync-xhr=(), usb=(), xr-spatial-tracking=()" always;
+              add_header Content-Security-Policy "default-src https: data: blob: ; img-src 'self' https://* ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.youtube.com blob:; worker-src 'self' blob:; connect-src 'self'; object-src 'none'; frame-ancestors 'self'; font-src 'self'";
+            '';
+            locations =
+              let
+                jellyfin = "http://127.0.0.1:8096";
+              in
+              {
+                "/" = {
+                  proxyPass = jellyfin;
+                  extraConfig = /* nginx */ ''
+                    proxy_buffering off;
+                  '';
+                };
+                "/socket" = {
+                  proxyPass = jellyfin;
+                  proxyWebsockets = true;
+                };
               };
-              "/socket" = {
-                proxyPass = jellyfin;
-                proxyWebsockets = true;
-              };
+          };
+
+          "request.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:5055";
             };
-        };
+          };
 
-        "request.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:5055";
+          "requests.${secrets.domain.general}" = tls // {
+            locations."/".return = ''
+              301 $scheme://request.${secrets.domain.general}$request_uri
+            '';
+          };
+
+          "sonarr.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:${toString sonarr.settings.server.port}";
+            };
+          };
+
+          "radarr.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:${toString radarr.settings.server.port}";
+            };
+          };
+
+          "prowlarr.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:${toString prowlarr.settings.server.port}";
+            };
+          };
+
+          "sabnzbd.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:${toString sabnzbd.settings.misc.port}";
+            };
+          };
+
+          "qbittorrent.${secrets.domain.general}" = tls // {
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:${toString qbittorrent.webuiPort}";
+            };
           };
         };
 
-        "requests.${secrets.domain.general}" = tls // {
-          locations."/".return = ''
-            301 $scheme://request.${secrets.domain.general}$request_uri
-          '';
-        };
+      networking.hostName = "shodan";
 
-        "sonarr.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:${toString sonarr.settings.server.port}";
-          };
-        };
+      systemd.network.networks."10-uplink".networkConfig.Address = secrets.hosts.shodan.ipv6-address;
 
-        "radarr.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:${toString radarr.settings.server.port}";
-          };
-        };
+      host.network.interface = "enp0s31f6";
 
-        "prowlarr.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:${toString prowlarr.settings.server.port}";
-          };
-        };
+      system.stateVersion = "26.05";
+    };
 
-        "sabnzbd.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:${toString sabnzbd.settings.misc.port}";
-          };
-        };
-
-        "qbittorrent.${secrets.domain.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:${toString qbittorrent.webuiPort}";
-          };
-        };
-      };
-
-    networking.hostName = "shodan";
-
-    systemd.network.networks."10-uplink".networkConfig.Address = secrets.hosts.shodan.ipv6-address;
-
-    host.network.interface = "enp0s31f6";
-
-    system.stateVersion = "26.05";
-  };
-
-  flake.nixosModules.hosts-shodan-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.hosts-shodan-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       shodan = {
         extraHostNames = with secrets.hosts.shodan; [

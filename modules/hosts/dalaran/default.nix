@@ -1,16 +1,19 @@
 { self, inputs, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
-in
-{
-  flake.nixosConfigurations.dalaran = inputs.nixos-raspberrypi.lib.nixosSystem {
-    system = "aarch64-linux";
-    modules = with self.nixosModules; [
-      hosts-dalaran
-    ];
-  };
 
-  flake.nixosModules.hosts-dalaran = { config, ... }: {
+{
+  flake.nixosConfigurations.dalaran =
+    let
+      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+    in
+    inputs.nixos-raspberrypi.lib.nixosSystem {
+      system = "aarch64-linux";
+      specialArgs = { inherit secrets; };
+      modules = with self.nixosModules; [
+        hosts-dalaran
+      ];
+    };
+
+  flake.nixosModules.hosts-dalaran = { config, secrets, ... }: {
     imports = with self.nixosModules; [
       hosts-dalaran-disko
 

@@ -1,12 +1,17 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosConfigurations.stormwind = inputs.nixpkgs.lib.nixosSystem {
-    system = "aarch64-linux";
-    modules = with self.nixosModules; [
-      hosts-stormwind
-    ];
-  };
+  flake.nixosConfigurations.stormwind =
+    let
+      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+    in
+    inputs.nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      specialArgs = { inherit secrets; };
+      modules = with self.nixosModules; [
+        hosts-stormwind
+      ];
+    };
 
   flake.nixosModules.hosts-stormwind = {
     imports = with self.nixosModules; [

@@ -1,8 +1,5 @@
-let
-  secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in
 {
-  flake.nixosModules.pocket-id = { config, ... }: {
+  flake.nixosModules.pocket-id = { config, secrets, ... }: {
     services.pocket-id = {
       enable = true;
       settings = {

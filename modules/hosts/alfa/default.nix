@@ -1,18 +1,21 @@
 { self, inputs, ... }:
-let
-  secrets =
-    fromTOML (builtins.readFile ../../../secrets/secrets.toml)
-    // fromTOML (builtins.readFile ./secrets.toml);
-in
-{
-  flake.nixosConfigurations.alfa = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = with self.nixosModules; [
-      hosts-alfa
-    ];
-  };
 
-  flake.nixosModules.hosts-alfa = {
+{
+  flake.nixosConfigurations.alfa =
+    let
+      secrets =
+        fromTOML (builtins.readFile ../../../secrets/secrets.toml)
+        // fromTOML (builtins.readFile ./secrets.toml);
+    in
+    inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit secrets; };
+      modules = with self.nixosModules; [
+        hosts-alfa
+      ];
+    };
+
+  flake.nixosModules.hosts-alfa = { secrets, ... }: {
     imports = with self.nixosModules; [
       hosts-alfa-disko
 
@@ -65,7 +68,7 @@ in
     system.stateVersion = "26.05";
   };
 
-  flake.nixosModules.hosts-alfa-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.hosts-alfa-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       alfa = {
         extraHostNames = [

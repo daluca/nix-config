@@ -1,7 +1,5 @@
 { self, inputs, ... }:
 let
-  # NOTE: Remove once a better way to pass git-agecrypt secrets is found
-  secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
   GiB = 1024 * 1024 * 1024;
 in
 {
@@ -10,6 +8,7 @@ in
       config,
       lib,
       pkgs,
+      secrets,
       ...
     }:
     {

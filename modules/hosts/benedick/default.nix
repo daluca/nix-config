@@ -1,12 +1,17 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosConfigurations.benedick = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = with self.nixosModules; [
-      hosts-benedick
-    ];
-  };
+  flake.nixosConfigurations.benedick =
+    let
+      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+    in
+    inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit secrets; };
+      modules = with self.nixosModules; [
+        hosts-benedick
+      ];
+    };
 
   flake.nixosModules.hosts-benedick = { lib, ... }: {
     imports =

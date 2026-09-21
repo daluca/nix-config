@@ -1,9 +1,6 @@
-let
-  secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in
 {
   flake.homeManagerModules.accounts =
-    { config, ... }:
+    { config, secrets, ... }:
     let
       inherit (secrets.email) proton hotmail gmail;
       realName = "Lucas Slebos";

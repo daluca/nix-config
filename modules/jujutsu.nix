@@ -1,13 +1,12 @@
 { self, ... }:
-let
-  secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in
+
 {
   flake.homeManagerModules.jujutsu =
     {
       config,
       lib,
       pkgs,
+      secrets,
       ...
     }:
     {

@@ -1,46 +1,50 @@
-let
-  secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
-in
 {
-  flake.homeManagerModules.git = { lib, pkgs, ... }: {
-    programs.git = {
-      enable = true;
-      settings = {
-        user.name = "Lucas Slebos";
-        user.email = secrets.user.email;
-        core.compression = 9;
-        init.defaultBranch = "main";
-        push.autoSetupRemote = true;
-        pull.rebase = true;
-        rebase.autoStash = true;
-        status.showStash = true;
-        status.showUntrackedFiles = "all";
-        rerere.enabled = true;
-        url."git@github.com".insteadof = "github";
-        url."git@gitlab.com".insteadof = "gitlab";
-        url."ssh://git@codeberg.org".insteadof = "codeberg";
-        diff."sopsdiffer".textconv = "${lib.getExe pkgs.sops} decrypt";
-        diff."git-agecrypt".textconv = "${lib.getExe pkgs.git-agecrypt} textconv";
-        filter."git-agecrypt" = {
-          required = true;
-          smudge = "${lib.getExe pkgs.git-agecrypt} smudge -f %f";
-          clean = "${lib.getExe pkgs.git-agecrypt} clean -f %f";
+  flake.homeManagerModules.git =
+    {
+      lib,
+      pkgs,
+      secrets,
+      ...
+    }:
+    {
+      programs.git = {
+        enable = true;
+        settings = {
+          user.name = "Lucas Slebos";
+          user.email = secrets.user.email;
+          core.compression = 9;
+          init.defaultBranch = "main";
+          push.autoSetupRemote = true;
+          pull.rebase = true;
+          rebase.autoStash = true;
+          status.showStash = true;
+          status.showUntrackedFiles = "all";
+          rerere.enabled = true;
+          url."git@github.com".insteadof = "github";
+          url."git@gitlab.com".insteadof = "gitlab";
+          url."ssh://git@codeberg.org".insteadof = "codeberg";
+          diff."sopsdiffer".textconv = "${lib.getExe pkgs.sops} decrypt";
+          diff."git-agecrypt".textconv = "${lib.getExe pkgs.git-agecrypt} textconv";
+          filter."git-agecrypt" = {
+            required = true;
+            smudge = "${lib.getExe pkgs.git-agecrypt} smudge -f %f";
+            clean = "${lib.getExe pkgs.git-agecrypt} clean -f %f";
+          };
         };
+        signing = {
+          signByDefault = true;
+          format = "openpgp";
+          key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
+        };
+        ignores = [
+          "/.vscode/"
+        ];
       };
-      signing = {
-        signByDefault = true;
-        format = "openpgp";
-        key = "C4C6EC5DC2F369D7CCF8EE1D7626A2AB23757525";
-      };
-      ignores = [
-        "/.vscode/"
+
+      programs.yazi.plugins = { inherit (pkgs.yaziPlugins) git; };
+
+      programs.zsh.oh-my-zsh.plugins = [
+        "git"
       ];
     };
-
-    programs.yazi.plugins = { inherit (pkgs.yaziPlugins) git; };
-
-    programs.zsh.oh-my-zsh.plugins = [
-      "git"
-    ];
-  };
 }
