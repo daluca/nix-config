@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  flake.nixosModules.home-manager = { secrets, ... }: {
+  flake.nixosModules.home-manager = {
     imports = with inputs; [
       home-manager.nixosModules.home-manager
     ];
@@ -9,7 +9,7 @@
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
-      extraSpecialArgs = { inherit inputs secrets; };
+      extraSpecialArgs = { inherit inputs; };
     };
   };
 }

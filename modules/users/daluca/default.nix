@@ -47,9 +47,13 @@
         "daluca"
       ];
 
-      home-manager.users.daluca.imports = with self.homeManagerModules; [
-        users-daluca
-      ];
+      home-manager.users.daluca = {
+        imports = with self.homeManagerModules; [
+          users-daluca
+        ];
+
+        _module.args.secrets = secrets // fromTOML (builtins.readFile ./secrets.toml);
+      };
     };
 
   flake.homeManagerModules.users-daluca = { config, lib, ... }: {
