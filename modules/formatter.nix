@@ -14,6 +14,11 @@
       programs.toml-sort.enable = true;
       programs.yamllint.enable = true;
       programs.yamlfmt.enable = true;
+      settings.formatter.toml-sort = {
+        includes = [
+          ".typos.toml"
+        ];
+      };
       settings.excludes = [
         "*/secrets.toml"
       ];
