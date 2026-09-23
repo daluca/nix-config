@@ -1,27 +1,27 @@
 [config]
-"hosts/guiltyspark/secrets.toml" = [
-  "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
-  "age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm"
-]
 "modules/hosts/alfa/secrets.toml" = [
-  "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
-  "age19fzpnfhta58lm5wduycq6j6th3x2r8d0zv9fqejh06zcllp00e8qlvlfzr"
-]
-"modules/users/daluca/secrets.toml" = [
-  "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
-  "age1t7uj9cz0dwrm555qred7n49t5c2shtuuwwsc6ryd3fewunx7x32s7rlkt0"
+    "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
+    "age19fzpnfhta58lm5wduycq6j6th3x2r8d0zv9fqejh06zcllp00e8qlvlfzr",
 ]
 "secrets/secrets.toml" = [
-  "age102lual882fvygyw47twjzl65uey33u2ps8ulcrr8g258vaafwvpqsj6hyy",
-  "age1227fcdly05etp3g8qea8wcamn2ct2at5l86qznuz92gz6fp95e2sjkw7q4",
-  "age16g33d2sppsukw7tekmh2d3ppf22sscwfmm0anppcrdtj9h5p7eqqrw9zg0",
-  "age173lrwtphyuvfjhkjvw4xe5fy4lt2x97qcjr2eqjt46eq6q664egqfsp4v3",
-  "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
-  "age182zncdt5xn9m2yjrxf0mfa5l26y0fhddzcfwvyg49t02dsmzeucsupagxs",
-  "age1d60rtn66jj8mkx4quvwjn66mrqja83ux2flknqlreh09p06rkvpqnj7ygw",
-  "age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm",
-  "age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2",
-  "age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt",
-  "age1t7uj9cz0dwrm555qred7n49t5c2shtuuwwsc6ryd3fewunx7x32s7rlkt0",
-  "age1tvw6h8psq3fz06us4ykyg0ufvh5rxv2mazlug2d32ay82lqetucszlmehu"
+    "age102lual882fvygyw47twjzl65uey33u2ps8ulcrr8g258vaafwvpqsj6hyy",
+    "age1227fcdly05etp3g8qea8wcamn2ct2at5l86qznuz92gz6fp95e2sjkw7q4",
+    "age16g33d2sppsukw7tekmh2d3ppf22sscwfmm0anppcrdtj9h5p7eqqrw9zg0",
+    "age173lrwtphyuvfjhkjvw4xe5fy4lt2x97qcjr2eqjt46eq6q664egqfsp4v3",
+    "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
+    "age182zncdt5xn9m2yjrxf0mfa5l26y0fhddzcfwvyg49t02dsmzeucsupagxs",
+    "age1d60rtn66jj8mkx4quvwjn66mrqja83ux2flknqlreh09p06rkvpqnj7ygw",
+    "age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm",
+    "age1hvks9zyat7fq5cec7dys0jc400qwq3avqv58es2fptpcd7npsyuq3kv3s2",
+    "age1jthfmze0n88am6pc2tg9kkv99qqrwq0dqzgrnxt484qt3pnt9ess2en2gt",
+    "age1t7uj9cz0dwrm555qred7n49t5c2shtuuwwsc6ryd3fewunx7x32s7rlkt0",
+    "age1tvw6h8psq3fz06us4ykyg0ufvh5rxv2mazlug2d32ay82lqetucszlmehu",
+]
+"modules/users/daluca/secrets.toml" = [
+    "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
+    "age1t7uj9cz0dwrm555qred7n49t5c2shtuuwwsc6ryd3fewunx7x32s7rlkt0",
+]
+"modules/hosts/guiltyspark/secrets.toml" = [
+    "age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm",
+    "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
 ]
