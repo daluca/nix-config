@@ -1,8 +1,8 @@
 { self, inputs, ... }:
 
 {
-  flake.homeManagerModules.vscodium = { lib, pkgs, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.vscodium = { lib, pkgs, ... }: {
+    imports = with self.homeModules; [
       vscodiumExtensions
     ];
 
@@ -105,8 +105,8 @@
     );
   };
 
-  flake.homeManagerModules.vscodiumExtensions = {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.vscodiumExtensions = {
+    imports = with self.homeModules; [
       vscodiumExtensions-bash
       vscodiumExtensions-editorconfig
       vscodiumExtensions-materialIconTheme
@@ -127,7 +127,7 @@
     ];
   };
 
-  flake.homeManagerModules.vscodiumExtensions-bash = { lib, pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-bash = { lib, pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         mads-hartmann.bash-ide-vscode
@@ -139,7 +139,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-jujutsu =
+  flake.homeModules.vscodiumExtensions-jujutsu =
     {
       config,
       lib,
@@ -161,7 +161,7 @@
       };
     };
 
-  flake.homeManagerModules.vscodiumExtensions-just = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-just = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         skellock.just
@@ -174,7 +174,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-typos = { lib, pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-typos = { lib, pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         tekumara.typos-vscode
@@ -185,7 +185,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-pets = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-pets = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         tonybaloney.vscode-pets
@@ -196,7 +196,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-vim = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-vim = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         vscodevim.vim
@@ -204,7 +204,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-materialIconTheme = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-materialIconTheme = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         pkief.material-icon-theme
@@ -215,7 +215,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-editorconfig = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-editorconfig = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         editorconfig.editorconfig
@@ -223,7 +223,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-direnv = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-direnv = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         mkhl.direnv
@@ -231,7 +231,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-pdf = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-pdf = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         tomoki1207.pdf
@@ -239,7 +239,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-opentofu = { lib, pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-opentofu = { lib, pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         opentofu.vscode-opentofu
@@ -250,7 +250,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-nixIde = { lib, pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-nixIde = { lib, pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         jnoortheen.nix-ide
@@ -269,7 +269,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-evenBetterToml = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-evenBetterToml = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         tamasfe.even-better-toml
@@ -277,7 +277,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-rustAnalyzer = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-rustAnalyzer = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         rust-lang.rust-analyzer
@@ -285,7 +285,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-jsonnet = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-jsonnet = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         grafana.vscode-jsonnet
@@ -293,7 +293,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-helm = { lib, pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-helm = { lib, pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         helm-ls.helm-ls
@@ -307,7 +307,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-todoHighlight = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-todoHighlight = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         wayou.vscode-todo-highlight
@@ -315,7 +315,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-tinymist = { lib, pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-tinymist = { lib, pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         myriad-dreamin.tinymist
@@ -327,7 +327,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-ansible = { lib, pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-ansible = { lib, pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions =
         with pkgs;
@@ -358,7 +358,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-ipxe = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-ipxe = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.open-vsx; [
         kipjr.vscode-language-ipxe
@@ -366,7 +366,7 @@
     };
   };
 
-  flake.homeManagerModules.vscodiumExtensions-tera = { pkgs, ... }: {
+  flake.homeModules.vscodiumExtensions-tera = { pkgs, ... }: {
     programs.vscodium.profiles.default = {
       extensions = with pkgs.vscode-marketplace; [
         uncenter.better-tera

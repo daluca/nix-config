@@ -1,8 +1,8 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.direnv = { config, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.direnv = { config, ... }: {
+    imports = with self.homeModules; [
       vscodiumExtensions-direnv
     ];
 

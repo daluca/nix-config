@@ -37,12 +37,12 @@
        RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
     '';
 
-    home-manager.users.daluca.imports = with inputs.self.homeManagerModules; [
+    home-manager.users.daluca.imports = with inputs.self.homeModules; [
       yubikey
     ];
   };
 
-  flake.homeManagerModules.yubikey = { config, lib, ... }: {
+  flake.homeModules.yubikey = { config, lib, ... }: {
     xdg.configFile."Yubico/u2f_keys".text =
       with config.home;
       lib.concatStringsSep ":" [

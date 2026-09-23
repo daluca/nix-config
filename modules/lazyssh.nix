@@ -14,7 +14,7 @@
     };
   };
 
-  flake.homeManagerModules.lazyssh = { pkgs, ... }: {
+  flake.homeModules.lazyssh = { pkgs, ... }: {
     home.packages = with pkgs; [
       lazyssh
     ];

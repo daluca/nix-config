@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.games-cyberpunk2077 = {
+  flake.homeModules.games-cyberpunk2077 = {
     programs.mangohud = {
       settingsPerApplication = {
         wine-Cyberpunk2077 = {

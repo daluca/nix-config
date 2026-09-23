@@ -60,7 +60,7 @@
       }
     );
 
-  flake.homeManagerModules.terraform = { pkgs, ... }: {
+  flake.homeModules.terraform = { pkgs, ... }: {
     home.packages = with pkgs; [
       terraform
     ];

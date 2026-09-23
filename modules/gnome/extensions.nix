@@ -1,8 +1,8 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.gnome-extensions = { lib, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.gnome-extensions = { lib, ... }: {
+    imports = with self.homeModules; [
       gnome-extensions-appindicator
       gnome-extensions-caffeine
       gnome-extensions-inPicture
@@ -16,14 +16,14 @@
     };
   };
 
-  flake.homeManagerModules.gnome-extensions-appindicator = { pkgs, ... }: with pkgs.gnomeExtensions;
+  flake.homeModules.gnome-extensions-appindicator = { pkgs, ... }: with pkgs.gnomeExtensions;
     {
       dconf.settings."org/gnome/shell" = {
         enabled-extensions = [ appindicator.extensionUuid ];
       };
     };
 
-  flake.homeManagerModules.gnome-extensions-autoCpufreqSwitcher =
+  flake.homeModules.gnome-extensions-autoCpufreqSwitcher =
     {
       pkgs,
       ...
@@ -39,7 +39,7 @@
       };
     };
 
-  flake.homeManagerModules.gnome-extensions-caffeine = { pkgs, ... }: with pkgs.gnomeExtensions;
+  flake.homeModules.gnome-extensions-caffeine = { pkgs, ... }: with pkgs.gnomeExtensions;
     {
       home.packages = [
         caffeine
@@ -50,7 +50,7 @@
       };
     };
 
-  flake.homeManagerModules.gnome-extensions-inPicture = { pkgs, ... }: with pkgs.gnomeExtensions;
+  flake.homeModules.gnome-extensions-inPicture = { pkgs, ... }: with pkgs.gnomeExtensions;
     {
       home.packages = [
         in-picture
@@ -81,7 +81,7 @@
       };
     };
 
-  flake.homeManagerModules.gnome-extensions-noOverview = { pkgs, ... }: with pkgs.gnomeExtensions;
+  flake.homeModules.gnome-extensions-noOverview = { pkgs, ... }: with pkgs.gnomeExtensions;
     {
       home.packages = [
         no-overview
@@ -92,7 +92,7 @@
       };
     };
 
-  flake.homeManagerModules.gnome-extensions-paperwm = { pkgs, lib, ... }: with pkgs.gnomeExtensions;
+  flake.homeModules.gnome-extensions-paperwm = { pkgs, lib, ... }: with pkgs.gnomeExtensions;
     {
       home.packages = [
         paperwm
@@ -118,7 +118,7 @@
       ];
     };
 
-  flake.homeManagerModules.gnome-extensions-tailscaleQs =
+  flake.homeModules.gnome-extensions-tailscaleQs =
     {
       pkgs,
       lib,

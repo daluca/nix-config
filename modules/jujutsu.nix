@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.jujutsu =
+  flake.homeModules.jujutsu =
     {
       config,
       lib,
@@ -10,7 +10,7 @@
       ...
     }:
     {
-      imports = with self.homeManagerModules; [
+      imports = with self.homeModules; [
         vscodiumExtensions-jujutsu
       ];
 

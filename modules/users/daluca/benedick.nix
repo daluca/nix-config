@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.users-daluca-benedick =
+  flake.homeModules.users-daluca-benedick =
     {
       config,
       lib,
@@ -9,7 +9,7 @@
       ...
     }:
     {
-      imports = with self.homeManagerModules; [
+      imports = with self.homeModules; [
         development
         faugusLauncher
         ghostty

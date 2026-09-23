@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.bat = { pkgs, ... }: {
+  flake.homeModules.bat = { pkgs, ... }: {
     programs.bat = {
       enable = true;
       package = pkgs.unstable.bat;

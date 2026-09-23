@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.zsh-transientPrompt = { config, lib, ... }: {
+  flake.homeModules.zsh-transientPrompt = { config, lib, ... }: {
     programs.zsh.initContent =
       lib.mkAfter # zsh
         /* bash */ ''

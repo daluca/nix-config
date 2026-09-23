@@ -46,12 +46,12 @@
 
     hardware.xpadneo.enable = true;
 
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
+    home-manager.users.daluca.imports = with self.homeModules; [
       steam
     ];
   };
 
-  flake.homeManagerModules.steam = { pkgs, ... }: {
+  flake.homeModules.steam = { pkgs, ... }: {
     xdg.dataFile = with pkgs; {
       "Steam/compatibilitytools.d/GE-Proton11".source = lib.getOutput "steamcompattool" GE-Proton11;
       "Steam/compatibilitytools.d/GE-Proton11-5".source = lib.getOutput "steamcompattool" GE-Proton11-5;

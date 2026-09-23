@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.delta = {
+  flake.homeModules.delta = {
     programs.delta = {
       enable = true;
       options = {

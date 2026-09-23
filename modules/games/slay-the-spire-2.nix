@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.games-slayTheSpire2 = {
+  flake.homeModules.games-slayTheSpire2 = {
     programs.mangohud.settingsPerApplication = {
       SlayTheSpire2 = {
         preset = 1;

@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.bitwarden = { pkgs, ... }: {
+  flake.homeModules.bitwarden = { pkgs, ... }: {
     home.packages = with pkgs; [
       bitwarden-desktop
       bitwarden-cli

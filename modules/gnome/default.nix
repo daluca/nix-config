@@ -27,13 +27,13 @@
 
     services.xserver.xkb.options = lib.mkForce "";
 
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
+    home-manager.users.daluca.imports = with self.homeModules; [
       gnome
       profile
     ];
   };
 
-  flake.homeManagerModules.gnome =
+  flake.homeModules.gnome =
     {
       config,
       lib,
@@ -181,7 +181,7 @@
       );
     in
     {
-      imports = with self.homeManagerModules; [
+      imports = with self.homeModules; [
         gnome-wallpaper
         gnome-extensions
       ];

@@ -73,8 +73,8 @@
       }
     );
 
-  flake.homeManagerModules.kubernetes = {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.kubernetes = {
+    imports = with self.homeModules; [
       kubectl
       helm
       k9s
@@ -86,7 +86,7 @@
     ];
   };
 
-  flake.homeManagerModules.kubectl = { pkgs, ... }: {
+  flake.homeModules.kubectl = { pkgs, ... }: {
     home.packages =
       with pkgs;
       with pkgs.kubectlPlugins;
@@ -106,7 +106,7 @@
     ];
   };
 
-  flake.homeManagerModules.k9s = { pkgs, ... }: {
+  flake.homeModules.k9s = { pkgs, ... }: {
     programs.k9s = {
       enable = true;
       package = pkgs.unstable.k9s;
@@ -122,7 +122,7 @@
     catppuccin.k9s.enable = true;
   };
 
-  flake.homeManagerModules.helm = { pkgs, ... }: {
+  flake.homeModules.helm = { pkgs, ... }: {
     home.packages = with pkgs; [
       kubernetes-helm
     ];
@@ -132,7 +132,7 @@
     ];
   };
 
-  flake.homeManagerModules.fluxcd = { pkgs, ... }: {
+  flake.homeModules.fluxcd = { pkgs, ... }: {
     home.packages = with pkgs; [
       fluxcd
     ];
@@ -142,7 +142,7 @@
     ];
   };
 
-  flake.homeManagerModules.velero = { lib, pkgs, ... }: {
+  flake.homeModules.velero = { lib, pkgs, ... }: {
     home.packages = with pkgs; [
       velero
     ];
@@ -162,13 +162,13 @@
     '';
   };
 
-  flake.homeManagerModules.crowdsec = {
+  flake.homeModules.crowdsec = {
     programs.zsh.shellAliases = {
       cscli = "kubectl --context do-syd1-production-cluster --namespace crowdsec exec -it deployments/crowdsec-lapi -- cscli";
     };
   };
 
-  flake.homeManagerModules.headscale = {
+  flake.homeModules.headscale = {
     programs.zsh.shellAliases = {
       headscale = "kubectl --context do-syd1-production-cluster --namespace vpn exec -it deployments/headscale -c headscale -- headscale --config=/headscale/config/config.yaml";
     };

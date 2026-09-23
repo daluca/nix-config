@@ -19,7 +19,7 @@
     ];
   };
 
-  flake.homeManagerModules.atuin =
+  flake.homeModules.atuin =
     {
       config,
       pkgs,

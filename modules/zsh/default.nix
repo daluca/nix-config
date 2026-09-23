@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.zsh =
+  flake.homeModules.zsh =
     {
       config,
       lib,
@@ -9,7 +9,7 @@
       ...
     }:
     {
-      imports = with self.homeManagerModules; [
+      imports = with self.homeModules; [
         zsh-transientPrompt
       ];
 

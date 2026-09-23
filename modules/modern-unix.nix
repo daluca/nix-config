@@ -1,8 +1,8 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.modernUnix = { pkgs, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.modernUnix = { pkgs, ... }: {
+    imports = with self.homeModules; [
       bat
       eza
       fd

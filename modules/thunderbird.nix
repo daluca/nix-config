@@ -1,8 +1,8 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.thunderbird = { config, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.thunderbird = { config, ... }: {
+    imports = with self.homeModules; [
       protonmail-bridge
     ];
 

@@ -1,8 +1,8 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.just = { lib, pkgs, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.just = { lib, pkgs, ... }: {
+    imports = with self.homeModules; [
       vscodiumExtensions-just
     ];
 

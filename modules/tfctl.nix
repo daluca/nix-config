@@ -41,7 +41,7 @@
       }
     );
 
-  flake.homeManagerModules.tfctl = { lib, pkgs, ... }: {
+  flake.homeModules.tfctl = { lib, pkgs, ... }: {
     home.packages = with pkgs; [
       tfctl
     ];

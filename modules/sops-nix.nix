@@ -20,9 +20,9 @@
     ];
   };
 
-  flake.homeManagerModules.sops-nix = { config, ... }: {
+  flake.homeModules.sops-nix = { config, ... }: {
     imports = with inputs; [
-      sops-nix.homeManagerModules.sops
+      sops-nix.homeModules.sops
     ];
 
     sops = {

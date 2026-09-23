@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.gnome-wallpaper =
+  flake.homeModules.gnome-wallpaper =
     { pkgs, ... }:
     let
       wallpaper = {

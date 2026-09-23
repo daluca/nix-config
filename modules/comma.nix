@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  flake.homeManagerModules.comma = {
+  flake.homeModules.comma = {
     imports = with inputs; [
       nix-index-database.homeModules.nix-index
     ];

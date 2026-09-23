@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.nushell = {
+  flake.homeModules.nushell = {
     programs.nushell = {
       enable = true;
       configFile.text = /* nu */ ''

@@ -8,12 +8,12 @@
 
     catppuccin.flavor = "mocha";
 
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
+    home-manager.users.daluca.imports = with self.homeModules; [
       catppuccin
     ];
   };
 
-  flake.homeManagerModules.catppuccin = {
+  flake.homeModules.catppuccin = {
     imports = with inputs; [
       catppuccin.homeModules.catppuccin
     ];

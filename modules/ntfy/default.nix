@@ -61,7 +61,7 @@
     ];
   };
 
-  flake.homeManagerModules.ntfy =
+  flake.homeModules.ntfy =
     {
       config,
       lib,
@@ -102,7 +102,7 @@
       ];
     };
 
-  flake.homeManagerModules.ntfyd-options =
+  flake.homeModules.ntfyd-options =
     {
       config,
       lib,
@@ -161,8 +161,8 @@
       };
     };
 
-  flake.homeManagerModules.ntfyd = { secrets, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.ntfyd = { secrets, ... }: {
+    imports = with self.homeModules; [
       ntfyd-options
     ];
 

@@ -1,8 +1,8 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.tools = { pkgs, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.tools = { pkgs, ... }: {
+    imports = with self.homeModules; [
       fzf
       gron
       zoxide

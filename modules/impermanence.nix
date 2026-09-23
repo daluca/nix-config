@@ -93,12 +93,12 @@
         };
       };
 
-      home-manager.users.daluca.imports = with self.homeManagerModules; [
+      home-manager.users.daluca.imports = with self.homeModules; [
         impermanence
       ];
     };
 
-  flake.homeManagerModules.impermanence = { config, lib, ... }: {
+  flake.homeModules.impermanence = { config, lib, ... }: {
     home.persistence.home = {
       enable = true;
       persistentStoragePath = "/persistent/";

@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.btop = { pkgs, ... }: {
+  flake.homeModules.btop = { pkgs, ... }: {
     programs.btop = {
       enable = true;
       package = pkgs.unstable.btop;

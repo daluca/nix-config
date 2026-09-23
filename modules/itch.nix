@@ -20,7 +20,7 @@
       });
   };
 
-  flake.homeManagerModules.itch = { pkgs, ... }: {
+  flake.homeModules.itch = { pkgs, ... }: {
     home.packages = with pkgs; [
       itch
     ];

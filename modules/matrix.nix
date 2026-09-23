@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.element = { pkgs, ... }: {
+  flake.homeModules.element = { pkgs, ... }: {
     home.packages = with pkgs; [
       element-desktop
     ];

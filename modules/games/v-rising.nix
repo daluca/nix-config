@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.games-vRising = {
+  flake.homeModules.games-vRising = {
     programs.mangohud.settingsPerApplication = {
       wine-VRising = {
         preset = 1;

@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.logseq = { pkgs, ... }: {
+  flake.homeModules.logseq = { pkgs, ... }: {
     home.packages = with pkgs; [
       logseq
     ];

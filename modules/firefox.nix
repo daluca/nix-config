@@ -33,14 +33,14 @@
       }
     );
 
-  flake.homeManagerModules.firefox = {
+  flake.homeModules.firefox = {
     programs.custom-firefox = {
       enable = true;
       forks = [ "firefox" ];
     };
   };
 
-  flake.homeManagerModules.firefoxBase =
+  flake.homeModules.firefoxBase =
     {
       config,
       lib,

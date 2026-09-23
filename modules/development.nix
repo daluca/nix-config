@@ -1,8 +1,8 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.development = { pkgs, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.development = { pkgs, ... }: {
+    imports = with self.homeModules; [
       direnv
       garden-tools
       just

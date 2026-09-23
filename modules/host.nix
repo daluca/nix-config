@@ -25,13 +25,13 @@
       };
 
       config = {
-        home-manager.users.daluca.imports = with self.homeManagerModules; [
+        home-manager.users.daluca.imports = with self.homeModules; [
           host-options
         ];
       };
     };
 
-  flake.homeManagerModules.host-options = { lib, ... }: with lib;
+  flake.homeModules.host-options = { lib, ... }: with lib;
     {
       options.host = {
         battery = lib.mkOption {

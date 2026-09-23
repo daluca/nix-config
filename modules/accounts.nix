@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.accounts =
+  flake.homeModules.accounts =
     { config, secrets, ... }:
     let
       inherit (secrets.email) proton hotmail gmail;

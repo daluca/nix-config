@@ -9,7 +9,7 @@
       }
     );
 
-  flake.homeManagerModules.fzf =
+  flake.homeModules.fzf =
     {
       config,
       lib,

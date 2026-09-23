@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.planify = { pkgs, ... }: {
+  flake.homeModules.planify = { pkgs, ... }: {
     home.packages = with pkgs; [
       planify
     ];

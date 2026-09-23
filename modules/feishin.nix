@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.feishin = { pkgs, ... }: {
+  flake.homeModules.feishin = { pkgs, ... }: {
     home.packages = with pkgs; [
       feishin
     ];

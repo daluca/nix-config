@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.starship = { lib, ... }: {
+  flake.homeModules.starship = { lib, ... }: {
     programs.starship = {
       enable = true;
       enableBashIntegration = false;

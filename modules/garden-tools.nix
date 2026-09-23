@@ -49,7 +49,7 @@
       }
     );
 
-  flake.homeManagerModules.garden-tools-options =
+  flake.homeModules.garden-tools-options =
     {
       config,
       lib,
@@ -110,8 +110,8 @@
       };
     };
 
-  flake.homeManagerModules.garden-tools = { config, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.garden-tools = { config, ... }: {
+    imports = with self.homeModules; [
       garden-tools-options
     ];
 

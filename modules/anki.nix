@@ -17,7 +17,7 @@
       };
   };
 
-  flake.homeManagerModules.anki = { pkgs, ... }: {
+  flake.homeModules.anki = { pkgs, ... }: {
     programs.anki = {
       enable = true;
       addons = with pkgs.ankiAddons; [

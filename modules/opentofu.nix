@@ -1,8 +1,8 @@
 { self, ... }:
 
 {
-  flake.homeManagerModules.opentofu = { pkgs, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.opentofu = { pkgs, ... }: {
+    imports = with self.homeModules; [
       vscodiumExtensions-opentofu
     ];
 

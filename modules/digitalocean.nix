@@ -9,7 +9,7 @@
     ];
   };
 
-  flake.homeManagerModules.doctl = { pkgs, ... }: {
+  flake.homeModules.doctl = { pkgs, ... }: {
     home.packages = with pkgs; [
       doctl
     ];

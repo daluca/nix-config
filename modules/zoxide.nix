@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.zoxide = { lib, pkgs, ... }: {
+  flake.homeModules.zoxide = { lib, pkgs, ... }: {
     programs.zoxide = {
       enable = true;
       package = pkgs.unstable.zoxide;

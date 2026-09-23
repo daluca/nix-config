@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.nh = { config, pkgs, ... }: {
+  flake.homeModules.nh = { config, pkgs, ... }: {
     programs.nh = {
       enable = true;
       package = pkgs.unstable.nh;

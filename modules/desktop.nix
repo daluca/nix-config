@@ -28,13 +28,13 @@
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
+    home-manager.users.daluca.imports = with self.homeModules; [
       desktop
     ];
   };
 
-  flake.homeManagerModules.desktop = {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.desktop = {
+    imports = with self.homeModules; [
       uutils
       alacritty
       gradia

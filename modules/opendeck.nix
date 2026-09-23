@@ -21,12 +21,12 @@
 
     programs.opendeck.enable = true;
 
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
+    home-manager.users.daluca.imports = with self.homeModules; [
       opendeck
     ];
   };
 
-  flake.homeManagerModules.opendeck = { pkgs, ... }: {
+  flake.homeModules.opendeck = { pkgs, ... }: {
     xdg.autostart.entries = with pkgs; [
       "${opendeck}/share/applications/opendeck.desktop"
     ];

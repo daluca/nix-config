@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.faugusLauncher = { pkgs, ... }: {
+  flake.homeModules.faugusLauncher = { pkgs, ... }: {
     home.packages = with pkgs; [
       faugus-launcher
     ];

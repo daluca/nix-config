@@ -48,7 +48,7 @@
       ];
 
       home-manager.users.daluca = {
-        imports = with self.homeManagerModules; [
+        imports = with self.homeModules; [
           users-daluca
         ];
 
@@ -56,8 +56,8 @@
       };
     };
 
-  flake.homeManagerModules.users-daluca = { config, lib, ... }: {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.users-daluca = { config, lib, ... }: {
+    imports = with self.homeModules; [
       firefoxBase
 
       ssh

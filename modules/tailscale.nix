@@ -84,13 +84,13 @@
       ];
     };
 
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
+    home-manager.users.daluca.imports = with self.homeModules; [
       tailscale-client
     ];
   };
 
-  flake.homeManagerModules.tailscale-client = {
-    imports = with self.homeManagerModules; [
+  flake.homeModules.tailscale-client = {
+    imports = with self.homeModules; [
       gnome-extensions-tailscaleQs
     ];
   };

@@ -9,7 +9,7 @@
       }
     );
 
-  flake.homeManagerModules.neovim =
+  flake.homeModules.neovim =
     {
       config,
       lib,
@@ -17,7 +17,7 @@
       ...
     }:
     {
-      imports = with self.homeManagerModules; [
+      imports = with self.homeModules; [
         neovide
       ];
 
@@ -44,7 +44,7 @@
       ];
     };
 
-  flake.homeManagerModules.neovide = { config, pkgs, ... }: {
+  flake.homeModules.neovide = { config, pkgs, ... }: {
     programs.neovide = {
       enable = true;
       package = pkgs.unstable.neovide;

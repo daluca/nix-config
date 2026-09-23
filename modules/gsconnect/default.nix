@@ -6,12 +6,12 @@
       gsconnect-firewall
     ];
 
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
+    home-manager.users.daluca.imports = with self.homeModules; [
       gsconnect
     ];
   };
 
-  flake.homeManagerModules.gsconnect =
+  flake.homeModules.gsconnect =
     {
       config,
       lib,

@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.lazygit =
+  flake.homeModules.lazygit =
     {
       config,
       lib,

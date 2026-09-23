@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.gron = { pkgs, ... }: {
+  flake.homeModules.gron = { pkgs, ... }: {
     home.packages = with pkgs; [
       unstable.gron
     ];

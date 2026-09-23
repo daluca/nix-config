@@ -51,7 +51,7 @@
 
     sops.defaultSopsFile = ./benedick.sops.yaml;
 
-    home-manager.users.daluca.imports = with self.homeManagerModules; [
+    home-manager.users.daluca.imports = with self.homeModules; [
       users-daluca-benedick
     ];
 

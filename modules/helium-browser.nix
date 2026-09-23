@@ -9,7 +9,7 @@
       }
     );
 
-  flake.homeManagerModules.heliumBrowser = { pkgs, ... }: {
+  flake.homeModules.heliumBrowser = { pkgs, ... }: {
     home.packages = with pkgs; [
       helium
     ];

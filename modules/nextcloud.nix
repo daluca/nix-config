@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.nextcloud = { lib, ... }: {
+  flake.homeModules.nextcloud = { lib, ... }: {
     services.nextcloud-client = {
       enable = true;
       startInBackground = true;

@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.gnupg = { pkgs, ... }: {
+  flake.homeModules.gnupg = { pkgs, ... }: {
     programs.gpg = {
       enable = true;
       mutableKeys = false;

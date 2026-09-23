@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.heroic = { pkgs, ... }: {
+  flake.homeModules.heroic = { pkgs, ... }: {
     home.packages = with pkgs.unstable; [
       heroic
     ];

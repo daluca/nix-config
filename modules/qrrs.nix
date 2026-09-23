@@ -1,5 +1,5 @@
 {
-  flake.homeManagerModules.qrrs = { pkgs, ... }: {
+  flake.homeModules.qrrs = { pkgs, ... }: {
     home.packages = with pkgs; [
       qrrs
     ];

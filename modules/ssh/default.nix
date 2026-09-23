@@ -77,7 +77,7 @@
     };
   };
 
-  flake.homeManagerModules.ssh = { config, lib, ... }: {
+  flake.homeModules.ssh = { config, lib, ... }: {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
