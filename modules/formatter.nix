@@ -18,6 +18,9 @@
         includes = [
           ".typos.toml"
         ];
+        excludes = [
+          "git-agecrypt.toml"
+        ];
       };
       settings.excludes = [
         "*/secrets.toml"
