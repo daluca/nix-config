@@ -8,6 +8,7 @@
       hosts-bravo-sshKnownHosts
       hosts-charlie-sshKnownHosts
       hosts-shodan-sshKnownHosts
+      hosts-guiltyspark-sshKnownHosts
       hosts-stormwind-sshKnownHosts
       hosts-dalaran-sshKnownHosts
     ];

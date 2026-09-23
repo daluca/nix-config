@@ -7,6 +7,7 @@
       hosts-bravo-cache
       hosts-charlie-cache
       hosts-shodan-cache
+      hosts-guiltyspark-cache
       hosts-dalaran-cache
     ];
   };

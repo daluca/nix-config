@@ -17,7 +17,6 @@ let
       "vps"
       "australia"
     ];
-    guiltyspark.tags = [ "new-zealand" ];
     artemis = {
       allowLocalDeployment = true;
       targetHost = null;
