@@ -50,6 +50,9 @@ in
 
     deploy.ipv4-address = secrets.hosts.guiltyspark.tailscale-address;
 
+    # TODO: Remove in 26.11 as it will be the new default
+    boot.zfs.forceImportRoot = false;
+
     services.sabnzbd.settings.misc.host_whitelist =
       "sabnzbd.${secrets.parents.domain},localhost,127.0.0.1,${secrets.hosts.guiltyspark.tailscale-address}";
 
