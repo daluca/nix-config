@@ -2,6 +2,10 @@
 
 {
   flake.nixosModules.raspberry-pi = { pkgs, ... }: {
+    imports = with self.nixosModules; [
+      server
+    ];
+
     documentation.nixos.enable = false;
 
     environment.systemPackages = with pkgs; [

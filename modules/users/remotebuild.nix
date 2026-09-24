@@ -6,7 +6,7 @@
       createHome = false;
       group = config.users.groups.remotebuild.name;
       openssh.authorizedKeys.keyFiles = [
-        ../../hosts/artemis/keys/ssh_host_ed25519_key.pub
+        ../hosts/artemis/keys/ssh_host_ed25519_key.pub
         ../hosts/benedick/keys/ssh_host_ed25519_key.pub
       ];
     };

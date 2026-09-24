@@ -5,7 +5,7 @@
     };
   };
 
-  flake.homeModules.initface-central = { pkgs, ... }: {
+  flake.homeModules.intiface-central = { pkgs, ... }: {
     home.packages = with pkgs; [
       intiface-central
     ];

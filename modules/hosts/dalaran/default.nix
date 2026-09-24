@@ -19,7 +19,6 @@
       with self.nixosModules;
       [
         diskoConfigurations.dalaran
-        server
         raspberry-pi-5
         users-remotebuild
         nginx

@@ -17,10 +17,6 @@ let
       "vps"
       "australia"
     ];
-    artemis = {
-      allowLocalDeployment = true;
-      targetHost = null;
-    };
   };
 in
 {

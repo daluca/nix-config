@@ -15,6 +15,7 @@ let
     || hostname == "shodan"
     || hostname == "stormwind"
     || hostname == "guiltyspark"
+    || hostname == "artemis"
   ) self.nixosConfigurations;
 in
 {

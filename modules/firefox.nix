@@ -858,7 +858,7 @@
               };
             };
 
-            xdg.mimeApps.defaultApplicationPackages = (cfg.default == "firefox") [
+            xdg.mimeApps.defaultApplicationPackages = lib.mkIf (cfg.default == "firefox") [
               config.programs.firefox.package
             ];
 
@@ -904,7 +904,7 @@
               };
             };
 
-            xdg.mimeApps.defaultApplicationPackages = (cfg.default == "floorp") [
+            xdg.mimeApps.defaultApplicationPackages = lib.mkIf (cfg.default == "floorp") [
               config.programs.floorp.package
             ];
 

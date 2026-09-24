@@ -43,7 +43,6 @@
         gsconnect
         opendeck
         devices-audioTechnicaATHM50xBT2
-        attic
         tailscale-client
       ];
 
