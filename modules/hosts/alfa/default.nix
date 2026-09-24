@@ -11,11 +11,11 @@
       system = "x86_64-linux";
       specialArgs = { inherit secrets; };
       modules = with self.nixosModules; [
-        hosts-alfa
+        alfa
       ];
     };
 
-  flake.nixosModules.hosts-alfa = { secrets, ... }: {
+  flake.nixosModules.alfa = { secrets, ... }: {
     imports =
       with self;
       with self.nixosModules;
@@ -161,7 +161,7 @@
     };
   };
 
-  flake.nixosModules.hosts-alfa-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.alfa-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       alfa = {
         extraHostNames = [
@@ -191,7 +191,7 @@
     };
   };
 
-  flake.nixosModules.hosts-alfa-cache = {
+  flake.nixosModules.alfa-cache = {
     nix.settings.trusted-public-keys = [
       "alfa:02xNXVHoJQjRic5IZk/NDNJDIhlRq+tLq+e21kVtUTs="
     ];

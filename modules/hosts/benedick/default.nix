@@ -9,11 +9,11 @@
       system = "x86_64-linux";
       specialArgs = { inherit secrets; };
       modules = with self.nixosModules; [
-        hosts-benedick
+        benedick
       ];
     };
 
-  flake.nixosModules.hosts-benedick = { lib, ... }: {
+  flake.nixosModules.benedick = { lib, ... }: {
     imports =
       with inputs;
       with self;
@@ -182,7 +182,7 @@
     };
   };
 
-  flake.nixosModules.hosts-benedick-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.benedick-sshKnownHosts = { config, ... }: {
     programs.ssh.knownHosts = rec {
       benedick = {
         extraHostNames = [

@@ -3,12 +3,12 @@
 {
   flake.nixosModules.nixCache = {
     imports = with self.nixosModules; [
-      hosts-alfa-cache
-      hosts-bravo-cache
-      hosts-charlie-cache
-      hosts-shodan-cache
-      hosts-guiltyspark-cache
-      hosts-dalaran-cache
+      alfa-cache
+      bravo-cache
+      charlie-cache
+      shodan-cache
+      guiltyspark-cache
+      dalaran-cache
     ];
   };
 }

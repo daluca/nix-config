@@ -9,11 +9,11 @@
       system = "aarch64-linux";
       specialArgs = { inherit secrets; };
       modules = with self.nixosModules; [
-        hosts-dalaran
+        dalaran
       ];
     };
 
-  flake.nixosModules.hosts-dalaran = { config, secrets, ... }: {
+  flake.nixosModules.dalaran = { config, secrets, ... }: {
     imports =
       with self;
       with self.nixosModules;
@@ -259,7 +259,7 @@
     };
   };
 
-  flake.nixosModules.hosts-dalaran-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.dalaran-sshKnownHosts = { config, ... }: {
     programs.ssh.knownHosts = rec {
       dalaran = {
         extraHostNames = [
@@ -275,7 +275,7 @@
     };
   };
 
-  flake.nixosModules.hosts-dalaran-cache = {
+  flake.nixosModules.dalaran-cache = {
     nix.settings.trusted-public-keys = [
       "dalaran:p7uH92Bwi9P2dzRMqGmmn/yB4BrCP42QvxjkiBibMuk="
     ];

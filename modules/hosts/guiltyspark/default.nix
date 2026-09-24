@@ -9,11 +9,11 @@ in
     system = "x86_64-linux";
     specialArgs = { inherit secrets; };
     modules = with self.nixosModules; [
-      hosts-guiltyspark
+      guiltyspark
     ];
   };
 
-  flake.nixosModules.hosts-guiltyspark = { config, secrets, ... }: {
+  flake.nixosModules.guiltyspark = { config, secrets, ... }: {
     imports =
       with inputs;
       with self;
@@ -310,7 +310,7 @@ in
     };
   };
 
-  flake.nixosModules.hosts-guiltyspark-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.guiltyspark-sshKnownHosts = { config, ... }: {
     programs.ssh.knownHosts = rec {
       guiltyspark = {
         extraHostNames = [
@@ -327,7 +327,7 @@ in
     };
   };
 
-  flake.nixosModules.hosts-guiltyspark-cache = {
+  flake.nixosModules.guiltyspark-cache = {
     nix.settings.trusted-public-keys = [
       "guiltyspark:V+aeGAYOSpIRyGv3qK0EURs8mOc4ovS/NH3g3XhCGKQ="
     ];

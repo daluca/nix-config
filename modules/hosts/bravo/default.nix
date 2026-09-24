@@ -9,11 +9,11 @@
       system = "aarch64-linux";
       specialArgs = { inherit secrets; };
       modules = with self.nixosModules; [
-        hosts-bravo
+        bravo
       ];
     };
 
-  flake.nixosModules.hosts-bravo =
+  flake.nixosModules.bravo =
     {
       config,
       pkgs,
@@ -187,7 +187,7 @@
     };
   };
 
-  flake.nixosModules.hosts-bravo-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.bravo-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       bravo = {
         extraHostNames = [
@@ -217,7 +217,7 @@
     };
   };
 
-  flake.nixosModules.hosts-bravo-cache = {
+  flake.nixosModules.bravo-cache = {
     nix.settings.trusted-public-keys = [
       "bravo:2zk2IqImbGCABS9Ly1akZZ8P9xq8MkzCXFmdAlH23h0="
     ];

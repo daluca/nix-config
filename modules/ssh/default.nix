@@ -3,14 +3,14 @@
 {
   flake.nixosModules.ssh = { config, lib, ... }: {
     imports = with self.nixosModules; [
-      hosts-benedick-sshKnownHosts
-      hosts-alfa-sshKnownHosts
-      hosts-bravo-sshKnownHosts
-      hosts-charlie-sshKnownHosts
-      hosts-shodan-sshKnownHosts
-      hosts-guiltyspark-sshKnownHosts
-      hosts-stormwind-sshKnownHosts
-      hosts-dalaran-sshKnownHosts
+      benedick-sshKnownHosts
+      alfa-sshKnownHosts
+      bravo-sshKnownHosts
+      charlie-sshKnownHosts
+      shodan-sshKnownHosts
+      guiltyspark-sshKnownHosts
+      stormwind-sshKnownHosts
+      dalaran-sshKnownHosts
     ];
 
     environment.etc."ssh/ssh_host_ed25519_key.pub".source =

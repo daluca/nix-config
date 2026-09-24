@@ -9,11 +9,11 @@
       system = "aarch64-linux";
       specialArgs = { inherit secrets; };
       modules = with self.nixosModules; [
-        hosts-stormwind
+        stormwind
       ];
     };
 
-  flake.nixosModules.hosts-stormwind = {
+  flake.nixosModules.stormwind = {
     imports = with self.nixosModules; [
       server
       raspberry-pi-4
@@ -45,7 +45,7 @@
     system.stateVersion = "26.05";
   };
 
-  flake.nixosModules.hosts-stormwind-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.stormwind-sshKnownHosts = { config, ... }: {
     programs.ssh.knownHosts = rec {
       stormwind = {
         extraHostNames = [

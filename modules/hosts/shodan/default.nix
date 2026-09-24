@@ -9,11 +9,11 @@
       system = "x86_64-linux";
       specialArgs = { inherit secrets; };
       modules = with self.nixosModules; [
-        hosts-shodan
+        shodan
       ];
     };
 
-  flake.nixosModules.hosts-shodan =
+  flake.nixosModules.shodan =
     {
       config,
       lib,
@@ -285,7 +285,7 @@
     };
   };
 
-  flake.nixosModules.hosts-shodan-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.shodan-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       shodan = {
         extraHostNames = with secrets.hosts.shodan; [
@@ -314,7 +314,7 @@
     };
   };
 
-  flake.nixosModules.hosts-shodan-cache = {
+  flake.nixosModules.shodan-cache = {
     nix.settings.trusted-public-keys = [
       "shodan:mMDpBB3EH23WqUms4rvrNPy6Ro7tSOGb33IYcxkeQyk="
     ];

@@ -9,11 +9,11 @@
       system = "x86_64-linux";
       specialArgs = { inherit secrets; };
       modules = with self.nixosModules; [
-        hosts-charlie
+        charlie
       ];
     };
 
-  flake.nixosModules.hosts-charlie = { config, secrets, ... }: {
+  flake.nixosModules.charlie = { config, secrets, ... }: {
     imports =
       with self;
       with self.nixosModules;
@@ -192,7 +192,7 @@
     };
   };
 
-  flake.nixosModules.hosts-charlie-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.charlie-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       charlie = {
         extraHostNames = [
@@ -222,7 +222,7 @@
     };
   };
 
-  flake.nixosModules.hosts-charlie-cache = {
+  flake.nixosModules.charlie-cache = {
     nix.settings.trusted-public-keys = [
       "charlie:DqW45gRQrBrz0LbfDnWLbaqzgqnHMG+HGv9TUUyABf4="
     ];
