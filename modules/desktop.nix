@@ -17,6 +17,7 @@
       ];
       substituters = [
         "https://nix-community.cachix.org?priority=50"
+        "https://nixos-raspberrypi.cachix.org?priority=90"
         "ssh-ng://remotebuild@dalaran?priority=100&ssh-key=/etc/ssh/ssh_host_ed25519_key"
         "ssh-ng://daluca@stormwind?priority=110&ssh-key=/home/daluca/.ssh/id_ed25519"
       ];
