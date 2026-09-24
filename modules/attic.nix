@@ -32,7 +32,7 @@
       ];
     };
 
-  flake.nixosModules.attic-watch-store =
+  flake.nixosModules.attic-options =
     {
       config,
       lib,
@@ -101,7 +101,7 @@
 
   flake.nixosModules.attic = { config, secrets, ... }: {
     imports = with self.nixosModules; [
-      attic-watch-store
+      attic-options
     ];
 
     services.attic-watch-store = {
