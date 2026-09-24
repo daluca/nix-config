@@ -26,17 +26,13 @@
         with self.nixosModules;
         [
           diskoConfigurations.shodan
-
           hetzner-online-intel
-
           users-starr
-
           nginx
           tailscale-server
           impermanence-grub
           remote-unlocking
           grub
-
           jellyfin
           seerr
           sonarr

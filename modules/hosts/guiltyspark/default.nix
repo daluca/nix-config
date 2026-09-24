@@ -20,14 +20,10 @@ in
       with self.nixosModules;
       [
         nixos-hardware.nixosModules.common-cpu-intel
-
         diskoConfigurations.guiltyspark
-
         server
-
         users-starr
         users-remotebuild
-
         nginx
         grub
         tailscale-server

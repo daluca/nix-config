@@ -26,11 +26,8 @@
         with self.nixosModules;
         [
           diskoConfigurations.bravo
-
           hetzner-cloud-arm
-
           users-remotebuild
-
           remote-unlocking-dhcp
           impermanence-grub
           nginx

@@ -19,11 +19,8 @@
       with self.nixosModules;
       [
         diskoConfigurations.charlie
-
         hetzner-cloud-x86
-
         users-remotebuild
-
         nginx
         hister
         pocket-id

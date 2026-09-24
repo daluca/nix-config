@@ -23,10 +23,8 @@
         nixos-hardware.nixosModules.common-gpu-amd
         nixos-hardware.nixosModules.common-pc
         nixos-hardware.nixosModules.common-pc-ssd
-
         desktop
         diskoConfigurations.benedick
-
         keychron
         logitech
         nix-monitored
@@ -34,7 +32,6 @@
         plymouth
         systemd-boot
         yubikey
-
         fonts
         ssh-server
         distributedBuilds

@@ -21,11 +21,8 @@
       with self.nixosModules;
       [
         diskoConfigurations.alfa
-
         hetzner-cloud-x86
-
         users-remotebuild
-
         remote-unlocking-dhcp
         impermanence-grub
         nginx
