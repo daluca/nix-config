@@ -34,7 +34,7 @@
         yubikey
         fonts
         ssh-server
-        distributedBuilds
+        distributed-builds
         firewall
         fwupd
         steam

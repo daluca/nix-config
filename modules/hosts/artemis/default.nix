@@ -30,7 +30,7 @@
         fonts
         fwupd
         steam
-        distributedBuilds
+        distributed-builds
         yubikey
         tailscale
         firewall
