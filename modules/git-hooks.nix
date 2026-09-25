@@ -25,10 +25,6 @@
           typos.enable = true;
           treefmt.enable = true;
           treefmt.package = self'.formatter;
-          deadnix = {
-            enable = true;
-            settings.edit = true;
-          };
           markdownlint-cli2 = {
             enable = true;
             description = "markdownlint-cli2 hook";
