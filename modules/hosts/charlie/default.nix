@@ -26,6 +26,7 @@
         pocket-id
         remote-unlocking-dhcp
         impermanence-grub
+        rustical
       ];
 
     sops.defaultSopsFile = ./charlie.sops.yaml;
@@ -92,6 +93,7 @@
             add_header Alt-Svc 'h3=":443"; ma=86400; persist=1';
           '';
         };
+        "rustical.${secrets.domain.general}" = tls;
       };
 
     networking.hostName = "charlie";
