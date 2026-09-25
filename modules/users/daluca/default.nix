@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.nixosModules.users-daluca =
+  flake.nixosModules.daluca =
     {
       config,
       lib,
@@ -9,6 +9,14 @@
       ...
     }:
     {
+      home-manager.users.daluca = {
+        imports = with self.homeModules; [
+          daluca
+        ];
+
+        _module.args.secrets = secrets // fromTOML (builtins.readFile ./secrets.toml);
+      };
+
       users.users.daluca = {
         isNormalUser = true;
         description = "Lucas Slebos";
@@ -46,72 +54,12 @@
       services.openssh.settings.AllowUsers = [
         "daluca"
       ];
-
-      home-manager.users.daluca = {
-        imports = with self.homeModules; [
-          users-daluca
-        ];
-
-        _module.args.secrets = secrets // fromTOML (builtins.readFile ./secrets.toml);
-      };
     };
 
-  flake.homeModules.users-daluca = { config, lib, ... }: {
-    imports = with self.homeModules; [
-      firefoxBase
-
-      ssh
-      atuin
-      bash
-      btop
-      ntfy
-      sops-nix
-      starship
-      tools
-      tmux
-      vim
-      zsh
-      modernUnix
-      accounts
-    ];
-
+  flake.homeModules.daluca = {
     home = rec {
       username = "daluca";
       homeDirectory = "/home/${username}";
     };
-
-    home.persistence.home = {
-      enable = lib.mkDefault false;
-      persistentStoragePath = "/persistent/";
-    };
-
-    nix.extraOptions = ''
-      !include ${config.sops.templates."github-access-token.conf".path}
-    '';
-
-    sops.templates."github-access-token.conf".content = ''
-      access-tokens = github.com=${config.sops.placeholder."github/access-token"}
-    '';
-
-    sops.secrets."github/access-token" = { };
-
-    xdg.enable = true;
-
-    xdg.terminal-exec = {
-      enable = true;
-      settings.default = [
-        "com.mitchellh.ghostty.desktop"
-      ];
-    };
-
-    home.shellAliases = {
-      open = "xdg-open";
-    };
-
-    home.preferXdgDirectories = true;
-
-    home.stateVersion = "26.05";
-
-    programs.home-manager.enable = true;
   };
 }

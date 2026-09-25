@@ -17,22 +17,24 @@ in
         with self.nixosModules;
         [
           inputs.impermanence.nixosModules.impermanence
-
           host-options
           grub-options
-
           sudo
           sops-nix
           home-manager
           dvorak
           networking
           users-root
-          users-daluca
+          daluca
           ssh
           nixCache
           deployment-options
           catppuccin
         ];
+
+      home-manager.users.daluca.imports = with self.homeModules; [
+        base
+      ];
 
       deploy.tags = [
         (lib.removeSuffix "-linux" pkgs.stdenv.hostPlatform.system)
@@ -136,4 +138,58 @@ in
         vim
       ];
     };
+
+  flake.homeModules.base = { config, lib, ... }: {
+    imports = with self.homeModules; [
+      firefoxBase
+
+      ssh
+      atuin
+      bash
+      btop
+      ntfy
+      sops-nix
+      starship
+      tools
+      tmux
+      vim
+      zsh
+      modernUnix
+      accounts
+    ];
+
+    home.persistence.home = {
+      enable = lib.mkDefault false;
+      persistentStoragePath = "/persistent/";
+    };
+
+    nix.extraOptions = ''
+      !include ${config.sops.templates."github-access-token.conf".path}
+    '';
+
+    sops.templates."github-access-token.conf".content = ''
+      access-tokens = github.com=${config.sops.placeholder."github/access-token"}
+    '';
+
+    sops.secrets."github/access-token" = { };
+
+    xdg.enable = true;
+
+    xdg.terminal-exec = {
+      enable = true;
+      settings.default = [
+        "com.mitchellh.ghostty.desktop"
+      ];
+    };
+
+    home.shellAliases = {
+      open = "xdg-open";
+    };
+
+    home.preferXdgDirectories = true;
+
+    home.stateVersion = "26.05";
+
+    programs.home-manager.enable = true;
+  };
 }

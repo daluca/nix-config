@@ -46,11 +46,11 @@
         tailscale-client
       ];
 
-    sops.defaultSopsFile = ./benedick.sops.yaml;
-
     home-manager.users.daluca.imports = with self.homeModules; [
-      users-daluca-benedick
+      benedick
     ];
+
+    sops.defaultSopsFile = ./benedick.sops.yaml;
 
     deploy.tags = [
       "the-netherlands"
@@ -192,4 +192,63 @@
       };
     };
   };
+
+  flake.homeModules.benedick =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      imports = with self.homeModules; [
+        development
+        faugusLauncher
+        ghostty
+        git
+        gnupg
+        jujutsu
+        libreoffice
+        mangohud
+        neovim
+        nix-utils
+        zenBrowser
+        vscodium
+        games
+        autostart
+        heliumBrowser
+        yazi
+        lazygit
+        nextcloud
+        heroic
+        itch
+        doctl
+        bitwarden
+        discord
+        signal
+        qrrs
+        mpv
+        feishin
+        nushell
+        kubernetes
+        proton-vpn
+        thunderbird
+      ];
+
+      programs.custom-firefox.default = "zen-browser";
+
+      programs.tmux.extraConfig = /* tmux */ ''
+        bind C-j display-popup -d "#{pane_current_path}" -w 90% -h 90% -E ${lib.getExe config.programs.jjui.package}
+        bind C-t display-popup -d "#{pane_current_path}" -w 60% -h 60% -E ${lib.getExe config.programs.zsh.package}
+        bind C-s display-popup -w 90% -h 90% -E ${lib.getExe pkgs.lazyssh}
+      '';
+
+      programs.btop.package = lib.mkForce pkgs.btop-rocm;
+
+      sops.age.keyFile = lib.mkOverride 10 ("/persistent" + "${config.xdg.configHome}/sops/age/keys.txt");
+
+      sops.secrets."gsconnect/private.pem".sopsFile = ./benedick.sops.yaml;
+
+      xdg.configFile."gsconnect/certificate.pem".source = ./certificate.pem;
+    };
 }

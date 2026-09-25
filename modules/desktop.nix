@@ -9,6 +9,10 @@
       attic
     ];
 
+    home-manager.users.daluca.imports = with self.homeModules; [
+      desktop
+    ];
+
     time.timeZone = "Europe/Amsterdam";
 
     nix.settings = {
@@ -29,10 +33,6 @@
     ];
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-    home-manager.users.daluca.imports = with self.homeModules; [
-      desktop
-    ];
   };
 
   flake.homeModules.desktop = {
