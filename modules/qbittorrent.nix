@@ -50,9 +50,8 @@
 
       environment.persistence.system.directories = with config.services; [
         {
+          inherit (qbittorrent) user group;
           directory = qbittorrent.profileDir;
-          user = qbittorrent.user;
-          group = qbittorrent.group;
         }
       ];
     };

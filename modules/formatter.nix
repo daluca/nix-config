@@ -16,6 +16,9 @@
       programs.toml-sort.enable = true;
       programs.yamllint.enable = true;
       programs.yamlfmt.enable = true;
+      settings.formatter.deadnix.priority = 3;
+      settings.formatter.nixfmt.priority = 1;
+      settings.formatter.statix.priority = 2;
       settings.formatter.toml-sort = {
         includes = [
           ".typos.toml"

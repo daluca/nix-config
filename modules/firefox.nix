@@ -831,7 +831,7 @@
                   };
                   "browser.tabs.groups.enabled" = true;
                   "browser.sessionstore.resume_from_crash" = true;
-                  "browser.shell.checkDefaultBrowser" = (cfg.default == "firefox");
+                  "browser.shell.checkDefaultBrowser" = cfg.default == "firefox";
                   # AI
                   "browser.ml.enable" = false;
                   "browser.ml.chat.enabled" = false;
@@ -876,7 +876,7 @@
               profiles.default = {
                 settings = {
                   # Browser
-                  "browser.shell.checkDefaultBrowser" = (cfg.default == "librewolf");
+                  "browser.shell.checkDefaultBrowser" = cfg.default == "librewolf";
                 };
               };
             };
@@ -899,7 +899,7 @@
               profiles.default = {
                 settings = {
                   # Browser
-                  "browser.shell.checkDefaultBrowser" = (cfg.default == "floorp");
+                  "browser.shell.checkDefaultBrowser" = cfg.default == "floorp";
                 };
               };
             };
@@ -925,7 +925,7 @@
                   "browser.startup.page" = 1;
                   "browser.startup.homepage" = "about:home";
                   "browser.newtabpage.enabled" = true;
-                  "browser.shell.checkDefaultBrowser" = (cfg.default == "zen-browser");
+                  "browser.shell.checkDefaultBrowser" = cfg.default == "zen-browser";
                   "browser.ctrlTab.sortByRecentlyUsed" = true;
                   # Zen Browser
                   "zen.welcome-screen.seen" = true;

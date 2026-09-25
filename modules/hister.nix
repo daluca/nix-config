@@ -21,8 +21,8 @@
     };
 
     sops.templates."hister-secrets.env" = with config.services; {
+      inherit (hister) group;
       owner = hister.user;
-      group = hister.group;
       restartUnits = [ "hister.service" ];
       content = lib.generators.toKeyValue { } {
         HISTER__APP__ACCESS_TOKEN = config.sops.placeholder."hister/access-token";

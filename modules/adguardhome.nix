@@ -95,9 +95,8 @@
       };
 
       services.redis.servers.unbound = with config.services; {
+        inherit (unbound) user group;
         enable = true;
-        user = unbound.user;
-        group = unbound.group;
       };
 
       networking.firewall = {

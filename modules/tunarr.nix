@@ -122,9 +122,7 @@
           cache = {
             enablePlexRequestCache = false;
           };
-          server = {
-            port = cfg.port;
-          };
+          server = { inherit (cfg) port; };
         };
       };
     in

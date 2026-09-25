@@ -33,9 +33,8 @@
 
       environment.persistence.system.directories = with config.services; [
         {
+          inherit (sabnzbd) user group;
           directory = "/var/lib/sabnzbd";
-          user = sabnzbd.user;
-          group = sabnzbd.group;
         }
       ];
     };

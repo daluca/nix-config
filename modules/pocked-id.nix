@@ -46,13 +46,13 @@
     };
 
     sops.secrets."pocket-id/encryption-key" = with config.services; {
+      inherit (pocket-id) group;
       owner = pocket-id.user;
-      group = pocket-id.group;
     };
 
     sops.secrets."pocket-id/smtp-password" = with config.services; {
+      inherit (pocket-id) group;
       owner = pocket-id.user;
-      group = pocket-id.group;
     };
 
     systemd.tmpfiles.rules = with config.services; [
@@ -61,9 +61,8 @@
 
     environment.persistence.system.directories = with config.services; [
       {
+        inherit (pocket-id) user group;
         directory = pocket-id.dataDir;
-        user = pocket-id.user;
-        group = pocket-id.group;
         mode = "0755";
       }
       {

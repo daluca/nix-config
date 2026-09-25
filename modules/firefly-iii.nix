@@ -10,8 +10,8 @@
     };
 
     sops.secrets."firefly-iii/app.key" = with config.services; {
+      inherit (firefly-iii) group;
       owner = firefly-iii.user;
-      group = firefly-iii.group;
     };
 
     services.firefly-iii-data-importer = {

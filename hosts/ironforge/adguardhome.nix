@@ -38,10 +38,10 @@ in
         }
       ];
       user_rules =
-        map (d: allowDomain d) [
+        map allowDomain [
           "opinionstage.com"
         ]
-        ++ map (d: blockDomain d) [
+        ++ map blockDomain [
           "ota.onecloud.harman.com"
         ];
     };

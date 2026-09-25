@@ -15,15 +15,13 @@
 
       environment.persistence.system.directories = with config.services; [
         {
+          inherit (jellyfin) user group;
           directory = jellyfin.dataDir;
-          user = jellyfin.user;
-          group = jellyfin.group;
           mode = "0600";
         }
         {
+          inherit (jellyfin) user group;
           directory = jellyfin.cacheDir;
-          user = jellyfin.user;
-          group = jellyfin.group;
           mode = "0600";
         }
       ];
