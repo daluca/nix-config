@@ -1,7 +1,6 @@
 {
   self,
   inputs,
-  withSystem,
   ...
 }:
 let
@@ -19,14 +18,6 @@ let
   ) self.nixosConfigurations;
 in
 {
-  flake.overlays.colmena =
-    _final: prev:
-    withSystem prev.stdenv.hostPlatform.system (
-      { inputs', ... }: {
-        inherit (inputs'.colmena.packages) colmena;
-      }
-    );
-
   flake.colmenaHive = inputs.colmena.lib.makeHive (
     {
       meta = {

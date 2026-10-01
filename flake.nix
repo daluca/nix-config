@@ -58,7 +58,7 @@
     proton-ge.url = "github:daluca/proton-ge-overlay";
     proton-ge.inputs.nixpkgs.follows = "nixpkgs";
 
-    colmena.url = "github:zhaofengli/colmena";
+    colmena.url = "github:nix-community/colmena/v0.5.0";
     colmena.inputs.nixpkgs.follows = "nixpkgs-unstable";
     colmena.inputs.stable.follows = "nixpkgs";
 

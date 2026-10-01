@@ -16,7 +16,8 @@
           git-agecrypt
           just
           deploy-rs
-          colmena
+          # TODO: Revert to stable branch in NixOS 26.11
+          unstable.colmena
         ];
         JUST_COMMAND_COLOR = "blue";
       };
