@@ -27,9 +27,20 @@
     _final: prev:
     withSystem prev.stdenv.hostPlatform.system (
       { self', inputs', ... }: {
-        firefoxExtensions = inputs'.nur.legacyPackages.repos.rycee.firefox-addons // {
-          inherit (self'.packages) hister;
-        };
+        firefoxExtensions =
+          with inputs'.nur.legacyPackages.repos.rycee;
+          firefox-addons
+          // {
+            inherit (self'.packages) hister;
+            bypass-paywalls-clean = firefox-addons.bypass-paywalls-clean.overrideAttrs (_oldAttrs: rec {
+              version = "4.4.5.6";
+
+              src = prev.fetchurl {
+                url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
+                hash = "sha256-XIQnrhAl89M4Y8SAvWVMzrYlpzcUvGe361Onl6Ry8bE=";
+              };
+            });
+          };
       }
     );
 
