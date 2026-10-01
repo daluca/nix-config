@@ -135,6 +135,13 @@
 
     home.file.".ssh/id_ed25519.pub".source = ./users/daluca/keys/id_ed25519.pub;
 
+    sops.secrets."id_rsa" = {
+      sopsFile = ./users/daluca/daluca.sops.yaml;
+      path = ".ssh/id_rsa";
+    };
+
+    home.file.".ssh/id_rsa.pub".source = ./users/daluca/keys/id_rsa.pub;
+
     home.persistence.home.directories = [
       ".ssh"
     ];
