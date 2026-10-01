@@ -12,11 +12,6 @@ let
       "raspberry-pi"
       "new-zealand"
     ];
-    unifi.tags = [
-      "digitalocean"
-      "vps"
-      "australia"
-    ];
   };
 in
 {

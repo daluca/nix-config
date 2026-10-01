@@ -11,6 +11,7 @@
       guiltyspark-sshKnownHosts
       stormwind-sshKnownHosts
       dalaran-sshKnownHosts
+      unifi-sshKnownHosts
     ];
 
     environment.etc."ssh/ssh_host_ed25519_key.pub".source =

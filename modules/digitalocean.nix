@@ -7,6 +7,10 @@
 
       server
     ];
+
+    deploy.tags = [
+      "vps"
+    ];
   };
 
   flake.homeModules.doctl = { pkgs, ... }: {
