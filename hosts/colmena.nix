@@ -4,10 +4,6 @@
 }:
 let
   deployments = {
-    darnassus.tags = [
-      "raspberry-pi"
-      "united-kingdom"
-    ];
     ironforge.tags = [
       "raspberry-pi"
       "new-zealand"

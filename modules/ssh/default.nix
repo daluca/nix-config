@@ -10,6 +10,7 @@
       shodan-sshKnownHosts
       guiltyspark-sshKnownHosts
       stormwind-sshKnownHosts
+      darnassus-sshKnownHosts
       dalaran-sshKnownHosts
       unifi-sshKnownHosts
     ];

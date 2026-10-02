@@ -76,6 +76,18 @@
     ];
   };
 
+  flake.nixosModules.raspberry-pi-4-gpio-fan = {
+    hardware.raspberry-pi.configtxt.deviceTreeOverlays.pi4 = [
+      {
+        gpiopin = {
+          gpiopin = 14;
+          temp = 80 * 1000;
+          hyst = 10 * 1000;
+        };
+      }
+    ];
+  };
+
   flake.nixosModules.raspberry-pi-5 = {
     imports =
       with inputs;
