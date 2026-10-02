@@ -27,7 +27,7 @@
         redlib
         firefly-iii
         navidrome
-        localContentShare
+        local-content-share
         gatus
         homebox
       ];
