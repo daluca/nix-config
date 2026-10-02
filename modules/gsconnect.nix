@@ -2,13 +2,19 @@
 
 {
   flake.nixosModules.gsconnect = {
-    imports = with self.nixosModules; [
-      gsconnect-firewall
-    ];
-
     home-manager.users.daluca.imports = with self.homeModules; [
       gsconnect
     ];
+
+    networking.firewall = rec {
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+      allowedUDPPortRanges = allowedTCPPortRanges;
+    };
   };
 
   flake.homeModules.gsconnect =
@@ -40,7 +46,7 @@
         with lib.hm.gvariant; {
           type = "phone";
           paired = true;
-          certificate-pem = builtins.readFile ./zenphone-10.pem;
+          certificate-pem = builtins.readFile ./users/daluca/zenphone-10.pem;
           disabled-plugins = mkTuple [ ];
           incoming-capabilities = [
             "kdeconnect.battery"
