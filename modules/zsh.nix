@@ -1,5 +1,3 @@
-{ self, ... }:
-
 {
   flake.homeModules.zsh =
     {
@@ -9,10 +7,6 @@
       ...
     }:
     {
-      imports = with self.homeModules; [
-        zsh-transientPrompt
-      ];
-
       programs.zsh = rec {
         enable = true;
         dotDir = "${config.xdg.configHome}/zsh/";
@@ -55,23 +49,35 @@
           plugins = [
             "sudo"
           ];
-          extraConfig = # zsh
-            /* bash */ ''
-              zstyle ':omz:update' mode disabled
-              zstyle ':fzf-tab:complete:cd:*' fzf-preview '${lib.getExe config.programs.eza.package} -1 --color=always $realpath'
-              zstyle ':fzf-tab:complete:cd:*' popup-min-size 100 20
-              zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-            '';
-        };
-        profileExtra = # zsh
-          /* bash */ ''
-            export DISABLE_TMUX_AUTOSTART=true
+          extraConfig = /* zsh */ ''
+            zstyle ':omz:update' mode disabled
+            zstyle ':fzf-tab:complete:cd:*' fzf-preview '${lib.getExe config.programs.eza.package} -1 --color=always $realpath'
+            zstyle ':fzf-tab:complete:cd:*' popup-min-size 100 20
+            zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
           '';
+        };
+        profileExtra = /* zsh */ ''
+          export DISABLE_TMUX_AUTOSTART=true
+        '';
+
         initContent =
-          lib.mkBefore # zsh
-            /* bash */ ''
+          let
+            tmux-autostart = lib.mkBefore /* zsh */ ''
               [[ -n "''${DISABLE_TMUX_AUTOSTART}" ]] || export ZSH_TMUX_AUTOSTART=true
             '';
+            transient-prompt = lib.mkAfter /* zsh */ ''
+              autoload -Uz add-zle-hook-widget
+              add-zle-hook-widget line-finish transient-prompt
+
+              function transient-prompt() {
+                PROMPT="$( ${lib.getExe config.programs.starship.package} module character )" RPROMPT="$( ${lib.getExe config.programs.starship.package} module cmd_duration )" zle .reset-prompt
+              }
+            '';
+          in
+          lib.mkMerge [
+            tmux-autostart
+            transient-prompt
+          ];
       };
 
       catppuccin.zsh-syntax-highlighting.enable = true;
