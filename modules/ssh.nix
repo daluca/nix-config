@@ -24,6 +24,7 @@
       guiltyspark-sshKnownHosts
       stormwind-sshKnownHosts
       darnassus-sshKnownHosts
+      ironforge-sshKnownHosts
       dalaran-sshKnownHosts
       unifi-sshKnownHosts
     ];
