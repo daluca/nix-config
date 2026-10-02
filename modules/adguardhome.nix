@@ -221,4 +221,57 @@
       };
     };
   };
+
+  flake.nixosModules.adguardhome-new-zealand = { config, secrets, ... }: {
+    imports = with self.nixosModules; [
+      adguardhome
+    ];
+
+    services.adguardhome = {
+      port = 80;
+      openFirewall = true;
+      settings = {
+        dns = {
+          bind_hosts = [ "192.168.10.10" ];
+          upstream_dns = [
+            "[//in-addr.arpa/${config.networking.domain}/]192.168.10.254"
+            "[//ip6.arpa/${config.networking.domain}/]192.168.10.254"
+          ];
+          fallback_dns = [
+            "9.9.9.9"
+            "149.112.112.112"
+          ];
+          hostsfile_enabled = false;
+          local_ptr_upstreams = [
+            "192.168.10.254"
+          ];
+        };
+        filtering.rewrites = [
+          {
+            domain = "ironforge.${config.networking.domain}";
+            answer = "192.168.10.10";
+          }
+          {
+            domain = secrets.parents.domain;
+            answer = "192.168.10.20";
+          }
+          {
+            domain = "*.${secrets.parents.domain}";
+            answer = "192.168.10.20";
+          }
+        ];
+        user_rules =
+          let
+            allowDomain = domain: "@@||${domain}^";
+            blockDomain = domain: "||${domain}^";
+          in
+          map allowDomain [
+            "opinionstage.com"
+          ]
+          ++ map blockDomain [
+            "ota.onecloud.harman.com"
+          ];
+      };
+    };
+  };
 }

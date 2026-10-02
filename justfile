@@ -4,19 +4,13 @@ default:
 
 # all checks on all system types
 [group("flake")]
-[private]
-_check: format pre-commit
+check: format pre-commit
     nix flake check --all-systems
 
 # pre-commit checks
 [group("checks")]
 pre-commit:
     pre-commit run --all-files
-
-# TODO: Restore after dendritic migration
-# run all linting, formatting and build checks
-[group("checks")]
-check: format pre-commit build
 
 # update all flake inputs
 [group("flake")]

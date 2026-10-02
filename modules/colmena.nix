@@ -3,30 +3,15 @@
   inputs,
   ...
 }:
-let
-  validHosts = inputs.nixpkgs.lib.filterAttrs (
-    hostname: _:
-    hostname == "dalaran"
-    || hostname == "benedick"
-    || hostname == "alfa"
-    || hostname == "bravo"
-    || hostname == "charlie"
-    || hostname == "shodan"
-    || hostname == "stormwind"
-    || hostname == "guiltyspark"
-    || hostname == "artemis"
-    || hostname == "unifi"
-  ) self.nixosConfigurations;
-in
 {
   flake.colmenaHive = inputs.colmena.lib.makeHive (
     {
       meta = {
         nixpkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
-        nodeNixpkgs = builtins.mapAttrs (_: nixos: nixos.pkgs) validHosts // {
+        nodeNixpkgs = builtins.mapAttrs (_: nixos: nixos.pkgs) self.nixosConfigurations // {
           dalaran = inputs.nixos-raspberrypi.inputs.nixpkgs.legacyPackages."aarch64-linux";
         };
-        nodeSpecialArgs = builtins.mapAttrs (_: nixos: nixos._module.specialArgs) validHosts;
+        nodeSpecialArgs = builtins.mapAttrs (_: nixos: nixos._module.specialArgs) self.nixosConfigurations;
       };
     }
     // builtins.mapAttrs (hostname: nixos: {
@@ -41,6 +26,6 @@ in
           "none"
         ];
       };
-    }) validHosts
+    }) self.nixosConfigurations
   );
 }
