@@ -13,7 +13,7 @@
       ];
     };
 
-  flake.nixosModules.ironforge = {
+  flake.nixosModules.ironforge = { secrets, ... }: {
     imports = with self.nixosModules; [
       raspberry-pi-4
       tailscale-server
@@ -25,6 +25,8 @@
     deploy.tags = [
       "new-zealand"
     ];
+
+    deploy.ipv4-address = secrets.hosts.ironforge.tailscale-address;
 
     services.getty.autologinUser = "daluca";
 
@@ -42,13 +44,13 @@
     system.stateVersion = "26.05";
   };
 
-  flake.nixosModules.ironforge-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.ironforge-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       ironforge = {
         extraHostNames = [
           "ironforge.${config.networking.domain}"
           "192.168.10.10"
-          "100.64.0.2"
+          secrets.hosts.ironforge.tailscale-address
         ];
         publicKeyFile = ./keys/ssh_host_ed25519_key.pub;
       };

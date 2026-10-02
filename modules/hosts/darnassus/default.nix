@@ -13,7 +13,7 @@
       ];
     };
 
-  flake.nixosModules.darnassus = {
+  flake.nixosModules.darnassus = { secrets, ... }: {
     imports = with self.nixosModules; [
       raspberry-pi-4
       raspberry-pi-4-gpio-fan
@@ -25,6 +25,8 @@
     deploy.tags = [
       "united-kingdom"
     ];
+
+    deploy.ipv4-address = secrets.hosts.darnassus.tailscale-address;
 
     services.getty.autologinUser = "daluca";
 
@@ -42,13 +44,13 @@
     system.stateVersion = "26.05";
   };
 
-  flake.nixosModules.darnassus-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.darnassus-sshKnownHosts = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       darnassus = {
         extraHostNames = [
           "darnassus.${config.networking.domain}"
           "192.168.1.212"
-          "100.64.0.14"
+          secrets.hosts.darnassus.tailscale-address
         ];
         publicKeyFile = ./keys/ssh_host_ed25519_key.pub;
       };
