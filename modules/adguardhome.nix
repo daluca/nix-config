@@ -172,7 +172,6 @@
               (externalHost "alfa")
               (externalHost "bravo")
               (externalHost "charlie")
-              (externalHost "delta")
               (externalHost "unifi")
               (externalHost "shodan")
               (dalaran "paperless")
