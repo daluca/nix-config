@@ -60,7 +60,7 @@
   };
 
   flake.nixosModules.raspberry-pi-4-poe-hat = {
-    hardware.raspberry-pi.configtxt.deviceTreeOverlays."board-type=0x11" = [
+    hardware.raspberry-pi.configtxt.deviceTreeOverlays.pi4 = [
       {
         rpi-poe = {
           poe_fan_temp0 = 65 * 1000;
