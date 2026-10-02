@@ -322,14 +322,6 @@
                       value = osConfig.system.stateVersion;
                     }
                     {
-                      name = "include_nixos_options";
-                      value = "1";
-                    }
-                    {
-                      name = "include_modular_service_options";
-                      value = "0";
-                    }
-                    {
                       name = "query";
                       value = "{searchTerms}";
                     }
@@ -350,14 +342,6 @@
                     {
                       name = "channel";
                       value = osConfig.system.stateVersion;
-                    }
-                    {
-                      name = "include_nixos_options";
-                      value = toString 1;
-                    }
-                    {
-                      name = "include_modular_service_options";
-                      value = toString 0;
                     }
                     {
                       name = "query";
@@ -433,11 +417,15 @@
             "Home Manager Options" = {
               urls = [
                 {
-                  template = "https://home-manager-options.extranix.com/";
+                  template = "https://search.nixos.org/options";
                   params = [
                     {
-                      name = "release";
-                      value = "release-${config.home.stateVersion}";
+                      name = "source";
+                      value = "home_manager";
+                    }
+                    {
+                      name = "channel";
+                      value = config.home.stateVersion;
                     }
                     {
                       name = "query";
@@ -446,10 +434,7 @@
                   ];
                 }
               ];
-              icon = pkgs.fetchurl {
-                url = "https://home-manager-options.extranix.com/images/favicon.png";
-                hash = "sha256-oFp+eoTLXd0GAK/VrYRUeoXntJDfTu6VnzisEt+bW74";
-              };
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [
                 "@homemanageroptions"
                 "@hmo"
