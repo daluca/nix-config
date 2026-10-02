@@ -2,6 +2,11 @@
 
 {
   flake.nixosModules.gnome = { lib, pkgs, ... }: {
+    home-manager.users.daluca.imports = with self.homeModules; [
+      gnome
+      profile
+    ];
+
     services.desktopManager.gnome.enable = true;
 
     services.displayManager.gdm.enable = true;
@@ -26,11 +31,6 @@
     services.gnome.gnome-browser-connector.enable = true;
 
     services.xserver.xkb.options = lib.mkForce "";
-
-    home-manager.users.daluca.imports = with self.homeModules; [
-      gnome
-      profile
-    ];
   };
 
   flake.homeModules.gnome =
@@ -167,10 +167,28 @@
           ]
         ]))
       ]);
+      wallpaper = {
+        color-shading-type = "solid";
+        picture-options = "zoom";
+        picture-uri = "file://${
+          pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-nineish.png";
+            hash = "sha256-EMSD1XQLaqHs0NbLY0lS1oZ4rKznO+h9XOGDS121m9c=";
+          }
+        }";
+        picture-uri-dark = "file://${
+          pkgs.fetchurl {
+            url = "https://i.redd.it/zn8oyt5xqjxc1.png";
+            hash = "sha256-NdfGfwf97e0DQhwrV/zkHw0jTV+NPOgYWbqIziaWgwc=";
+            name = "dark-mode-wallpaper.png";
+          }
+        }";
+        primary-color = "#000000000000";
+        secondary-color = "#000000000000";
+      };
     in
     {
       imports = with self.homeModules; [
-        gnome-wallpaper
         gnome-extensions
       ];
 
@@ -208,6 +226,8 @@
             "compose:ralt"
           ];
         };
+        "org/gnome/desktop/background" = wallpaper;
+        "org/gnome/desktop/screensaver" = wallpaper;
         "org/gnome/settings-daemon/plugins/color" = {
           night-light-enabled = true;
         };
@@ -291,13 +311,125 @@
         "org.gnome.Terminal.desktop"
       ];
 
-      # NOTE: Remove if no longer needed
-      # systemd.user.tmpfiles.rules = [
-      #   "L+ /home/${config.home.username}/.config/monitors.xml - - - - ${./monitors.xml}"
-      # ];
-
       home.packages = with pkgs; [
         wl-clipboard
+      ];
+    };
+
+  flake.homeModules.gnome-extensions = { lib, ... }: {
+    imports = with self.homeModules; [
+      gnome-extensions-appindicator
+      gnome-extensions-caffeine
+      gnome-extensions-in-picture
+      gnome-extensions-no-overview
+      gnome-extensions-paperwm
+    ];
+
+    dconf.settings."org/gnome/shell" = {
+      disable-user-extensions = false;
+      disabled-extensions = lib.mkDefault [ ];
+    };
+  };
+
+  flake.homeModules.gnome-extensions-appindicator = { pkgs, ... }: with pkgs.gnomeExtensions;
+    {
+      dconf.settings."org/gnome/shell" = {
+        enabled-extensions = [ appindicator.extensionUuid ];
+      };
+    };
+
+  flake.homeModules.gnome-extensions-auto-cpufreq-switcher =
+    {
+      pkgs,
+      ...
+    }:
+    with pkgs.gnomeExtensions;
+    {
+      home.packages = [
+        auto-cpufreq-switcher
+      ];
+
+      dconf.settings."org/gnome/shell" = {
+        enabled-extensions = [ auto-cpufreq-switcher.extensionUuid ];
+      };
+    };
+
+  flake.homeModules.gnome-extensions-caffeine = { pkgs, ... }: with pkgs.gnomeExtensions;
+    {
+      home.packages = [
+        caffeine
+      ];
+
+      dconf.settings."org/gnome/shell" = {
+        enabled-extensions = [ caffeine.extensionUuid ];
+      };
+    };
+
+  flake.homeModules.gnome-extensions-in-picture = { pkgs, ... }: with pkgs.gnomeExtensions;
+    {
+      home.packages = [
+        in-picture
+      ];
+
+      dconf.settings."org/gnome/shell" = {
+        enabled-extensions = [ in-picture.extensionUuid ];
+      };
+
+      dconf.settings."org/gnome/shell/extensions/in-picture" = {
+        stick = true;
+        top = true;
+        corner = 3; # Bottom right
+        margin-x = 0;
+        margin-y = 0;
+        use-relative = true;
+        diagonal-relative = 30;
+        identifiers = [
+          [
+            "Picture-in-Picture"
+            "firefox.desktop"
+          ]
+          [
+            "Picture-in-Picture"
+            "zen-beta.desktop"
+          ]
+        ];
+      };
+    };
+
+  flake.homeModules.gnome-extensions-no-overview = { pkgs, ... }: with pkgs.gnomeExtensions;
+    {
+      home.packages = [
+        no-overview
+      ];
+
+      dconf.settings."org/gnome/shell" = {
+        enabled-extensions = [ no-overview.extensionUuid ];
+      };
+    };
+
+  flake.homeModules.gnome-extensions-paperwm = { pkgs, lib, ... }: with pkgs.gnomeExtensions;
+    {
+      home.packages = [
+        paperwm
+      ];
+
+      dconf.settings."org/gnome/shell" = {
+        enabled-extensions = [ paperwm.extensionUuid ];
+      };
+
+      dconf.settings."org/gnome/shell/extensions/paperwm" = with lib.hm.gvariant; {
+        show-window-position-bar = false;
+        show-workspace-indicator = false;
+        selection-border-radius-bottom = 12;
+        window-gap = 10;
+        horizontal-margin = 5;
+        vertical-margin = 5;
+        vertical-margin-bottom = 5;
+        minimap-scale = mkDouble "0.0";
+      };
+
+      home.persistence.home.directories = [
+        ".config/paperwm"
       ];
     };
 }

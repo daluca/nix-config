@@ -94,4 +94,22 @@
       gnome-extensions-tailscaleQs
     ];
   };
+
+  flake.homeModules.gnome-extensions-tailscale-qs =
+    {
+      pkgs,
+      lib,
+      osConfig,
+      ...
+    }:
+    with pkgs.gnomeExtensions;
+    lib.mkIf osConfig.services.tailscale.enable {
+      home.packages = [
+        tailscale-qs
+      ];
+
+      dconf.settings."org/gnome/shell" = {
+        enabled-extensions = [ tailscale-qs.extensionUuid ];
+      };
+    };
 }
