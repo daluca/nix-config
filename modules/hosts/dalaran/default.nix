@@ -30,6 +30,7 @@
         local-content-share
         gatus
         homebox
+        immich
       ];
 
     security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
@@ -125,6 +126,8 @@
             '';
           };
         };
+
+        "immich.${secrets.domain.general}" = tls;
 
         ${firefly-iii.virtualHost} = tls;
 
