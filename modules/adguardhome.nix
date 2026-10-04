@@ -186,6 +186,7 @@
               (dalaran "home-assistant")
               (dalaran "zigbee2mqtt")
               (dalaran "unifi")
+              (dalaran "immich")
               (shodan "sonarr")
               (shodan "radarr")
               (shodan "prowlarr")
