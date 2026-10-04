@@ -190,6 +190,7 @@
       imports = with self.nixosModules; [
         tunarr-options
       ];
+
       services.tunarr = {
         enable = true;
         port = 8108;

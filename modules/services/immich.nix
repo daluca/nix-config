@@ -9,6 +9,7 @@
       ...
     }:
     {
+      # TODO: Remove once upgrading to NixOS 26.11
       disabledModules = [
         "services/web-apps/immich.nix"
       ];
