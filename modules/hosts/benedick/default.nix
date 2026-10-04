@@ -212,7 +212,6 @@
         libreoffice
         mangohud
         neovim
-        nix-utils
         zenBrowser
         vscodium
         games
