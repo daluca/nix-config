@@ -44,6 +44,10 @@
         "/etc/ssh/ssh_initrd_ed25519_key" = lib.mkForce "/persistent/system/etc/ssh/ssh_initrd_ed25519_key";
       };
 
+      systemd.tmpfiles.rules = [
+        "d /persistent/system/var/lib/private 0700 root root -"
+      ];
+
       boot.initrd.systemd = lib.mkIf (config.fileSystems."/".fsType == "btrfs") {
         services.impermanence = {
           description = "Archiving existing BTRFS root subvolume and creating a fresh one";
