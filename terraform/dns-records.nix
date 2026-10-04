@@ -50,7 +50,7 @@ let
       name = "miniflux.${primary.domain}";
       id = "${primary.zone_id}/520004ebe5ccc6e5b3f7d9fea45489f3";
     };
-    netbird = (charlie primary.zone_id) // {
+    netbird = (delta primary.zone_id) // {
       name = "netbird.${primary.domain}";
       id = "${primary.zone_id}/70ef86c217cbe2255cca3eebdcb53dee";
     };

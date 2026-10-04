@@ -56,7 +56,7 @@ in
       ];
     }) servers)
     {
-      charlie.firewall_ids = [
+      delta.firewall_ids = [
         (lib.tf.ref "hcloud_firewall.netbird.id")
       ];
     }

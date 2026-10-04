@@ -17,6 +17,10 @@ cloudflare:
 pocket-id:
   encryption-key: ENC[AES256_GCM,data:9X6dG8kvGL9hpsSMKM1dlD8DFZEwPnWuwZJkw4AZsfBnLIi4qX0X9KEatNQ=,iv:+51HliaHkdnhhsrZAst5EBIsOSoaxMwTlhUuWAKypZQ=,tag:Qgyom2mA53CM7fBgwJdQwg==,type:str]
   smtp-password: ENC[AES256_GCM,data:g+wVdEzQ2hwRTmuwPv7G/A==,iv:BcHEpL6s3IKtfIt69Z5tpDqUwIMH9m4D90QeVNQx1ic=,tag:aRWqJVoZJ5sXh0xS3iNnfQ==,type:str]
+netbird:
+  auth-secret: ENC[AES256_GCM,data:Rn72/s6ysVGXdkNF1ccygMQ5WTu6Ed876pbqWEGE82pU80TnDjbeD2duEQ==,iv:aFA3cvjL8gltbNqPBbTz8NXHXe21xCAOMnbAgUd0m8c=,tag:LaJ+TyHPIA9eC2m57j4ysQ==,type:str]
+  session-key: ENC[AES256_GCM,data:Fhjv0r7rmeNqCD7R5NIRGS6VvjXGlTlsWr8uvVDnCkwujc7sKCPBBqenE2w=,iv:dxz4FqEbqKxMghXEONJJzVitl6rBOtkeAllgCh1ldwQ=,tag:xJv3Oz0HEwgvD8OqvhJv4w==,type:str]
+  encryption-key: ENC[AES256_GCM,data:nnL9Jy2wRP1QGRd7DxmnNPBLPJBuj94YGc9XK48iQF18NvXZiAD+F4pUj0A=,iv:l9hqAF2LXe80kubbB/jnx0z64lw5+qHDtUJ7pCoHorA=,tag:81TLK/lfgfy8nJD299JsJA==,type:str]
 sops:
   age:
     - enc: |
@@ -37,7 +41,7 @@ sops:
         po/B/x/w1c4jZxlHYwCrM5pWLCqbG/NSi6o3yAjNW9XtLneZajeNbg==
         -----END AGE ENCRYPTED FILE-----
       recipient: age1ep9ezrvguxtfeaz8k2nds9vnvrwcz76nwa882v35j78htqnc5ctszxpvha
-  lastmodified: "2026-10-28T21:58:38Z"
-  mac: ENC[AES256_GCM,data:JIuaYQrAhmtyqdFxKeNWKpAtNgXhO9K6s+ZQ9n/u1GYNZ/j2m4Vdvb81/cgj1TRiT3ULy7eeMc0Wr79W+Y2ylGQl60TTRb/IntgPbMZjdofYDooy6K7YGZHlf99OHEVOLDIwmnU8goAY33PiGkCm05C5bCtIFRoUEan2YOl+qKo=,iv:2WEpPsThFkXUYmwwoblCQtxwjD/1kZtNn5d8IOzWwFQ=,tag:SDjhPCiLV7BW6Q1rSL8m9w==,type:str]
+  lastmodified: "2026-11-08T13:49:54Z"
+  mac: ENC[AES256_GCM,data:Ec+RFvaU2W1/UZgkuZ0eMCV+AtnwDT3UUnpA6d5l9IwQ+ez7ZB/RG+2ZvYMzLMkKLj+Si3YdxRFOTl1cZsF7ONG7jjKaG5FKgWYJQ8Myews2OoAZOQOAcYuc8iOgBXdtv3hv6najHqhl+BRMZ0kBKR+Af7S2mw1V9PxUhdTBNxY=,iv:AvvZv0Q63uDp6AHvoxvjk/SXItey1Qe18CQ8NdajiPY=,tag:U+OYHOeV2Hp+E2V0TYDSVQ==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.3

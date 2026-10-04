@@ -25,6 +25,7 @@
         remote-unlocking-dhcp
         impermanence-grub
         tailscale-server
+        netbird-server
         nginx
         atticd
       ];
