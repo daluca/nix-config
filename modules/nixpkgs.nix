@@ -15,7 +15,6 @@
         ++ [
           nur.overlays.default
           nix-vscode-extensions.overlays.default
-          proton-ge.overlays.default
         ];
       config.allowUnfree = true;
     };

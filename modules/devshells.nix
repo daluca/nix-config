@@ -7,8 +7,8 @@
     }:
     {
       devShells.default = pkgs.mkShell {
-        inputsFrom = [
-          config.pre-commit.devShell
+        inputsFrom = with config; [
+          pre-commit.devShell
         ];
         name = "nix-config";
         packages = with pkgs; [

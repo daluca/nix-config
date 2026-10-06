@@ -1,7 +1,11 @@
-{ self, ... }:
+{ self, inputs, ... }:
 
 {
   flake.nixosModules.steam = { pkgs, ... }: {
+    imports = with inputs; [
+      proton-ge.nixosModules.default
+    ];
+
     programs.steam = {
       enable = true;
       package = pkgs.steam.override {
@@ -30,11 +34,15 @@
       localNetworkGameTransfers.openFirewall = true;
       extraCompatPackages = with pkgs; [
         GE-Proton11
+        GE-Proton11-9
+        GE-Proton11-8
         GE-Proton11-7
         GE-Proton11-6
         GE-Proton11-5
         GE-Proton11-4
         GE-Proton11-3
+        GE-Proton11-2
+        GE-Proton11-1
         GE-Proton10
         GE-Proton9
         GE-Proton8
@@ -51,19 +59,8 @@
     ];
   };
 
-  flake.homeModules.steam = { pkgs, ... }: {
-    xdg.dataFile = with pkgs; {
-      "Steam/compatibilitytools.d/GE-Proton11".source = lib.getOutput "steamcompattool" GE-Proton11;
-      "Steam/compatibilitytools.d/GE-Proton11-5".source = lib.getOutput "steamcompattool" GE-Proton11-5;
-      "Steam/compatibilitytools.d/GE-Proton11-4".source = lib.getOutput "steamcompattool" GE-Proton11-4;
-      "Steam/compatibilitytools.d/GE-Proton11-3".source = lib.getOutput "steamcompattool" GE-Proton11-3;
-      "Steam/compatibilitytools.d/GE-Proton11-2".source = lib.getOutput "steamcompattool" GE-Proton11-2;
-      "Steam/compatibilitytools.d/GE-Proton11-1".source = lib.getOutput "steamcompattool" GE-Proton11-1;
-      "Steam/compatibilitytools.d/GE-Proton10".source = lib.getOutput "steamcompattool" GE-Proton10;
-      "Steam/compatibilitytools.d/GE-Proton9".source = lib.getOutput "steamcompattool" GE-Proton9;
-      "Steam/compatibilitytools.d/GE-Proton8".source = lib.getOutput "steamcompattool" GE-Proton8;
-      "Steam/compatibilitytools.d/GE-Proton7".source = lib.getOutput "steamcompattool" GE-Proton7;
-    };
+  flake.homeModules.steam = {
+    programs.steam.exposeCompatibility = true;
 
     home.persistence.home.directories = [
       ".local/share/Steam"
