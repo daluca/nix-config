@@ -45,12 +45,12 @@ deploy host:
 # build and push to all hosts
 [group("hosts")]
 push:
-    colmena apply push --evaluator streaming --eval-node-limit 1
+    colmena apply push --evaluator streaming
 
 # build all hosts
 [group("hosts")]
 build:
-    colmena build --evaluator streaming --eval-node-limit 1
+    colmena build --evaluator streaming
 
 # remote unlock a host
 [group("hosts")]
