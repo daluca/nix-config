@@ -91,7 +91,7 @@
 
   flake.homeModules.tailscale-client = {
     imports = with self.homeModules; [
-      gnome-extensions-tailscaleQs
+      gnome-extensions-tailscale-qs
     ];
   };
 
