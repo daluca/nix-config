@@ -84,7 +84,7 @@
       _final: prev: {
         vscode = prev.vscode.overrideAttrs (oldAttrs: {
           nativeBuildInputs = [
-            (pkgs.pnpm_10.override { nodejs-slim = pkgs.nodejs-slim_24; })
+            (pkgs.pnpm_12.override { nodejs-slim = pkgs.nodejs-slim_24; })
             pkgs.nodejs-slim_24
             pkgs.pnpmConfigHook
           ];
@@ -96,9 +96,9 @@
               src
               pnpmWorkspaces
               ;
-            pnpm = pkgs.pnpm_10.override { nodejs-slim = pkgs.nodejs-slim_24; };
+            pnpm = pkgs.pnpm_12.override { nodejs-slim = pkgs.nodejs-slim_24; };
             fetcherVersion = 3;
-            hash = "sha256-DE0mHkBlV0RkrEmtIXnzKaiXOK8vgcCx3z7b49zzBhc=";
+            hash = "sha256-uBaCsSd595T4h+XR5MnoN3ZIBjN3M+ag+b18WdqRCCs=";
           };
         });
       }
