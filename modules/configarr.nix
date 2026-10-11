@@ -5,7 +5,7 @@
     packages.configarr =
       with pkgs;
       let
-        pnpm = pnpm_10;
+        pnpm = pnpm_12;
       in
       stdenvNoCC.mkDerivation (finalAttrs: rec {
         pname = "configarr";
@@ -32,7 +32,7 @@
           inherit (finalAttrs) pname version src;
           inherit pnpm;
           fetcherVersion = 4;
-          hash = "sha256-nc2cvYMInOXWtqA/lIqGJwi6xIwAYnZabWh8F+VVhLo=";
+          hash = "sha256-MIHCU65pXgQ7B7faDX7pVsLS9JHM01nAz/faZ0n3VKo=";
         };
 
         buildPhase = ''
