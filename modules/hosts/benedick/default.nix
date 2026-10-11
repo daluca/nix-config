@@ -219,7 +219,6 @@
         heliumBrowser
         yazi
         lazygit
-        nextcloud
         heroic
         itch
         doctl
