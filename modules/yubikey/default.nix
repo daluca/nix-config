@@ -51,6 +51,7 @@
         username
         "h3s2Y3IywzOVDrGRunXpoA8PKZUCmUTRG8Z7KHG1hdTOUxgw5vI2tVQ8KLObx2PT2bFT+rNriCE/Ea7puZ98rg==,irVpmIGEu7eBtsHWoQ+bQSxEn7UnFNPOEHzMVzMtaUJUc5VO31T3hg0sUqtJeiGZ4h6jdWgOIoBob4Tql6ulSQ==,es256,+presence"
         "+wVlTgQUHWtq7RiWvFVhR7/PDIyRK7ZQJ7U2uvOpb0qPBGvKg21fYYtbJXpdzHNl3tb9mFYAsDvy7hLpwSv6SA==,0yobt/pmQ5HYe9FJC96R6yc7Efg8qvtkIzVC/laCsr3AeJZ6SDD1ntjUkE2p3vCUw8nQU7CxVdpfg9jcRvP3Hg==,es256,+presence"
+        "vUhkMDDgY95p4URGjJYczoUbtaw+mvbF8WPT1q1IwRthB8l0dM0w9akV4VPH1y4kDzM/nijSbauRizBsce9/PA==,Azt/FL1oVoRNc0t/zltXXyTDCKEfiYGyCGXIVzeooPIgDFzWu7LRHlvwlNmFh7V0FNs1rVsDdESZOEmqhvlt9Q==,es256,+presence"
       ];
 
     programs.gpg.publicKeys = [
