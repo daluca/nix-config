@@ -2,9 +2,8 @@
 
 {
   flake.nixosModules.yubikey = { pkgs, lib, ... }: {
-    imports = with inputs.self.nixosModules; [
-      home-manager
-      smartCards
+    home-manager.users.daluca.imports = with inputs.self.homeModules; [
+      yubikey
     ];
 
     services.udev.packages = with pkgs; [
@@ -28,6 +27,13 @@
       cue = true;
     };
 
+    services.pcscd.enable = true;
+
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+
     services.udev.extraRules = ''
       ACTION=="remove",\
        ENV{ID_BUS}=="usb",\
@@ -36,10 +42,6 @@
        ENV{ID_VENDOR}=="Yubico",\
        RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
     '';
-
-    home-manager.users.daluca.imports = with inputs.self.homeModules; [
-      yubikey
-    ];
   };
 
   flake.homeModules.yubikey = { config, lib, ... }: {
