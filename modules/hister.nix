@@ -15,7 +15,7 @@
         app = {
           search_url = "https://kagi.com/search?q={query}";
           log_level = "debug";
-          public = true;
+          public = false;
         };
       };
     };
