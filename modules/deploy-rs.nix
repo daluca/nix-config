@@ -26,6 +26,11 @@
     sshOpts = [
       "-F"
       "none"
+      "-A"
+      "-o"
+      "IdentitiesOnly=yes"
+      "-i"
+      "~/.ssh/id_ed25519"
     ];
     profiles.system = {
       user = "root";

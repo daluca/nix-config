@@ -24,6 +24,8 @@
         extraGroups = [ "wheel" ];
         openssh.authorizedKeys.keyFiles = [
           ./keys/id_ed25519.pub
+          ./keys/id_rsa.pub
+          ./keys/id_ed25519_sk.pub
         ];
       };
 

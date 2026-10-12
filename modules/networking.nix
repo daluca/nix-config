@@ -7,7 +7,12 @@
       ...
     }:
     {
-      networking.domain = "internal";
+      networking = {
+        domain = "internal";
+        search = [
+          "internal"
+        ];
+      };
 
       # TODO: Remove when upstream resolves issue
       # Workaround to remove --wait-for-startup flag

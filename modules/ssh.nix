@@ -12,6 +12,8 @@
         X11Forwarding = false;
       };
     };
+
+    security.pam.sshAgentAuth.enable = true;
   };
 
   flake.nixosModules.ssh = { config, lib, ... }: {
@@ -109,6 +111,7 @@
           {
             RemoteCommand = "zsh --login";
             RequestTTY = "yes";
+            ForwardAgent = true;
           };
         usg = {
           HostName = "192.168.10.1";
@@ -125,6 +128,11 @@
           ControlMaster = "no";
           ControlPath = "~/.ssh/master-%r@%n:%p";
           ControlPersist = "no";
+          IdentitiesOnly = true;
+          IdentityFile = [
+            "~/.ssh/id_ed25519"
+            "~/.ssh/id_rsa"
+          ];
         };
       };
     };
@@ -142,6 +150,13 @@
     };
 
     home.file.".ssh/id_rsa.pub".source = ./users/daluca/keys/id_rsa.pub;
+
+    sops.secrets."id_ed25519_sk" = {
+      sopsFile = ./users/daluca/daluca.sops.yaml;
+      path = ".ssh/id_ed25519_sk";
+    };
+
+    home.file.".ssh/id_ed25519_sk.pub".source = ./users/daluca/keys/id_ed25519_sk.pub;
 
     home.persistence.home.directories = [
       ".ssh"

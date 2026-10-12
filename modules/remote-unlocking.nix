@@ -11,6 +11,8 @@
             port = 22022;
             authorizedKeyFiles = [
               ./users/daluca/keys/id_ed25519.pub
+              ./users/daluca/keys/id_rsa.pub
+              ./users/daluca/keys/id_ed25519_sk.pub
             ];
             hostKeys = [
               "/etc/ssh/ssh_initrd_ed25519_key"
