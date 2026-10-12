@@ -30,5 +30,13 @@
     };
 
     sops.secrets."hister/access-token" = { };
+
+    environment.persistence.system.directories = [
+      {
+        inherit (config.services.hister) user group;
+        directory = config.services.hister.dataDir;
+        mode = "0750";
+      }
+    ];
   };
 }
