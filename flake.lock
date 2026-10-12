@@ -246,11 +246,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787559586,
-        "narHash": "sha256-onL0VLf9vPllmT0H/OlURIU5r5t5WIEl7t4tVNKT0Nw=",
+        "lastModified": 1788450739,
+        "narHash": "sha256-glZLQlzIn1fXH6PazR2iUmTo7kzzyYSshrWhLS9TqCU=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "9d0d87172c374f89da73c1cfe6d81ae62feac1f1",
+        "rev": "31729ca8cbdb4fa927b34e5f4353e6a83f39e993",
         "type": "github"
       },
       "original": {
@@ -415,16 +415,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1788458545,
-        "narHash": "sha256-0DNrO8wLgkVKTNWfSjkVpwUBn0+X7xb2pb7mXnD1SIU=",
+        "lastModified": 1790242729,
+        "narHash": "sha256-8FKieCq7T87wIawCjVoto2kX1PU2sV1LFQtz2nydzBM=",
         "owner": "asciimoo",
         "repo": "hister",
-        "rev": "118a73a92146e3e9c060c340a081c95463c9b8f0",
+        "rev": "0b3b8cd7566705455f1ef643a41510105e17b9fa",
         "type": "github"
       },
       "original": {
         "owner": "asciimoo",
-        "ref": "v0.19.0",
+        "ref": "v0.20.0",
         "repo": "hister",
         "type": "github"
       }
