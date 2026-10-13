@@ -77,6 +77,10 @@
 
     opendeck-nix.url = "github:kitt3120/opendeck-nix";
     opendeck-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    niri.url = "github:epireyn/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    niri.inputs.nixpkgs-stable.follows = "nixpkgs";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

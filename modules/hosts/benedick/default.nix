@@ -44,6 +44,7 @@
         opendeck
         devices-audioTechnicaATHM50xBT2
         tailscale-client
+        niri
       ];
 
     home-manager.users.daluca.imports = with self.homeModules; [
