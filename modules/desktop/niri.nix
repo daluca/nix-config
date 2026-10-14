@@ -1,9 +1,23 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  withSystem,
+  ...
+}:
 
 {
+  flake.overlays.noctalia =
+    _final: prev:
+    withSystem prev.stdenv.hostPlatform.system (
+      { inputs', ... }: {
+        noctalia = inputs'.noctalia.packages.default;
+      }
+    );
+
   flake.nixosModules.niri = {
-    imports = with inputs; [
-      niri.nixosModules.niri
+    imports = with self.nixosModules; [
+      inputs.niri.nixosModules.niri
+      noctalia
     ];
 
     home-manager.users.daluca.imports = with self.homeModules; [
@@ -144,7 +158,7 @@
             allow-when-locked = true;
           };
           "XF86AudioNext" = {
-            action.spawn = spawn-sh "playerctl next";
+            action.spawn = spawn-sh "${lib.getExe pkgs.playerctl} next";
             allow-when-locked = true;
           };
           "XF86MonBrightnessUp" = {
@@ -306,6 +320,16 @@
           };
           numlock = true;
         };
+        cursor =
+          let
+            milliseconds = 1000;
+          in
+          {
+            theme = "Adwaita";
+            size = 24;
+            hide-after-inactive-ms = 30 * milliseconds;
+            hide-when-typing = true;
+          };
         binds = {
           "Mod+T" = {
             action.spawn = lib.getExe config.programs.ghostty.package;
@@ -315,6 +339,69 @@
             action.close-window = { };
             repeat = false;
           };
+          "Alt+Space".action.spawn = spawn-sh "noctalia msg panel-toggle launcher";
+          "Mod+D".action.spawn = spawn-sh "noctalia msg panel-toggle launcher";
+          "Alt+Tab".action.spawn = spawn-sh "noctalia msg window-switcher hold";
+          "Mod+L".action = lib.mkForce { spawn = spawn-sh "noctalia msg session lock"; };
+        };
+        window-rules =
+          let
+            zen-browser = {
+              app-id = "^zen-beta$";
+            };
+            ghostty = {
+              app-id = "^com.mitchellh.ghostty$";
+            };
+            firefox = {
+              app-id = "firefox$";
+            };
+            vscodium = {
+              app-id = "^codium$";
+            };
+            thunderbird = {
+              app-id = "^thunderbird$";
+            };
+          in
+          [
+            {
+              matches = map (browser: browser // { title = "^Picture-in-Picture$"; }) [
+                zen-browser
+                firefox
+              ];
+              open-floating = true;
+              # TODO: Enable on next stable Niri release
+              # on-xdg-activate = "focus";
+              default-column-width.fixed = 854;
+              default-window-height.fixed = 480;
+              default-floating-position = {
+                x = 24;
+                y = 24;
+                relative-to = "bottom-right";
+              };
+            }
+            {
+              matches = [
+                zen-browser
+                ghostty
+                vscodium
+                thunderbird
+              ];
+              excludes = [
+                { title = "^Picture-in-Picture$"; }
+                { title = "^Extension: (Bitwarden Password Manager)"; }
+              ];
+              default-column-width.proportion = 2. / 3.;
+            }
+            {
+              matches = map (browser: browser // { title = "^Extension: (Bitwarden Password Manager)"; }) [
+                zen-browser
+                firefox
+              ];
+              open-floating = true;
+            }
+          ];
+        layout = {
+          always-center-single-column = true;
         };
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
       };
