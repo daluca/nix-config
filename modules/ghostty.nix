@@ -30,6 +30,7 @@
         app-notifications = lib.concatStringsSep "," [
           "no-clipboard-copy"
         ];
+        confirm-close-surface = false;
       };
     };
 
