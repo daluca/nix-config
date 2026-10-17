@@ -339,10 +339,6 @@
             action.close-window = { };
             repeat = false;
           };
-          "Alt+Space".action.spawn = spawn-sh "noctalia msg panel-toggle launcher";
-          "Mod+D".action.spawn = spawn-sh "noctalia msg panel-toggle launcher";
-          "Alt+Tab".action.spawn = spawn-sh "noctalia msg window-switcher hold";
-          "Mod+L".action = lib.mkForce { spawn = spawn-sh "noctalia msg session lock"; };
         };
         window-rules =
           let
