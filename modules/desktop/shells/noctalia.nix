@@ -67,6 +67,10 @@
         };
         nightlight.enabled = true;
         location.auto_locate = true;
+        lockscreen = {
+          fingerprint = false;
+          allow_empty_password = true;
+        };
       };
     };
 
