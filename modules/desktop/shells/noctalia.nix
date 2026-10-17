@@ -71,7 +71,7 @@
     };
 
     programs.niri.settings = {
-      spawn-at-startup = lib.mkForce [
+      spawn-at-startup = [
         { argv = [ "noctalia" ]; }
       ];
       window-rules =

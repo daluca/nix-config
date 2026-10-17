@@ -89,7 +89,7 @@
           };
           struts = { };
         };
-        spawn-at-startup = [
+        spawn-at-startup = lib.mkDefault [
           { argv = [ "waybar" ]; }
         ];
         hotkey-overlay = { };
@@ -112,11 +112,11 @@
         ];
         binds = {
           "Mod+Shift+Slash".action.show-hotkey-overlay = { };
-          "Mod+T" = {
+          "Mod+T" = lib.mkDefault {
             action.spawn = lib.getExe config.programs.alacritty.package;
             hotkey-overlay.title = "Open a Terminal: alacritty";
           };
-          "Mod+D" = {
+          "Mod+D" = lib.mkDefault {
             action.spawn = lib.getExe config.programs.fuzzel.package;
             hotkey-overlay.title = "Run an Application: fuzzel";
           };
@@ -194,7 +194,7 @@
           "Mod+H".action.focus-column-left = { };
           "Mod+J".action.focus-window-down = { };
           "Mod+K".action.focus-window-up = { };
-          "Mod+L".action.focus-column-right = { };
+          "Mod+L" = lib.mkDefault { action.focus-column-right = { }; };
           "Mod+Ctrl+Left".action.move-column-left = { };
           "Mod+Ctrl+Down".action.move-window-down = { };
           "Mod+Ctrl+Up".action.move-window-up = { };
@@ -298,7 +298,7 @@
           "Mod+V".action.toggle-window-floating = { };
           "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = { };
           "Mod+W".action.toggle-column-tabbed-display = { };
-          "Print".action.screenshot = { };
+          "Print" = lib.mkDefault { action.screenshot = { }; };
           "Ctrl+Print".action.screenshot-screen = { };
           "Alt+Print".action.screenshot-window = { };
           "Mod+Escape" = {
