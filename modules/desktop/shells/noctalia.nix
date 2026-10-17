@@ -67,6 +67,7 @@
         };
         nightlight.enabled = true;
         location.auto_locate = true;
+        shell.launcher.track_usage = false;
         lockscreen = {
           fingerprint = false;
           allow_empty_password = true;
