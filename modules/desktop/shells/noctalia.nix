@@ -24,10 +24,27 @@
     programs.noctalia = {
       enable = true;
       settings = {
-        idle.behavior.custom = {
-          timeout = 660;
-          action = "command";
-          command = "noctalia msg session lock && notify-send 'Session locked'";
+        idle = {
+          behavior_order = [
+            "lock"
+            "screen_off"
+            "suspend"
+          ];
+          behavior.lock = {
+            enabled = true;
+            action = "lock";
+            timeout = 600;
+          };
+          behavior.screen-off = {
+            enabled = true;
+            action = "screen_off";
+            timeout = 660;
+          };
+          behavior.suspend = {
+            enabled = true;
+            action = "suspend";
+            timeout = 900;
+          };
         };
         hooks = {
           started = "noctalia msg panel-toggle launcher";
