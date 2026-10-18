@@ -6,7 +6,7 @@ attic:
 tailscale:
   preauthkey: ENC[AES256_GCM,data:Nv1W95vGBzllU8rXgAH28RmxIAScLX65ciY/6pSSFJ/y1GY8WhKF7QP7h0HiVeRe,iv:2jGAtsdfxpT+QfZgzXC7XCQQNADRrKhLTJW5YagoT0U=,tag:gEJpDwZLPaNgggyE3UB4SA==,type:str]
 cloudflare:
-  api-token: ENC[AES256_GCM,data:ywCnkFGyMj3ie1DaPisTJbFLT3XAr2IanM7qO+Q6aYc+BUxYwVUx6g==,iv:85+dspdma3YkSFsWqRoKID6hP0JE7sjhIKpp5yu9iBc=,tag:hlwF907aLVYvm4gghza/PA==,type:str]
+  api-token: ENC[AES256_GCM,data:+Fvw1edmQ1aG0lbAi77A/H/IDS0xrSAZH60S0RAlLSsOswuVXutyhD2R44BQqaY5sqBNS+Q=,iv:mX8lpyuRl+mACkviQ41DcLjp5+TlOHNOH+YnIEFooQI=,tag:eX4qLh9Me1M6hJw2vkbCWw==,type:str]
 grub:
   root:
     password: ENC[AES256_GCM,data:QbxnBG6Dmkt0f18FXT1/xQUUel1ebGQX,iv:NfRxyExhxobtfx+UyPy6DCGAIvo2RuPWfcVENNQh9sQ=,tag:Mmc/fPb7kf/ag9rLvwVv5w==,type:str]
@@ -39,7 +39,7 @@ sops:
         C6Gm3Mi7x8uj6gtSBpOnOH3wOMMGxgqhhR2AmjdUmIqbbPd2dzuekg==
         -----END AGE ENCRYPTED FILE-----
       recipient: age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm
-  lastmodified: "2026-10-18T11:28:49Z"
-  mac: ENC[AES256_GCM,data:ebd/85oPzEA1GYRzQXX2aWEy8uKwIsBiEbIKOeSrlwNJVWb5Iv91NeL5L7dFmMz5KTyuYOJc1cxbjHHizokOvBg4RakR/pulSpgLoYEszpeFk5oB8Ts+M0D7kXgJE1bMrRuNsYT8+7m0JhzAb4Wca7sEU3DlJ7IEIK6zRjRlCF0=,iv:KGjf5ID9K6NDL2754sxWfAUX177AppZtYqePLW//PNs=,tag:I5DiWgpiyzLktQIMB240GA==,type:str]
+  lastmodified: "2026-10-18T12:24:19Z"
+  mac: ENC[AES256_GCM,data:4IyouiGy4wuaL47sXf1A6MApDm1aPOj+a4jWukOAE/HV+doqSvIaDHlkDszu9uXJ8OC3vwJ/YVb3KwxisPYiWGy5uppeirVG8ymtAZrij1xlMHF+MMsacD/BigkZcK7whwJUOKLRS2nHZ4lYsSvOGWYMg4v84zgBk8EsR180svM=,iv:nXLgWG11CePXlPRngQaGuoRPscmTfnI3vFAnPNk7E/w=,tag:u/y2OKe3zn76xNemNqvccA==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.3
