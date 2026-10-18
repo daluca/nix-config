@@ -209,7 +209,6 @@
     }:
     {
       imports = with self.homeModules; [
-        nix-utils
         bitwarden
         development
         discord
