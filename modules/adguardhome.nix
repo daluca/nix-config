@@ -155,6 +155,10 @@
                 domain = "${subdomain}.${secrets.domain.general}";
                 answer = secrets.hosts.shodan.tailscale-address;
               };
+              guiltyspark = subdomain: {
+                domain = "${subdomain}.${secrets.parents.domain}";
+                answer = "192.168.10.20";
+              };
               internalHost = hostName: answer: {
                 inherit answer;
                 domain = "${hostName}.${config.networking.domain}";
@@ -192,6 +196,11 @@
               (shodan "prowlarr")
               (shodan "sabnzbd")
               (shodan "qbittorrent")
+              (guiltyspark "sabnzbd")
+              (guiltyspark "radarr")
+              (guiltyspark "sonarr")
+              (guiltyspark "prowlarr")
+              (guiltyspark "tunarr")
             ];
         };
       };
