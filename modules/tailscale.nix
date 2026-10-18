@@ -93,6 +93,8 @@
     imports = with self.homeModules; [
       gnome-extensions-tailscale-qs
     ];
+
+    services.tailscale-systray.enable = true;
   };
 
   flake.homeModules.gnome-extensions-tailscale-qs =
