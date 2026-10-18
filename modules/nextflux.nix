@@ -12,10 +12,10 @@
           owner = "electh";
           repo = "nextflux";
           rev = "main";
-          hash = "sha256-6ReEqo8ZVgote5ysXAjBEIk6IzNTLK7f2Mx+JGT0sEU=";
+          hash = "sha256-uP/y3rnQ3H/sDs3gx3ZQwwfoQ9JyDDWKAenVeZlU7mY=";
         };
 
-        npmDepsHash = "sha256-yF/pSY0em/BMqUrBjjtcFgF0dtgsZWAUg6BDXAQOyZU=";
+        npmDepsHash = "sha256-y1u9y8apAL+lgrS1r8Noqq8HaMOhyCkKu5TCyifGXQI=";
 
         installPhase = /* bash */ ''
           mkdir -p $out/share/html
