@@ -32,11 +32,11 @@
 
     networking.enableIPv6 = false;
 
-    security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
+    security.acme.certs.${secrets.parents.domain}.domain = "*.${secrets.parents.domain}";
 
     services.nginx.virtualHosts =
       let
-        cert = config.security.acme.certs.${secrets.domain.general};
+        cert = config.security.acme.certs.${secrets.parents.domain};
         sslCertificate = "${cert.directory}/fullchain.pem";
         sslCertificateKey = "${cert.directory}/key.pem";
         sslTrustedCertificate = "${cert.directory}/chain.pem";
