@@ -44,6 +44,7 @@
       element
       whatsapp
       ntfyd
+      nix-utils
     ];
 
     xdg.mimeApps.enable = true;

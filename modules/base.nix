@@ -155,7 +155,7 @@ in
       zsh
       modernUnix
       accounts
-      nix-utils
+      comma
     ];
 
     home.persistence.home = {

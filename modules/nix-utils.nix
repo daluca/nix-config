@@ -1,13 +1,9 @@
 { self, ... }:
 
 {
-  flake.homeModules.nix-utils = { pkgs, ... }: {
+  flake.homeModules.nix-utils = {
     imports = with self.homeModules; [
       nh
-      comma
-    ];
-
-    home.packages = with pkgs; [
       nix-inspect
     ];
   };
