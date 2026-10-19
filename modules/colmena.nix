@@ -27,5 +27,11 @@
         ];
       };
     }) self.nixosConfigurations
+    // {
+      benedick.deployment = {
+        allowLocalDeployment = true;
+        targetHost = null;
+      };
+    }
   );
 }
