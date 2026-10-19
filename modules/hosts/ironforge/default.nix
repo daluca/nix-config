@@ -13,7 +13,7 @@
   #     ];
   #   };
 
-  flake.nixosModules.ironforge = { secrets, ... }: {
+  flake.nixosModules.ironforge = {
     imports = with self.nixosModules; [
       raspberry-pi-4
       tailscale-server
@@ -26,7 +26,7 @@
       "new-zealand"
     ];
 
-    deploy.ipv4-address = secrets.hosts.ironforge.tailscale-address;
+    deploy.ipv4-address = "192.168.10.10";
 
     services.getty.autologinUser = "daluca";
 

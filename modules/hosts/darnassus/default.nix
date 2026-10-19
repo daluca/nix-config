@@ -13,7 +13,7 @@
   #     ];
   #   };
 
-  flake.nixosModules.darnassus = { secrets, ... }: {
+  flake.nixosModules.darnassus = {
     imports = with self.nixosModules; [
       raspberry-pi-4
       raspberry-pi-4-gpio-fan
@@ -26,7 +26,7 @@
       "united-kingdom"
     ];
 
-    deploy.ipv4-address = secrets.hosts.darnassus.tailscale-address;
+    deploy.ipv4-address = "192.168.1.212";
 
     services.getty.autologinUser = "daluca";
 

@@ -46,7 +46,7 @@
         "germany"
       ];
 
-      deploy.ipv4-address = secrets.hosts.bravo.ipv4-address;
+      deploy.ipv4-address = "10.2.1.2";
 
       services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
 

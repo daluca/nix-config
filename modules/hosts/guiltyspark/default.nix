@@ -45,7 +45,7 @@ in
       "new-zealand"
     ];
 
-    deploy.ipv4-address = secrets.hosts.guiltyspark.tailscale-address;
+    deploy.ipv4-address = "192.168.10.20";
 
     # TODO: Remove in 26.11 as it will be the new default
     boot.zfs.forceImportRoot = false;
