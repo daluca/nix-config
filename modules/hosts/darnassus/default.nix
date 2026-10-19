@@ -1,17 +1,17 @@
-{ self, inputs, ... }:
+{ self, ... }:
 
 {
-  flake.nixosConfigurations.darnassus =
-    let
-      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
-    in
-    inputs.nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = { inherit secrets; };
-      modules = with self.nixosModules; [
-        darnassus
-      ];
-    };
+  # flake.nixosConfigurations.darnassus =
+  #   let
+  #     secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+  #   in
+  #   inputs.nixpkgs.lib.nixosSystem {
+  #     system = "aarch64-linux";
+  #     specialArgs = { inherit secrets; };
+  #     modules = with self.nixosModules; [
+  #       darnassus
+  #     ];
+  #   };
 
   flake.nixosModules.darnassus = { secrets, ... }: {
     imports = with self.nixosModules; [

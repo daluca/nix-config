@@ -1,17 +1,17 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosConfigurations.artemis =
-    let
-      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
-    in
-    inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit secrets; };
-      modules = with self.nixosModules; [
-        artemis
-      ];
-    };
+  # flake.nixosConfigurations.artemis =
+  #   let
+  #     secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+  #   in
+  #   inputs.nixpkgs.lib.nixosSystem {
+  #     system = "x86_64-linux";
+  #     specialArgs = { inherit secrets; };
+  #     modules = with self.nixosModules; [
+  #       artemis
+  #     ];
+  #   };
 
   flake.nixosModules.artemis = { lib, ... }: {
     imports =
@@ -203,7 +203,6 @@
     {
       config,
       lib,
-      pkgs,
       secrets,
       ...
     }:

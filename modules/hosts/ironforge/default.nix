@@ -1,17 +1,17 @@
-{ self, inputs, ... }:
+{ self, ... }:
 
 {
-  flake.nixosConfigurations.ironforge =
-    let
-      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
-    in
-    inputs.nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = { inherit secrets; };
-      modules = with self.nixosModules; [
-        ironforge
-      ];
-    };
+  # flake.nixosConfigurations.ironforge =
+  #   let
+  #     secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+  #   in
+  #   inputs.nixpkgs.lib.nixosSystem {
+  #     system = "aarch64-linux";
+  #     specialArgs = { inherit secrets; };
+  #     modules = with self.nixosModules; [
+  #       ironforge
+  #     ];
+  #   };
 
   flake.nixosModules.ironforge = { secrets, ... }: {
     imports = with self.nixosModules; [
