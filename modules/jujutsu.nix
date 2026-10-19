@@ -118,7 +118,8 @@
               '';
               ui = command (lib.getExe pkgs.unstable.jjui);
             };
-          remote.origin.auto-track-bookmarks = "*";
+          remote.origin.auto-track-created-bookmarks = "*";
+          remote.upstream.auto-track-bookmarks = "regex:main|master";
           git = {
             sign-on-push = true;
             executable-path = lib.getExe config.programs.git.package;
