@@ -135,7 +135,7 @@
             action.spawn = spawn-sh "noctalia msg media next";
             allow-when-locked = true;
           };
-          "Print" = lib.mkForce { action.spawn = spawn-sh "noctalia msg annotate"; };
+          "Print".action.spawn = spawn-sh "noctalia msg annotate";
           "Alt+Space".action.spawn = spawn-sh "noctalia msg panel-toggle launcher";
           "Mod+D".action.spawn = spawn-sh "noctalia msg panel-toggle launcher";
           "Alt+Tab".action.spawn = spawn-sh "noctalia msg window-switcher hold";

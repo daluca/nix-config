@@ -112,9 +112,9 @@
         ];
         binds = {
           "Mod+Shift+Slash".action.show-hotkey-overlay = { };
-          "Mod+T" = lib.mkDefault {
-            action.spawn = lib.getExe config.programs.alacritty.package;
-            hotkey-overlay.title = "Open a Terminal: alacritty";
+          "Mod+T" = {
+            action.spawn = lib.mkDefault (lib.getExe config.programs.alacritty.package);
+            hotkey-overlay.title = lib.mkDefault "Open a Terminal: alacritty";
           };
           "Mod+D" = lib.mkDefault {
             action.spawn = lib.getExe config.programs.fuzzel.package;
