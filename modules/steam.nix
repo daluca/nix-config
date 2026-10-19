@@ -34,6 +34,7 @@
       localNetworkGameTransfers.openFirewall = true;
       extraCompatPackages = with pkgs; [
         GE-Proton11
+        GE-Proton11-10
         GE-Proton11-9
         GE-Proton11-8
         GE-Proton11-7
