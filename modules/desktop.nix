@@ -28,32 +28,42 @@
       ];
     };
 
-    deploy.tags = [
-      "desktop"
-    ];
+    deploy = {
+      local = true;
+      tags = [
+        "desktop"
+      ];
+    };
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
-  flake.homeModules.desktop = { config, lib, pkgs, ... }: {
-    imports = with self.homeModules; [
-      uutils
-      alacritty
-      gradia
-      planify
-      element
-      whatsapp
-      ntfyd
-      nix-utils
-    ];
+  flake.homeModules.desktop =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      imports = with self.homeModules; [
+        uutils
+        alacritty
+        gradia
+        planify
+        element
+        whatsapp
+        ntfyd
+        nix-utils
+      ];
 
-    xdg.mimeApps.enable = true;
+      xdg.mimeApps.enable = true;
 
-    programs.tmux.extraConfig = /* tmux */ ''
-      bind C-j display-popup -d "#{pane_current_path}" -w 90% -h 90% -E ${lib.getExe config.programs.jjui.package}
-      bind C-g display-popup -d "#{pane_current_path}" -w 90% -h 90% -E ${lib.getExe config.programs.lazygit.package}
-      bind C-t display-popup -d "#{pane_current_path}" -w 60% -h 60% -E ${lib.getExe config.programs.zsh.package}
-      bind C-s display-popup -w 90% -h 90% -E ${lib.getExe pkgs.lazyssh}
-    '';
-  };
+      programs.tmux.extraConfig = /* tmux */ ''
+        bind C-j display-popup -d "#{pane_current_path}" -w 90% -h 90% -E ${lib.getExe config.programs.jjui.package}
+        bind C-g display-popup -d "#{pane_current_path}" -w 90% -h 90% -E ${lib.getExe config.programs.lazygit.package}
+        bind C-t display-popup -d "#{pane_current_path}" -w 60% -h 60% -E ${lib.getExe config.programs.zsh.package}
+        bind C-s display-popup -w 90% -h 90% -E ${lib.getExe pkgs.lazyssh}
+      '';
+    };
 }

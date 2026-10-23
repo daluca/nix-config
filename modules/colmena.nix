@@ -18,8 +18,14 @@
       imports = nixos._module.args.modules;
       deployment = {
         tags = nixos.config.system.nixos.tags ++ nixos.config.deploy.tags;
+        allowLocalDeployment = nixos.config.deploy.local;
         targetHost =
-          if (nixos.config.deploy.ipv4-address != null) then nixos.config.deploy.ipv4-address else hostname;
+          if nixos.config.deploy.local then
+            null
+          else if (nixos.config.deploy.ipv4-address != null) then
+            nixos.config.deploy.ipv4-address
+          else
+            hostname;
         targetUser = "daluca";
         sshOptions = [
           "-F"
@@ -27,11 +33,5 @@
         ];
       };
     }) self.nixosConfigurations
-    // {
-      benedick.deployment = {
-        allowLocalDeployment = true;
-        targetHost = null;
-      };
-    }
   );
 }
