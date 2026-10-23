@@ -44,6 +44,11 @@ in
         install algif_aead /bin/false
       '';
 
+      security.pki.caCertificateBlacklist = [
+        "Comodo AAA Services root"
+        "emSign ECC Root CA - G3"
+      ];
+
       sops.secrets."ssh_host_ed25519_key" = { };
 
       sops.secrets."ssh_host_rsa_key" = { };
