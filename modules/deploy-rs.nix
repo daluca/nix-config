@@ -18,23 +18,30 @@
       }
     );
 
-  flake.deploy.nodes = builtins.mapAttrs (hostname: nixos: {
-    hostname =
-      if (nixos.config.deploy.ipv4-address != null) then nixos.config.deploy.ipv4-address else hostname;
-    groups = nixos.config.system.nixos.tags ++ nixos.config.deploy.tags;
-    sshUser = "daluca";
-    sshOpts = [
-      "-F"
-      "none"
-      "-A"
-      "-o"
-      "IdentitiesOnly=yes"
-      "-i"
-      "~/.ssh/id_ed25519"
-    ];
-    profiles.system = {
-      user = "root";
-      path = inputs.deploy-rs.lib.${nixos.pkgs.stdenv.hostPlatform.system}.activate.nixos nixos;
-    };
-  }) self.nixosConfigurations;
+  flake.deploy.nodes =
+    builtins.mapAttrs
+      (hostname: nixos: {
+        hostname =
+          if (nixos.config.deploy.ipv4-address != null) then nixos.config.deploy.ipv4-address else hostname;
+        groups = nixos.config.system.nixos.tags ++ nixos.config.deploy.tags;
+        sshUser = "daluca";
+        sshOpts = [
+          "-F"
+          "none"
+          "-A"
+          "-o"
+          "IdentitiesOnly=yes"
+          "-i"
+          "~/.ssh/id_ed25519"
+        ];
+        profiles.system = {
+          user = "root";
+          path = inputs.deploy-rs.lib.${nixos.pkgs.stdenv.hostPlatform.system}.activate.nixos nixos;
+        };
+      })
+      (
+        inputs.nixpkgs.lib.filterAttrs (
+          _hostname: nixos: !nixos.config.deploy.local
+        ) self.nixosConfigurations
+      );
 }

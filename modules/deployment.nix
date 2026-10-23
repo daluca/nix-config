@@ -7,6 +7,8 @@
         deploy = lib.mkOption {
           type = types.submodule {
             options = {
+              local = lib.mkEnableOption "Target is for local deployment.";
+
               ipv4-address = lib.mkOption {
                 type = types.nullOr types.str;
                 default = null;
