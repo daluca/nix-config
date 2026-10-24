@@ -5,3 +5,4 @@
 ssh_*_key
 cache-priv-key.pem
 *.qcow2
+/.terranix/

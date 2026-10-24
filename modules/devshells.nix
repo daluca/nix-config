@@ -9,6 +9,7 @@
       devShells.default = pkgs.mkShell {
         inputsFrom = with config; [
           pre-commit.devShell
+          terranix.terranixConfigurations.cloud.result.devShell
         ];
         name = "nix-config";
         packages = with pkgs; [

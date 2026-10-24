@@ -84,6 +84,9 @@
 
     noctalia.url = "github:noctalia-dev/noctalia/v5.2.1";
     noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    terranix.url = "github:terranix/terranix";
+    terranix.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
