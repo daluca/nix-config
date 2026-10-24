@@ -84,6 +84,11 @@ creation_rules:
       - age:
           - *master
           - *charlie
+  - path_regex: secrets\.sops\.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *daluca
 
 stores:
   yaml:

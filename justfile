@@ -75,3 +75,18 @@ add-identity file:
 clean:
     unlink result 2>/dev/null || true
     rm ssh_*_key cache-*-key.pem nix-config.txt 2>/dev/null || true
+
+# apply cloud
+[group("terraform")]
+apply:
+    secretspec run -- nix run .#cloud.apply
+
+# plan cloud
+[group("terraform")]
+plan:
+    secretspec run -- nix run .#cloud.plan
+
+# initialise opentofu
+[group("terraform")]
+init:
+    nix run .#cloud.init

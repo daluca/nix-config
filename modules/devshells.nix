@@ -19,6 +19,7 @@
           deploy-rs
           # TODO: Revert to stable branch in NixOS 26.11
           unstable.colmena
+          unstable.secretspec
         ];
         JUST_COMMAND_COLOR = "blue";
       };
