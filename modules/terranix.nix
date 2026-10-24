@@ -10,7 +10,12 @@
       modules = [ (inputs.import-tree ../terraform) ];
       workdir = ".terranix/cloud";
       terraformWrapper = {
-        package = pkgs.opentofu;
+        package = pkgs.unstable.opentofu.withPlugins (
+          p: with p; [
+            hetznercloud_hcloud
+            cloudflare_cloudflare
+          ]
+        );
       };
     };
   };
