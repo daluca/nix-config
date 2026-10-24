@@ -129,6 +129,7 @@ function main() {
   # Install NixOS to the host system with our secrets
   nixos-anywhere \
     "${DEBUG_NIXOS_ANYWHERE}" \
+    --kexec-extra-flags "-c" \
     --phases "${NIXOS_ANYWHERE_PHASES}" \
     --extra-files "${temp}" \
     --chown "/${IMPERMANENCE%/*}/home/daluca/" 1000:100 \
