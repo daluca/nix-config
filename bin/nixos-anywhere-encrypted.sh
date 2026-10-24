@@ -108,8 +108,8 @@ function main() {
   cp ./nix-config.txt "${temp}/${IMPERMANENCE}/var/lib/sops-nix/keys.txt"
   tail -n3 ~/.config/sops/age/keys.txt >> "${temp}/${IMPERMANENCE%/*}/home/daluca/.config/sops/age/keys.txt"
   tail -n3 ~/.config/sops/age/keys.txt >> "${temp}/${IMPERMANENCE}/var/lib/sops-nix/keys.txt"
-  sops -d --extract '["id_rsa"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_rsa_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
-  sops -d --extract '["id_ed25519"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_ed25519_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
+  sops -d --extract '["id_rsa"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_rsa_key" "./modules/hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
+  sops -d --extract '["id_ed25519"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_host_ed25519_key" "./modules/hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
 
   # Set the correct permissions so sshd will accept the key
   chmod 0400 \
@@ -119,8 +119,8 @@ function main() {
     "${temp}/${IMPERMANENCE%/*}/home/daluca/.config/sops/age/keys.txt"
 
   if [[ "${REMOTE_UNLOCK}" == "true" ]]; then
-    sops -d --extract '["initrd_id_rsa"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_rsa_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
-    sops -d --extract '["initrd_id_ed25519"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_ed25519_key" "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
+    sops -d --extract '["initrd_id_rsa"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_rsa_key" "./modules/hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
+    sops -d --extract '["initrd_id_ed25519"]' --output "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_ed25519_key" "./modules/hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml"
     chmod 0400 \
       "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_ed25519_key" \
       "${temp}/${IMPERMANENCE}/etc/ssh/ssh_initrd_rsa_key"
@@ -132,7 +132,7 @@ function main() {
     --phases "${NIXOS_ANYWHERE_PHASES}" \
     --extra-files "${temp}" \
     --chown "/${IMPERMANENCE%/*}/home/daluca/" 1000:100 \
-    --disk-encryption-keys /tmp/passwd <( sops -d --extract '["disk-encryption-key"]' "./hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml" ) \
+    --disk-encryption-keys /tmp/passwd <( sops -d --extract '["disk-encryption-key"]' "./modules/hosts/${NIXOS_HOST}/${NIXOS_HOST}.sops.yaml" ) \
     "${KEXEC}" \
     "${BUILD_TARGET}" \
     --flake ".#${NIXOS_HOST}" \
