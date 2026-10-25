@@ -10,8 +10,6 @@
         X11Forwarding = false;
       };
     };
-
-    security.pam.sshAgentAuth.enable = true;
   };
 
   flake.nixosModules.ssh = { config, lib, ... }: {

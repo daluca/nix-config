@@ -7,6 +7,8 @@
       ssh-server
     ];
 
+    security.pam.sshAgentAuth.enable = true;
+
     time.timeZone = "UTC";
 
     deploy.tags = [
