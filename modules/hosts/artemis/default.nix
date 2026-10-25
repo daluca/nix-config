@@ -222,7 +222,6 @@
         gnupg
         heliumBrowser
         heroic
-        intiface-central
         itch
         jujutsu
         kubernetes

@@ -232,6 +232,7 @@
         kubernetes
         proton-vpn
         thunderbird
+        intiface-central
       ];
 
       programs.custom-firefox.default = "zen-browser";
