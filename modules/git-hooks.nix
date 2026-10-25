@@ -32,13 +32,6 @@
             entry = lib.getExe markdownlint-cli2.package;
             types = [ "markdown" ];
           };
-          gitleaks = {
-            enable = true;
-            description = "gitleaks hook";
-            package = pkgs.gitleaks;
-            entry = "${lib.getExe gitleaks.package} protect --verbose --redact --staged";
-            pass_filenames = false;
-          };
           commitlint-rs = {
             enable = false;
             description = "commitlint-rs hook";
