@@ -22,5 +22,16 @@
         TRUSTED_PROXIES = "127.0.0.1";
       };
     };
+
+    services.nginx.virtualHosts."${config.services.firefly-iii-data-importer.virtualHost}" = {
+      locations."~ \\.php$" = {
+        extraConfig = /* nginx */ ''
+          # NOTE: Increase the timeout on fastcgi to prevent timeouts
+          # between the data-importer and nginx when processing jobs
+          # https://github.com/orgs/firefly-iii/discussions/9424#discussioncomment-13177904
+          fastcgi_read_timeout 3600;
+        '';
+      };
+    };
   };
 }
