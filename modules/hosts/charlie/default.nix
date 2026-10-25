@@ -67,16 +67,6 @@
       in
       with config.services;
       {
-        "id.${secrets.domains.general}" = tls // {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:${toString pocket-id.settings.PORT}";
-            extraConfig = /* nginx */ ''
-              proxy_busy_buffers_size   512k;
-              proxy_buffers   4 512k;
-              proxy_buffer_size   256k;
-            '';
-          };
-        };
         "hister.${secrets.domains.general}" = tls // {
           http2 = true;
           http3 = true;
