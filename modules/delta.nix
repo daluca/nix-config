@@ -1,5 +1,5 @@
 {
-  flake.homeModules.delta = {
+  flake.homeModules.delta-diff = {
     programs.delta = {
       enable = true;
       options = {

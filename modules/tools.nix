@@ -6,7 +6,7 @@
       fzf
       gron
       zoxide
-      delta
+      delta-diff
       jq
     ];
 

@@ -78,5 +78,12 @@
           group = "acme";
         }
       ];
+
+      assertions = [
+        {
+          assertion = lib.hasAttrByPath [ "acme" ] config.users.users;
+          message = "acme users must be created to assign cloudflare API token the correct permissions";
+        }
+      ];
     };
 }

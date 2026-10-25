@@ -19,6 +19,12 @@ let
       ip = "10.2.1.3";
       id = 124035060;
     };
+    delta = {
+      image = "ubuntu-26.04";
+      server_type = "cx23";
+      ip = "10.2.1.4";
+      id = 172234820;
+    };
   };
   networks = lib.mapAttrs (_name: data: rec {
     inherit (data) ip;
