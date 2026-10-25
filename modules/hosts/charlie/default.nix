@@ -191,7 +191,7 @@
     };
   };
 
-  flake.nixosModules.charlie-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.ssh = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       charlie = {
         extraHostNames = [
@@ -221,7 +221,7 @@
     };
   };
 
-  flake.nixosModules.charlie-cache = {
+  flake.nixosModules.nix-cache = {
     nix.settings.trusted-public-keys = [
       "charlie:DqW45gRQrBrz0LbfDnWLbaqzgqnHMG+HGv9TUUyABf4="
     ];

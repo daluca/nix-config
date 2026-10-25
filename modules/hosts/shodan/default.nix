@@ -281,7 +281,7 @@
     };
   };
 
-  flake.nixosModules.shodan-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.ssh = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       shodan = {
         extraHostNames = with secrets.hosts.shodan; [
@@ -310,7 +310,7 @@
     };
   };
 
-  flake.nixosModules.shodan-cache = {
+  flake.nixosModules.nix-cache = {
     nix.settings.trusted-public-keys = [
       "shodan:mMDpBB3EH23WqUms4rvrNPy6Ro7tSOGb33IYcxkeQyk="
     ];

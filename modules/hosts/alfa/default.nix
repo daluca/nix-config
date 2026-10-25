@@ -158,7 +158,7 @@
     };
   };
 
-  flake.nixosModules.alfa-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.ssh = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       alfa = {
         extraHostNames = [
@@ -188,7 +188,7 @@
     };
   };
 
-  flake.nixosModules.alfa-cache = {
+  flake.nixosModules.nix-cache = {
     nix.settings.trusted-public-keys = [
       "alfa:02xNXVHoJQjRic5IZk/NDNJDIhlRq+tLq+e21kVtUTs="
     ];

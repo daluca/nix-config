@@ -1,5 +1,3 @@
-{ self, ... }:
-
 {
   flake.nixosModules.ssh-server = {
     services.openssh = {
@@ -17,20 +15,6 @@
   };
 
   flake.nixosModules.ssh = { config, lib, ... }: {
-    imports = with self.nixosModules; [
-      benedick-sshKnownHosts
-      alfa-sshKnownHosts
-      bravo-sshKnownHosts
-      charlie-sshKnownHosts
-      shodan-sshKnownHosts
-      guiltyspark-sshKnownHosts
-      stormwind-sshKnownHosts
-      darnassus-sshKnownHosts
-      ironforge-sshKnownHosts
-      dalaran-sshKnownHosts
-      unifi-sshKnownHosts
-    ];
-
     environment.etc."ssh/ssh_host_ed25519_key.pub".source =
       lib.path.append ./hosts "${config.networking.hostName}/keys/ssh_host_ed25519_key.pub";
 

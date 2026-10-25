@@ -179,7 +179,7 @@
     };
   };
 
-  flake.nixosModules.benedick-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.ssh = { config, ... }: {
     programs.ssh.knownHosts = rec {
       benedick = {
         extraHostNames = [

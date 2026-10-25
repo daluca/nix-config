@@ -44,7 +44,7 @@
     system.stateVersion = "26.05";
   };
 
-  flake.nixosModules.ironforge-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.ssh = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       ironforge = {
         extraHostNames = [

@@ -306,7 +306,7 @@ in
     };
   };
 
-  flake.nixosModules.guiltyspark-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.ssh = { config, ... }: {
     programs.ssh.knownHosts = rec {
       guiltyspark = {
         extraHostNames = [
@@ -323,7 +323,7 @@ in
     };
   };
 
-  flake.nixosModules.guiltyspark-cache = {
+  flake.nixosModules.nix-cache = {
     nix.settings.trusted-public-keys = [
       "guiltyspark:V+aeGAYOSpIRyGv3qK0EURs8mOc4ovS/NH3g3XhCGKQ="
     ];

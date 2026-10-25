@@ -184,7 +184,7 @@
     };
   };
 
-  flake.nixosModules.bravo-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.ssh = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       bravo = {
         extraHostNames = [
@@ -214,7 +214,7 @@
     };
   };
 
-  flake.nixosModules.bravo-cache = {
+  flake.nixosModules.nix-cache = {
     nix.settings.trusted-public-keys = [
       "bravo:2zk2IqImbGCABS9Ly1akZZ8P9xq8MkzCXFmdAlH23h0="
     ];

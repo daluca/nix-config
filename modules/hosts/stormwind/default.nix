@@ -43,7 +43,7 @@
     system.stateVersion = "26.05";
   };
 
-  flake.nixosModules.stormwind-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.ssh = { config, ... }: {
     programs.ssh.knownHosts = rec {
       stormwind = {
         extraHostNames = [

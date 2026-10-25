@@ -27,7 +27,7 @@ in
           users-root
           daluca
           ssh
-          nixCache
+          nix-cache
           deployment-options
           catppuccin
         ];

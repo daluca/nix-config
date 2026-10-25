@@ -258,7 +258,7 @@
     };
   };
 
-  flake.nixosModules.dalaran-sshKnownHosts = { config, ... }: {
+  flake.nixosModules.ssh = { config, ... }: {
     programs.ssh.knownHosts = rec {
       dalaran = {
         extraHostNames = [
@@ -274,7 +274,7 @@
     };
   };
 
-  flake.nixosModules.dalaran-cache = {
+  flake.nixosModules.nix-cache = {
     nix.settings.trusted-public-keys = [
       "dalaran:p7uH92Bwi9P2dzRMqGmmn/yB4BrCP42QvxjkiBibMuk="
     ];

@@ -63,7 +63,7 @@
     system.stateVersion = "26.05";
   };
 
-  flake.nixosModules.unifi-sshKnownHosts = { config, secrets, ... }: {
+  flake.nixosModules.ssh = { config, secrets, ... }: {
     programs.ssh.knownHosts = rec {
       unifi = {
         extraHostNames = [
