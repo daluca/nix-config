@@ -39,7 +39,7 @@
       "germany"
     ];
 
-    deploy.ipv4-address = "10.2.1.3";
+    deploy.ipv4-address = secrets.hosts.charlie.ipv4-address;
 
     services.hister.settings = {
       server = {
