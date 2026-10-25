@@ -55,6 +55,7 @@
         whatsapp
         ntfyd
         nix-utils
+        hetzner
       ];
 
       xdg.mimeApps.enable = true;

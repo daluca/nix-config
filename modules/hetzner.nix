@@ -202,4 +202,36 @@
       };
     };
   };
+
+  flake.homeModules.hetzner =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      home.packages = with pkgs; [
+        hcloud
+      ];
+
+      sops.templates."hcloud-cli.toml" = {
+        path = "${config.xdg.configHome}/hcloud/cli.toml";
+        content = /* toml */ ''
+          active_context = "default"
+
+          [[contexts]]
+          name = "default"
+          token = "${config.sops.placeholder."nix-config/default/HCLOUD_TOKEN"}"
+        '';
+      };
+
+      sops.secrets."nix-config/default/HCLOUD_TOKEN" = {
+        sopsFile = ../secrets/secrets.sops.yaml;
+      };
+
+      programs.zsh.initContent = /* zsh */ ''
+        eval "$( ${lib.getExe pkgs.hcloud} completion zsh )"
+      '';
+    };
 }
