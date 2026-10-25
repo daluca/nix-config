@@ -56,6 +56,7 @@
         ntfyd
         nix-utils
         hetzner
+        cloudflare
       ];
 
       xdg.mimeApps.enable = true;
