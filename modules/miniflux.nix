@@ -20,6 +20,14 @@
         };
       };
 
+      services.nginx.virtualHosts."miniflux.${secrets.domains.general}" = {
+        forceSSL = true;
+        useACMEHost = secrets.domains.general;
+        locations."/" = {
+          proxyPass = "http://${config.services.miniflux.config.LISTEN_ADDR}/";
+        };
+      };
+
       sops.templates."miniflux.env".content = lib.generators.toKeyValue { } {
         ADMIN_USERNAME = "admin";
         ADMIN_PASSWORD = config.sops.placeholder."miniflux/admin-password";

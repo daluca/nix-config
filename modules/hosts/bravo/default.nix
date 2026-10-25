@@ -76,11 +76,6 @@
               proxyPass = "http://127.0.0.1:${toString atuin.port}/";
             };
           };
-          "miniflux.${secrets.domains.general}" = tls // {
-            locations."/" = {
-              proxyPass = "http://${miniflux.config.LISTEN_ADDR}/";
-            };
-          };
           "nextflux.${secrets.domains.general}" = tls // {
             locations."/" = {
               root = "${pkgs.nextflux}/share/html";
