@@ -33,7 +33,6 @@
         systemd-boot
         yubikey
         fonts
-        ssh-server
         distributed-builds
         firewall
         fwupd
