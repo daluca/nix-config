@@ -60,13 +60,13 @@
       hardware.graphics.enable = true;
 
       services.sabnzbd.settings.misc.host_whitelist =
-        "sabnzbd.${secrets.domain.general},localhost,127.0.0.1,${secrets.hosts.shodan.tailscale-address}";
+        "sabnzbd.${secrets.domains.general},localhost,127.0.0.1,${secrets.hosts.shodan.tailscale-address}";
 
-      security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
+      security.acme.certs.${secrets.domains.general}.domain = "*.${secrets.domains.general}";
 
       services.nginx.virtualHosts =
         let
-          cert = config.security.acme.certs.${secrets.domain.general};
+          cert = config.security.acme.certs.${secrets.domains.general};
           sslCertificate = "${cert.directory}/fullchain.pem";
           sslCertificateKey = "${cert.directory}/key.pem";
           sslTrustedCertificate = "${cert.directory}/chain.pem";
@@ -77,7 +77,7 @@
         in
         with config.services;
         {
-          "jellyfin.${secrets.domain.general}" = tls // {
+          "jellyfin.${secrets.domains.general}" = tls // {
             extraConfig = /* nginx */ ''
               client_max_body_size 20M;
               add_header X-Content-Type-Options "nosniff";
@@ -102,43 +102,43 @@
               };
           };
 
-          "request.${secrets.domain.general}" = tls // {
+          "request.${secrets.domains.general}" = tls // {
             locations."/" = {
               proxyPass = "http://127.0.0.1:5055";
             };
           };
 
-          "requests.${secrets.domain.general}" = tls // {
+          "requests.${secrets.domains.general}" = tls // {
             locations."/".return = ''
-              301 $scheme://request.${secrets.domain.general}$request_uri
+              301 $scheme://request.${secrets.domains.general}$request_uri
             '';
           };
 
-          "sonarr.${secrets.domain.general}" = tls // {
+          "sonarr.${secrets.domains.general}" = tls // {
             locations."/" = {
               proxyPass = "http://127.0.0.1:${toString sonarr.settings.server.port}";
             };
           };
 
-          "radarr.${secrets.domain.general}" = tls // {
+          "radarr.${secrets.domains.general}" = tls // {
             locations."/" = {
               proxyPass = "http://127.0.0.1:${toString radarr.settings.server.port}";
             };
           };
 
-          "prowlarr.${secrets.domain.general}" = tls // {
+          "prowlarr.${secrets.domains.general}" = tls // {
             locations."/" = {
               proxyPass = "http://127.0.0.1:${toString prowlarr.settings.server.port}";
             };
           };
 
-          "sabnzbd.${secrets.domain.general}" = tls // {
+          "sabnzbd.${secrets.domains.general}" = tls // {
             locations."/" = {
               proxyPass = "http://127.0.0.1:${toString sabnzbd.settings.misc.port}";
             };
           };
 
-          "qbittorrent.${secrets.domain.general}" = tls // {
+          "qbittorrent.${secrets.domains.general}" = tls // {
             locations."/" = {
               proxyPass = "http://127.0.0.1:${toString qbittorrent.webuiPort}";
             };

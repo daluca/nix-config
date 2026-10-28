@@ -51,7 +51,7 @@ in
     boot.zfs.forceImportRoot = false;
 
     services.sabnzbd.settings.misc.host_whitelist =
-      "sabnzbd.${secrets.parents.domain},localhost,127.0.0.1,${secrets.hosts.guiltyspark.tailscale-address}";
+      "sabnzbd.${secrets.domains.parents},localhost,127.0.0.1,${secrets.hosts.guiltyspark.tailscale-address}";
 
     networking = {
       hostName = "guiltyspark";
@@ -68,11 +68,11 @@ in
       ip rule add to 192.168.10.0/24 priority 2500 lookup main || true
     '';
 
-    security.acme.certs.${secrets.parents.domain}.domain = "*.${secrets.parents.domain}";
+    security.acme.certs.${secrets.domains.parents}.domain = "*.${secrets.domains.parents}";
 
     services.nginx.virtualHosts =
       let
-        cert = config.security.acme.certs.${secrets.parents.domain};
+        cert = config.security.acme.certs.${secrets.domains.parents};
         sslCertificate = "${cert.directory}/fullchain.pem";
         sslCertificateKey = "${cert.directory}/key.pem";
         sslTrustedCertificate = "${cert.directory}/chain.pem";
@@ -82,7 +82,7 @@ in
         };
       in
       {
-        "jellyfin.${secrets.parents.domain}" = tls // {
+        "jellyfin.${secrets.domains.parents}" = tls // {
           extraConfig = /* nginx */ ''
             client_max_body_size 20M;
             add_header X-Content-Type-Options "nosniff";
@@ -107,55 +107,55 @@ in
             };
         };
 
-        "plex.${secrets.parents.domain}" = tls // {
+        "plex.${secrets.domains.parents}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:32400";
           };
         };
 
-        "request.${secrets.parents.domain}" = tls // {
+        "request.${secrets.domains.parents}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:5055";
           };
         };
 
-        "requests.${secrets.parents.domain}" = tls // {
+        "requests.${secrets.domains.parents}" = tls // {
           locations."/".return = ''
-            301 $scheme://request.${secrets.parents.domain}$request_uri
+            301 $scheme://request.${secrets.domains.parents}$request_uri
           '';
         };
 
-        "sonarr.${secrets.parents.domain}" = tls // {
+        "sonarr.${secrets.domains.parents}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:8989";
           };
         };
 
-        "radarr.${secrets.parents.domain}" = tls // {
+        "radarr.${secrets.domains.parents}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:7878";
           };
         };
 
-        "prowlarr.${secrets.parents.domain}" = tls // {
+        "prowlarr.${secrets.domains.parents}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:9696";
           };
         };
 
-        "sabnzbd.${secrets.parents.domain}" = tls // {
+        "sabnzbd.${secrets.domains.parents}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:8080";
           };
         };
 
-        "qbittorrent.${secrets.parents.domain}" = tls // {
+        "qbittorrent.${secrets.domains.parents}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString config.services.qbittorrent.webuiPort}";
           };
         };
 
-        "tunarr.${secrets.parents.domain}" = tls // {
+        "tunarr.${secrets.domains.parents}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString config.services.tunarr.port}";
           };
@@ -167,7 +167,7 @@ in
       proxied = true;
       apiTokenFile = config.sops.secrets."cloudflare/api-token".path;
       domains = [
-        secrets.parents.domain
+        secrets.domains.parents
       ];
     };
 

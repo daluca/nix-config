@@ -43,20 +43,20 @@
 
     services.hister.settings = {
       server = {
-        base_url = "https://hister.${secrets.domain.general}";
+        base_url = "https://hister.${secrets.domains.general}";
       };
     };
 
     services.pocket-id.settings = {
-      APP_URL = "https://id.${secrets.domain.general}";
+      APP_URL = "https://id.${secrets.domains.general}";
       TRUSTED_PLATFORM = "CF-Connecting-IP";
     };
 
-    security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
+    security.acme.certs.${secrets.domains.general}.domain = "*.${secrets.domains.general}";
 
     services.nginx.virtualHosts =
       let
-        cert = config.security.acme.certs.${secrets.domain.general};
+        cert = config.security.acme.certs.${secrets.domains.general};
         sslCertificate = "${cert.directory}/fullchain.pem";
         sslCertificateKey = "${cert.directory}/key.pem";
         sslTrustedCertificate = "${cert.directory}/chain.pem";
@@ -67,7 +67,7 @@
       in
       with config.services;
       {
-        "id.${secrets.domain.general}" = tls // {
+        "id.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString pocket-id.settings.PORT}";
             extraConfig = /* nginx */ ''
@@ -77,7 +77,7 @@
             '';
           };
         };
-        "hister.${secrets.domain.general}" = tls // {
+        "hister.${secrets.domains.general}" = tls // {
           http2 = true;
           http3 = true;
           quic = true;
@@ -93,7 +93,7 @@
             add_header Alt-Svc 'h3=":443"; ma=86400; persist=1';
           '';
         };
-        "rustical.${secrets.domain.general}" = tls;
+        "rustical.${secrets.domains.general}" = tls;
       };
 
     networking.hostName = "charlie";

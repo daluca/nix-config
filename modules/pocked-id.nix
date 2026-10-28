@@ -14,9 +14,9 @@
         ALLOW_USER_SIGNUPS = "withToken";
         SMTP_HOST = "mail.smtp2go.com";
         SMTP_PORT = 587;
-        SMTP_USER = "id.${secrets.domain.general}";
+        SMTP_USER = "id.${secrets.domains.general}";
         SMTP_PASSWORD_FILE = config.sops.secrets."pocket-id/smtp-password".path;
-        SMTP_FROM = "no-reply@${secrets.domain.general}";
+        SMTP_FROM = "no-reply@${secrets.domains.general}";
         SMTP_TLS = "starttls";
         EMAIL_VERIFICATION_ENABLED = true;
         EMAIL_API_KEY_EXPIRATION_ENABLED = true;

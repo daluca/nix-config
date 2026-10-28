@@ -33,11 +33,11 @@
         immich
       ];
 
-    security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
+    security.acme.certs.${secrets.domains.general}.domain = "*.${secrets.domains.general}";
 
     services.nginx.virtualHosts =
       let
-        cert = config.security.acme.certs.${secrets.domain.general};
+        cert = config.security.acme.certs.${secrets.domains.general};
         sslCertificate = "${cert.directory}/fullchain.pem";
         sslCertificateKey = "${cert.directory}/key.pem";
         sslTrustedCertificate = "${cert.directory}/chain.pem";
@@ -48,25 +48,25 @@
       in
       with config.services;
       {
-        "paperless.${secrets.domain.general}" = tls // {
+        "paperless.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString paperless.port}";
           };
         };
 
-        "redlib.${secrets.domain.general}" = tls // {
+        "redlib.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString redlib.port}";
           };
         };
 
-        "navidrome.${secrets.domain.general}" = tls // {
+        "navidrome.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString navidrome.settings.Port}";
           };
         };
 
-        "share.${secrets.domain.general}" = tls // {
+        "share.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString local-content-share.port}";
             extraConfig = /* nginx */ ''
@@ -80,34 +80,34 @@
           };
         };
 
-        "gatus.${secrets.domain.general}" = tls // {
+        "gatus.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString gatus.settings.web.port}";
           };
         };
 
-        "homebox.${secrets.domain.general}" = tls // {
+        "homebox.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "http://127.0.0.1:7745";
             proxyWebsockets = true;
           };
         };
 
-        "home-assistant.${secrets.domain.general}" = tls // {
+        "home-assistant.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "http://10.1.1.12:8123";
             proxyWebsockets = true;
           };
         };
 
-        "zigbee2mqtt.${secrets.domain.general}" = tls // {
+        "zigbee2mqtt.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "http://10.1.1.12:8099";
             proxyWebsockets = true;
           };
         };
 
-        "unifi.${secrets.domain.general}" = tls // {
+        "unifi.${secrets.domains.general}" = tls // {
           locations."/" = {
             proxyPass = "https://10.1.1.1:443";
           };
@@ -127,7 +127,7 @@
           };
         };
 
-        "immich.${secrets.domain.general}" = tls;
+        "immich.${secrets.domains.general}" = tls;
 
         ${firefly-iii.virtualHost} = tls;
 
@@ -135,21 +135,21 @@
       };
 
     services.paperless.settings = {
-      PAPERLESS_URL = "https://paperless.${secrets.domain.general}";
+      PAPERLESS_URL = "https://paperless.${secrets.domains.general}";
     };
 
-    services.firefly-iii.virtualHost = "firefly.${secrets.domain.general}";
+    services.firefly-iii.virtualHost = "firefly.${secrets.domains.general}";
 
-    services.firefly-iii-data-importer.virtualHost = "firefly-importer.${secrets.domain.general}";
+    services.firefly-iii-data-importer.virtualHost = "firefly-importer.${secrets.domains.general}";
 
     services.firefly-iii-data-importer.settings = {
-      VANITY_URL = "https://firefly.${secrets.domain.general}";
-      FIREFLY_III_URL = "https://firefly.${secrets.domain.general}";
+      VANITY_URL = "https://firefly.${secrets.domains.general}";
+      FIREFLY_III_URL = "https://firefly.${secrets.domains.general}";
       FIREFLY_III_CLIENT_ID = "019f5ca9-1f9a-71a5-a0a1-9733ffb75a50";
     };
 
     services.redlib.settings = {
-      REDLIB_FULL_URL = "redlib.${secrets.domain.general}";
+      REDLIB_FULL_URL = "redlib.${secrets.domains.general}";
     };
 
     sops.defaultSopsFile = ./dalaran.sops.yaml;

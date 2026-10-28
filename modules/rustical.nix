@@ -7,7 +7,7 @@
       };
     };
 
-    services.nginx.virtualHosts."rustical.${secrets.domain.general}" = {
+    services.nginx.virtualHosts."rustical.${secrets.domains.general}" = {
       locations."/" = with config.services.rustical.settings.http; {
         proxyPass = "http://${host}:${toString port}";
       };

@@ -48,13 +48,13 @@
 
       deploy.ipv4-address = "10.2.1.2";
 
-      services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.cloud.domain}";
+      services.ntfy-sh.settings.base-url = "https://ntfy.${secrets.domains.cloud}";
 
-      security.acme.certs.${secrets.domain.general}.domain = "*.${secrets.domain.general}";
+      security.acme.certs.${secrets.domains.general}.domain = "*.${secrets.domains.general}";
 
       services.nginx.virtualHosts =
         let
-          cert = config.security.acme.certs.${secrets.domain.general};
+          cert = config.security.acme.certs.${secrets.domains.general};
           sslCertificate = "${cert.directory}/fullchain.pem";
           sslCertificateKey = "${cert.directory}/key.pem";
           sslTrustedCertificate = "${cert.directory}/chain.pem";
@@ -65,23 +65,23 @@
         in
         with config.services;
         {
-          "ntfy.${secrets.domain.general}" = tls // {
+          "ntfy.${secrets.domains.general}" = tls // {
             locations."/" = {
               proxyPass = "http://${ntfy-sh.settings.listen-http}/";
               proxyWebsockets = true;
             };
           };
-          "atuin.${secrets.domain.general}" = tls // {
+          "atuin.${secrets.domains.general}" = tls // {
             locations."/" = {
               proxyPass = "http://127.0.0.1:${toString atuin.port}/";
             };
           };
-          "miniflux.${secrets.domain.general}" = tls // {
+          "miniflux.${secrets.domains.general}" = tls // {
             locations."/" = {
               proxyPass = "http://${miniflux.config.LISTEN_ADDR}/";
             };
           };
-          "nextflux.${secrets.domain.general}" = tls // {
+          "nextflux.${secrets.domains.general}" = tls // {
             locations."/" = {
               root = "${pkgs.nextflux}/share/html";
               tryFiles = "$uri $uri/ index.html =403";

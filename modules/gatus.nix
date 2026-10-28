@@ -18,7 +18,7 @@
             caching = true;
           };
           alerting.ntfy = {
-            url = "https://ntfy.${secrets.domain.general}/";
+            url = "https://ntfy.${secrets.domains.general}/";
             topic = "gatus";
             default-alert = {
               description = "Failed health check";
@@ -31,7 +31,7 @@
           endpoints = [
             {
               name = "Firefly III";
-              url = "https://firefly.${secrets.domain.general}/health";
+              url = "https://firefly.${secrets.domains.general}/health";
               group = "dalaran";
               interval = "60s";
               conditions = [
@@ -43,7 +43,7 @@
             }
             {
               name = "Firefly III Data Importer";
-              url = "https://firefly-importer.${secrets.domain.general}/health";
+              url = "https://firefly-importer.${secrets.domains.general}/health";
               group = "dalaran";
               interval = "60s";
               conditions = [
@@ -55,7 +55,7 @@
             }
             {
               name = "Home Assistant";
-              url = "https://home-assistant.${secrets.domain.general}/manifest.json";
+              url = "https://home-assistant.${secrets.domains.general}/manifest.json";
               group = "homeassistant";
               interval = "60s";
               conditions = [
@@ -66,7 +66,7 @@
             }
             {
               name = "Zigbee2MQTT";
-              url = "https://zigbee2mqtt.${secrets.domain.general}/";
+              url = "https://zigbee2mqtt.${secrets.domains.general}/";
               group = "homeassistant";
               interval = "60s";
               conditions = [
@@ -77,7 +77,7 @@
             }
             {
               name = "Navidrome";
-              url = "https://navidrome.${secrets.domain.general}/ping";
+              url = "https://navidrome.${secrets.domains.general}/ping";
               group = "dalaran";
               interval = "60s";
               conditions = [
@@ -90,7 +90,7 @@
             {
               enabled = false;
               name = "Sonarr";
-              url = "https://sonarr.${secrets.domain.general}/ping";
+              url = "https://sonarr.${secrets.domains.general}/ping";
               group = "shodan";
               interval = "60s";
               conditions = [
@@ -102,7 +102,7 @@
             {
               enabled = false;
               name = "Radarr";
-              url = "https://radarr.${secrets.domain.general}/ping";
+              url = "https://radarr.${secrets.domains.general}/ping";
               group = "shodan";
               interval = "60s";
               conditions = [
@@ -114,7 +114,7 @@
             {
               enabled = false;
               name = "Prowlarr";
-              url = "https://prowlarr.${secrets.domain.general}/ping";
+              url = "https://prowlarr.${secrets.domains.general}/ping";
               group = "shodan";
               interval = "60s";
               conditions = [
@@ -125,7 +125,7 @@
             }
             {
               name = "Jellyfin";
-              url = "https://jellyfin.${secrets.domain.general}/health";
+              url = "https://jellyfin.${secrets.domains.general}/health";
               group = "shodan";
               interval = "60s";
               conditions = [
@@ -137,7 +137,7 @@
             }
             {
               name = "Seerr";
-              url = "https://request.${secrets.domain.general}/api/v1/settings/public";
+              url = "https://request.${secrets.domains.general}/api/v1/settings/public";
               group = "shodan";
               interval = "60s";
               conditions = [
@@ -148,7 +148,7 @@
             }
             {
               name = "redlib";
-              url = "https://redlib.${secrets.domain.general}/settings";
+              url = "https://redlib.${secrets.domains.general}/settings";
               group = "dalaran";
               interval = "60s";
               conditions = [
@@ -159,7 +159,7 @@
             }
             {
               name = "ntfy.sh";
-              url = "https://ntfy.${secrets.domain.general}/v1/health";
+              url = "https://ntfy.${secrets.domains.general}/v1/health";
               group = "bravo";
               interval = "60s";
               conditions = [
@@ -172,7 +172,7 @@
             {
               enabled = false;
               name = "Tracearr";
-              url = "https://tracearr.${secrets.domain.general}/health";
+              url = "https://tracearr.${secrets.domains.general}/health";
               group = "shodan";
               interval = "60s";
               conditions = [
@@ -185,7 +185,7 @@
             }
             {
               name = "attic";
-              url = "https://attic.${secrets.domain.general}/";
+              url = "https://attic.${secrets.domains.general}/";
               group = "alfa";
               interval = "60s";
               conditions = [
@@ -196,7 +196,7 @@
             }
             {
               name = "atuin";
-              url = "https://atuin.${secrets.domain.general}/";
+              url = "https://atuin.${secrets.domains.general}/";
               group = "bravo";
               interval = "60s";
               conditions = [
@@ -208,7 +208,7 @@
             {
               enabled = false;
               name = "SABnzbd";
-              url = "https://SABnzbd.${secrets.domain.general}/";
+              url = "https://SABnzbd.${secrets.domains.general}/";
               group = "shodan";
               interval = "60s";
               conditions = [
@@ -220,7 +220,7 @@
             {
               enabled = false;
               name = "qBittorrent";
-              url = "https://qbittorrent.${secrets.domain.general}/";
+              url = "https://qbittorrent.${secrets.domains.general}/";
               group = "shodan";
               interval = "60s";
               conditions = [
@@ -231,7 +231,7 @@
             }
             {
               name = "Jellyfin";
-              url = "https://jellyfin.${secrets.parents.domain}/health";
+              url = "https://jellyfin.${secrets.domains.parents}/health";
               group = "guiltyspark";
               interval = "60s";
               conditions = [
@@ -243,7 +243,7 @@
             }
             {
               name = "Seerr";
-              url = "https://request.${secrets.parents.domain}/api/v1/settings/public";
+              url = "https://request.${secrets.domains.parents}/api/v1/settings/public";
               group = "guiltyspark";
               interval = "60s";
               conditions = [

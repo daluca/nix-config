@@ -18,7 +18,7 @@
               lib.concatStringsSep " " [
                 "http://127.0.0.1:${toString config.services.cockpit.port}"
                 "http://guiltyspark:${toString config.services.cockpit.port}"
-                "https://cockpit.${secrets.parents.domain}"
+                "https://cockpit.${secrets.domains.parents}"
               ]
             );
           };
@@ -27,7 +27,7 @@
 
       services.nginx.virtualHosts =
         let
-          cert = config.security.acme.certs.${secrets.parents.domain};
+          cert = config.security.acme.certs.${secrets.domains.parents};
           sslCertificate = "${cert.directory}/fullchain.pem";
           sslCertificateKey = "${cert.directory}/key.pem";
           sslTrustedCertificate = "${cert.directory}/chain.pem";
@@ -37,7 +37,7 @@
           };
         in
         {
-          "cockpit.${secrets.parents.domain}" = tls // {
+          "cockpit.${secrets.domains.parents}" = tls // {
             locations."/" = {
               proxyPass = "http://127.0.0.1:9090";
               proxyWebsockets = true;

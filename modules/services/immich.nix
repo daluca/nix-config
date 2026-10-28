@@ -22,11 +22,11 @@
         package = pkgs.unstable.immich;
         host = "127.0.0.1";
         settings = {
-          server.externalDomain = "https://immich.${secrets.domain.general}";
+          server.externalDomain = "https://immich.${secrets.domains.general}";
         };
       };
 
-      services.nginx.virtualHosts."immich.${secrets.domain.general}" = {
+      services.nginx.virtualHosts."immich.${secrets.domains.general}" = {
         locations."/" = with config.services.immich; {
           proxyPass = "http://${host}:${toString port}/";
           proxyWebsockets = true;

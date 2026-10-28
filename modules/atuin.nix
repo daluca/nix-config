@@ -36,7 +36,7 @@
         settings = {
           auto_sync = true;
           sync_frequency = "5m";
-          sync_address = "https://atuin.${secrets.domain.general}/";
+          sync_address = "https://atuin.${secrets.domains.general}/";
           dialect = "uk";
           update_check = false;
           keymap_mode = "vim-insert";

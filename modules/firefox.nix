@@ -606,23 +606,23 @@
             }
             {
               name = "Nextcloud";
-              url = "https://cloud.${secrets.cloud.domain}/";
+              url = "https://cloud.${secrets.domains.cloud}/";
             }
             {
               name = "Miniflux";
-              url = "https://feeds.${secrets.cloud.domain}/";
+              url = "https://feeds.${secrets.domains.cloud}/";
             }
             {
               name = "Linkwarden";
-              url = "https://links.${secrets.cloud.domain}/";
+              url = "https://links.${secrets.domains.cloud}/";
             }
             {
               name = "Mealie";
-              url = "https://mealie.${secrets.cloud.domain}/";
+              url = "https://mealie.${secrets.domains.cloud}/";
             }
             {
               name = "RSS Bridge";
-              url = "https://rssbridge.${secrets.cloud.domain}/";
+              url = "https://rssbridge.${secrets.domains.cloud}/";
             }
             {
               name = "Public WiFi Login";
@@ -630,31 +630,31 @@
             }
             {
               name = "Paperless";
-              url = "https://paperless.${secrets.domain.general}/";
+              url = "https://paperless.${secrets.domains.general}/";
             }
             {
               name = "Home Assistant";
-              url = "https://home-assistant.${secrets.domain.general}/";
+              url = "https://home-assistant.${secrets.domains.general}/";
             }
             {
               name = "Zigbee2MQTT";
-              url = "https://zigbee2mqtt.${secrets.domain.general}/";
+              url = "https://zigbee2mqtt.${secrets.domains.general}/";
             }
             {
               name = "Firefly III";
-              url = "https://firefly.${secrets.domain.general}/";
+              url = "https://firefly.${secrets.domains.general}/";
             }
             {
               name = "Unifi";
-              url = "https://unifi.${secrets.domain.general}/";
+              url = "https://unifi.${secrets.domains.general}/";
             }
             {
               name = "Local Content Share";
-              url = "https://share.${secrets.domain.general}/";
+              url = "https://share.${secrets.domains.general}/";
             }
             {
               name = "Gatus";
-              url = "https://gatus.${secrets.domain.general}/";
+              url = "https://gatus.${secrets.domains.general}/";
             }
           ];
         };

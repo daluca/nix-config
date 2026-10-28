@@ -12,10 +12,10 @@
         adminCredentialsFile = config.sops.templates."miniflux.env".path;
         config = {
           LISTEN_ADDR = "127.0.0.1:8081";
-          BASE_URL = "https://miniflux.${secrets.domain.general}/";
+          BASE_URL = "https://miniflux.${secrets.domains.general}/";
           OAUTH2_PROVIDER = "oidc";
-          OAUTH2_REDIRECT_URL = "https://miniflux.${secrets.domain.general}/oauth2/oidc/callback";
-          OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://id.${secrets.domain.general}";
+          OAUTH2_REDIRECT_URL = "https://miniflux.${secrets.domains.general}/oauth2/oidc/callback";
+          OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://id.${secrets.domains.general}";
           OAUTH2_USER_CREATION = 1;
         };
       };

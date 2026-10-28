@@ -51,7 +51,7 @@
     ];
 
     services.nginx.virtualHosts = {
-      "attic.${secrets.domain.general}" = {
+      "attic.${secrets.domains.general}" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {

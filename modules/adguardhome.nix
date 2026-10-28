@@ -124,15 +124,15 @@
             bind_hosts = [ "10.1.1.10" ];
             upstream_dns = [
               "[//in-addr.arpa/ip6.arpa/${config.networking.domain}/]10.1.1.1"
-              "[/${secrets.parents.domain}/]192.168.10.10"
+              "[/${secrets.domains.parents}/]192.168.10.10"
               "[/${
                 lib.concatStringsSep "/" [
-                  "jellyfin.${secrets.parents.domain}"
-                  "request.${secrets.parents.domain}"
-                  "requests.${secrets.parents.domain}"
-                  "jellyfin.${secrets.domain.general}"
-                  "request.${secrets.domain.general}"
-                  "requests.${secrets.domain.general}"
+                  "jellyfin.${secrets.domains.parents}"
+                  "request.${secrets.domains.parents}"
+                  "requests.${secrets.domains.parents}"
+                  "jellyfin.${secrets.domains.general}"
+                  "request.${secrets.domains.general}"
+                  "requests.${secrets.domains.general}"
                 ]
               }/]#"
             ];
@@ -148,15 +148,15 @@
           filtering.rewrites =
             let
               dalaran = subdomain: {
-                domain = "${subdomain}.${secrets.domain.general}";
+                domain = "${subdomain}.${secrets.domains.general}";
                 answer = "10.1.1.11";
               };
               shodan = subdomain: {
-                domain = "${subdomain}.${secrets.domain.general}";
+                domain = "${subdomain}.${secrets.domains.general}";
                 answer = secrets.hosts.shodan.tailscale-address;
               };
               guiltyspark = subdomain: {
-                domain = "${subdomain}.${secrets.parents.domain}";
+                domain = "${subdomain}.${secrets.domains.parents}";
                 answer = "192.168.10.20";
               };
               internalHost = hostName: answer: {
@@ -262,11 +262,11 @@
             answer = "192.168.10.10";
           }
           {
-            domain = secrets.parents.domain;
+            domain = secrets.domains.parents;
             answer = "192.168.10.20";
           }
           {
-            domain = "*.${secrets.parents.domain}";
+            domain = "*.${secrets.domains.parents}";
             answer = "192.168.10.20";
           }
         ];

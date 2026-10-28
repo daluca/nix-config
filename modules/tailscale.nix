@@ -15,7 +15,7 @@
         openFirewall = true;
         authKeyFile = config.sops.secrets."tailscale/preauthkey".path;
         extraUpFlags = [
-          "--login-server=https://headscale.${secrets.cloud.domain}"
+          "--login-server=https://headscale.${secrets.domains.cloud}"
           "--operator=${config.home-manager.users.daluca.home.username}"
           "--accept-routes"
           "--reset"

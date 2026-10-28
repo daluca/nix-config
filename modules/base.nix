@@ -54,7 +54,7 @@ in
       sops.secrets."ssh_host_rsa_key" = { };
 
       sops.templates."netrc".content = ''
-        machine attic.${secrets.domain.general}
+        machine attic.${secrets.domains.general}
         password ${config.sops.placeholder."attic/api-token"}
       '';
 
@@ -67,7 +67,7 @@ in
         ];
         substituters = [
           "https://nix-community.cachix.org?priority=50"
-          "https://attic.${secrets.domain.general}/production?priority=60"
+          "https://attic.${secrets.domains.general}/production?priority=60"
         ];
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="

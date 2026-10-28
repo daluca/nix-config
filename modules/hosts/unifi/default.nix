@@ -32,11 +32,11 @@
 
     networking.enableIPv6 = false;
 
-    security.acme.certs.${secrets.parents.domain}.domain = "*.${secrets.parents.domain}";
+    security.acme.certs.${secrets.domains.parents}.domain = "*.${secrets.domains.parents}";
 
     services.nginx.virtualHosts =
       let
-        cert = config.security.acme.certs.${secrets.parents.domain};
+        cert = config.security.acme.certs.${secrets.domains.parents};
         sslCertificate = "${cert.directory}/fullchain.pem";
         sslCertificateKey = "${cert.directory}/key.pem";
         sslTrustedCertificate = "${cert.directory}/chain.pem";
@@ -46,7 +46,7 @@
         };
       in
       {
-        "unifi.${secrets.parents.domain}" = tls // {
+        "unifi.${secrets.domains.parents}" = tls // {
           locations."/" = {
             proxyPass = "https://127.0.0.1:8443";
           };
