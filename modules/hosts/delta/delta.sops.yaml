@@ -6,6 +6,8 @@ initrd_id_rsa: ENC[AES256_GCM,data:2SZSX3RvUIlU19czT+vg690Mz2I3OOvolEq3n3RkCDtLC
 cache-priv-key.pem: ENC[AES256_GCM,data:tpf9ScS+sB22wL7rK2qxNqJq+Ju8ZC4HNZ1Tv9EUITjzOaYk7fvMQxBpdfxzsBVjqyIPlD55I5wabNRzms4j7ma3XibvvzLrpPcu3qQJkgsowmvPaGGdgCbOgiEirw==,iv:nSQq8FuIpFHVjyk421PoTkGFip8wkjbXQfwlXZnG7dQ=,tag:NTZTVeyom0twa6YlirIQYg==,type:str]
 attic:
   api-token: ENC[AES256_GCM,data:B6qTUhB62gX69CMPC4JjbyEoVW/t4DgUn4anlrd6mOANb1Csr16rnlKJ0zxAOmbNJOpuQPgL7CJz7oYSJlAS4ZS4lXUrHgmS8biDGR8uMUi1bAk/ljiFzdTjDIvd2wEAuYDNUAsZNPJTVOEW74vp5cxGny51IBB/GJSoDqrMTHWwuswDlM74JMfeZOLhGJHR9lIhHdUVd9g5SeyLU2JqDlvIr8V82ylORqr3mdqhqElT1BOJKQSCdSklT1F1J65QiP5OpMm3JoDGqjvovkq0Py2xgitta6TH///wpMTIPyROvrvNDD42MSpaj6mtQFWQC04pZFM3zw+OObz0AQ3WRahW3HgCLcW+iEaCoIo6hOdgskCNqnTdO1E29OErkG3CWbOJykcFugpRRLypg8oBlFZwr6daXzfFOSwGVOYdA+qtRcpf/LqSnj456Ftr8RB8Hw9oWK2zqUjxq79Y/a9dUdu1t3UmS8f+B9WrgGvuwO2AbOwajq3i7OqF2hgG32owdVPQwcsYKNPVTDgwVy1v7JC3RJQm3HKl7hxG1Hxq/Ohs7sBipNhhN1vgR/Aju5mR8Dt3yzQsaSZOEBfOmr5IAy85VjupIzRRSKM6XgoswM3wDXQnRm4EYKaVbZ61cCCZ03u4Ccc+aMY6RXmVitavKzHytCKld5aX4Q315trPYwAlHyOJlbnUDxe26rdZ+1ONQoCGvnHfTKxrJnIT7bYS0VXBbyI59P/iODa27cWS1/14xvon/1uYFLSrmopOnuP/bqlNL5ZctuUm0BqIm+VXWf0CBZfL7z61vtQHHQ6TbeldmBK6yLiB/UuGLCqsCXsj2O2m5DMgHOA4i+/Lev/cDi34C+44LJHD73d/fhQpjAASUXEeYVFKpRZN06s+QFSHwva5KrVWokLDOhvtb1c376ylwI/8AUx0AhWThPK18mjP4ETYEOJNXcUAmYMmb0nzYS32zjRig563U4YYou0G2UwyCgEyjcJ/GWs7GKjGesPFMvVrPYAAgqO/J3CpIE1uRUKlgW1b9LGR29Rcqwx3SoGHA34dp8wPOCnKzwh6YQCC3tloVAycUi4GrcPJiQBBgExWmAYSZ/yB+YezjKBrhVF6RBwcq2SIqQWyL39G2ae31l9QsTg7uG6wDYlO8xY=,iv:J/kJABNEMa89hiHqrJyU68+J4Jhn49abagdjjjTRqVk=,tag:c31GOsz+bHFTg0peJScCDw==,type:str]
+tailscale:
+  preauthkey: ENC[AES256_GCM,data:IAj/l2Xns9voaaLrUJhUanwIUh4fs0l0pz+UkXVmKLGRbj9UnumkzexnvNOz4pC2,iv:mrHdpWpmiyB4DWE7wZQljAX9IJb+ocotXHP/QutBzYc=,tag:D192YYeuERH8S7dCJZmiQA==,type:str]
 cloudflare:
   api-token: ENC[AES256_GCM,data:TksLx9akx3HlM8xBSiVENutmnGYYA1bSRJCO+UWB3L0n/hw/kZv8tq5xmYTFNuwfsmRIk3s=,iv:rL/mD6x8Di3iefDc9iDD94stIUf7zoE5joacve5NHww=,tag:7mKTJkcIoW4SV0kKRzzvUQ==,type:str]
 pocket-id:
@@ -31,7 +33,7 @@ sops:
         po/B/x/w1c4jZxlHYwCrM5pWLCqbG/NSi6o3yAjNW9XtLneZajeNbg==
         -----END AGE ENCRYPTED FILE-----
       recipient: age1ep9ezrvguxtfeaz8k2nds9vnvrwcz76nwa882v35j78htqnc5ctszxpvha
-  lastmodified: "2026-10-24T18:33:05Z"
-  mac: ENC[AES256_GCM,data:Y13nXlI7McmSpiwgTyt5G2EkDqh8uRl7GnW4g6AaeiJ033Zm4goyvM0h773NLB04rbCthOH7CayVH9CRB5OG5F01RElcWWF5nYdpw6u6x8UWn9Ik9BIAUjDWmU9AcvYpiAFyJ/4cvXV2EsLdDnfcEeoJuUiJrl7Anh7HnijsJYU=,iv:GPF6Vdnc/oB7rEREic6evYJhLdOAEIHtkOqcOpYpwRk=,tag:QBylnK7Z1GAOmYBPg3NF6Q==,type:str]
+  lastmodified: "2026-10-28T19:11:53Z"
+  mac: ENC[AES256_GCM,data:sDhTLLfYvBLsHF+Vcd+nTpk9srDJvHPP2xqN1iEz2Ri+n3ACdXow6hbJGuxbesagARfJl/j1hhiroX0mg0wQFhLTCOKC61cbX9nrIM3NO16x7IHwULwoGMmWNzRkiWRjjY0VmMnFvYWZp2Bd5euZm6jCAbsXNz1x3Qjs8RnScSA=,iv:YoLNMXYBFEWGSd+lHQF7cnMXX+1bFcGOU3+shyMIHz0=,tag:+Q6vyVW4TGWhZM2mHiG1dQ==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.3
