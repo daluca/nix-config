@@ -5,11 +5,6 @@ let
     domain = secrets.domains.general;
     zone_id = "d05e5c424280a2487da182227416054a";
   };
-  alfa = zone_id: {
-    inherit zone_id;
-    type = "A";
-    content = secrets.hosts.alfa.ipv4-address;
-  };
   bravo = zone_id: {
     inherit zone_id;
     type = "A";
@@ -19,6 +14,11 @@ let
     inherit zone_id;
     type = "A";
     content = secrets.hosts.charlie.ipv4-address;
+  };
+  delta = zone_id: {
+    inherit zone_id;
+    type = "A";
+    content = secrets.hosts.delta.ipv4-address;
   };
   shodan = zone_id: {
     inherit zone_id;
@@ -30,7 +30,7 @@ let
       name = "id.${primary.domain}";
       id = "${primary.zone_id}/816a3413db17c2b31fe2d55f410ef491";
     };
-    attic = (alfa primary.zone_id) // {
+    attic = (delta primary.zone_id) // {
       name = "attic.${primary.domain}";
       id = "${primary.zone_id}/df6c5d6f80c31f24700f9e7eb222d131";
     };

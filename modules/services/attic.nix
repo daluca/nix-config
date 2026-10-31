@@ -6,28 +6,72 @@
       config,
       lib,
       pkgs,
+      secrets,
       ...
     }:
     {
       services.atticd = {
         enable = true;
         environmentFile = config.sops.templates."atticd.env".path;
+        settings = {
+          listen = "127.0.0.1:8082";
+          allowed-hosts = [
+            "attic.${secrets.domains.primary}"
+          ];
+          api-endpoint = "https://attic.${secrets.domains.primary}/";
+          require-proof-of-possession = true;
+          database.heartbeat = true;
+          compression = {
+            type = "zstd";
+            level = 9;
+          };
+          storage = {
+            type = "s3";
+            region = "nbg1";
+            bucket = "atticd";
+            endpoint = "https://nbg1.your-objectstorage.com";
+          };
+        };
       };
 
       sops.templates."atticd.env".content = lib.generators.toKeyValue { } {
         ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64 = config.sops.placeholder."atticd/token";
+        AWS_ACCESS_KEY_ID = "BS5QQFTT4BLAX3GJAJ3T";
+        AWS_SECRET_ACCESS_KEY = config.sops.placeholder."atticd/s3/secret-key";
       };
 
       sops.secrets."atticd/token" = { };
+
+      sops.secrets."atticd/s3/secret-key" = { };
+
+      services.nginx.virtualHosts."attic.${secrets.domains.primary}" = {
+        forceSSL = true;
+        useACMEHost = secrets.domains.primary;
+        locations."/" = {
+          proxyPass = "http://${config.services.atticd.settings.listen}";
+          extraConfig = /* nginx */ ''
+            client_max_body_size 1G;
+          '';
+        };
+      };
 
       environment.systemPackages = with pkgs; [
         attic-server
       ];
 
+      systemd.tmpfiles.settings."var-lib-private" = {
+        "/var/lib/private".d = {
+          user = "root";
+          group = "root";
+          mode = "0700";
+        };
+      };
+
       environment.persistence.system.directories = [
         {
+          inherit (config.services.atticd) user group;
           directory = "/var/lib/private/atticd";
-          mode = "0700";
+          mode = "0755";
         }
       ];
     };
