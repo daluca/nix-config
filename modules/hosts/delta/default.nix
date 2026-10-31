@@ -3,7 +3,9 @@
 {
   flake.nixosConfigurations.delta =
     let
-      secrets = fromTOML (builtins.readFile ../../../secrets/secrets.toml);
+      secrets = inputs.nixpkgs.lib.recursiveUpdate
+        (fromTOML (builtins.readFile ../../../secrets/secrets.toml))
+        (fromTOML (builtins.readFile ./secrets.toml));
     in
     inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
