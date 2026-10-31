@@ -42,6 +42,11 @@ boot:
 deploy host:
     deploy --skip-checks .#{{ host }}
 
+# test on remote host
+[group("hosts")]
+test host:
+    deploy --skip-checks --test .#{{ host }}
+
 # build and push to all hosts
 [group("hosts")]
 push:
