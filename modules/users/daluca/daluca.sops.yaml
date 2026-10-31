@@ -13,6 +13,8 @@ github:
   access-token: ENC[AES256_GCM,data:pM1tB+DX6jdcYrGS3X3xBT/17tcA9DwSwv3oc8/tex9l+h3QU1asKXOUOvaH/Fs0ZgOlLPjPfNJj+jS7TsDaGAidFiwjfiSEt7TkbAXxXrr0revTWjRu1+xz++Hx,iv:8xOyidGgLajyKnKpPVVhiMnAcrgCJ1Dt9Z6eNPfv2Ew=,tag:QlPWqcDfwIkY+KIbdUA/LA==,type:str]
 atuin:
   key: ENC[AES256_GCM,data:Y/ZH9o5nCurYFTOY//RSshLT9uPfvaprfy+7kQknMMBGI5KpmMO5W27JHmogn6tD1oUi8wxRMOLKW83XbCSjjFEaqEqHVrNV26aaDA==,iv:6OMiKIn32EKSzfWDO2HMHVa/S/YteJxXftM/w/oQqFM=,tag:6qWnSkrBZv2YwStJw7NwSQ==,type:str]
+attic:
+  token: ENC[AES256_GCM,data:GDS0Gb1NwIAgnWCwUCnP2XsPqTJ+QQHQyZjqR58//Mt6oOe4BqN2ZhZJlhBGI/c5D+6nSfsJpt/ThXQ0E7gYWyM2UuH1BtTMzBplWuc4apcKubAcUQHtfmyoyK5bSTnxJA3D0JTnY+/d7wT6lVHy2E9Qj8gzyLQd0aO9Uwq6Ep6LkVQx/wmsCG95yaHj4gVrqK0a6Wgg8H+R+09pW7DqixsUZOE4kpHZGK5Leu71FxurHXmUD3GclguGYa4FVP9nOawuREpv3pSMoaLZXLhmKJAYgC8nIuLnwZHUEnf7wGCZnRRwenwxeKyRhTPx+eRFCpGXMcSo74l3Gkzbs3RE4MJS00s+hPSaFvMQ3S2iBa/VxGeloRAqbjbUMwRr5MjG0iTKlPN+/Xln0mx1XvBPQ/gXf5g2owyRr6i0X6iGRyWgjZ4HIjU3jaRMPc4PN3e6A0dDZ/q6Wl52iuK88hs/xakNVd60Ky4eNVq8CQvlSuvegjUoRw7I/p8EgoC6au7U+cF2xN1Xb7FrYd82ANV5vTlOonSizmQ2qb36LfLoaBiohqRjXb77wFU/+iEzehZzsGSGA0Im8OpnKLuimqvET67YI375TAYwCxA5sCpCTwbdpwVvlDUBjQuzDutofMbgsno2erTJVMPRj9F/+hMM+lT6+XwWYY6QlZOEI3BANNN4XZ5HaYSHw+GCxP+IyTZ31AkQzDrrRr87txavwU2Nk3rjaHH+6jB1MURFnTWYGvJpqoVivi4tm8w4NIX4uZ+o1Hfc31jcBJ/zhENvx1mSHSoiLAFHjpsmUO/O/Q0MpusqZPOp51UWw99NahLP9a1Sa23N1KAeUdajV8vT0doIhli7zGZm66XEvZ0KEIKokkRdeXbXa4duOkl0B96304XjbSCdxFvecsKvSBdMTrDqrJpWQuSMD9hD4fGCJ8NTwcipSmPnT2M4yDKIJgkWbRFdZxozvShAZBCxKgwn6ysMpPbuIYLoNdPpuJhmvd5ROwjfFWKiOIpeX6yY5tkF0zFvrVl5pPtPAtwTme1+xVcotqhBe02pHIywqEGhqzOlgj8BVsez81oUQYh7RkzWLtr3whOYr1X8smlxhaQSIavfigUOF8fARpQTdsu3f9TqiuTrVd4rB1zvgQfZjGycHRt4VNCkNVwqv1eBvIFRmzDCHX7efJ+8egzpJvz7nflKLI1sTN/sUoJox54mwthF,iv:9pE9hxMcv2txbYT5476xkRJKU2qTuaCf3SFFoHMkxd0=,tag:65x3064liclFQ25lXGl4mQ==,type:str]
 sops:
   age:
     - enc: |
@@ -33,7 +35,7 @@ sops:
         2efdqVrgOqrp4EYP5qNnL6wzk1L4xsvQI0lvPULZ0TH8c9ZpzVOUnA==
         -----END AGE ENCRYPTED FILE-----
       recipient: age1t7uj9cz0dwrm555qred7n49t5c2shtuuwwsc6ryd3fewunx7x32s7rlkt0
-  lastmodified: "2026-10-11T17:19:18Z"
-  mac: ENC[AES256_GCM,data:eWPuykVYCW5qOuyUGwrfPFdceFSb/OQ+EhE1zhHpJW4RE3xBPQyqLg31zxt2rrJXE0JlkZggPWwoAU+XsrPaVYWIvJzr0YlSmSuxWwaPDv0WDXeMP/KZj3u7aNkYThD4u/HxLAdVIKpmPaxv9EbgYLe7wPSY5uHbfL3/uP6QjLg=,iv:HSQ6cawiGRcIKH5RXemLH9CTD7vV0EPTf4UB4cULclM=,tag:G3PWuvxXrJBmJorRyTsL5A==,type:str]
+  lastmodified: "2026-10-28T21:35:32Z"
+  mac: ENC[AES256_GCM,data:UvY9zwFyXai4cbpVWqYOLqmOvMKXg3Y0PIkTSEOuUcnIhsDXbF10PtDqji4xP558f92jgUJGmxievReetmYTIZj3u3I7d/P6+GPCNmfUHcSsAxSnbUA9MT0kEj9dckHxEkVmERPQcpsTuV/wQ4xKe9H+EZ5uzZUPJGIswZJfyP0=,iv:aLkWDr93pgfYBUNqcf+SCSkvUPXU8Q1T6CEBWCTLLjs=,tag:SA+tzGUjutvJj14wG3QJUA==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.3
