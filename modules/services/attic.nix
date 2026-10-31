@@ -156,4 +156,23 @@
 
     sops.secrets."attic/api-token" = { };
   };
+
+  flake.homeModules.attic = { config, pkgs, secrets, ... }: {
+    home.packages = with pkgs; [
+      attic-client
+    ];
+
+    sops.templates."attic-config.toml" = {
+      path = "${config.xdg.configHome}/attic/config.toml";
+      content = /* toml */ ''
+        default-server = "default"
+
+        [servers.default]
+        endpoint = "https://attic.${secrets.domains.general}/";
+        token = ${config.sops.placeholder."attic/token"}
+      '';
+    };
+
+    sops.secrets."attic/token" = { };
+  };
 }

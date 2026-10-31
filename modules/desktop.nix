@@ -57,6 +57,7 @@
         nix-utils
         hetzner
         cloudflare
+        attic
       ];
 
       xdg.mimeApps.enable = true;
