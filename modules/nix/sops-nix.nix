@@ -26,7 +26,7 @@
     ];
 
     sops = {
-      defaultSopsFile = ./users/daluca/daluca.sops.yaml;
+      defaultSopsFile = ../users/daluca/daluca.sops.yaml;
       age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
       # TODO: Try and re-enable option
       # age.sshKeyPaths = [

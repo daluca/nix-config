@@ -226,8 +226,9 @@
         '';
       };
 
+      # TODO: Get token from host based secrets
       sops.secrets."nix-config/default/HCLOUD_TOKEN" = {
-        sopsFile = ../secrets/secrets.sops.yaml;
+        sopsFile = ../../secrets/secrets.sops.yaml;
       };
 
       programs.zsh.initContent = /* zsh */ ''

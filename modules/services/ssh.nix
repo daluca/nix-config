@@ -14,7 +14,7 @@
 
   flake.nixosModules.ssh = { config, lib, ... }: {
     environment.etc."ssh/ssh_host_ed25519_key.pub".source =
-      lib.path.append ./hosts "${config.networking.hostName}/keys/ssh_host_ed25519_key.pub";
+      lib.path.append ../hosts "${config.networking.hostName}/keys/ssh_host_ed25519_key.pub";
 
     environment.etc."ssh/ssh_host_ed25519_key" =
       lib.mkIf (!config.environment.persistence.system.enable)
@@ -30,7 +30,7 @@
     };
 
     environment.etc."ssh/ssh_host_rsa_key.pub".source =
-      lib.path.append ./hosts "${config.networking.hostName}/keys/ssh_host_rsa_key.pub";
+      lib.path.append ../hosts "${config.networking.hostName}/keys/ssh_host_rsa_key.pub";
 
     environment.etc."ssh/ssh_host_rsa_key" = lib.mkIf (!config.environment.persistence.system.enable) {
       source = config.sops.secrets."ssh_host_rsa_key".path;
@@ -120,25 +120,25 @@
     };
 
     sops.secrets."id_ed25519" = {
-      sopsFile = ./users/daluca/daluca.sops.yaml;
+      sopsFile = ../users/daluca/daluca.sops.yaml;
       path = ".ssh/id_ed25519";
     };
 
-    home.file.".ssh/id_ed25519.pub".source = ./users/daluca/keys/id_ed25519.pub;
+    home.file.".ssh/id_ed25519.pub".source = ../users/daluca/keys/id_ed25519.pub;
 
     sops.secrets."id_rsa" = {
-      sopsFile = ./users/daluca/daluca.sops.yaml;
+      sopsFile = ../users/daluca/daluca.sops.yaml;
       path = ".ssh/id_rsa";
     };
 
-    home.file.".ssh/id_rsa.pub".source = ./users/daluca/keys/id_rsa.pub;
+    home.file.".ssh/id_rsa.pub".source = ../users/daluca/keys/id_rsa.pub;
 
     sops.secrets."id_ed25519_sk" = {
-      sopsFile = ./users/daluca/daluca.sops.yaml;
+      sopsFile = ../users/daluca/daluca.sops.yaml;
       path = ".ssh/id_ed25519_sk";
     };
 
-    home.file.".ssh/id_ed25519_sk.pub".source = ./users/daluca/keys/id_ed25519_sk.pub;
+    home.file.".ssh/id_ed25519_sk.pub".source = ../users/daluca/keys/id_ed25519_sk.pub;
 
     home.persistence.home.directories = [
       ".ssh"

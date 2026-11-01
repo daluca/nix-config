@@ -7,7 +7,7 @@
 
   perSystem = { pkgs, ... }: {
     terranix.terranixConfigurations.cloud = {
-      modules = [ (inputs.import-tree ../terraform) ];
+      modules = [ (inputs.import-tree ../../terraform) ];
       workdir = ".terranix/cloud";
       terraformWrapper = {
         package = pkgs.unstable.opentofu.withPlugins (
