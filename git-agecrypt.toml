@@ -1,8 +1,4 @@
 [config]
-"modules/hosts/alfa/secrets.toml" = [
-    "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
-    "age19fzpnfhta58lm5wduycq6j6th3x2r8d0zv9fqejh06zcllp00e8qlvlfzr",
-]
 "modules/hosts/delta/secrets.toml" = [
     "age174z6svmuxzs8exhdp3hquzpstgpnwflhx7crt7jes7f0080z7fmqn9rgvt",
     "age1ep9ezrvguxtfeaz8k2nds9vnvrwcz76nwa882v35j78htqnc5ctszxpvha",

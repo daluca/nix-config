@@ -173,7 +173,6 @@
               (internalHost "ironforge" "192.168.10.10")
               (internalHost "guiltyspark" "192.168.10.20")
               (internalHost "darnassus" "192.168.1.212")
-              (externalHost "alfa")
               (externalHost "bravo")
               (externalHost "charlie")
               (externalHost "delta")

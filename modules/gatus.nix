@@ -186,7 +186,7 @@
             {
               name = "attic";
               url = "https://attic.${secrets.domains.general}/";
-              group = "alfa";
+              group = "delta";
               interval = "60s";
               conditions = [
                 "[STATUS] == 200"

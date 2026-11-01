@@ -52,26 +52,6 @@
     };
   };
 
-  flake.nixosModules.distributed-builds-alfa = { secrets, ... }: {
-    nix.buildMachines = [
-      {
-        hostName = secrets.hosts.alfa.ipv4-address;
-        system = "x86_64-linux";
-        supportedFeatures = [
-          "nixos-test"
-          "benchmark"
-          "big-parallel"
-          "kvm"
-        ];
-        sshUser = "remotebuild";
-        sshKey = "/etc/ssh/ssh_host_ed25519_key";
-        protocol = "ssh-ng";
-        maxJobs = 2;
-        speedFactor = 2;
-      }
-    ];
-  };
-
   flake.nixosModules.distributed-builds-dalaran = {
     nix.buildMachines = [
       {

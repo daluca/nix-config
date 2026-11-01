@@ -1,12 +1,6 @@
 { lib, ... }:
 let
   servers = {
-    alfa = {
-      image = "ubuntu-24.04";
-      server_type = "cx23";
-      ip = "10.2.1.1";
-      id = 107087235;
-    };
     bravo = {
       image = "ubuntu-24.04";
       server_type = "cax11";
