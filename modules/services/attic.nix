@@ -186,8 +186,8 @@
           default-server = "default"
 
           [servers.default]
-          endpoint = "https://attic.${secrets.domains.general}/";
-          token = ${config.sops.placeholder."attic/token"}
+          endpoint = "https://attic.${secrets.domains.general}/"
+          token = "${config.sops.placeholder."attic/token"}"
         '';
       };
 
