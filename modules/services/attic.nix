@@ -157,6 +157,17 @@
     sops.secrets."attic/api-token" = { };
   };
 
+  flake.nixosModules.base = { secrets, ... }: {
+    nix.settings = {
+      substituters = [
+        "https://attic.${secrets.domains.general}/production?priority=60"
+      ];
+      trusted-public-keys = [
+        "production:VTqKInQ7wCs02xOciIN2EhCscskRr0ypiCzrMM8pp54="
+      ];
+    };
+  };
+
   flake.homeModules.attic =
     {
       config,

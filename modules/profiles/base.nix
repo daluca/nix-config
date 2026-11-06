@@ -67,11 +67,9 @@ in
         ];
         substituters = [
           "https://nix-community.cachix.org?priority=50"
-          "https://attic.${secrets.domains.general}/production?priority=60"
         ];
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          "production:fGtC1cQt7NrvIl7VD8nqnYsICCYK5CKQdxuZiYp+Q40="
         ];
         download-buffer-size = 1 * GiB;
         trusted-users = [ "@wheel" ];
