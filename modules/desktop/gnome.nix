@@ -305,6 +305,10 @@
         gtk-application-prefer-dark-theme = 1;
       };
 
+      xdg.mimeApps.defaultApplicationPackages = [
+        pkgs.papers
+      ];
+
       xdg.terminal-exec.settings.GNOME = [
         "com.mitchellh.ghostty.desktop"
         "Alacritty.desktop"
