@@ -7,6 +7,15 @@
         substituteInPlace $out/share/applications/opendeck.desktop \
           --replace-fail 'Exec=opendeck' 'Exec=opendeck --hide'
       '';
+
+      env.LIBGIT2_NO_VENDOR = true;
+
+      buildInputs =
+        with prev;
+        oldAttrs.buildInputs
+        ++ [
+          libgit2
+        ];
     });
   };
 

@@ -98,7 +98,7 @@
               ;
             pnpm = pkgs.pnpm_12.override { nodejs-slim = pkgs.nodejs-slim_24; };
             fetcherVersion = 3;
-            hash = "sha256-IpPIAu/gJOPFDB8fmIBTHahv1jn+JcZKpLHGLAgEUsI=";
+            hash = "sha256-7W629Sv4lgWXiEgipiNL6DaMG+F/h7AOs78o81zkNZw=";
           };
         });
       }
