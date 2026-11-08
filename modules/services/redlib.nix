@@ -1,28 +1,34 @@
 {
-  flake.overlays.redlib = final: prev: {
+  flake.overlays.redlib-unstable = final: prev: {
     redlib = prev.redlib.overrideAttrs (oldAttrs: rec {
-      version = "0.36.0-unstable-2026-04-24";
+      version = "0.40.0";
 
       src = oldAttrs.src.override {
-        rev = "a4d36e954cf1bd64f209cd8868c5a29edc81b374";
-        hash = "sha256-siyD6A12UALQIV7BMd7zu1TaojleTEYtpxPszuhx1/Y=";
+        rev = "v${version}";
+        hash = "sha256-qv7vIls9BwgwDQuKEQU72J10MpaMfcLvIGfzl628eNU=";
       };
 
       cargoDeps = final.rustPlatform.fetchCargoVendor {
         inherit src;
-        hash = "sha256-eO3c7rlFna3DuO31etJ6S4c7NmcvgvIWZ1KVkNIuUqQ=";
+        hash = "sha256-XgHXqH4EF8TEOI+cKJ0Z2j6QYRCwGgv8bmY8gZpPN9c=";
       };
+
+      dontUseCmakeConfigure = true;
 
       nativeBuildInputs =
         with prev.pkgs;
         oldAttrs.nativeBuildInputs
         ++ [
           cmake
-          go
           perl
           git
           rustPlatform.bindgenHook
+          pkg-config
         ];
+
+      buildInputs = with prev.pkgs; [
+        zstd
+      ];
 
       checkFlags = oldAttrs.checkFlags ++ [
         "--skip=oauth::tests::test_generic_web_backend"
@@ -32,9 +38,10 @@
 
   };
 
-  flake.nixosModules.redlib = {
+  flake.nixosModules.redlib = { pkgs, ... }: {
     services.redlib = {
       enable = true;
+      package = pkgs.unstable.redlib;
       address = "127.0.0.1";
       port = 18081;
       settings = {
