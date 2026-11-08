@@ -26,6 +26,7 @@
         impermanence-grub
         tailscale-server
         netbird-server
+        netbird-client
         nginx
         atticd
       ];

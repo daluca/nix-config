@@ -21,6 +21,7 @@ netbird:
   auth-secret: ENC[AES256_GCM,data:Rn72/s6ysVGXdkNF1ccygMQ5WTu6Ed876pbqWEGE82pU80TnDjbeD2duEQ==,iv:aFA3cvjL8gltbNqPBbTz8NXHXe21xCAOMnbAgUd0m8c=,tag:LaJ+TyHPIA9eC2m57j4ysQ==,type:str]
   session-key: ENC[AES256_GCM,data:Fhjv0r7rmeNqCD7R5NIRGS6VvjXGlTlsWr8uvVDnCkwujc7sKCPBBqenE2w=,iv:dxz4FqEbqKxMghXEONJJzVitl6rBOtkeAllgCh1ldwQ=,tag:xJv3Oz0HEwgvD8OqvhJv4w==,type:str]
   encryption-key: ENC[AES256_GCM,data:nnL9Jy2wRP1QGRd7DxmnNPBLPJBuj94YGc9XK48iQF18NvXZiAD+F4pUj0A=,iv:l9hqAF2LXe80kubbB/jnx0z64lw5+qHDtUJ7pCoHorA=,tag:81TLK/lfgfy8nJD299JsJA==,type:str]
+  setup-key: ENC[AES256_GCM,data:H4Wt+3y+pAjXa69CyGVRh6WcVaQfccvy7kfMB+TyB4L1/ZLX,iv:kTWcd6DUH8TTXKzZQejpCZmZdKuck6NIQfQfhIqkHxc=,tag:AtHW9uAr0Sok1zlI748g3w==,type:str]
 sops:
   age:
     - enc: |
@@ -41,7 +42,7 @@ sops:
         po/B/x/w1c4jZxlHYwCrM5pWLCqbG/NSi6o3yAjNW9XtLneZajeNbg==
         -----END AGE ENCRYPTED FILE-----
       recipient: age1ep9ezrvguxtfeaz8k2nds9vnvrwcz76nwa882v35j78htqnc5ctszxpvha
-  lastmodified: "2026-11-08T13:49:54Z"
-  mac: ENC[AES256_GCM,data:Ec+RFvaU2W1/UZgkuZ0eMCV+AtnwDT3UUnpA6d5l9IwQ+ez7ZB/RG+2ZvYMzLMkKLj+Si3YdxRFOTl1cZsF7ONG7jjKaG5FKgWYJQ8Myews2OoAZOQOAcYuc8iOgBXdtv3hv6najHqhl+BRMZ0kBKR+Af7S2mw1V9PxUhdTBNxY=,iv:AvvZv0Q63uDp6AHvoxvjk/SXItey1Qe18CQ8NdajiPY=,tag:U+OYHOeV2Hp+E2V0TYDSVQ==,type:str]
+  lastmodified: "2026-11-08T16:54:29Z"
+  mac: ENC[AES256_GCM,data:dJSuuyqwWdI8El5YaYoPyRnab2Wh5nndX5omxKc28vLDeotM2ZwflmyjmxmWJ/Z3Ki4Q2HESd2v5u8zvifUbtL2JB5n251P27JCm8yrAjVTM+6/QhZbn9EC9PkKwTN7C9r+c/hpdN7SNCFBGAM0pQcwsrDsU8mEGm7tV985FyNM=,iv:DtlD2YtziatEU/iM3tgHP2YzYnQ0we6y0HOgANWXVcA=,tag:lqZDkBh7QbJQHsWadDUztw==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.3

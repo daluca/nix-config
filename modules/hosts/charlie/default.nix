@@ -27,6 +27,7 @@
         remote-unlocking-dhcp
         impermanence-grub
         rustical
+        netbird-client
       ];
 
     sops.defaultSopsFile = ./charlie.sops.yaml;

@@ -30,6 +30,8 @@ qbittorrent:
 newshosting.com:
   username: ENC[AES256_GCM,data:zh2BcvX6,iv:rRoGAe7ole9473WbCuybeRwuL4BLivsL18IHFndiiGE=,tag:tZhOlzjHFDY0sq4nDIOgMw==,type:str]
   password: ENC[AES256_GCM,data:CN7HjobECSVWvoSove94ClfS+4nbQ/k5jvc4gRWHbTU=,iv:b69SDIFgIz+ICg8aULIoR/hK7AKoMP1qZ0cMtYMt87w=,tag:9HixRTG3ja2b6FOCFC7GtA==,type:str]
+netbird:
+  setup-key: ENC[AES256_GCM,data:740Gt7yrthJd/57RW3kNLQ9PGkOmaVuJs2sfJ9QPJxWQm1qU,iv:BslZ2yQ8I8IpAEF1CnDUDdt8EM0kkhPETaLNUqZy+B0=,tag:qpVsw1B8I5vseN/pOp6kFA==,type:str]
 sops:
   age:
     - enc: |
@@ -50,7 +52,7 @@ sops:
         RnGnc9Wiz810adL07qBZzblxNGffQXb8Q9qOxC5zSm/SfhiUX7bgeg==
         -----END AGE ENCRYPTED FILE-----
       recipient: age1227fcdly05etp3g8qea8wcamn2ct2at5l86qznuz92gz6fp95e2sjkw7q4
-  lastmodified: "2026-10-28T22:00:03Z"
-  mac: ENC[AES256_GCM,data:LYkA5QGOoLQ04p0jS7MQIzuCRaWt/+GsCdKPGGUwRLuOme03NFfjhaGoKTzhbcPQB5+rT7yEXVHIlvqhd/WFWMEWbQtX/kiLkxS2bZglead74kYumy6zZr+gl9949XWUdkKRWD3urbgT6OhkNpaQxIOoIgnVkcfLlIdoewYpIXw=,iv:/Bk9MMOdUqMCW1Yh48Vi0cHXck8Ucu2llRtNv0zBYdU=,tag:OpJw0bxbU6dKoej4wRSe/A==,type:str]
+  lastmodified: "2026-11-08T17:39:40Z"
+  mac: ENC[AES256_GCM,data:fVWHsx6IsGAxBoPY75uGXuLjOcWhfNznKhZToAorL75gu7EVf1GE2FSJVoIHX/x5B8XEpTc3hDUW3XkdFbLv1aq7T0Vp2vxfcD7QSnZEmJh+Y5MhMsd94usFyDWniuLiFvtpEbKMmkKYk+xcb3JWRxore/2jaHYMu6mFLyrTcqE=,iv:8NJ0QRRFuWNChh/jeyA+460YQG35MSWauG5TJm4FJJE=,tag:j8NzSRcw2879CTUcVrG6cw==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.3

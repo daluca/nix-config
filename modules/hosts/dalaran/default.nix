@@ -31,6 +31,7 @@
         gatus
         homebox
         immich
+        netbird-client
       ];
 
     security.acme.certs.${secrets.domains.general}.domain = "*.${secrets.domains.general}";

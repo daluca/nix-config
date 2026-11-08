@@ -11,6 +11,8 @@ firefly-iii:
   app.key: ENC[AES256_GCM,data:d58CDRrM4xykGQahWTxq/vedoXxWBJvamMpkyyuOuU5Y4OZM8tpYUWrTf0PaAAwbMbiv,iv:O6TJbx6TTC1Sbir7JXi/JRSWLx9yQOTqZAbAS8XBaVk=,tag:EVVMwVZCthNqddFWEWRQpA==,type:str]
 ntfy:
   token: ENC[AES256_GCM,data:GP/43uOiCVhI+SVvfEiXmWZ/moXlpZHNG0GC2nokMqQ=,iv:XZpfKGZRrYlgeBPYd56mPcLXl4ypMoiJ0ucRvCewoNQ=,tag:V4ql4aqM2ujy9cmN2AhN9A==,type:str]
+netbird:
+  setup-key: ENC[AES256_GCM,data:BqEIUVKEeiFHigqsPc14rG24WKLeG0Kf4c83wLzvDH5YOnCf,iv:7ppSQJ/iJAXQxkRGQAVGAicitjQMO80lMbwO37VUJmk=,tag:jk6cu88pWyu7hu4SXH3kIg==,type:str]
 sops:
   age:
     - enc: |
@@ -31,7 +33,7 @@ sops:
         9k/GBNgoz/KF54hSR4AD3Ngm42509w7GWapnoj1QfB5b+P83zYl/kA==
         -----END AGE ENCRYPTED FILE-----
       recipient: age13n7tntegd6zw8ne0n4at2zlxz425xptlwsceu36tg7tw56f8upcssr4u8u
-  lastmodified: "2026-10-28T21:57:43Z"
-  mac: ENC[AES256_GCM,data:EG6gSTyA8+s3o5uBRhQgQ2tCjBzMRNCzBFTr/TPHrYsPlnOfYFJ+oWtsi2EvY22LBQ6ieyyDUTeP13mZX5wC7HK32hcHBBhw+eTEX3TwEftJUJyp9kaJnal0Bl0705RmU8DPYpQxFohL//NGDMEcV5YoYxXbpXnjnyYRrpEmI1s=,iv:UJerl4vpppaP8WCTA+1dfW3JLpFGILwHjjLh0e0YN14=,tag:aNn66Mk1P4Pg0J3HwW+iDw==,type:str]
+  lastmodified: "2026-11-08T16:22:10Z"
+  mac: ENC[AES256_GCM,data:wj24pAEBB0KYIZzwqB090XfMackBmq85jZXPvUIuOftrEZA/FbwG8c7AJ4CR0l+yy52VbDzao1RxWs+zsO4CcNjvsAn2/O6+CLnO1WPp6mgax95psHR1nYxeKUCmDjy8kAkpHHd18TTns9oHEYX5HlgekF3jKKlUw5iC/H1GG6A=,iv:8KhTSzWx+uE06RdSp0Vza1AfOCqaMyeiIBlaF20qA6k=,tag:Kfxw1JqALQbCJD3l/NJ1uw==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.3

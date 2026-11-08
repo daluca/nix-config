@@ -30,6 +30,7 @@
           users-starr
           nginx
           tailscale-server
+          netbird-client
           impermanence-grub
           remote-unlocking
           grub

@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.nixosModules.desktop = {
+  flake.nixosModules.desktop = { lib, ... }: {
     imports = with self.nixosModules; [
       base
       kanata
@@ -14,6 +14,9 @@
     ];
 
     time.timeZone = "Europe/Amsterdam";
+
+    services.netbird.useRoutingFeatures = "client";
+    services.tailscale.useRoutingFeatures = lib.mkForce "none";
 
     nix.settings = {
       warn-dirty = false;

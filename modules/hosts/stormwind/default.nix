@@ -19,6 +19,7 @@
       raspberry-pi-4-poe-hat
       adguardhome-netherlands
       tailscale-server
+      netbird-client
     ];
 
     sops.defaultSopsFile = ./stormwind.sops.yaml;

@@ -17,6 +17,7 @@
     imports = with self.nixosModules; [
       digitalocean
       unifi-controller
+      netbird-client
       nginx
     ];
 

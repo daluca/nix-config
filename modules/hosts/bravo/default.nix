@@ -30,6 +30,7 @@
           users-remotebuild
           remote-unlocking-dhcp
           impermanence-grub
+          netbird-client
           nginx
           ntfy
           atuin

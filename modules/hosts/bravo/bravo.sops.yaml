@@ -14,6 +14,8 @@ miniflux:
   admin-password: ENC[AES256_GCM,data:dmzU0dm0CWH3g6bBo6u+bi4J4Sa5BMo2w9Xr8ROBjas=,iv:ehM42LG62zdejAeW6Z66uvx1A8vKpZKBqMtHaMu69/8=,tag:aSIRV5NetoUSpcGUGwXHfA==,type:str]
   oidc:
     client-secret: ENC[AES256_GCM,data:ks9w0iZiLcE9Gffi892Jm7Hx4ddPdtR423BazEgVt8k=,iv:ThcrdOFVy0sIaAb7wcoOMzZabY1WwurCZTLOjUtpSLo=,tag:KJh8nrU+hBfiRdi/I7PGjw==,type:str]
+netbird:
+  setup-key: ENC[AES256_GCM,data:ny3gDL8cq4QrE24hfEzMW5nwN4jNl2VuyvK4CBe5O1yNbtfF,iv:OksWeXCCfiIFffR9GkrfaVjruhAr6UpjwmnReI+L044=,tag:TDugzmsaF/khLUfoAa57Cw==,type:str]
 sops:
   age:
     - enc: |
@@ -34,7 +36,7 @@ sops:
         x2Auvf6a/xeWFsV293hN/hxAZQoWmB2CPPQVz5V4a7HWAllTgfglVg==
         -----END AGE ENCRYPTED FILE-----
       recipient: age182zncdt5xn9m2yjrxf0mfa5l26y0fhddzcfwvyg49t02dsmzeucsupagxs
-  lastmodified: "2026-10-28T21:54:57Z"
-  mac: ENC[AES256_GCM,data:HRZHuu0jbS7NW1MT+gw/QikybLh3YGbxbTNSdwRKCsmijo8egLKHdI8OxeKkhPqdOzErl+LnQBI5aNM1brQ2NgxQEm4MveRtQ4TplGwnPiVuC7UVF0vKuXafHco50YA4XK7gtJ+bd4yu9glr1vqCLVa4WLPvfzDG9Gr14vfDjQ4=,iv:v1abOSby4j+/j9miKqJwwQCNbs0KJVlu7a0dL385Vlg=,tag:pu2y9ddimMq+bOZuFWGo6w==,type:str]
+  lastmodified: "2026-11-08T17:50:59Z"
+  mac: ENC[AES256_GCM,data:3H0lxk81ekEPZ1ll6alUhCkjii8PAJEuCgz1Dg7zbIQmuo+aflUJ1ocrQgfXsiu1ycbmmx/lFNjohGM7cC7zmdomVCXErsFmAkudmCiw2CX/4GHBtGR0+OWTkOjfVmQLf0jRTdYqUNV7JEFcQ78ZosgCJDL9CXY+Bo4CyueOMNo=,iv:7TZ6Jh3BK3rqamS0mITsc+YF64UppQ5jrUj3qIE+53Q=,tag:BhgHfSsvI8Ew17ebILRE0Q==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.3

@@ -1,21 +1,46 @@
-{ self, inputs, withSystem, ... }:
+{
+  self,
+  inputs,
+  withSystem,
+  ...
+}:
 
 {
-  flake.overlays.netbird = final: prev:
+  perSystem = { pkgs, ... }: {
+    packages.terraform-provider-netbird = pkgs.terraform-providers.mkProvider rec {
+      owner = "netbirdio";
+      repo = "terraform-provider-netbird";
+      rev = "v${version}";
+      version = "0.0.11";
+      hash = "sha256-ojtMtGmSokA6x1ut09W6Oc8ESGT0fpLoorc5XNQvpyY=";
+      vendorHash = "sha256-s5UVLL+BZX8dTGL8SZXvPJcyPFxzIOf0VEW9iYZZ1b8=";
+      homepage = "https://registry.terraform.io/providers/netbirdio/netbird";
+      spdx = "BSD-3-Clause";
+    };
+  };
+
+  flake.overlays.netbird =
+    _final: prev:
     # TODO: Remove once NixOS 26.11 is released
     withSystem prev.stdenv.hostPlatform.system (
-      { inputs', ... }: {
-        netbird-combined = inputs'.nixpkgs-unstable.legacyPackages.netbird-combined.overrideAttrs (oldAttrs: {
-          version = "0.82.0-unstable-2026-10-29";
+      { self', inputs', ... }: {
+        terraform-providers = prev.terraform-providers // {
+          netbirdio_netbird = self'.packages.terraform-provider-netbird;
+        };
 
-          src = oldAttrs.src.override {
-            tag = null;
-            rev = "6f73711d3bb1a01692b13638fafd365714ff895c";
-            hash = "sha256-9zKAMGmftuZXsHuL1atW3hTZpumnJ4iBYVS38OnSXn8=";
-          };
+        netbird-combined =
+          inputs'.nixpkgs-unstable.legacyPackages.netbird-combined.overrideAttrs
+            (oldAttrs: {
+              version = "0.82.0-unstable-2026-10-29";
 
-          vendorHash = "sha256-rzHnfPjjv4fNHSE2qk6/5wCZ3BH0LrFvDDmNNU5Di0s=";
-        });
+              src = oldAttrs.src.override {
+                tag = null;
+                rev = "6f73711d3bb1a01692b13638fafd365714ff895c";
+                hash = "sha256-9zKAMGmftuZXsHuL1atW3hTZpumnJ4iBYVS38OnSXn8=";
+              };
+
+              vendorHash = "sha256-rzHnfPjjv4fNHSE2qk6/5wCZ3BH0LrFvDDmNNU5Di0s=";
+            });
       }
     );
 
@@ -31,12 +56,19 @@
         enable = true;
         package = pkgs.unstable.netbird;
         clients.default = {
+          login = {
+            enable = true;
+            setupKeyFile = config.sops.secrets."netbird/setup-key".path;
+            systemdDependencies = [ "sops-install-secrets.service" ];
+          };
           config.ManagementURL = {
             Scheme = "https";
             Host = "netbird.${secrets.domains.general}:443";
           };
         };
       };
+
+      sops.secrets."netbird/setup-key" = { };
 
       networking.firewall.trustedInterfaces = [
         config.services.netbird.clients.default.interface
@@ -186,39 +218,42 @@
     let
       cfg = config.services.netbird.server.combined;
 
-      configFile = pkgs.writeText "netbird-config.yaml" (builtins.toJSON (lib.recursiveUpdate
-        {
-          server = {
-            inherit (cfg) dataDir;
-            exposedAddress = cfg.settings.exposedAddress;
-            stunPorts = cfg.stun.ports;
-            metricsPort = 9090;
-            healthcheckAddress = "127.0.0.1:9000";
-            logLevel = "info";
-            logFile = "console";
-            auth = {
-              issuer = "${cfg.settings.exposedAddress}/oauth2";
-              signKeyRefreshEnabled = true;
-              dashboardRedirectURIs = [
-                "${lib.removeSuffix ":443" cfg.settings.exposedAddress}/nb-auth"
-                "${lib.removeSuffix ":443" cfg.settings.exposedAddress}/nb-silent-auth"
-              ];
-              cliRedirectURIs = [
-                "http://127.0.0.1:53000/"
-              ];
-            };
-            reverseProxy.trustedHTTPProxies = [
-              "127.0.0.1"
-            ];
-            store = {
-              engine = "sqlite";
-            };
-          };
-        }
-        {
-          server = cfg.settings;
-        }
-      ));
+      configFile = pkgs.writeText "netbird-config.yaml" (
+        builtins.toJSON (
+          lib.recursiveUpdate
+            {
+              server = {
+                inherit (cfg) dataDir;
+                exposedAddress = cfg.settings.exposedAddress;
+                stunPorts = cfg.stun.ports;
+                metricsPort = 9090;
+                healthcheckAddress = "127.0.0.1:9000";
+                logLevel = "info";
+                logFile = "console";
+                auth = {
+                  issuer = "${cfg.settings.exposedAddress}/oauth2";
+                  signKeyRefreshEnabled = true;
+                  dashboardRedirectURIs = [
+                    "${lib.removeSuffix ":443" cfg.settings.exposedAddress}/nb-auth"
+                    "${lib.removeSuffix ":443" cfg.settings.exposedAddress}/nb-silent-auth"
+                  ];
+                  cliRedirectURIs = [
+                    "http://127.0.0.1:53000/"
+                  ];
+                };
+                reverseProxy.trustedHTTPProxies = [
+                  "127.0.0.1"
+                ];
+                store = {
+                  engine = "sqlite";
+                };
+              };
+            }
+            {
+              server = cfg.settings;
+            }
+        )
+      );
     in
     with lib;
     {
@@ -306,7 +341,12 @@
             RestartSec = "5s";
             UMask = "0077";
             AmbientCapabilities = "";
-            CapabilityBoundingSet = [ "" ] ++ lib.optionals ((toInt (lib.removePrefix "127.0.0.1:" cfg.settings.listenAddress)) < 1024) [ "CAP_NET_BIND_SERVICE" ];
+            CapabilityBoundingSet = [
+              ""
+            ]
+            ++ lib.optionals ((toInt (lib.removePrefix "127.0.0.1:" cfg.settings.listenAddress)) < 1024) [
+              "CAP_NET_BIND_SERVICE"
+            ];
             LockPersonality = true;
             MemoryDenyWriteExecute = true;
             NoNewPrivileges = true;

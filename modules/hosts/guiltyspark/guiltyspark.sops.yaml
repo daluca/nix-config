@@ -19,6 +19,8 @@ sabnzbd:
 newshosting.com:
   username: ENC[AES256_GCM,data:OlRGk8W1,iv:QImuWjlQODFfGP5RmTT2G6fVppjOrd6J5xqCe5OM8vM=,tag:OhSJkXrF6piTkPUrT8C0nA==,type:str]
   password: ENC[AES256_GCM,data:OXPguIZf6z+R0iVIN3DecjE51Ea7NMkt/uoynLMehxc=,iv:9yzVwwz0BiNdUlgkPesrOWPa8KFjle1V5QhCvEqj91k=,tag:xnqW9WmSLecpGjQs/bQAdQ==,type:str]
+netbird:
+  setup-key: ENC[AES256_GCM,data:7HZtAccSeco7TOppPAHrGNH2VDFwCzjmnkI/rM43avGnAGZh,iv:47iVYdckYUACL2g2UiC1iW9QPQk0iRdQMHDyraZvo60=,tag:SKQGboRCaT9otA1HBZIfJA==,type:str]
 sops:
   age:
     - enc: |
@@ -39,7 +41,7 @@ sops:
         C6Gm3Mi7x8uj6gtSBpOnOH3wOMMGxgqhhR2AmjdUmIqbbPd2dzuekg==
         -----END AGE ENCRYPTED FILE-----
       recipient: age1hlextplau7gmc4a58ak6v6gtmtczfp829r0ve24vm0309s9gucgsr7rucm
-  lastmodified: "2026-10-28T21:59:09Z"
-  mac: ENC[AES256_GCM,data:ifWqExwWXzupRJozZUUmcPNPWQka0hgVbZFfrOZ799z+RUR1miQi02FbWVD7B5yWOqB7FZJBYP/skAN9jAqUtQ1v4KBCwd41hpgRN6lbi4oP+KcrgEsniV3AHn6GWKYv7KGJR/Kv6cA7i+ICPuhlVnuSHuWeauhsmkU1WXprewU=,iv:xeFbPrvlxOIMfgP5uPvDbouI4sRysPKZ2ImJicGWaqo=,tag:N3h1DvQR+u1fnZ0GnPO1LA==,type:str]
+  lastmodified: "2026-11-08T16:51:12Z"
+  mac: ENC[AES256_GCM,data:ZWaHgK5ZTKcHLv1o/3mHPgJmTlAzhd/8k7Ipv0nGk23pC3m157VVDR3ThBn/8sbbB6NNM4MyZFQ0u1Ujjya9bjzsRxOtWNpwfON9P7QWcsiICTAL1rUDNMD4o5iIyYupNvMwlwG2N1RLaWKzuDCtgpkcpcWD82GL8MFR3cpOyLw=,iv:McHLAJAfazFGBq2AZAbVF8ukQ3CBzxZuwKvEpqTFn+Q=,tag:ePfiancXCE50Z+0yNrqnlg==,type:str]
   unencrypted_suffix: _unencrypted
   version: 3.13.3

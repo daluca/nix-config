@@ -37,6 +37,7 @@ in
         plex
         jellyplex-watched
         tunarr
+        netbird-client
       ];
 
     sops.defaultSopsFile = ./guiltyspark.sops.yaml;
