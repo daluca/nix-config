@@ -61,6 +61,7 @@
         hetzner
         cloudflare
         attic
+        netbird-client
       ];
 
       xdg.mimeApps.enable = true;
