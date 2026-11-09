@@ -30,7 +30,7 @@
 
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi";
 
-    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.url = "github:serokell/deploy-rs/v1.0.0";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
