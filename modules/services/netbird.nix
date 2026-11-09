@@ -19,15 +19,21 @@
     };
   };
 
+  flake.overlays.netbird-unstable =
+    _final: prev:
+    withSystem prev.stdenv.hostPlatform.system (
+      { self', ... }: {
+        terraform-providers = prev.terraform-providers // {
+          netbirdio_netbird = self'.packages.terraform-provider-netbird;
+        };
+      }
+    );
+
   flake.overlays.netbird =
     _final: prev:
     # TODO: Remove once NixOS 26.11 is released
     withSystem prev.stdenv.hostPlatform.system (
-      { self', inputs', ... }: {
-        terraform-providers = prev.terraform-providers // {
-          netbirdio_netbird = self'.packages.terraform-provider-netbird;
-        };
-
+      { inputs', ... }: {
         netbird-combined =
           inputs'.nixpkgs-unstable.legacyPackages.netbird-combined.overrideAttrs
             (oldAttrs: {
