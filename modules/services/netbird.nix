@@ -86,6 +86,24 @@
       ];
     };
 
+  flake.homeModules.netbird-client = { pkgs, lib, ... }: {
+    systemd.user.services.netbird-systray = {
+      Unit = {
+        Description = "Netbird UI system tray";
+        After = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        Type = "simple";
+        ExecStart = lib.getExe pkgs.netbird-ui;
+      };
+
+      Install = {
+        WantedBy = [ "graphical.target" ];
+      };
+    };
+  };
+
   flake.nixosModules.netbird-server =
     {
       config,
