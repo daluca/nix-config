@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  secrets = fromTOML (builtins.readFile ../secrets/secrets.toml);
+  secrets = fromTOML (builtins.readFile ../../secrets/secrets.toml);
   primary = {
     domain = secrets.domains.general;
     zone_id = "d05e5c424280a2487da182227416054a";
