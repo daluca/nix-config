@@ -74,6 +74,10 @@
         config.services.netbird.clients.default.interface
       ];
 
+      environment.systemPackages = with pkgs; [
+        wireguard-tools
+      ];
+
       environment.persistence.system.directories = [
         {
           directory = "/var/lib/netbird";
