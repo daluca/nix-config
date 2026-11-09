@@ -29,6 +29,7 @@
         netbird-client
         nginx
         atticd
+        pocket-id
       ];
 
     security.acme.certs.${secrets.domains.primary}.domain = "*.${secrets.domains.primary}";

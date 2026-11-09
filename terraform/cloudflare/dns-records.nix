@@ -26,7 +26,7 @@ let
     content = secrets.hosts.shodan.ipv4-address;
   };
   dns-records = {
-    pocket_id = (charlie primary.zone_id) // {
+    pocket_id = (delta primary.zone_id) // {
       name = "id.${primary.domain}";
       id = "${primary.zone_id}/816a3413db17c2b31fe2d55f410ef491";
     };
