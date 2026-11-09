@@ -97,7 +97,7 @@ in
 
       nixpkgs.overlays =
         with inputs;
-        builtins.attrValues self.overlays
+        builtins.attrValues (lib.filterAttrs (key: _value: !lib.hasSuffix "-unstable" key) self.overlays)
         ++ [
           nur.overlays.default
           nix-vscode-extensions.overlays.default
