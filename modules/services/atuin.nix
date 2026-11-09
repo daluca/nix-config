@@ -1,7 +1,23 @@
 {
-  flake.nixosModules.atuin = { config, ... }: {
+  flake.overlays.atuin-unstable = _final: prev: {
+    # TODO: Remove once upstream fix has been merged
+    # https://github.com/NixOS/nixpkgs/pull/583850
+    # Workaround is to set checks to debug and add timeout duration
+    atuin = prev.atuin.overrideAttrs (oldAttrs: {
+      checkFlags =
+        oldAttrs.checkFlags
+        ++ prev.lib.optionals prev.stdenv.hostPlatform.isAarch64 [
+          "--skip=a_huge_message_reads_back"
+          "--skip=a_local_session_resumes_in_its_agent_where_it_ran::case_02_codex"
+        ];
+    });
+  };
+
+  flake.nixosModules.atuin = { config, pkgs, ... }: {
     services.atuin = {
       enable = true;
+      # TODO: Revert to stable in NixOS 26.11
+      package = pkgs.unstable.atuin;
       openRegistration = false;
     };
 
