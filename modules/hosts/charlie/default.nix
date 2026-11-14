@@ -23,7 +23,6 @@
         users-remotebuild
         nginx
         hister
-        pocket-id
         remote-unlocking-dhcp
         impermanence-grub
         rustical
