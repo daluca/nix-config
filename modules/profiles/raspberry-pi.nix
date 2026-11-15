@@ -18,7 +18,7 @@
     ];
   };
 
-  flake.nixosModules.raspberry-pi-4 = { lib, ... }: {
+  flake.nixosModules.raspberry-pi-4 = { lib, pkgs, ... }: {
     imports =
       with inputs;
       with self.nixosModules;
@@ -39,6 +39,8 @@
     ];
 
     host.network.interface = "end0";
+
+    boot.kernelPackages = pkgs.linuxPackages;
 
     boot.supportedFilesystems.zfs = lib.mkForce false;
 
