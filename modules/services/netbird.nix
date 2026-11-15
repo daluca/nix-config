@@ -269,6 +269,9 @@
                     "${lib.removeSuffix ":443" cfg.settings.exposedAddress}/nb-auth"
                     "${lib.removeSuffix ":443" cfg.settings.exposedAddress}/nb-silent-auth"
                   ];
+                  dashboardPostLogoutRedirectURIs = [
+                    "${lib.removeSuffix ":443" cfg.settings.exposedAddress}/"
+                  ];
                   cliRedirectURIs = [
                     "http://127.0.0.1:53000/"
                   ];

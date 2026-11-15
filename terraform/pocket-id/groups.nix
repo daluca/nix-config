@@ -3,6 +3,7 @@ let
   groups = {
     jellyfin.id = "1bf9ed03-201f-4933-b6b0-9130943e7e16";
     jellyfin_administrator.id = "ae56ae18-9989-4988-9927-8efb41f76e5d";
+    netbird.id = "f262d890-219d-4b20-9f74-433099a20bd9";
   };
 in
 {

@@ -1,6 +1,7 @@
 { lib, ... }:
 let
   secrets = fromTOML (builtins.readFile ../../secrets/secrets.toml);
+  group = name: lib.tf.ref "pocketid_group.${name}.id";
   clients = {
     jellyfin = {
       launch_url = "https://jellyfin.${secrets.domains.general}/";
@@ -11,10 +12,23 @@ let
         "https://jellyfin.${secrets.domains.general}/"
       ];
       allowed_user_groups = [
-        (lib.tf.ref "pocketid_group.jellyfin.id")
-        (lib.tf.ref "pocketid_group.jellyfin_administrator.id")
+        (group "jellyfin")
+        (group "jellyfin_administrator")
       ];
       id = "dd711786-3745-4199-bb0e-a7a2fff38407";
+    };
+    netbird = {
+      launch_url = "https://netbird.${secrets.domains.general}/";
+      callback_urls = [
+        "https://netbird.${secrets.domains.general}/oauth2/callback"
+      ];
+      logout_callback_urls = [
+        "https://netbird.${secrets.domains.general}/oauth2/logout/callback"
+      ];
+      allowed_user_groups = [
+        (group "netbird")
+      ];
+      id = "7da8f30a-ddc3-4e4e-824b-abb16aa7cfc7";
     };
   };
 in
