@@ -30,6 +30,18 @@ let
       ];
       id = "7da8f30a-ddc3-4e4e-824b-abb16aa7cfc7";
     };
+    seerr = {
+      launch_url = "https://request.${secrets.domains.general}/";
+      callback_urls = [
+        "https://request.${secrets.domains.general}/login"
+        "https://request.${secrets.domains.general}/profile/settings/linked-accounts"
+      ];
+      logout_callback_urls = [ ];
+      allowed_user_groups = [
+        (group "jellyfin")
+      ];
+      id = "8af61067-3122-4865-bb67-8f38927edf79";
+    };
   };
 in
 {
