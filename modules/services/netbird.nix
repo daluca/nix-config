@@ -26,6 +26,33 @@
         terraform-providers = prev.terraform-providers // {
           netbirdio_netbird = self'.packages.terraform-provider-netbird;
         };
+        netbird = prev.netbird.overrideAttrs (oldAttrs: rec {
+          version = "0.83.1";
+
+          src = oldAttrs.src.override {
+            tag = "v${version}";
+            hash = "sha256-4KX44eX6ylXM59B1jOVoSgUytl7WSqHGs0qaX+XFngI=";
+          };
+
+          vendorHash = "sha256-iIbATQiIfazszBSi4jl5Ys/27uYwfweEMo+4BLSnRms=";
+        });
+        netbird-dashboard = prev.netbird-dashboard.overrideAttrs (oldAttrs: rec {
+          version = "2.97.0";
+
+          src = oldAttrs.src.override {
+            rev = "v${version}";
+            hash = "sha256-aUnFtrXa5ivisovUgyif87Lf0Krkw5Zax7heRIyyQ/8=";
+          };
+
+          npmDepsHash = "sha256-PiRXoYa/TQ/jTSw9E6V8HYM6t2Hl20fuPu6zx6s9WpM=";
+
+          npmDeps = prev.fetchNpmDeps {
+            inherit src;
+            hash = npmDepsHash;
+          };
+
+          env.NEXT_PUBLIC_DASHBOARD_VERSION = version;
+        });
       }
     );
 
@@ -36,16 +63,15 @@
       { inputs', ... }: {
         netbird-combined =
           inputs'.nixpkgs-unstable.legacyPackages.netbird-combined.overrideAttrs
-            (oldAttrs: {
-              version = "0.82.0-unstable-2026-10-29";
+            (oldAttrs: rec {
+              version = "0.83.1";
 
               src = oldAttrs.src.override {
-                tag = null;
-                rev = "6f73711d3bb1a01692b13638fafd365714ff895c";
-                hash = "sha256-9zKAMGmftuZXsHuL1atW3hTZpumnJ4iBYVS38OnSXn8=";
+                tag = "v${version}";
+                hash = "sha256-4KX44eX6ylXM59B1jOVoSgUytl7WSqHGs0qaX+XFngI=";
               };
 
-              vendorHash = "sha256-rzHnfPjjv4fNHSE2qk6/5wCZ3BH0LrFvDDmNNU5Di0s=";
+              vendorHash = "sha256-iIbATQiIfazszBSi4jl5Ys/27uYwfweEMo+4BLSnRms=";
             });
       }
     );
