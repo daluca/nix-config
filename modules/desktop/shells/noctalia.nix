@@ -101,6 +101,9 @@
           show_label = true;
           display = "short";
         };
+        widget.media = {
+          hide_when_no_media = true;
+        };
       };
     };
 
