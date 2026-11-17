@@ -83,6 +83,7 @@
       spawn-at-startup = [
         { argv = [ "noctalia" ]; }
       ];
+      hotkey-overlay.skip-at-startup = true;
       window-rules =
         let
           noctalia = {
