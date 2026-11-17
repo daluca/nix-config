@@ -1,3 +1,5 @@
+{ self, ... }:
+
 {
   flake.nixosModules.nginx =
     {
@@ -33,6 +35,10 @@
       '';
     in
     {
+      imports = with self.nixosModules; [
+        nginx-options
+      ];
+
       services.nginx = {
         enable = true;
         recommendedProxySettings = true;
@@ -86,4 +92,18 @@
         }
       ];
     };
+
+  flake.nixosModules.nginx-options = { lib, ... }: {
+    options = {
+      services.nginx.virtualHosts = lib.mkOption {
+        type = lib.types.attrsOf (
+          lib.types.submodule {
+            # NOTE: Remove when nginx 1.31.9 or higher has been released
+            # https://nginx2root.com/
+            config.http2 = lib.mkForce false;
+          }
+        );
+      };
+    };
+  };
 }
