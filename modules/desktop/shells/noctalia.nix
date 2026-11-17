@@ -47,7 +47,8 @@
           };
         };
         hooks = {
-          started = "noctalia msg panel-toggle launcher";
+          # NOTE: Revert once keyring unlock no longer prompts on startup
+          # started = "noctalia msg panel-toggle launcher";
         };
         shell = {
           niri_overview_type_to_launch_enabled = true;
