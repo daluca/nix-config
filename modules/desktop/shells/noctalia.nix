@@ -68,6 +68,10 @@
         nightlight.enabled = true;
         location.auto_locate = true;
         shell.launcher.track_usage = false;
+        shell.keyboard_layout.custom_labels = {
+          "English (Dvorak)" = "DV";
+          "English (US)" = "EN";
+        };
         weather = {
           unit = "metric";
           effects = true;
@@ -75,6 +79,26 @@
         lockscreen = {
           fingerprint = false;
           allow_empty_password = true;
+        };
+        bar.default.end = [
+          "media"
+          "tray"
+          "notifications"
+          "clipboard"
+          "network"
+          "bluetooth"
+          "volume"
+          "keyboard_layout"
+          "brightness"
+          "battery"
+          "control-center"
+          "session"
+        ];
+        widget.keyboard_layout = {
+          hide_when_single_layout = true;
+          show_glyph = true;
+          show_label = true;
+          display = "short";
         };
       };
     };
@@ -141,6 +165,7 @@
           "Mod+D".action.spawn = spawn-sh "noctalia msg panel-toggle launcher";
           "Alt+Tab".action.spawn = spawn-sh "noctalia msg window-switcher hold";
           "Mod+L".action.spawn = spawn-sh "noctalia msg session lock";
+          "Super+Space".action.spawn = spawn-sh "noctalia msg keyboard-layout-cycle";
         };
       debug.honor-xdg-activation-with-invalid-serial = { };
     };
