@@ -1,6 +1,17 @@
-{ self, ... }:
-
 {
+  # NOTE: Remove once nginxMainline version is higher or equal to 1.31.9
+  # https://nginx2root.com/
+  flake.overlays.nginx-unstable = _final: prev: {
+    nginxMainline = prev.nginxMainline.overrideAttrs rec {
+      version = "1.31.9";
+
+      src = prev.fetchurl {
+        url = "https://nginx.org/download/nginx-${version}.tar.gz";
+        hash = "sha256-oRxe7uLiV/RHjw5kn4SwBAeH0nfS0+UjOVKqa23LgK0=";
+      };
+    };
+  };
+
   flake.nixosModules.nginx =
     {
       config,
@@ -35,12 +46,11 @@
       '';
     in
     {
-      imports = with self.nixosModules; [
-        nginx-options
-      ];
-
       services.nginx = {
         enable = true;
+        # NOTE: Revert to stable once nginxMainline is higher or equal to 1.31.9
+        # https://nginx2root.com/
+        package = pkgs.unstable.nginxMainline;
         recommendedProxySettings = true;
         recommendedTlsSettings = true;
         appendHttpConfig = /* nginx */ ''
@@ -92,18 +102,4 @@
         }
       ];
     };
-
-  flake.nixosModules.nginx-options = { lib, ... }: {
-    options = {
-      services.nginx.virtualHosts = lib.mkOption {
-        type = lib.types.attrsOf (
-          lib.types.submodule {
-            # NOTE: Remove when nginx 1.31.9 or higher has been released
-            # https://nginx2root.com/
-            config.http2 = lib.mkForce false;
-          }
-        );
-      };
-    };
-  };
 }
