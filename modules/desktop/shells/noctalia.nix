@@ -59,12 +59,13 @@
           community_palette = "Catppuccin Mocha Mauve-Lavender";
         };
         wallpaper = {
-          automation.enabled = true;
-          default.path = pkgs.fetchurl {
-            url = "https://i.redd.it/ch72w5o76e591.png";
-            hash = "sha256-v5G1AJkkhdBrLV4Tw30f3sdw0QqyG5HyypPOj24A/+w=";
-            name = "boston-usa.png";
+          automation = {
+            enabled = true;
+            interval_seconds = 1800;
+            recursive = true;
           };
+          directory = "${pkgs.wallpapers}/share/wallpapers";
+          default.path = "${pkgs.wallpapers}/share/wallpapers/boston-usa.png";
         };
         nightlight.enabled = true;
         location.auto_locate = true;
